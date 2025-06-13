@@ -23,3 +23,16 @@ button {
 body {
   font-family: "Kbcurioussoul-m3W9";
 }
+
+#line-1 {
+  font-size: 5rem;
+}
+#line-2 {
+  font-size: 2rem;
+}
+#line-2 span {
+  font-size: 15rem;
+}
+#line-3 {
+  font-size: 7rem;
+}
