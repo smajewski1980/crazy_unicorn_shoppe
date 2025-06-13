@@ -1,0 +1,28 @@
+{
+  "name": "crazy_unicorn_shoppe",
+  "version": "1.0.0",
+  "description": "A fun full stack app for my portfolio.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smajewski1980/crazy_unicorn_shoppe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/smajewski1980/crazy_unicorn_shoppe/issues"
+  },
+  "homepage": "https://github.com/smajewski1980/crazy_unicorn_shoppe#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
