@@ -17,15 +17,14 @@ button {
 
 @font-face {
   font-family: "Kbcurioussoul-m3W9";
-  src: url("./assets/fonts/Kbcurioussoul-m3W9.ttf") format("truetype");
+  src: url("./assets/fonts/Kbcurioussoul-m3W9.ttf"), format("truetype");
 }
 
 body {
+  background-image: radial-gradient(rgb(243, 160, 243), purple);
   font-family: "Kbcurioussoul-m3W9";
-  background-image: url("./assets/images/crazy_unicorn_5.webp");
-  background-repeat: no-repeat;
-  background-position: 67vw 0px;
-  background-size: 30vw;
+  min-height: 100vh;
+  overflow: clip;
 }
 
 p {
@@ -34,26 +33,56 @@ p {
 
 #line-1 {
   font-size: 5rem;
-  top: 50%;
-  left: 5%;
-  transform: translateY(-50%);
+  top: 35%;
+  left: 29%;
+  rotate: 25deg;
 }
 #line-2 {
   font-size: 2rem;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  left: 43%;
+  top: 40%;
+  /* transform: translateY(-50%); */
 }
 #line-2 span {
-  font-size: 15rem;
+  font-size: 20rem;
 }
 #line-3 {
   font-size: 5rem;
-  left: 5%;
-  bottom: 5%;
+  left: 35%;
+  bottom: 25%;
 }
 #punctuation {
-  font-size: 10rem;
-  bottom: 0%;
-  right: 2.5%;
+  font-size: 50rem;
+  bottom: 50%;
+  left: 20%;
+  rotate: 25deg;
+  opacity: 0.1;
+  z-index: -99;
+}
+
+#crazy-unicorn {
+  padding-top: 4rem;
+  margin-left: 5rem;
+  position: relative;
+  z-index: -5;
+}
+
+/* #crazy-unicorn::after {
+  content: url("./assets/images/rainbow-disc.webp");
+  position: absolute;
+  bottom: -40%;
+  left: -2%;
+  z-index: -10;
+} */
+
+#crazy-unicorn::before {
+  content: url("./assets/images/bow-tie-sm.webp");
+  position: absolute;
+  bottom: -20%;
+}
+
+#banner-1 {
+  position: absolute;
+  top: -1rem;
+  left: -5rem;
 }
