@@ -33,14 +33,14 @@ p {
 
 #line-1 {
   font-size: 5rem;
-  top: 35%;
-  left: 29%;
-  rotate: 25deg;
+  top: 32%;
+  left: 28%;
+  rotate: -40deg;
 }
 #line-2 {
   font-size: 2rem;
-  left: 43%;
-  top: 40%;
+  left: 38%;
+  top: 35%;
   /* transform: translateY(-50%); */
 }
 #line-2 span {
@@ -48,8 +48,8 @@ p {
 }
 #line-3 {
   font-size: 5rem;
-  left: 35%;
-  bottom: 25%;
+  left: 32%;
+  bottom: 17%;
 }
 #punctuation {
   font-size: 50rem;
@@ -78,11 +78,18 @@ p {
 #crazy-unicorn::before {
   content: url("./assets/images/bow-tie-sm.webp");
   position: absolute;
-  bottom: -20%;
+  bottom: -19%;
 }
 
 #banner-1 {
   position: absolute;
   top: -1rem;
   left: -5rem;
+}
+
+#banner-2 {
+  position: absolute;
+  left: 52rem;
+  top: 2rem;
+  rotate: 15deg;
 }
