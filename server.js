@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const sassMiddleware = require("express-dart-sass");
 const path = require("path");
@@ -5,6 +6,7 @@ const connectLiveReload = require("connect-livereload");
 const livereload = require("livereload");
 const app = express();
 const liveReloadServer = livereload.createServer();
+const pool = require(path.join(__dirname, "/database/db_connect"));
 
 liveReloadServer.watch(path.join(__dirname, "/public"));
 app.use(connectLiveReload());
@@ -29,8 +31,12 @@ app.get("/", (req, res) => {
   res.sendFile("public/index.html");
 });
 
-const PORT = process.env.PORT || 5500;
+app.get("/user", (req, res) => {
+  pool.query("select * from users", (err, result) => {
+    res.status(200).send(result.rows);
+  });
+});
 
-app.listen(PORT, () => {
-  console.log(`listening on port: ${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`listening on port: ${process.env.PORT}`);
 });
