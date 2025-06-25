@@ -1,66 +1,9 @@
-p {
-  position: absolute;
-}
-
-#line-1 {
-  font-size: 5rem;
-  top: 32%;
-  left: 28%;
-  rotate: -40deg;
-}
-#line-2 {
-  font-size: 2rem;
-  left: 38%;
-  top: 35%;
-  /* transform: translateY(-50%); */
-}
-#line-2 span {
-  font-size: 20rem;
-}
-#line-3 {
-  font-size: 5rem;
-  left: 32%;
-  bottom: 17%;
-}
 #punctuation {
   font-size: 50rem;
-  bottom: 20%;
+  bottom: 0%;
   left: 20%;
   rotate: 25deg;
   opacity: 0.1;
+  position: absolute;
   z-index: -99;
-}
-
-#crazy-unicorn {
-  padding-top: 4rem;
-  margin-left: 5rem;
-  position: relative;
-  z-index: -5;
-}
-
-/* #crazy-unicorn::after {
-  content: url("./assets/images/rainbow-disc.webp");
-  position: absolute;
-  bottom: -40%;
-  left: -2%;
-  z-index: -10;
-} */
-
-#crazy-unicorn::before {
-  content: url("./assets/images/bow-tie-sm.webp");
-  position: absolute;
-  bottom: -19%;
-}
-
-#banner-1 {
-  position: absolute;
-  top: -1rem;
-  left: -5rem;
-}
-
-#banner-2 {
-  position: absolute;
-  left: 52rem;
-  top: 2rem;
-  rotate: 15deg;
 }

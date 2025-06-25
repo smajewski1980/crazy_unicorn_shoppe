@@ -6,3 +6,8 @@
 body {
   font-family: "Kbcurioussoul-m3W9";
 }
+
+a {
+  text-decoration: none;
+  font-size: clamp(1rem, 3.5vw, 2rem);
+}
