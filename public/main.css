@@ -1,0 +1,109 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+}
+
+a:visited,
+a:link {
+  color: currentColor;
+}
+
+a {
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: "Kbcurioussoul-m3W9";
+  src: url("./assets/fonts/Kbcurioussoul-m3W9.ttf"), format("truetype");
+}
+body {
+  font-family: "Kbcurioussoul-m3W9";
+}
+
+body {
+  background-image: radial-gradient(rgb(243, 160, 243), purple);
+  min-height: 100vh;
+  overflow: clip;
+}
+
+p {
+  position: absolute;
+}
+
+#line-1 {
+  font-size: 5rem;
+  top: 32%;
+  left: 28%;
+  rotate: -40deg;
+}
+
+#line-2 {
+  font-size: 2rem;
+  left: 38%;
+  top: 35%;
+  /* transform: translateY(-50%); */
+}
+
+#line-2 span {
+  font-size: 20rem;
+}
+
+#line-3 {
+  font-size: 5rem;
+  left: 32%;
+  bottom: 17%;
+}
+
+#punctuation {
+  font-size: 50rem;
+  bottom: 20%;
+  left: 20%;
+  rotate: 25deg;
+  opacity: 0.1;
+  z-index: -99;
+}
+
+#crazy-unicorn {
+  padding-top: 4rem;
+  margin-left: 5rem;
+  position: relative;
+  z-index: -5;
+}
+
+/* #crazy-unicorn::after {
+  content: url("./assets/images/rainbow-disc.webp");
+  position: absolute;
+  bottom: -40%;
+  left: -2%;
+  z-index: -10;
+} */
+#crazy-unicorn::before {
+  content: url("./assets/images/bow-tie-sm.webp");
+  position: absolute;
+  bottom: -19%;
+}
+
+#banner-1 {
+  position: absolute;
+  top: -1rem;
+  left: -5rem;
+}
+
+#banner-2 {
+  position: absolute;
+  left: 52rem;
+  top: 2rem;
+  rotate: 15deg;
+}
