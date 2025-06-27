@@ -1,0 +1,42 @@
+header {
+  padding-inline: 2rem;
+
+  .logo-wrapper {
+    width: 85%;
+    outline: 2px solid lime;
+    height: 300px;
+    margin-inline: auto;
+    display: grid;
+    place-content: center;
+    margin-bottom: 2rem;
+  }
+
+  ul {
+    img {
+      max-width: 65%;
+      margin-inline: auto;
+      opacity: 0.6;
+    }
+    li {
+      list-style-type: none;
+      position: relative;
+    }
+
+    li a::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-wrap: nowrap;
+    }
+    li:nth-child(1) a::after {
+      content: "Sign Up";
+    }
+    li:nth-child(2) a::after {
+      content: "Shop";
+    }
+    li:nth-child(3) a::after {
+      content: "Contact";
+    }
+  }
+}

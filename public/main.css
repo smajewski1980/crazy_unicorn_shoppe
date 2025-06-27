@@ -87,3 +87,41 @@ body {
   display: grid;
   grid-template-columns: 25% 75%;
 }
+
+header {
+  padding-inline: 2rem;
+}
+header .logo-wrapper {
+  width: 85%;
+  outline: 2px solid lime;
+  height: 300px;
+  margin-inline: auto;
+  display: grid;
+  place-content: center;
+  margin-bottom: 2rem;
+}
+header ul img {
+  max-width: 65%;
+  margin-inline: auto;
+  opacity: 0.6;
+}
+header ul li {
+  list-style-type: none;
+  position: relative;
+}
+header ul li a::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-wrap: nowrap;
+}
+header ul li:nth-child(1) a::after {
+  content: "Sign Up";
+}
+header ul li:nth-child(2) a::after {
+  content: "Shop";
+}
+header ul li:nth-child(3) a::after {
+  content: "Contact";
+}

@@ -7,6 +7,9 @@ const livereload = require("livereload");
 const app = express();
 const liveReloadServer = livereload.createServer();
 const pool = require(path.join(__dirname, "/database/db_connect"));
+// const cors = require("cors");
+
+// app.use(cors());
 
 liveReloadServer.watch(path.join(__dirname, "/public"));
 app.use(connectLiveReload());
