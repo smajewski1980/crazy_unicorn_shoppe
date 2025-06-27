@@ -93,7 +93,6 @@ header {
 }
 header .logo-wrapper {
   width: 85%;
-  outline: 2px solid lime;
   height: 300px;
   margin-inline: auto;
   display: grid;
