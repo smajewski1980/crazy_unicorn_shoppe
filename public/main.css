@@ -101,9 +101,27 @@ header .logo-wrapper {
   margin-bottom: 2rem;
 }
 header ul img {
-  max-width: 65%;
   margin-inline: auto;
   opacity: 0.6;
+}
+header ul li:nth-child(1) img {
+  max-width: 50%;
+}
+header ul li:nth-child(2) img {
+  max-width: 60%;
+  margin-block: 2.5rem;
+}
+header ul li:nth-child(3) img {
+  max-width: 50%;
+}
+header ul li:nth-child(1) {
+  rotate: -7deg;
+}
+header ul li:nth-child(2) {
+  rotate: 10deg;
+}
+header ul li:nth-child(3) {
+  rotate: 7deg;
 }
 header ul li {
   list-style-type: none;

@@ -13,9 +13,27 @@ header {
 
   ul {
     img {
-      max-width: 65%;
       margin-inline: auto;
       opacity: 0.6;
+    }
+    li:nth-child(1) img {
+      max-width: 50%;
+    }
+    li:nth-child(2) img {
+      max-width: 60%;
+      margin-block: 2.5rem;
+    }
+    li:nth-child(3) img {
+      max-width: 50%;
+    }
+    li:nth-child(1) {
+      rotate: -7deg;
+    }
+    li:nth-child(2) {
+      rotate: 10deg;
+    }
+    li:nth-child(3) {
+      rotate: 7deg;
     }
     li {
       list-style-type: none;
