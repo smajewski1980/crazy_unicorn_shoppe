@@ -1,3 +1,5 @@
+@use "../abstracts/variables" as *;
+
 @font-face {
   font-family: "Kbcurioussoul-m3W9";
   src: url("./assets/fonts/Kbcurioussoul-m3W9.ttf"), format("truetype");
@@ -5,9 +7,14 @@
 
 body {
   font-family: "Kbcurioussoul-m3W9";
+  padding-top: 2rem;
 }
 
 a {
   text-decoration: none;
   font-size: clamp(1rem, 3.5vw, 2rem);
 }
+
+// p {
+//   font-family: $font-para;
+// }

@@ -1,1 +1,50 @@
-/*# sourceMappingURL=main.css.map */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+}
+
+a:visited,
+a:link {
+  color: currentColor;
+}
+
+@font-face {
+  font-family: "Kbcurioussoul-m3W9";
+  src: url("./assets/fonts/Kbcurioussoul-m3W9.ttf"), format("truetype");
+}
+body {
+  font-family: "Kbcurioussoul-m3W9";
+}
+
+a {
+  text-decoration: none;
+  font-size: clamp(1rem, 3.5vw, 2rem);
+}
+
+body {
+  background-image: radial-gradient(rgb(243, 160, 243), purple);
+  min-height: 100vh;
+  overflow: clip;
+}
+
+#punctuation {
+  font-size: 50rem;
+  bottom: 10%;
+  left: 10%;
+  rotate: 25deg;
+  opacity: 0.1;
+  position: absolute;
+  z-index: -99;
+}/*# sourceMappingURL=main.css.map */
