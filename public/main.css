@@ -88,10 +88,11 @@ main .testimonials-wrapper {
 main .testimonials-wrapper h2 {
   font-family: "Kbcurioussoul-m3W9";
   margin-block-end: 1rem;
-  font-size: 3.5rem;
+  font-size: 4rem;
 }
 main .testimonials-wrapper .testimonials-inner-wrapper {
   display: flex;
+  gap: 2rem;
 }
 main .testimonials-wrapper .testimonials-inner-wrapper .testimonial {
   flex-basis: 300px;

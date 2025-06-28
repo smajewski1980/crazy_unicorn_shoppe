@@ -53,11 +53,12 @@ main {
     h2 {
       font-family: "Kbcurioussoul-m3W9";
       margin-block-end: 1rem;
-      font-size: 3.5rem;
+      font-size: 4rem;
     }
 
     .testimonials-inner-wrapper {
       display: flex;
+      gap: 2rem;
 
       .testimonial {
         flex-basis: 300px;
