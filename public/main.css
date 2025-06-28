@@ -82,13 +82,50 @@ main .featured-card .featured-content-wrapper button {
   width: 100%;
   padding-block: 0.5rem;
 }
+main h1 {
+  font-size: 4rem;
+  grid-column: 1/3;
+  align-self: self-start;
+  justify-self: center;
+  text-align: center;
+}
+main h1 span {
+  font-size: 10rem;
+  display: inline-block;
+  transform: translateY(0.5rem);
+}
+main h1 span:nth-of-type(1) {
+  color: indigo;
+  rotate: 15deg;
+}
+main h1 span:nth-of-type(2) {
+  color: blue;
+  rotate: -12deg;
+}
+main h1 span:nth-of-type(3) {
+  color: rgb(102, 141, 24);
+  rotate: 10deg;
+}
+main h1 span:nth-of-type(4) {
+  color: yellow;
+  rotate: -12deg;
+}
+main h1 :nth-of-type(5) {
+  color: orangered;
+  rotate: 10deg;
+}
+main h1 :nth-of-type(6) {
+  rotate: 15deg;
+  font-size: 4rem;
+  transform: translate(-1rem, 0.25rem);
+}
 main .testimonials-wrapper {
   grid-column: 1/-1;
 }
 main .testimonials-wrapper h2 {
   font-family: "Kbcurioussoul-m3W9";
   margin-block-end: 1rem;
-  font-size: 4rem;
+  font-size: 2.5rem;
 }
 main .testimonials-wrapper .testimonials-inner-wrapper {
   display: flex;
