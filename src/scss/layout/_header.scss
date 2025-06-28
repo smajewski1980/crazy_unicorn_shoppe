@@ -8,7 +8,7 @@ header {
     margin-inline: auto;
     display: grid;
     place-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
   }
 
   ul {
@@ -21,16 +21,16 @@ header {
     }
     li:nth-child(2) img {
       max-width: 60%;
-      margin-block: 2.5rem;
+      margin-block: 1.5rem 2.5rem;
     }
     li:nth-child(3) img {
       max-width: 50%;
     }
     li:nth-child(1) {
-      rotate: -7deg;
+      rotate: 10deg;
     }
     li:nth-child(2) {
-      rotate: 10deg;
+      rotate: -6deg;
     }
     li:nth-child(3) {
       rotate: 7deg;
@@ -52,6 +52,7 @@ header {
     }
     li:nth-child(2) a::after {
       content: "Shop";
+      top: 53%;
     }
     li:nth-child(3) a::after {
       content: "Contact";

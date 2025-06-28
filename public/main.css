@@ -123,7 +123,7 @@ header .logo-wrapper {
   margin-inline: auto;
   display: grid;
   place-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
 }
 header ul img {
   margin-inline: auto;
@@ -134,16 +134,16 @@ header ul li:nth-child(1) img {
 }
 header ul li:nth-child(2) img {
   max-width: 60%;
-  margin-block: 2.5rem;
+  margin-block: 1.5rem 2.5rem;
 }
 header ul li:nth-child(3) img {
   max-width: 50%;
 }
 header ul li:nth-child(1) {
-  rotate: -7deg;
+  rotate: 10deg;
 }
 header ul li:nth-child(2) {
-  rotate: 10deg;
+  rotate: -6deg;
 }
 header ul li:nth-child(3) {
   rotate: 7deg;
@@ -164,6 +164,7 @@ header ul li:nth-child(1) a::after {
 }
 header ul li:nth-child(2) a::after {
   content: "Shop";
+  top: 53%;
 }
 header ul li:nth-child(3) a::after {
   content: "Contact";
