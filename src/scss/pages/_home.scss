@@ -51,6 +51,30 @@ main {
     }
   }
 
+  .give-away-wrapper {
+    h3 {
+      font-size: 1.5rem;
+
+      span {
+        font-size: 2rem;
+      }
+    }
+
+    img {
+      width: 250px;
+      margin-inline: auto;
+      border-radius: 50px 0 50px 0;
+    }
+
+    .give-away-disclaimer {
+      text-align: center;
+      font-family: $font-para;
+      font-size: 0.85rem;
+      max-width: 30ch;
+      margin-inline: auto;
+    }
+  }
+
   .heading-social-wrapper {
     grid-column: 1 / 3;
     align-self: self-start;
