@@ -52,18 +52,60 @@ main {
   }
 
   .give-away-wrapper {
+    align-self: center;
+    justify-self: end;
+
     h3 {
       font-size: 1.5rem;
 
       span {
         font-size: 2rem;
+        color: chartreuse;
       }
     }
 
-    img {
-      width: 250px;
+    .give-away-img-wrapper {
+      position: relative;
+
+      #give-away-star-1 {
+        position: absolute;
+        left: 4rem;
+        top: 0.5rem;
+        width: 40px;
+      }
+
+      #give-away-star-2 {
+        position: absolute;
+        right: 4rem;
+        bottom: 1rem;
+        width: 25px;
+        rotate: 20deg;
+      }
+
+      img:not(#give-away-star-1):not(#give-away-star-2) {
+        width: 250px;
+        margin-inline: auto;
+        border-radius: 50px 0 50px 0;
+        outline: 2px solid chartreuse;
+      }
+    }
+
+    input {
+      display: block;
+      width: 70%;
       margin-inline: auto;
-      border-radius: 50px 0 50px 0;
+      font-size: 1.25rem;
+      padding: 0.15rem;
+      border-radius: 5px;
+      margin-block: 0.5rem 1rem;
+      font-family: $font-para;
+      border: none;
+      outline: 2px solid chartreuse;
+
+      &::placeholder {
+        font-family: "Kbcurioussoul-m3W9";
+        opacity: 0.65;
+      }
     }
 
     .give-away-disclaimer {

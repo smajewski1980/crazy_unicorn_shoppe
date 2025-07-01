@@ -11,7 +11,8 @@ img {
   max-width: 100%;
 }
 
-button {
+button,
+input {
   font: inherit;
 }
 
@@ -82,16 +83,54 @@ main .featured-card .featured-content-wrapper button {
   width: 100%;
   padding-block: 0.5rem;
 }
+main .give-away-wrapper {
+  align-self: center;
+  justify-self: end;
+}
 main .give-away-wrapper h3 {
   font-size: 1.5rem;
 }
 main .give-away-wrapper h3 span {
   font-size: 2rem;
+  color: chartreuse;
 }
-main .give-away-wrapper img {
+main .give-away-wrapper .give-away-img-wrapper {
+  position: relative;
+}
+main .give-away-wrapper .give-away-img-wrapper #give-away-star-1 {
+  position: absolute;
+  left: 4rem;
+  top: 0.5rem;
+  width: 40px;
+}
+main .give-away-wrapper .give-away-img-wrapper #give-away-star-2 {
+  position: absolute;
+  right: 4rem;
+  bottom: 1rem;
+  width: 25px;
+  rotate: 20deg;
+}
+main .give-away-wrapper .give-away-img-wrapper img:not(#give-away-star-1):not(#give-away-star-2) {
   width: 250px;
   margin-inline: auto;
   border-radius: 50px 0 50px 0;
+  outline: 2px solid chartreuse;
+}
+main .give-away-wrapper input {
+  display: block;
+  width: 70%;
+  margin-inline: auto;
+  font-size: 1.25rem;
+  padding: 0.15rem;
+  border-radius: 5px;
+  margin-block: 0.5rem 1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  border: none;
+  outline: 2px solid chartreuse;
+}
+main .give-away-wrapper input::placeholder {
+  font-family: "Kbcurioussoul-m3W9";
+  opacity: 0.65;
 }
 main .give-away-wrapper .give-away-disclaimer {
   text-align: center;
