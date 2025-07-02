@@ -58,22 +58,27 @@ main {
 main .featured-card {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   grid-column: 1/3;
-  outline: 2px solid hotpink;
+  outline: 2px solid chartreuse;
   align-self: self-start;
   padding: 1rem;
-  border-radius: 25px 0 25px 0;
+  border-radius: 50px 0 50px 0;
   background: rgba(255, 255, 255, 0.25);
 }
 main .featured-card h2 {
   font-family: "Kbcurioussoul-m3W9";
-  margin-block-end: 1rem;
+  margin-block-end: 0.5rem;
+  margin-inline-start: 1.125rem;
   font-size: 2.25rem;
+  color: chartreuse;
 }
 main .featured-card .featured-content-wrapper {
   display: grid;
   grid-template-columns: 35% 65%;
   font-size: 1.125rem;
   place-items: center;
+}
+main .featured-card .featured-content-wrapper img {
+  width: 85%;
 }
 main .featured-card .featured-content-wrapper p {
   max-width: 35ch;
@@ -82,9 +87,12 @@ main .featured-card .featured-content-wrapper p {
 main .featured-card .featured-content-wrapper button {
   width: 100%;
   padding-block: 0.5rem;
+  background-color: rgba(172, 255, 0, 0.4);
+  border-color: chartreuse;
+  border-radius: 10px 0 10px 0;
+  cursor: pointer;
 }
 main .give-away-wrapper {
-  margin-block-start: 3.5rem;
   justify-self: end;
 }
 main .give-away-wrapper h3 {
@@ -94,6 +102,7 @@ main .give-away-wrapper h3 {
 main .give-away-wrapper h3 span {
   font-size: 2rem;
   color: orange;
+  vertical-align: middle;
 }
 main .give-away-wrapper .give-away-img-wrapper {
   position: relative;
@@ -126,7 +135,7 @@ main .give-away-wrapper input {
   font-size: 1.25rem;
   padding: 0.15rem;
   border-radius: 5px;
-  margin-block: 0.5rem 1rem;
+  margin-block: 0.5rem 1.5rem;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   border: none;
   outline: 2px solid chartreuse;
