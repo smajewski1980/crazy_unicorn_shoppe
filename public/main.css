@@ -175,6 +175,14 @@ main .heading-social-wrapper {
   display: flex;
   align-items: center;
   width: 100%;
+  position: relative;
+}
+main .heading-social-wrapper .heading-social-star {
+  position: absolute;
+  top: 2.5rem;
+  left: 1rem;
+  width: 50px;
+  rotate: -7deg;
 }
 main .heading-social-wrapper h1 {
   font-size: 3rem;
@@ -189,14 +197,17 @@ main .heading-social-wrapper h1 span {
 main .heading-social-wrapper h1 span:nth-of-type(1) {
   color: indigo;
   rotate: 15deg;
+  transform: translateY(1.5rem);
 }
 main .heading-social-wrapper h1 span:nth-of-type(2) {
   color: blue;
   rotate: -12deg;
+  transform: translateY(-0.1rem);
 }
 main .heading-social-wrapper h1 span:nth-of-type(3) {
   color: rgb(102, 141, 24);
   rotate: 10deg;
+  transform: translateY(1.5rem);
 }
 main .heading-social-wrapper h1 span:nth-of-type(4) {
   color: yellow;
@@ -204,12 +215,17 @@ main .heading-social-wrapper h1 span:nth-of-type(4) {
 }
 main .heading-social-wrapper h1 :nth-of-type(5) {
   color: orangered;
+  transform: translateY(1rem);
   rotate: 10deg;
 }
 main .heading-social-wrapper h1 :nth-of-type(6) {
   rotate: 15deg;
   font-size: 4rem;
   transform: translate(-1rem, 0.25rem);
+}
+main .heading-social-wrapper h1 span:last-child {
+  color: chartreuse;
+  margin-inline-start: 0.25rem;
 }
 main .heading-social-wrapper .social-wrapper {
   margin-inline: auto;
