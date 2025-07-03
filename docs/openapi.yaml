@@ -1,0 +1,184 @@
+openapi: 3.0.4
+info:
+  title: The Crazy Unicorn Shoppe
+  version: 1.0.0
+  description: >-
+    This is an e-commerce full-stack app made by Steve Majewski for practice,
+    the content is intended to be silly and far from serious, but it will be
+    fully functional as far as creating accounts and logging in with hashed
+    passwords. The data will be stored in a Postgres Database.
+servers:
+  - url: www.localhost:4700
+    variables: {}
+tags:
+  - name: products
+    description: everything about products
+  - name: cart
+    description: everything to do with the cart
+  - name: order
+    description: endpoints relating to orders
+  - name: user
+    description: everything about the user
+paths:
+  /products:
+    get:
+      summary: Gets all products
+      description: Returns all products in JSON form
+      operationId: get_products
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              examples:
+                all products:
+                  value: |
+                    [
+                      {
+                        "product_name": "Unicorn Shirt",
+                        "product_desription": "Imagine slipping into the legendary allure of our Unicorn Shirt, a whimsical tapestry...",
+                        "product_price": 15,
+                        "image_url": "./assets/images/unicorn_t-shirt.webp",
+                        "category_id": 1,
+                        "current_qty": 10,
+                        "min_qty": 3,
+                        "max_qty": 10
+                      },
+                      {
+                        "product_name": "Unicorn Pants",
+                        "product_desription": "Imagine slipping into the elusive allure of our Unicorn Pants, where whimsy meets sophistication...",
+                        "product_price": 25,
+                        "image_url": "./assets/images/unicorn_pants.webp",
+                        "category_id": 1,
+                        "current_qty": 10,
+                        "min_qty": 3,
+                        "max_qty": 10
+                      },
+                      {
+                        "product_name": "Unicorn Cookies",
+                        "product_desription": "Elevate your snack game with our whimsical Unicorn Cookies—portals to a fairy-tale realm...",
+                        "product_price": 5,
+                        "image_url": "./assets/images/unicorn_cookies.webp",
+                        "category_id": 2,
+                        "current_qty": 30,
+                        "min_qty": 10,
+                        "max_qty": 30
+                      }
+                    ]
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                internal server error:
+                  value: Something went wrong retrieving the data, please try again.
+      tags:
+        - products
+    post:
+      summary: create a new product
+      description: Creates a new product and adds it to the database.
+      operationId: post_products
+      requestBody:
+        description: create a new product
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: content created
+          content:
+            application/json:
+              examples:
+                product created:
+                  value:
+                    - msg: product successfully added
+                      added_item_id: 47
+        '400':
+          description: bad request
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                bad request:
+                  value: Please check your request fields and try again.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                internal server error:
+                  value: Something went wrong, please try again.
+      tags:
+        - products
+  /products/inventory:
+    summary: Adds the inventory info for a newly created product.
+    post:
+      summary: adds inventory info
+      description: This adds the inventory info for a newly created product.
+      operationId: post_products_inventory
+      requestBody:
+        description: inventory info
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product_inventory'
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - products
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        product_name:
+          type: string
+          example: Unicorn Couch
+        product_description:
+          type: string
+          example: Once you sit in our cozy Unicorn couch you will never want to .....
+        product_price:
+          type: integer
+          format: int32
+          example: 300
+        image_url:
+          type: string
+          example: ./assets/images/unicorn_couch.webp
+        category_id:
+          type: integer
+          format: int32
+          example: 4
+        current_qty:
+          type: integer
+          format: int32
+          example: 5
+        min_qty:
+          type: integer
+          format: int32
+          example: 2
+        max_qty:
+          type: integer
+          format: int32
+          example: 7
+    Product_inventory:
+      type: object
+      properties:
+        product_id:
+          type: integer
+          format: int32
+          example: 47
+        current_qty:
+          type: integer
+          format: int32
+          example: 5
+        min_qty:
+          type: integer
+          format: int32
+          example: 2
+        max_qty:
+          type: integer
+          format: int32
+          example: 7

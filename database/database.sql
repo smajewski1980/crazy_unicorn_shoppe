@@ -71,6 +71,33 @@ CREATE TABLE order_items(
   qty integer NOT NULL
 );
 
+DROP TABLE IF EXISTS carts CASCADE;
+
+CREATE TABLE carts(
+  cart_id serial PRIMARY KEY,
+  user_id integer REFERENCES users(user_id) NOT NULL,
+  is_active boolean DEFAULT true
+);
+
+ALTER TABLE
+  orders
+ADD
+  COLUMN cart_id integer;
+
+ALTER TABLE
+  orders
+ADD
+  CONSTRAINT orders_cart_id_fkey FOREIGN KEY (cart_id) REFERENCES carts(cart_id);
+
+DROP TABLE IF EXISTS cart_items CASCADE;
+
+CREATE TABLE cart_items(
+  cart_id integer REFERENCES carts(cart_id),
+  product_id integer REFERENCES products(product_id),
+  PRIMARY KEY(cart_id, product_id),
+  item_qty integer NOT NULL
+);
+
 -- **************************************************************
 insert into
   category(category_name)
@@ -211,14 +238,26 @@ from
 
 -- *************************
 insert into
-  order_items(order_id, product_id, quantity)
+  carts(user_id)
 values
-  (1, 3, 2),
-  (1, 1, 1),
-  (2, 3, 5),
-  (2, 4, 2);
+  (1),
+  (2);
 
 select
   *
 from
-  order_items;
+  carts;
+
+-- ******************************
+insert into
+  cart_items(cart_id, product_id, item_qty)
+values
+  (1, 3, 5),
+  (1, 4, 2),
+  (2, 1, 2),
+  (2, 2, 1);
+
+select
+  *
+from
+  cart_items;
