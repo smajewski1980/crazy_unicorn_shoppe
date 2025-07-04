@@ -13,12 +13,12 @@ servers:
 tags:
   - name: products
     description: everything about products
+  - name: user
+    description: everything about users
   - name: cart
     description: everything to do with the cart
   - name: order
     description: endpoints relating to orders
-  - name: user
-    description: everything about the user
 paths:
   /products:
     get:
@@ -109,6 +109,31 @@ paths:
               examples:
                 internal server error:
                   value: Something went wrong on our end, please try again.
+      tags:
+        - products
+  /products/inventory:
+    summary: Adds the inventory info for a newly created product.
+    post:
+      summary: adds inventory info
+      description: >-
+        This is the endpoint the server will send the inventory info to after it
+        has received back the product_id from the products creation.
+      operationId: post_products_inventory
+      requestBody:
+        description: inventory info
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product_inventory'
+      responses:
+        '200':
+          description: ok
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                add inventory:
+                  value: The inventory has been created for the product.
       tags:
         - products
   /products/{id}:
@@ -240,32 +265,7 @@ paths:
                   value: Something went wrong on our end, please try again.
       tags:
         - products
-  /products/inventory:
-    summary: Adds the inventory info for a newly created product.
-    post:
-      summary: adds inventory info
-      description: >-
-        This is the endpoint the server will send the inventory info to after it
-        has received back the product_id from the products creation.
-      operationId: post_products_inventory
-      requestBody:
-        description: inventory info
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Product_inventory'
-      responses:
-        '200':
-          description: ok
-          content:
-            text/plain; charset=utf-8:
-              examples:
-                add inventory:
-                  value: The inventory has been created for the product.
-      tags:
-        - products
-  /products/inventory/{id}:
+  /products/{id}/inventory:
     summary: returns product inventory
     description: This returns a products inventory when given a parameter of a product_id.
     get:
@@ -359,6 +359,264 @@ paths:
                   value: Something went wrong on our end, please try again.
       tags:
         - products
+  /user:
+    summary: for posting a new user
+    description: This will be for the POST endpoint to create a new user.
+    post:
+      summary: creates a user account
+      description: >-
+        This request will have JSON user data in the body that will be sent off
+        to the database to create a new user account.
+      operationId: post_user
+      requestBody:
+        description: A new user object.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/New_user'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                user created:
+                  value: |-
+                    {
+                      "msg": "user account created",
+                      "user_id": 47
+                    }
+        '400':
+          description: bad request
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                bad request:
+                  value: Please check your values and resubmit.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - user
+  /user/status:
+    summary: checks login status
+    get:
+      summary: checks login status
+      description: >-
+        This checks to see if the current user is logged in to a session and
+        returns a boolean.
+      operationId: get_user_status
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                get user login status:
+                  value: |-
+                    {
+                      "logged_in": true
+                    }
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - user
+  /user/login:
+    summary: logs in a user
+    post:
+      summary: logs in a user
+      description: >-
+        Takes user credentials as JSON data in the request body and attempts to
+        log in the user.
+      operationId: post_user_login
+      requestBody:
+        description: User login credentials.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login_credentials'
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: unauthorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                unauthorized:
+                  value: Please check your values and resubmit.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - user
+  /user/logout:
+    summary: logs out a user
+    get:
+      summary: logs out a user
+      description: Logs out the current user.
+      operationId: get_user_logout
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - user
+  /user/{id}:
+    summary: returns user data
+    description: >-
+      Given a user id through a url paramater, this returns the users account
+      data
+    get:
+      summary: gets user data
+      description: This returns user data when given a user id as a url parameter.
+      operationId: get_users_id
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user whose data we seek.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                get user success:
+                  value: |-
+                    {
+                      "user_id": "47",
+                      "name": "Fred Flintstone",
+                      "hashed_pw": "$2a$05$LhayLxezLhK1LhWvKxCyLOj0j1u.Kj0jZ0pEmm134uzrQlFvQJLF6",
+                      "email": "fred@stoneage.com",
+                      "phone": "555-555-5555",
+                      "address_line_1": "123 Rock Blvd",
+                      "address_line_2": "Boulder 1",
+                      "city": "Bedrock",
+                      "state": "NY",
+                      "zip_code": "98765"
+                    }
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a user with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - user
+    put:
+      summary: updates user account
+      description: >-
+        This endpoint takes updated user data as JSON in the request body and
+        updates the user account with the id that was supplied in the url
+        parameter.  
+      operationId: put_users_id
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user whose data we seek to update.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: An updated user object.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Updated_user'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                get user success:
+                  value: |-
+                    {
+                      "msg": "user account updated",
+                      "user_id": 47
+
+                    }
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a user with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - user
+    delete:
+      summary: deletes a user account
+      description: >-
+        Deletes the users account whose user id is supplied in the url
+        parameter.
+      operationId: delete_user
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user whose account we seek to delete.
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: no content
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a user with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - user
 components:
   schemas:
     Product:
@@ -446,3 +704,76 @@ components:
           type: integer
           format: int32
           example: 4
+    New_user:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Fred Flintstone
+        hased_pw:
+          type: string
+          example: $2a$05$LhayLxezLhK1LhWvKxCyLOj0j1u.Kj0jZ0pEmm134uzrQlFvQJLF6
+        email:
+          type: string
+          example: fred@stoneage.com
+        phone:
+          type: string
+          example: 555-555-5555
+        address_line_1:
+          type: string
+          example: 123 Rock Blvd
+        address_line_2:
+          type: string
+          example: Boulder 1
+        city:
+          type: string
+          example: Bedrock
+        state:
+          type: string
+          example: NY
+        zip_code:
+          type: string
+          example: 98765
+    Updated_user:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int32
+          example: 47
+        name:
+          type: string
+          example: Freddy Flintstone
+        hased_pw:
+          type: string
+          example: $2a$05$LhayLxezLhK1LhWvKxCyLOj0j1u.Kj0jZ0pEmm134uzrQlFvQJLF6
+        email:
+          type: string
+          example: updated_fred@stoneage.com
+        phone:
+          type: string
+          example: 111-555-5555
+        address_line_1:
+          type: string
+          example: 321 Rock Blvd
+        address_line_2:
+          type: string
+          example: Boulder 5
+        city:
+          type: string
+          example: Bedrock
+        state:
+          type: string
+          example: NY
+        zip_code:
+          type: string
+          example: 98765
+    Login_credentials:
+      type: object
+      properties:
+        username:
+          type: string
+          example: Fred Flintstone
+        password:
+          type: string
+          example: $2a$05$LhayLxezLhK1LhWvKxCyLOj0j1u.Kj0jZ0pEmm134uzrQlFvQJLF6
