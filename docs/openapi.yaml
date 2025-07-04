@@ -108,14 +108,110 @@ paths:
             text/plain; charset=utf-8:
               examples:
                 internal server error:
-                  value: Something went wrong, please try again.
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - products
+  /products/{id}:
+    summary: handles operations on a single product
+    get:
+      summary: get a product
+      description: >-
+        This returns a product from a product id that was given as a url
+        parameter.
+      operationId: get_product_id
+      parameters:
+        - name: id
+          in: path
+          description: The id of the product that we seek.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              examples:
+                get product success:
+                  value: |
+                   {
+                     "product_id": 47,
+                     "product_name": "Unicorn Couch",
+                     "product_description": "Once you sit in our cozy Unicorn couch you will never want to .....",
+                     "product_price": 300,
+                     "image_url": "./assets/images/unicorn_couch.webp",
+                     "category_id": 4
+                     
+                   }
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a product with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                internal server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - products
+    put:
+      summary: updates product info
+      description: Updates the product info by sending an updated product object.
+      operationId: put_products
+      parameters:
+        - name: id
+          in: path
+          description: The id of the product that will be updated.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: The updated product.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product_update'
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              examples:
+                update product success:
+                  value: |-
+                    {
+                      "msg": "successful update",
+                      "product_id": 47
+                    }
+        '400':
+          description: bad request
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                bad request:
+                  value: Please check the product data and try again.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                internal server error:
+                  value: Something went wrong on our end, please try again.
       tags:
         - products
   /products/inventory:
     summary: Adds the inventory info for a newly created product.
     post:
       summary: adds inventory info
-      description: This adds the inventory info for a newly created product.
+      description: >-
+        This is the endpoint the server will send the inventory info to after it
+        has received back the product_id from the products creation.
       operationId: post_products_inventory
       requestBody:
         description: inventory info
@@ -125,8 +221,59 @@ paths:
             schema:
               $ref: '#/components/schemas/Product_inventory'
       responses:
-        default:
-          description: Default error sample response
+        '200':
+          description: ok
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                add inventory:
+                  value: The inventory has been created for the product.
+      tags:
+        - products
+  /products/inventory/{id}:
+    summary: returns product inventory
+    description: This returns a products inventory when given a parameter of a product_id.
+    get:
+      summary: returns product inventory
+      description: >-
+        This returns a proucts inventory when given a product_id as a url
+        parameter.
+      operationId: get_product_inventory
+      parameters:
+        - name: id
+          in: path
+          description: The id of the product whose inventory we seek.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              examples:
+                product inventory:
+                  value: |-
+                    {
+                      "product_id": 47,
+                      "current_qty": 5,
+                      "min_qty": 2,
+                      "max_qty": 7
+                    }
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a product with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
       tags:
         - products
 components:
@@ -182,3 +329,26 @@ components:
           type: integer
           format: int32
           example: 7
+    Product_update:
+      type: object
+      properties:
+        product_id:
+          type: integer
+          example: 47
+        product_name:
+          type: string
+          example: updated Unicorn Couch
+        product_description:
+          type: string
+          example: Once you sit in our cozy Unicorn couch you will never want to .....
+        product_price:
+          type: integer
+          format: int32
+          example: 300
+        image_url:
+          type: string
+          example: ./assets/images/unicorn_couch.webp
+        category_id:
+          type: integer
+          format: int32
+          example: 4
