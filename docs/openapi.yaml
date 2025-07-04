@@ -22,7 +22,7 @@ tags:
 paths:
   /products:
     get:
-      summary: Gets all products
+      summary: gets all products
       description: Returns all products in JSON form
       operationId: get_products
       responses:
@@ -75,7 +75,7 @@ paths:
       tags:
         - products
     post:
-      summary: create a new product
+      summary: creates a new product
       description: Creates a new product and adds it to the database.
       operationId: post_products
       requestBody:
@@ -114,7 +114,7 @@ paths:
   /products/{id}:
     summary: handles operations on a single product
     get:
-      summary: get a product
+      summary: gets a product
       description: >-
         This returns a product from a product id that was given as a url
         parameter.
@@ -134,15 +134,15 @@ paths:
               examples:
                 get product success:
                   value: |
-                   {
-                     "product_id": 47,
-                     "product_name": "Unicorn Couch",
-                     "product_description": "Once you sit in our cozy Unicorn couch you will never want to .....",
-                     "product_price": 300,
-                     "image_url": "./assets/images/unicorn_couch.webp",
-                     "category_id": 4
-                     
-                   }
+                    {
+                      "product_id": 47,
+                      "product_name": "Unicorn Couch",
+                      "product_description": "Once you sit in our cozy Unicorn couch you will never want to .....",
+                      "product_price": 300,
+                      "image_url": "./assets/images/unicorn_couch.webp",
+                      "category_id": 4
+                      
+                    }
         '404':
           description: not found
           content:
@@ -160,7 +160,7 @@ paths:
       tags:
         - products
     put:
-      summary: updates product info
+      summary: updates a products info
       description: Updates the product info by sending an updated product object.
       operationId: put_products
       parameters:
@@ -196,6 +196,41 @@ paths:
               examples:
                 bad request:
                   value: Please check the product data and try again.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                internal server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - products
+    delete:
+      summary: deletes a product
+      description: Deletes a product given a product_id as a url parameter.
+      operationId: delete_product_id
+      parameters:
+        - name: id
+          in: path
+          description: The id of the product that will be updated.
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: no content
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                deleted successfully:
+                  value: Product has been deleted.
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a product with that id.
         '500':
           description: internal server error
           content:
@@ -276,6 +311,54 @@ paths:
                   value: Something went wrong on our end, please try again.
       tags:
         - products
+    put:
+      summary: updates product inventory
+      description: >-
+        This will take a product id as a url parameter and update the inventory
+        of that product.
+      operationId: put_product_inventory
+      parameters:
+        - name: id
+          in: path
+          description: The id of the product whose inventory we seek to change.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: inventory info
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product_inventory_update'
+      responses:
+        '200':
+          description: ok
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: |-
+                    {
+                      "msg": "inventory successfully updated",
+                      "product_id": 47
+                    }
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a product with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - products
 components:
   schemas:
     Product:
@@ -326,6 +409,17 @@ components:
           format: int32
           example: 2
         max_qty:
+          type: integer
+          format: int32
+          example: 7
+    Product_inventory_update:
+      type: object
+      properties:
+        product_id:
+          type: integer
+          format: int32
+          example: 47
+        current_qty:
           type: integer
           format: int32
           example: 7
