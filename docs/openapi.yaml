@@ -617,6 +617,169 @@ paths:
                   value: Something went wrong on our end, please try again.
       tags:
         - user
+  /cart:
+    summary: This path will add an item to the cart.
+    post:
+      summary: add cart item
+      description: >-
+        This operation will take a product and a quantity and add the item to
+        the users active cart.
+      operationId: post_cart
+      requestBody:
+        description: An item to add to the users cart.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart_item'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                post cart item success:
+                  value: The item has been added to the cart.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - cart
+  /cart/{id}:
+    summary: This path will handle cart operations.
+    get:
+      summary: get the cart items
+      description: >-
+        This endpoint will return all of the cart items when given a cart id as
+        a url parameter.
+      operationId: get_cart
+      parameters:
+        - name: id
+          in: path
+          description: The id of the cart whose items we seek.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                get cart items success:
+                  value: |-
+                    [
+                      {
+                        "product_id": 1,
+                        "item_qty": 3
+                      },
+                      {
+                        "product_id": 2,
+                        "item_qty": 1
+                      },
+                      {
+                        "product_id": 3,
+                        "item_qty": 2
+                      }
+                    ]
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find an active cart for that user id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - cart
+    put:
+      summary: change cart item quantity
+      description: This operation will change the quantity of a cart item.
+      operationId: put_cart
+      parameters:
+        - name: id
+          in: path
+          description: The id of the cart whose items we seek.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Updates a cart item quantity.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Update_cart_item_qty'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: Cart item quantity has been updated.
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a cart with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - cart
+  /cart/{id}/{product_id}:
+    summary: remove a cart item
+    delete:
+      summary: remove a cart item
+      description: This operation will take a cart id and a product id and remove the item from the users cart.
+      operationId: delete_cart_item
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the cart whose item we seek to remove.
+          schema:
+            type: string
+        - name: product_id
+          in: path
+          required: true
+          description: The id of the item we seek to remove from the cart.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                delete item success:
+                  value: The item has successfully been removed from the cart.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - cart
 components:
   schemas:
     Product:
@@ -777,3 +940,33 @@ components:
         password:
           type: string
           example: $2a$05$LhayLxezLhK1LhWvKxCyLOj0j1u.Kj0jZ0pEmm134uzrQlFvQJLF6
+    Cart_item:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int32
+          example: 47
+        cart_id:
+          type: integer
+          format: int32
+          example: 3
+        product_id:
+          type: integer
+          format: int32
+          example: 2
+        item_qty:
+          type: integer
+          format: int32
+          example: 5
+    Update_cart_item_qty:
+      type: object
+      properties:
+        product_id:
+          type: integer
+          format: int32
+          example: 3
+        new_qty:
+          type: integer
+          format: int32
+          example: 2
