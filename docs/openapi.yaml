@@ -26,7 +26,7 @@ paths:
       description: Returns all products in JSON form
       operationId: get_products
       responses:
-        '200':
+        "200":
           description: ok
           content:
             application/json:
@@ -65,7 +65,7 @@ paths:
                         "max_qty": 30
                       }
                     ]
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -84,9 +84,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product'
+              $ref: "#/components/schemas/Product"
       responses:
-        '201':
+        "201":
           description: content created
           content:
             application/json:
@@ -95,14 +95,14 @@ paths:
                   value:
                     - msg: product successfully added
                       added_item_id: 47
-        '400':
+        "400":
           description: bad request
           content:
             text/plain; charset=utf-8:
               examples:
                 bad request:
                   value: Please check your request fields and try again.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -125,9 +125,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product_inventory'
+              $ref: "#/components/schemas/Product_inventory"
       responses:
-        '200':
+        "200":
           description: ok
           content:
             text/plain; charset=utf-8:
@@ -152,7 +152,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: ok
           content:
             application/json:
@@ -168,14 +168,14 @@ paths:
                       "category_id": 4
                       
                     }
-        '404':
+        "404":
           description: not found
           content:
             text/plain; charset=utf-8:
               examples:
                 not found:
                   value: We could not find a product with that id.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -201,9 +201,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product_update'
+              $ref: "#/components/schemas/Product_update"
       responses:
-        '200':
+        "200":
           description: ok
           content:
             application/json:
@@ -214,14 +214,14 @@ paths:
                       "msg": "successful update",
                       "product_id": 47
                     }
-        '400':
+        "400":
           description: bad request
           content:
             text/plain; charset=utf-8:
               examples:
                 bad request:
                   value: Please check the product data and try again.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -242,21 +242,21 @@ paths:
           schema:
             type: string
       responses:
-        '204':
+        "204":
           description: no content
           content:
             text/plain; charset=utf-8:
               examples:
                 deleted successfully:
                   value: Product has been deleted.
-        '404':
+        "404":
           description: not found
           content:
             text/plain; charset=utf-8:
               examples:
                 not found:
                   value: We could not find a product with that id.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -282,7 +282,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: ok
           content:
             application/json:
@@ -295,14 +295,14 @@ paths:
                       "min_qty": 2,
                       "max_qty": 7
                     }
-        '404':
+        "404":
           description: not found
           content:
             text/plain; charset=utf-8:
               examples:
                 not found:
                   value: We could not find a product with that id.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -330,9 +330,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product_inventory_update'
+              $ref: "#/components/schemas/Product_inventory_update"
       responses:
-        '200':
+        "200":
           description: ok
           content:
             text/plain; charset=utf-8:
@@ -343,14 +343,14 @@ paths:
                       "msg": "inventory successfully updated",
                       "product_id": 47
                     }
-        '404':
+        "404":
           description: not found
           content:
             text/plain; charset=utf-8:
               examples:
                 not found:
                   value: We could not find a product with that id.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -359,7 +359,7 @@ paths:
                   value: Something went wrong on our end, please try again.
       tags:
         - products
-  /user:
+  /user/register:
     summary: for posting a new user
     description: This will be for the POST endpoint to create a new user.
     post:
@@ -374,9 +374,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/New_user'
+              $ref: "#/components/schemas/New_user"
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/plain; charset=utf-8:
@@ -387,14 +387,14 @@ paths:
                       "msg": "user account created",
                       "user_id": 47
                     }
-        '400':
+        "400":
           description: bad request
           content:
             text/plain; charset=utf-8:
               examples:
                 bad request:
                   value: Please check your values and resubmit.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -412,7 +412,7 @@ paths:
         returns a boolean.
       operationId: get_user_status
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -422,7 +422,7 @@ paths:
                     {
                       "logged_in": true
                     }
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -445,18 +445,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Login_credentials'
+              $ref: "#/components/schemas/Login_credentials"
       responses:
-        '200':
+        "200":
           description: OK
-        '401':
+        "401":
           description: unauthorized
           content:
             text/plain; charset=utf-8:
               examples:
                 unauthorized:
                   value: Please check your values and resubmit.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -472,9 +472,9 @@ paths:
       description: Logs out the current user.
       operationId: get_user_logout
       responses:
-        '200':
+        "200":
           description: OK
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -500,7 +500,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -519,14 +519,14 @@ paths:
                       "state": "NY",
                       "zip_code": "98765"
                     }
-        '404':
+        "404":
           description: not found
           content:
             text/plain; charset=utf-8:
               examples:
                 not found:
                   value: We could not find a user with that id.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -540,7 +540,7 @@ paths:
       description: >-
         This endpoint takes updated user data as JSON in the request body and
         updates the user account with the id that was supplied in the url
-        parameter.  
+        parameter.
       operationId: put_users_id
       parameters:
         - name: id
@@ -555,9 +555,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Updated_user'
+              $ref: "#/components/schemas/Updated_user"
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -569,14 +569,14 @@ paths:
                       "user_id": 47
 
                     }
-        '404':
+        "404":
           description: not found
           content:
             text/plain; charset=utf-8:
               examples:
                 not found:
                   value: We could not find a user with that id.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -599,16 +599,16 @@ paths:
           schema:
             type: string
       responses:
-        '204':
+        "204":
           description: no content
-        '404':
+        "404":
           description: not found
           content:
             text/plain; charset=utf-8:
               examples:
                 not found:
                   value: We could not find a user with that id.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -631,16 +631,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Cart_item'
+              $ref: "#/components/schemas/Cart_item"
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/plain; charset=utf-8:
               examples:
                 post cart item success:
                   value: The item has been added to the cart.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -665,7 +665,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -686,14 +686,14 @@ paths:
                         "item_qty": 2
                       }
                     ]
-        '404':
+        "404":
           description: not found
           content:
             text/plain; charset=utf-8:
               examples:
                 not found:
                   value: We could not find an active cart for that user id.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -719,23 +719,23 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Update_cart_item_qty'
+              $ref: "#/components/schemas/Update_cart_item_qty"
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/plain; charset=utf-8:
               examples:
                 not found:
                   value: Cart item quantity has been updated.
-        '404':
+        "404":
           description: not found
           content:
             text/plain; charset=utf-8:
               examples:
                 not found:
                   value: We could not find a cart with that id.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -766,14 +766,14 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/plain; charset=utf-8:
               examples:
                 delete item success:
                   value: The item has successfully been removed from the cart.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -796,9 +796,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/New_order'
+              $ref: "#/components/schemas/New_order"
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -808,7 +808,7 @@ paths:
                     {
                       "order_id": 47
                     }
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -833,7 +833,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -850,14 +850,14 @@ paths:
                       "free_shipping_elligible": false,
                       "order_items": []
                     }
-        '404':
+        "404":
           description: not found
           content:
             text/plain; charset=utf-8:
               examples:
                 not found:
                   value: We could not find a order with that id.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -880,7 +880,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -891,14 +891,14 @@ paths:
                       "msg": "Order status has been updated",
                       "order_status": "shipped" 
                     }
-        '404':
+        "404":
           description: not found
           content:
             text/plain; charset=utf-8:
               examples:
                 not found:
                   value: We could not find a order with that id.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
@@ -919,21 +919,21 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/plain; charset=utf-8:
               examples:
                 cancel order success:
                   value: The order has been successfully canceled.
-        '404':
+        "404":
           description: not found
           content:
             text/plain; charset=utf-8:
               examples:
                 not found:
                   value: We could not find a order with that id.
-        '500':
+        "500":
           description: internal server error
           content:
             text/plain; charset=utf-8:
