@@ -17,7 +17,7 @@ tags:
     description: everything about users
   - name: cart
     description: everything to do with the cart
-  - name: order
+  - name: orders
     description: endpoints relating to orders
 paths:
   /products:
@@ -748,7 +748,9 @@ paths:
     summary: remove a cart item
     delete:
       summary: remove a cart item
-      description: This operation will take a cart id and a product id and remove the item from the users cart.
+      description: >-
+        This operation will take a cart id and a product id and remove the item
+        from the users cart.
       operationId: delete_cart_item
       parameters:
         - name: id
@@ -780,6 +782,166 @@ paths:
                   value: Something went wrong on our end, please try again.
       tags:
         - cart
+  /order:
+    summary: handles order related operations
+    post:
+      summary: creates an order
+      description: >-
+        This operation takes in JSON data in the request body and returns a new
+        order id.
+      operationId: post_order
+      requestBody:
+        description: Info to create a new order.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/New_order'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                create order success:
+                  value: |-
+                    {
+                      "order_id": 47
+                    }
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - orders
+  /order/{id}:
+    summary: handles operations for a specific order
+    get:
+      summary: get order info
+      description: >-
+        This will return info in JSON form about the order id that was included
+        as a url parameter.
+      operationId: get_order
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the order whose info we seek.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                get order info success:
+                  value: |-
+                    {
+                      "order_id": 47,
+                      "user_id": 9,
+                      "order_date": "2025-06-13 11:10:17.046068-04",
+                      "order_total": 75,
+                      "order_status": "pending",
+                      "payment_method": "credit card",
+                      "free_shipping_elligible": false,
+                      "order_items": []
+                    }
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a order with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - orders
+    put:
+      summary: updates order status
+      description: >-
+        This operation will take in a new status in the request body and update
+        the database.
+      operationId: put_order
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the order whose status we seek to change.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                order status update success:
+                  value: |-
+                    {
+                      "msg": "Order status has been updated",
+                      "order_status": "shipped" 
+                    }
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a order with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - orders
+    delete:
+      summary: cancel an order
+      description: This operation will cancel an order.
+      operationId: delete_order
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the order we seek to cancel.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                cancel order success:
+                  value: The order has been successfully canceled.
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a order with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - orders
 components:
   schemas:
     Product:
@@ -970,3 +1132,21 @@ components:
           type: integer
           format: int32
           example: 2
+    New_order:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int32
+          example: 47
+        cart_id:
+          type: integer
+          format: int32
+          example: 225
+        order_total:
+          type: integer
+          format: int32
+          example: 500
+        payment_method:
+          type: string
+          example: paypal
