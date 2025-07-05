@@ -1035,7 +1035,7 @@ components:
         name:
           type: string
           example: Fred Flintstone
-        hased_pw:
+        hashed_pw:
           type: string
           example: $2a$05$LhayLxezLhK1LhWvKxCyLOj0j1u.Kj0jZ0pEmm134uzrQlFvQJLF6
         email:
