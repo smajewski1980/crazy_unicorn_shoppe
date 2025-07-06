@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require("path");
 const pool = require(path.join(__dirname, "../database/db_connect"));
 
-router.post("/register", (req, res) => {
+router.post("/register", (req, res, next) => {
   try {
     pool.query(
       "insert into users(name, hashed_pw, email, phone) values($1, $2, $3, $4) returning user_id",
@@ -15,7 +15,6 @@ router.post("/register", (req, res) => {
           "insert into user_address(user_id, address_line_1, address_line_2, city, state, zip_code) values($1, $2, $3, $4, $5, $6)",
           [newUserId, "123 main st", "apt 2", "Chicago", "IL", "98765"],
           (err, result) => {
-            if (err) throw new Error(err);
             res.status(201).send("new user was created");
           }
         );
@@ -24,6 +23,10 @@ router.post("/register", (req, res) => {
   } catch (error) {
     throw new Error(error);
   }
+});
+
+router.post("/login", (req, res, next) => {
+  res.send("i like to check them before i add logic.");
 });
 
 module.exports = router;

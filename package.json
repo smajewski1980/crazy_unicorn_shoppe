@@ -20,11 +20,15 @@
   },
   "homepage": "https://github.com/smajewski1980/crazy_unicorn_shoppe#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "connect-livereload": "^0.6.1",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "express-dart-sass": "^1.0.4",
+    "express-session": "^1.18.1",
     "livereload": "^0.9.3",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
     "pg": "^8.16.0"
   },
   "devDependencies": {
