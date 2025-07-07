@@ -30,10 +30,15 @@ router.post("/register", async (req, res, next) => {
   }
 });
 
+// THIS ENDPOINT HAS NOT BEEN ADDED TO THE SWAGGER FILE YET
+router.get("/login", (req, res) => {
+  res.status(200).send("you were redirected here");
+});
+
 router.post(
   "/login",
   passport.authenticate("local", {
-    failureRedirect: "/login",
+    failureRedirect: "/user/login",
   }),
   (req, res, next) => {
     res.status(200).send(JSON.stringify(req.user));
