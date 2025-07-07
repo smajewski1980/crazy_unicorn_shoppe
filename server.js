@@ -10,9 +10,24 @@ const liveReloadServer = livereload.createServer();
 const userRoutes = require("./routes/user_routes");
 // const cors = require("cors");
 // app.use(cors());
+const session = require("express-session");
+const passport = require("passport");
 
 liveReloadServer.watch(path.join(__dirname, "/public"));
 app.use(connectLiveReload());
+
+app.use(
+  session({
+    secret: "unicorns_aint_crazy",
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+      maxAge: 5e6,
+    },
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(
   sassMiddleware({

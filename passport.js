@@ -4,15 +4,19 @@ const pool = require("./database/db_connect");
 const bcrypt = require("bcrypt");
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user.user_id);
 });
 
-passport.deserializeUser((id, done) => {
-  pool.query("select * from users where user_id = $1", [id], (err, result) => {
-    if (err) return done(err, null);
+passport.deserializeUser((user_id, done) => {
+  pool.query(
+    "select * from users where user_id = $1",
+    [user_id],
+    (err, result) => {
+      if (err) return done(err, null);
 
-    done(null, result.rows[0]);
-  });
+      done(null, result.rows[0]);
+    }
+  );
 });
 
 const local = passport.use(
@@ -24,11 +28,7 @@ const local = passport.use(
         const user = result.rows[0];
 
         try {
-          const matchedPw = await bcrypt.compare(
-            password,
-            user.hashed_password
-          );
-
+          const matchedPw = await bcrypt.compare(password, user.hashed_pw);
           if (err) return done(err);
           if (!user) return done(null, false);
           if (!matchedPw) return done(null, false);

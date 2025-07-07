@@ -2,12 +2,17 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const pool = require(path.join(__dirname, "../database/db_connect"));
+const passport = require("passport");
+require("../passport");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
-router.post("/register", (req, res, next) => {
+router.post("/register", async (req, res, next) => {
   try {
-    pool.query(
+    const hashedPw = await bcrypt.hash(req.body.password, saltRounds);
+    await pool.query(
       "insert into users(name, hashed_pw, email, phone) values($1, $2, $3, $4) returning user_id",
-      ["test name", "test password", "testemail@email.com", "555-555-5555"],
+      [req.body.username, hashedPw, "testemail@email.com", "555-555-5555"],
       (err, result) => {
         const newUserId = result.rows[0].user_id;
         console.log(newUserId);
@@ -25,8 +30,14 @@ router.post("/register", (req, res, next) => {
   }
 });
 
-router.post("/login", (req, res, next) => {
-  res.send("i like to check them before i add logic.");
-});
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/login",
+  }),
+  (req, res, next) => {
+    res.status(200).send(JSON.stringify(req.user));
+  }
+);
 
 module.exports = router;
