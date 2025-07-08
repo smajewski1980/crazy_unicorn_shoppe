@@ -27,26 +27,31 @@ router.post("/", async (req, res, next) => {
     max_qty,
   } = req.body;
 
-  // will screen the data in the front end but should prob use a transaction here
-  await pool.query(
+  const client = await pool.connect();
+  await client.query("BEGIN");
+  await client.query(
     "insert into products(product_name, product_description, product_price, image_url, category_id) values($1, $2, $3, $4, $5) returning product_id",
     [product_name, product_description, product_price, image_url, category_id],
-    (err, result) => {
+    async (err, result) => {
       if (err) {
         const error = new Error(err);
         next(error);
+        await client.query("ROLLBACK");
         return;
       }
       const newProductId = result.rows[0].product_id;
-      pool.query(
+      client.query(
         "insert into inventory(product_id, current_qty, min_qty, max_qty) values($1, $2, $3, $4)",
         [newProductId, current_qty, min_qty, max_qty],
-        (err, result) => {
+        async (err, result) => {
           if (err) {
             const error = new Error(err);
             next(error);
+            await client.query("ROLLBACK");
             return;
           }
+          await client.query("COMMIT");
+          await client.release();
           res
             .status(200)
             .send("Product was successfully added to the database.");
