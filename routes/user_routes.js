@@ -26,7 +26,6 @@ router.post("/register", async (req, res, next) => {
       [name, hashedPw, email, phone],
       (err, result) => {
         const newUserId = result.rows[0].user_id;
-        console.log(newUserId);
         pool.query(
           "insert into user_address(user_id, address_line_1, address_line_2, city, state, zip_code) values($1, $2, $3, $4, $5, $6)",
           [newUserId, address_line_1, address_line_2, city, state, zip_code],
@@ -41,7 +40,6 @@ router.post("/register", async (req, res, next) => {
   }
 });
 
-// THIS ENDPOINT HAS NOT BEEN ADDED TO THE SWAGGER FILE YET
 router.get("/login", (req, res) => {
   res.status(200).send("you were redirected here");
 });
