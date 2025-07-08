@@ -8,6 +8,7 @@ const app = express();
 const liveReloadServer = livereload.createServer();
 // const pool = require(path.join(__dirname, "/database/db_connect"));
 const userRoutes = require("./routes/user_routes");
+const productRoutes = require("./routes/product_routes");
 // const cors = require("cors");
 // app.use(cors());
 const session = require("express-session");
@@ -46,6 +47,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.use("/user", userRoutes);
+app.use("/products", productRoutes);
 
 // app.get("/", (req, res) => {
 //   res.sendFile("public/index.html");
