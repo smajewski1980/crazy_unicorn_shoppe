@@ -27,6 +27,7 @@ router.post("/", async (req, res, next) => {
     max_qty,
   } = req.body;
 
+  // this transaction will rollback if there is a problem with the second query
   const client = await pool.connect();
   await client.query("BEGIN");
   await client.query(

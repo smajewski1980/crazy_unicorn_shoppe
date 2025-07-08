@@ -20,16 +20,33 @@ router.post("/register", async (req, res, next) => {
     zip_code,
   } = req.body;
   try {
+    const client = await pool.connect();
+    client.query("BEGIN");
+
     const hashedPw = await bcrypt.hash(hashed_pw, saltRounds);
-    await pool.query(
+    await client.query(
       "insert into users(name, hashed_pw, email, phone) values($1, $2, $3, $4) returning user_id",
       [name, hashedPw, email, phone],
-      (err, result) => {
+      async (err, result) => {
+        if (err) {
+          const error = new Error(err);
+          next(error);
+          await client.query("ROLLBACK");
+          return;
+        }
         const newUserId = result.rows[0].user_id;
-        pool.query(
+        client.query(
           "insert into user_address(user_id, address_line_1, address_line_2, city, state, zip_code) values($1, $2, $3, $4, $5, $6)",
           [newUserId, address_line_1, address_line_2, city, state, zip_code],
-          (err, result) => {
+          async (err, result) => {
+            if (err) {
+              const error = new Error(err);
+              next(error);
+              await client.query("ROLLBACK");
+              return;
+            }
+            await client.query("COMMIT");
+            await client.release();
             res.status(201).send("new user was created");
           }
         );
