@@ -62,4 +62,24 @@ router.post("/", async (req, res, next) => {
   );
 });
 
+router.get("/:id", (req, res, next) => {
+  const prodId = req.params.id;
+
+  // going rogue here, need to update swagger file later...
+  pool.query(
+    "select * from products join inventory on products.product_id = inventory.product_id where products.product_id = $1",
+    [prodId],
+    (err, result) => {
+      if (!result.rows.length) {
+        const error = new Error("we could not find a product with that id");
+        error.status = 404;
+        next(error);
+        return;
+      }
+
+      res.status(200).send(result.rows[0]);
+    }
+  );
+});
+
 module.exports = router;
