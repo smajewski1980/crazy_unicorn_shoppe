@@ -114,31 +114,6 @@ paths:
                   value: Something went wrong on our end, please try again.
       tags:
         - products
-  /products/inventory:
-    summary: Adds the inventory info for a newly created product.
-    post:
-      summary: adds inventory info
-      description: >-
-        This is the endpoint the server will send the inventory info to after it
-        has received back the product_id from the products creation.
-      operationId: post_products_inventory
-      requestBody:
-        description: inventory info
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Product_inventory'
-      responses:
-        '200':
-          description: ok
-          content:
-            text/plain; charset=utf-8:
-              examples:
-                add inventory:
-                  value: The inventory has been created for the product.
-      tags:
-        - products
   /products/{id}:
     summary: handles operations on a single product
     get:
@@ -990,25 +965,6 @@ components:
           type: integer
           format: int32
           example: 4
-        current_qty:
-          type: integer
-          format: int32
-          example: 5
-        min_qty:
-          type: integer
-          format: int32
-          example: 2
-        max_qty:
-          type: integer
-          format: int32
-          example: 7
-    Product_inventory:
-      type: object
-      properties:
-        product_id:
-          type: integer
-          format: int32
-          example: 47
         current_qty:
           type: integer
           format: int32

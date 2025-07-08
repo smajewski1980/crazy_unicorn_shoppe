@@ -20,6 +20,7 @@ router.post("/register", async (req, res, next) => {
     zip_code,
   } = req.body;
   try {
+    // this transaction will rollback if there is a problem with the second query
     const client = await pool.connect();
     client.query("BEGIN");
 
