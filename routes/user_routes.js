@@ -8,17 +8,28 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 router.post("/register", async (req, res, next) => {
+  const {
+    name,
+    hashed_pw,
+    email,
+    phone,
+    address_line_1,
+    address_line_2,
+    city,
+    state,
+    zip_code,
+  } = req.body;
   try {
-    const hashedPw = await bcrypt.hash(req.body.password, saltRounds);
+    const hashedPw = await bcrypt.hash(hashed_pw, saltRounds);
     await pool.query(
       "insert into users(name, hashed_pw, email, phone) values($1, $2, $3, $4) returning user_id",
-      [req.body.username, hashedPw, "testemail@email.com", "555-555-5555"],
+      [name, hashedPw, email, phone],
       (err, result) => {
         const newUserId = result.rows[0].user_id;
         console.log(newUserId);
         pool.query(
           "insert into user_address(user_id, address_line_1, address_line_2, city, state, zip_code) values($1, $2, $3, $4, $5, $6)",
-          [newUserId, "123 main st", "apt 2", "Chicago", "IL", "98765"],
+          [newUserId, address_line_1, address_line_2, city, state, zip_code],
           (err, result) => {
             res.status(201).send("new user was created");
           }

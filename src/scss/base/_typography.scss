@@ -15,6 +15,7 @@ a {
   font-size: clamp(1rem, 3.5vw, 2rem);
 }
 
-label {
+label,
+input {
   font-family: $font-para;
 }
