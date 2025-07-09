@@ -65,10 +65,11 @@ router.get("/login", (req, res) => {
 router.post(
   "/login",
   passport.authenticate("local", {
+    successRedirect: "/",
     failureRedirect: "/user/login",
   }),
   (req, res, next) => {
-    res.status(200).send(JSON.stringify(req.user));
+    // res.status(200).redirect("/products");
   }
 );
 
