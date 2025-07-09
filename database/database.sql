@@ -59,9 +59,16 @@ CREATE TABLE inventory(
   min_qty integer NOT NULL,
   max_qty integer NOT NULL,
   PRIMARY KEY (product_id),
-  FOREIGN KEY (product_id) REFERENCES products(product_id)
+  FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
 );
 
+-- originally the above did not include ON DELETE CASCADE on the fkey
+-- so i did this in a pg admin query
+-- BEGIN;
+-- ALTER TABLE inventory DROP CONSTRAINT inventory_product_id_fkey;
+-- ALTER TABLE inventory ADD CONSTRAINT inventory_product_id_fkey FOREIGN KEY (product_id) REFERENCES PRODUCTS (product_id) ON DELETE CASCADE;
+-- COMMIT;
+--
 DROP TABLE IF EXISTS order_items CASCADE;
 
 CREATE TABLE order_items(

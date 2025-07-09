@@ -108,12 +108,26 @@ router.put("/:id", (req, res, next) => {
         next(error);
         return;
       }
-      res
-        .status(200)
-        .send({
-          msg: "successful update",
-          product_id: result.rows[0].product_id,
-        });
+      res.status(200).send({
+        msg: "successful update",
+        product_id: result.rows[0].product_id,
+      });
+    }
+  );
+});
+
+router.delete("/:id", (req, res, next) => {
+  const prodId = req.params.id;
+  pool.query(
+    "delete from products where product_id = $1",
+    [prodId],
+    (err, result) => {
+      if (err) {
+        const error = new Error(err);
+        next(error);
+        return;
+      }
+      res.status(204).send("product has been deleted, forever, its gone....");
     }
   );
 });
