@@ -15,6 +15,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// adds a new product
 router.post("/", async (req, res, next) => {
   const {
     product_name,
@@ -62,6 +63,7 @@ router.post("/", async (req, res, next) => {
   );
 });
 
+// get a single product by id
 router.get("/:id", (req, res, next) => {
   const prodId = req.params.id;
 
@@ -82,6 +84,7 @@ router.get("/:id", (req, res, next) => {
   );
 });
 
+// updates a product by id
 router.put("/:id", (req, res, next) => {
   const prod_id = req.params.id;
   const {
@@ -116,18 +119,20 @@ router.put("/:id", (req, res, next) => {
   );
 });
 
+// deletes a product
 router.delete("/:id", (req, res, next) => {
   const prodId = req.params.id;
   pool.query(
     "delete from products where product_id = $1",
     [prodId],
     (err, result) => {
-      if (err) {
-        const error = new Error(err);
+      if (result.rowCount === 0) {
+        const error = new Error("product id not found");
+        error.status = 404;
         next(error);
         return;
       }
-      res.status(204).send("product has been deleted, forever, its gone....");
+      res.status(204).send();
     }
   );
 });
