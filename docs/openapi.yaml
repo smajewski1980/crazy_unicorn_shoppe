@@ -222,11 +222,6 @@ paths:
       responses:
         '204':
           description: no content
-          content:
-            text/plain; charset=utf-8:
-              examples:
-                deleted successfully:
-                  value: Product has been deleted.
         '404':
           description: not found
           content:
@@ -328,6 +323,69 @@ paths:
               examples:
                 not found:
                   value: We could not find a product with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - products
+  /products/category/{id}:
+    summary: get products by category
+    get:
+      summary: get products by category id
+      description: >-
+        This will return JSON of all products from a url parameter supplied
+        category id.
+      operationId: get_products_category
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The category id of the products we seek.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                get products by category success:
+                  value: |-
+                    [
+                      {
+                        "product_id": 1,
+                        "product_name": "Unicorn Shirt",
+                        "product_desription": "Imagine slipping into the legendary allure of our Unicorn Shirt, a whimsical tapestry...",
+                        "product_price": 15,
+                        "image_url": "./assets/images/unicorn_t-shirt.webp",
+                        "category_id": 3,
+                        "current_qty": 10,
+                        "min_qty": 3,
+                        "max_qty": 10
+                      },
+                      {
+                        "product_id": 2,
+                        "product_name": "Unicorn Pants",
+                        "product_desription": "Imagine slipping into the elusive allure of our Unicorn Pants, where whimsy meets sophistication...",
+                        "product_price": 25,
+                        "image_url": "./assets/images/unicorn_pants.webp",
+                        "category_id": 3,
+                        "current_qty": 10,
+                        "min_qty": 3,
+                        "max_qty": 10
+                      }
+                    ]
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a category with that id.
         '500':
           description: internal server error
           content:
@@ -942,7 +1000,7 @@ paths:
                 server error:
                   value: Something went wrong on our end, please try again.
       tags:
-        - orders
+        - order
 components:
   schemas:
     Product:

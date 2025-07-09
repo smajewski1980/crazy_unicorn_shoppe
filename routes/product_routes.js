@@ -179,4 +179,23 @@ router.put("/:id/inventory", (req, res, next) => {
   );
 });
 
+// get products by category
+router.get("/category/:id", async (req, res, next) => {
+  const categoryId = req.params.id;
+
+  await pool.query(
+    "select * from products join inventory on products.product_id = inventory.product_id where products.category_id = $1",
+    [categoryId],
+    (err, result) => {
+      if (err) return next(err);
+      if (result.rowCount === 0) {
+        const error = new Error("There is no category with that id.");
+        error.status = 404;
+        return next(error);
+      }
+      res.status(200).send(result.rows);
+    }
+  );
+});
+
 module.exports = router;
