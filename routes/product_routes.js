@@ -137,4 +137,23 @@ router.delete("/:id", (req, res, next) => {
   );
 });
 
+// returns the inventory of a product id
+router.get("/:id/inventory", async (req, res, next) => {
+  const prodId = req.params.id;
+  await pool.query(
+    "select p.product_id, i.current_qty, i.min_qty, i.max_qty from products as p join inventory as i on i.product_id = p.product_id where p.product_id = $1",
+    [prodId],
+    (err, result) => {
+      if (err) return next(err);
+      if (result.rowCount === 0) {
+        const error = new Error("We could not find a product with that id.");
+        error.status = 404;
+        return next(error);
+      }
+
+      res.status(200).send(result.rows[0]);
+    }
+  );
+});
+
 module.exports = router;
