@@ -137,7 +137,7 @@ router.delete("/:id", (req, res, next) => {
   );
 });
 
-// returns the inventory of a product id
+// returns the inventory of a product
 router.get("/:id/inventory", async (req, res, next) => {
   const prodId = req.params.id;
   await pool.query(
@@ -152,6 +152,29 @@ router.get("/:id/inventory", async (req, res, next) => {
       }
 
       res.status(200).send(result.rows[0]);
+    }
+  );
+});
+
+// updates the inventory of a product
+router.put("/:id/inventory", (req, res, next) => {
+  const prodId = req.params.id;
+  const { newCurrQty } = req.body;
+
+  pool.query(
+    "update inventory set current_qty = $1 where product_id = $2",
+    [newCurrQty, prodId],
+    (err, result) => {
+      if (err) return next(err);
+      if (result.rowCount === 0) {
+        const error = new Error("We could not find a product with that id.");
+        error.status = 404;
+        return next(error);
+      }
+
+      res
+        .status(200)
+        .send({ msg: "inventory successfully updated", product_id: prodId });
     }
   );
 });
