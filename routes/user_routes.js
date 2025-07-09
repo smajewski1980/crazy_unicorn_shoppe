@@ -5,6 +5,7 @@ const pool = require(path.join(__dirname, "../database/db_connect"));
 const passport = require("passport");
 require("../passport");
 const bcrypt = require("bcrypt");
+const { url } = require("inspector");
 const saltRounds = 10;
 
 router.post("/register", async (req, res, next) => {
@@ -59,17 +60,18 @@ router.post("/register", async (req, res, next) => {
 });
 
 router.get("/login", (req, res) => {
-  res.status(200).send("you were redirected here");
+  res.status(200).send();
 });
 
 router.post(
   "/login",
   passport.authenticate("local", {
+    // for now this just redirects home after a successful login
     successRedirect: "/",
-    failureRedirect: "/user/login",
+    // failureRedirect: "/user/login",
   }),
   (req, res, next) => {
-    // res.status(200).redirect("/products");
+    res.sendStatus(404);
   }
 );
 

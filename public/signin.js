@@ -13,6 +13,9 @@ async function sendFormData(data) {
   const response = await fetch("/user/login", options);
   if (response.ok) {
     window.location.href = response.url;
+  } else {
+    form.reset();
+    alert("Invalid credentials, please try again");
   }
   console.log(response);
 }

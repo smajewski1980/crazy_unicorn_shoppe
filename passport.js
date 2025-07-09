@@ -27,10 +27,10 @@ const local = passport.use(
       async (err, result) => {
         const user = result.rows[0];
 
+        if (!user) return done(null, false);
         try {
           const matchedPw = await bcrypt.compare(password, user.hashed_pw);
           if (err) return done(err);
-          if (!user) return done(null, false);
           if (!matchedPw) return done(null, false);
 
           return done(null, user);
