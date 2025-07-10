@@ -59,6 +59,12 @@ router.post("/register", async (req, res, next) => {
   }
 });
 
+router.get("/status", (req, res, next) => {
+  return req.user
+    ? res.status(200).send(req.user)
+    : res.status(401).send({ msg: "not authenticated" });
+});
+
 router.get("/login", (req, res) => {
   res.status(200).send();
 });

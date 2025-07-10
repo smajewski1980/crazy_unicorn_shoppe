@@ -9,7 +9,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((user_id, done) => {
   pool.query(
-    "select * from users where user_id = $1",
+    "select * from users as u join user_address as ua on u.user_id = ua.user_id where u.user_id = $1",
     [user_id],
     (err, result) => {
       if (err) return done(err, null);
