@@ -3,6 +3,13 @@ const router = express.Router();
 const path = require("path");
 const pool = require(path.join(__dirname, "../database/db_connect"));
 
+const { checkSchema, validationResult } = require("express-validator");
+const {
+  productValidationSchema,
+  baseProductValidationSchema,
+  putInventoryValidationSchema,
+} = require("../utils/product_validation_schema");
+
 // returns all products
 router.get("/", async (req, res, next) => {
   await pool.query(
@@ -16,65 +23,74 @@ router.get("/", async (req, res, next) => {
 });
 
 // adds a new product
-router.post("/", async (req, res, next) => {
-  const {
-    product_name,
-    product_description,
-    product_price,
-    image_url,
-    category_id,
-    current_qty,
-    min_qty,
-    max_qty,
-  } = req.body;
+router.post(
+  "/",
+  checkSchema(productValidationSchema),
+  async (req, res, next) => {
+    const {
+      product_name,
+      product_description,
+      product_price,
+      image_url,
+      category_id,
+      current_qty,
+      min_qty,
+      max_qty,
+    } = req.body;
 
-  // this transaction will rollback if there is a problem with the second query
-  try {
-    const client = await pool.connect();
-    try {
-      await client.query("BEGIN");
-      await client.query(
-        "insert into products(product_name, product_description, product_price, image_url, category_id) values($1, $2, $3, $4, $5) returning product_id",
-        [
-          product_name,
-          product_description,
-          product_price,
-          image_url,
-          category_id,
-        ],
-        async (err, result) => {
-          if (err) {
-            const error = new Error(err);
-            // throw error;
-            next(error);
-            return;
-          }
-          const newProductId = result.rows[0].product_id;
-          client.query(
-            "insert into inventory(product_id, current_qty, min_qty, max_qty) values($1, $2, $3, $4)",
-            [newProductId, current_qty, min_qty, max_qty],
-            async (err, result) => {
-              if (err) {
-                const error = new Error(err);
-                next(error);
-                return;
-              }
-              await client.query("COMMIT");
-              res.sendStatus(201);
-            }
-          );
-        }
-      );
-    } catch (error) {
-      await client.query("ROLLBACK");
-      next(error);
-    } finally {
-      await client.release();
+    const validationErrors = validationResult(req);
+    if (!validationErrors.isEmpty()) {
+      return res.status(400).send(validationErrors);
     }
-  } catch (error) {
-    return next(error);
+
+    // this transaction will rollback if there is a problem with the second query
+    try {
+      const client = await pool.connect();
+      try {
+        await client.query("BEGIN");
+        await client.query(
+          "insert into products(product_name, product_description, product_price, image_url, category_id) values($1, $2, $3, $4, $5) returning product_id",
+          [
+            product_name,
+            product_description,
+            product_price,
+            image_url,
+            category_id,
+          ],
+          async (err, result) => {
+            if (err) {
+              const error = new Error(err);
+              // throw error;
+              next(error);
+              return;
+            }
+            const newProductId = result.rows[0].product_id;
+            client.query(
+              "insert into inventory(product_id, current_qty, min_qty, max_qty) values($1, $2, $3, $4)",
+              [newProductId, current_qty, min_qty, max_qty],
+              async (err, result) => {
+                if (err) {
+                  const error = new Error(err);
+                  next(error);
+                  return;
+                }
+                await client.query("COMMIT");
+                res.sendStatus(201);
+              }
+            );
+          }
+        );
+      } catch (error) {
+        await client.query("ROLLBACK");
+        next(error);
+      } finally {
+        await client.release();
+      }
+    } catch (error) {
+      return next(error);
+    }
   }
-});
+);
 
 // get a single product by id
 router.get("/:id", async (req, res, next) => {
@@ -98,39 +114,49 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // updates a product by id
-router.put("/:id", async (req, res, next) => {
-  const prod_id = req.params.id;
-  const {
-    product_name,
-    product_description,
-    product_price,
-    image_url,
-    category_id,
-  } = req.body;
-  await pool.query(
-    "update products set product_name = $1, product_description = $2, product_price = $3, image_url = $4, category_id = $5 where product_id = $6 returning product_id",
-    [
+router.put(
+  "/:id",
+  checkSchema(baseProductValidationSchema),
+  async (req, res, next) => {
+    const prod_id = req.params.id;
+    const {
       product_name,
       product_description,
       product_price,
       image_url,
       category_id,
-      prod_id,
-    ],
-    (err, result) => {
-      if (!result.rows.length) {
-        const error = new Error(err || "not a valid product id");
-        error.status = 400;
-        next(error);
-        return;
-      }
-      res.status(200).send({
-        msg: "successful update",
-        product_id: result.rows[0].product_id,
-      });
+    } = req.body;
+
+    const validationErrors = validationResult(req);
+    if (!validationErrors.isEmpty()) {
+      return res.status(400).send(validationErrors);
     }
-  );
-});
+
+    await pool.query(
+      "update products set product_name = $1, product_description = $2, product_price = $3, image_url = $4, category_id = $5 where product_id = $6 returning product_id",
+      [
+        product_name,
+        product_description,
+        product_price,
+        image_url,
+        category_id,
+        prod_id,
+      ],
+      (err, result) => {
+        if (!result || !result.rows.length) {
+          const error = new Error(err || "not a valid product id");
+          error.status = 400;
+          next(error);
+          return;
+        }
+        res.status(200).send({
+          msg: "successful update",
+          product_id: result.rows[0].product_id,
+        });
+      }
+    );
+  }
+);
 
 // deletes a product
 router.delete("/:id", async (req, res, next) => {
@@ -171,27 +197,36 @@ router.get("/:id/inventory", async (req, res, next) => {
 });
 
 // updates the inventory of a product
-router.put("/:id/inventory", async (req, res, next) => {
-  const prodId = req.params.id;
-  const { newCurrQty } = req.body;
+router.put(
+  "/:id/inventory",
+  checkSchema(putInventoryValidationSchema),
+  async (req, res, next) => {
+    const prodId = req.params.id;
+    const { current_qty } = req.body;
 
-  await pool.query(
-    "update inventory set current_qty = $1 where product_id = $2",
-    [newCurrQty, prodId],
-    (err, result) => {
-      if (err) return next(err);
-      if (result.rowCount === 0) {
-        const error = new Error("We could not find a product with that id.");
-        error.status = 404;
-        return next(error);
-      }
-
-      res
-        .status(200)
-        .send({ msg: "inventory successfully updated", product_id: prodId });
+    const validationErrors = validationResult(req);
+    if (!validationErrors.isEmpty()) {
+      return res.status(400).send(validationErrors);
     }
-  );
-});
+
+    await pool.query(
+      "update inventory set current_qty = $1 where product_id = $2",
+      [current_qty, prodId],
+      (err, result) => {
+        if (err) return next(err);
+        if (result.rowCount === 0) {
+          const error = new Error("We could not find a product with that id.");
+          error.status = 404;
+          return next(error);
+        }
+
+        res
+          .status(200)
+          .send({ msg: "inventory successfully updated", product_id: prodId });
+      }
+    );
+  }
+);
 
 // get products by category
 router.get("/category/:id", async (req, res, next) => {
