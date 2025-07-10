@@ -5,14 +5,14 @@ const pool = require(path.join(__dirname, "../database/db_connect"));
 
 // returns all products
 router.get("/", async (req, res, next) => {
-  try {
-    const result = await pool.query(
-      "select * from products as p join inventory as i on p.product_id = i.product_id order by product_name"
-    );
-    res.status(200).send(result.rows);
-  } catch (error) {
-    throw new Error(error);
-  }
+  await pool.query(
+    "select * from products as p join inventory as i on p.product_id = i.product_id order by product_name",
+    [],
+    (err, result) => {
+      if (err) return next(err);
+      res.status(200).send(result.rows);
+    }
+  );
 });
 
 // adds a new product
@@ -29,46 +29,59 @@ router.post("/", async (req, res, next) => {
   } = req.body;
 
   // this transaction will rollback if there is a problem with the second query
-  const client = await pool.connect();
-  await client.query("BEGIN");
-  await client.query(
-    "insert into products(product_name, product_description, product_price, image_url, category_id) values($1, $2, $3, $4, $5) returning product_id",
-    [product_name, product_description, product_price, image_url, category_id],
-    async (err, result) => {
-      if (err) {
-        const error = new Error(err);
-        next(error);
-        await client.query("ROLLBACK");
-        return;
-      }
-      const newProductId = result.rows[0].product_id;
-      client.query(
-        "insert into inventory(product_id, current_qty, min_qty, max_qty) values($1, $2, $3, $4)",
-        [newProductId, current_qty, min_qty, max_qty],
+  try {
+    const client = await pool.connect();
+    try {
+      await client.query("BEGIN");
+      await client.query(
+        "insert into products(product_name, product_description, product_price, image_url, category_id) values($1, $2, $3, $4, $5) returning product_id",
+        [
+          product_name,
+          product_description,
+          product_price,
+          image_url,
+          category_id,
+        ],
         async (err, result) => {
           if (err) {
             const error = new Error(err);
+            // throw error;
             next(error);
-            await client.query("ROLLBACK");
             return;
           }
-          await client.query("COMMIT");
-          await client.release();
-          res
-            .status(200)
-            .send("Product was successfully added to the database.");
+          const newProductId = result.rows[0].product_id;
+          client.query(
+            "insert into inventory(product_id, current_qty, min_qty, max_qty) values($1, $2, $3, $4)",
+            [newProductId, current_qty, min_qty, max_qty],
+            async (err, result) => {
+              if (err) {
+                const error = new Error(err);
+                next(error);
+                return;
+              }
+              await client.query("COMMIT");
+              res.sendStatus(201);
+            }
+          );
         }
       );
+    } catch (error) {
+      await client.query("ROLLBACK");
+      next(error);
+    } finally {
+      await client.release();
     }
-  );
+  } catch (error) {
+    return next(error);
+  }
 });
 
 // get a single product by id
-router.get("/:id", (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   const prodId = req.params.id;
 
   // going rogue here, need to update swagger file later...
-  pool.query(
+  await pool.query(
     "select * from products join inventory on products.product_id = inventory.product_id where products.product_id = $1",
     [prodId],
     (err, result) => {
@@ -85,7 +98,7 @@ router.get("/:id", (req, res, next) => {
 });
 
 // updates a product by id
-router.put("/:id", (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   const prod_id = req.params.id;
   const {
     product_name,
@@ -94,7 +107,7 @@ router.put("/:id", (req, res, next) => {
     image_url,
     category_id,
   } = req.body;
-  pool.query(
+  await pool.query(
     "update products set product_name = $1, product_description = $2, product_price = $3, image_url = $4, category_id = $5 where product_id = $6 returning product_id",
     [
       product_name,
@@ -120,12 +133,13 @@ router.put("/:id", (req, res, next) => {
 });
 
 // deletes a product
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   const prodId = req.params.id;
-  pool.query(
+  await pool.query(
     "delete from products where product_id = $1",
     [prodId],
     (err, result) => {
+      if (err) return next(err);
       if (result.rowCount === 0) {
         const error = new Error("product id not found");
         error.status = 404;
@@ -157,11 +171,11 @@ router.get("/:id/inventory", async (req, res, next) => {
 });
 
 // updates the inventory of a product
-router.put("/:id/inventory", (req, res, next) => {
+router.put("/:id/inventory", async (req, res, next) => {
   const prodId = req.params.id;
   const { newCurrQty } = req.body;
 
-  pool.query(
+  await pool.query(
     "update inventory set current_qty = $1 where product_id = $2",
     [newCurrQty, prodId],
     (err, result) => {
