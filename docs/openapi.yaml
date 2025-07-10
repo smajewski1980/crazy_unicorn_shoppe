@@ -616,18 +616,13 @@ paths:
             schema:
               $ref: '#/components/schemas/Updated_user'
       responses:
-        '200':
+        '201':
           description: OK
           content:
-            application/json:
+            text/plain; charset=utf-8:
               examples:
-                get user success:
-                  value: |-
-                    {
-                      "msg": "user account updated",
-                      "user_id": 47
-
-                    }
+                not found:
+                  value: created
         '404':
           description: not found
           content:
@@ -1000,7 +995,7 @@ paths:
                 server error:
                   value: Something went wrong on our end, please try again.
       tags:
-        - order
+        - orders
 components:
   schemas:
     Product:
@@ -1075,9 +1070,9 @@ components:
         name:
           type: string
           example: Fred Flintstone
-        hashed_pw:
+        password:
           type: string
-          example: $2a$05$LhayLxezLhK1LhWvKxCyLOj0j1u.Kj0jZ0pEmm134uzrQlFvQJLF6
+          example: bedrock_47
         email:
           type: string
           example: fred@stoneage.com
@@ -1109,9 +1104,9 @@ components:
         name:
           type: string
           example: Freddy Flintstone
-        hased_pw:
+        password:
           type: string
-          example: $2a$05$LhayLxezLhK1LhWvKxCyLOj0j1u.Kj0jZ0pEmm134uzrQlFvQJLF6
+          example: bedrock_47
         email:
           type: string
           example: updated_fred@stoneage.com

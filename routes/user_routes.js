@@ -11,7 +11,7 @@ const saltRounds = 10;
 router.post("/register", async (req, res, next) => {
   const {
     name,
-    hashed_pw,
+    password,
     email,
     phone,
     address_line_1,
@@ -26,7 +26,7 @@ router.post("/register", async (req, res, next) => {
     const client = await pool.connect();
     client.query("BEGIN");
 
-    const hashedPw = await bcrypt.hash(hashed_pw, saltRounds);
+    const hashedPw = await bcrypt.hash(password, saltRounds);
     await client.query(
       "insert into users(name, hashed_pw, email, phone) values($1, $2, $3, $4) returning user_id",
       [name, hashedPw, email, phone],
