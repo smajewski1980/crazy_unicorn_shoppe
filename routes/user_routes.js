@@ -8,57 +8,69 @@ const bcrypt = require("bcrypt");
 const { url } = require("inspector");
 const saltRounds = 10;
 
-router.post("/register", async (req, res, next) => {
-  const {
-    name,
-    password,
-    email,
-    phone,
-    address_line_1,
-    address_line_2,
-    city,
-    state,
-    zip_code,
-  } = req.body;
-  // need to refactor this below try/catch
-  try {
-    // this transaction will rollback if there is a problem with the second query
-    const client = await pool.connect();
-    client.query("BEGIN");
+const { checkSchema, validationResult } = require("express-validator");
+const { userValidationSchema } = require("../utils/user_validation_schema");
 
-    const hashedPw = await bcrypt.hash(password, saltRounds);
-    await client.query(
-      "insert into users(name, hashed_pw, email, phone) values($1, $2, $3, $4) returning user_id",
-      [name, hashedPw, email, phone],
-      async (err, result) => {
-        if (err) {
-          const error = new Error(err);
-          next(error);
-          await client.query("ROLLBACK");
-          return;
-        }
-        const newUserId = result.rows[0].user_id;
-        client.query(
-          "insert into user_address(user_id, address_line_1, address_line_2, city, state, zip_code) values($1, $2, $3, $4, $5, $6)",
-          [newUserId, address_line_1, address_line_2, city, state, zip_code],
-          async (err, result) => {
-            if (err) {
-              const error = new Error(err);
-              next(error);
-              await client.query("ROLLBACK");
-              return;
-            }
-            await client.query("COMMIT");
-            await client.release();
-            res.status(201).send("new user was created");
+router.post(
+  "/register",
+  checkSchema(userValidationSchema),
+  async (req, res, next) => {
+    const {
+      name,
+      password,
+      email,
+      phone,
+      address_line_1,
+      address_line_2,
+      city,
+      state,
+      zip_code,
+    } = req.body;
+
+    const validationErrors = validationResult(req);
+    if (!validationErrors.isEmpty()) {
+      return res.status(400).send(validationErrors);
+    }
+    // need to refactor this below try/catch
+    try {
+      // this transaction will rollback if there is a problem with the second query
+      const client = await pool.connect();
+      client.query("BEGIN");
+
+      const hashedPw = await bcrypt.hash(password, saltRounds);
+      await client.query(
+        "insert into users(name, hashed_pw, email, phone) values($1, $2, $3, $4) returning user_id",
+        [name, hashedPw, email, phone],
+        async (err, result) => {
+          if (err) {
+            const error = new Error(err);
+            next(error);
+            await client.query("ROLLBACK");
+            return;
           }
-        );
-      }
-    );
-  } catch (error) {
-    throw new Error(error);
+          const newUserId = result.rows[0].user_id;
+          client.query(
+            "insert into user_address(user_id, address_line_1, address_line_2, city, state, zip_code) values($1, $2, $3, $4, $5, $6)",
+            [newUserId, address_line_1, address_line_2, city, state, zip_code],
+            async (err, result) => {
+              if (err) {
+                const error = new Error(err);
+                next(error);
+                await client.query("ROLLBACK");
+                return;
+              }
+              await client.query("COMMIT");
+              await client.release();
+              res.status(201).send("new user was created");
+            }
+          );
+        }
+      );
+    } catch (error) {
+      throw new Error(error);
+    }
   }
-});
+);
 
 router.get("/status", (req, res, next) => {
   return req.user
@@ -109,58 +121,68 @@ router.get("/:id", (req, res, next) => {
   );
 });
 
-router.put("/:id", async (req, res, next) => {
-  const userId = req.params.id;
-  const {
-    name,
-    password,
-    email,
-    phone,
-    address_line_1,
-    address_line_2,
-    city,
-    state,
-    zip_code,
-  } = req.body;
-  const hashedPw = await bcrypt.hash(password, saltRounds);
-  try {
-    const client = await pool.connect();
-    try {
-      await client.query("BEGIN");
-      await client.query(
-        "update users set name = $1, hashed_pw = $2, email = $3, phone = $4 where user_id = $5",
-        [name, hashedPw, email, phone, userId],
-        async (err, result) => {
-          if (err) {
-            const error = new Error(err);
-            await client.query("ROLLBACK");
-            return next(error);
-          }
-          client.query(
-            "update user_address set address_line_1 = $2, address_line_2 = $3, city = $4, state = $5, zip_code = $6 where user_id = $1",
-            [userId, address_line_1, address_line_2, city, state, zip_code],
-            async (err, result) => {
-              if (err) {
-                const error = new Error(err);
-                await client.query("ROLLBACK");
-                return next(error);
-              }
-              await client.query("COMMIT");
-              res.sendStatus(201);
-            }
-          );
-        }
-      );
-    } catch (error) {
-      await client.query("ROLLBACK");
-      next(error);
-    } finally {
-      await client.release();
+router.put(
+  "/:id",
+  checkSchema(userValidationSchema),
+  async (req, res, next) => {
+    const userId = req.params.id;
+    const {
+      name,
+      password,
+      email,
+      phone,
+      address_line_1,
+      address_line_2,
+      city,
+      state,
+      zip_code,
+    } = req.body;
+    const hashedPw = await bcrypt.hash(password, saltRounds);
+
+    const validationErrors = validationResult(req);
+    if (!validationErrors.isEmpty()) {
+      return res.status(400).send(validationErrors);
     }
-  } catch (error) {
-    return next(error);
+
+    try {
+      const client = await pool.connect();
+      try {
+        await client.query("BEGIN");
+        await client.query(
+          "update users set name = $1, hashed_pw = $2, email = $3, phone = $4 where user_id = $5",
+          [name, hashedPw, email, phone, userId],
+          async (err, result) => {
+            if (err) {
+              const error = new Error(err);
+              await client.query("ROLLBACK");
+              return next(error);
+            }
+            client.query(
+              "update user_address set address_line_1 = $2, address_line_2 = $3, city = $4, state = $5, zip_code = $6 where user_id = $1",
+              [userId, address_line_1, address_line_2, city, state, zip_code],
+              async (err, result) => {
+                if (err) {
+                  const error = new Error(err);
+                  await client.query("ROLLBACK");
+                  return next(error);
+                }
+                await client.query("COMMIT");
+                res.sendStatus(201);
+              }
+            );
+          }
+        );
+      } catch (error) {
+        await client.query("ROLLBACK");
+        next(error);
+      } finally {
+        await client.release();
+      }
+    } catch (error) {
+      return next(error);
+    }
   }
-});
+);
 
 router.delete("/:id", (req, res, next) => {
   const userId = req.params.id;
