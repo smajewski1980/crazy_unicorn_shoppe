@@ -100,6 +100,7 @@ router.get("/logout", (req, res, next) => {
       const error = new Error(err);
       next(error);
     }
+    res.status(200).send("user is now logged out");
   });
 });
 

@@ -16,7 +16,7 @@ tags:
   - name: user
     description: everything about users
   - name: cart
-    description: everything to do with the cart
+    description: everything to do with the current signed in user's cart
   - name: orders
     description: endpoints relating to orders
 paths:
@@ -443,9 +443,7 @@ paths:
     summary: checks login status
     get:
       summary: checks login status
-      description: >-
-        This checks to see if the current user is logged in to a session and
-        returns a boolean.
+      description: This returns the user object if there is a currently logged in user.
       operationId: get_user_status
       responses:
         '200':
@@ -456,7 +454,16 @@ paths:
                 get user login status:
                   value: |-
                     {
-                      "logged_in": true
+                      "user_id": 21,
+                      "name": "Fred Flintstone",
+                      "password": "bedrock_47",
+                      "email": "fred@stoneage.com",
+                      "phone": "555-555-5555",
+                      "address_line_1": "123 Rock Blvd",
+                      "address_line_2": "Boulder 1",
+                      "city": "Bedrock",
+                      "state": "NY",
+                      "zip_code": "98765"
                     }
         '500':
           description: internal server error
@@ -533,6 +540,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                logout success:
+                  value: The user is now logged out.
         '500':
           description: internal server error
           content:
@@ -693,7 +705,12 @@ paths:
             text/plain; charset=utf-8:
               examples:
                 post cart item success:
-                  value: The item has been added to the cart.
+                  value: |-
+                    {
+                      "cart_id": 38,
+                      "product_id": 4,
+                      "item_qty": 3
+                    }
         '500':
           description: internal server error
           content:
@@ -703,21 +720,12 @@ paths:
                   value: Something went wrong on our end, please try again.
       tags:
         - cart
-  /cart/{id}:
-    summary: This path will handle cart operations.
     get:
       summary: get the cart items
       description: >-
         This endpoint will return all of the cart items when given a cart id as
         a url parameter.
       operationId: get_cart
-      parameters:
-        - name: id
-          in: path
-          description: The id of the cart whose items we seek.
-          required: true
-          schema:
-            type: string
       responses:
         '200':
           description: OK
@@ -756,6 +764,8 @@ paths:
                   value: Something went wrong on our end, please try again.
       tags:
         - cart
+  /cart/{id}/{product_id}:
+    summary: remove a cart item
     put:
       summary: change cart item quantity
       description: This operation will change the quantity of a cart item.
@@ -798,8 +808,6 @@ paths:
                   value: Something went wrong on our end, please try again.
       tags:
         - cart
-  /cart/{id}/{product_id}:
-    summary: remove a cart item
     delete:
       summary: remove a cart item
       description: >-
@@ -1136,18 +1144,10 @@ components:
           example: Fred Flintstone
         password:
           type: string
-          example: $2a$05$LhayLxezLhK1LhWvKxCyLOj0j1u.Kj0jZ0pEmm134uzrQlFvQJLF6
+          example: bedrock_47
     Cart_item:
       type: object
       properties:
-        user_id:
-          type: integer
-          format: int32
-          example: 47
-        cart_id:
-          type: integer
-          format: int32
-          example: 3
         product_id:
           type: integer
           format: int32

@@ -106,12 +106,19 @@ ADD
 DROP TABLE IF EXISTS cart_items CASCADE;
 
 CREATE TABLE cart_items(
-  cart_id integer REFERENCES carts(cart_id),
+  cart_id integer REFERENCES carts(cart_id) ON DELETE CASCADE,
   product_id integer REFERENCES products(product_id),
   PRIMARY KEY(cart_id, product_id),
   item_qty integer NOT NULL
 );
 
+-- originally the above did not include ON DELETE CASCADE on the fkey
+-- so i did this in a pg admin query
+-- BEGIN;
+-- ALTER TABLE cart_items DROP CONSTRAINT cart_items_cart_id_fkey;
+-- ALTER TABLE cart_items ADD CONSTRAINT cart_items_cart_id_fkey FOREIGN KEY (cart_id) REFERENCES carts (cart_id) ON DELETE CASCADE;
+-- COMMIT;
+--
 -- **************************************************************
 insert into
   category(category_name)
