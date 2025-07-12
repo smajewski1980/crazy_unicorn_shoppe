@@ -794,12 +794,11 @@ paths:
         - cart
   /cart/{id}:
     summary: update quantity for a cart item
-    
     delete:
       summary: remove a cart item
       description: >-
-        This operation will take a cart id and a product id and remove the item
-        from the users cart.
+        This operation will take a product id as a url parameter and remove the
+        item from the users cart.
       operationId: delete_cart_item
       parameters:
         - name: id
@@ -816,6 +815,22 @@ paths:
               examples:
                 delete item success:
                   value: The item has successfully been removed from the cart.
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
+        '404':
+          description: no active cart
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                user has no active cart:
+                  value: This user does not have an active cart.
+                users cart does not have product:
+                  value: This user does not have that product in their cart.
         '500':
           description: internal server error
           content:

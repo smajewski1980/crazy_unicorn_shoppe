@@ -71,4 +71,42 @@ router.put("/", async (req, res, next) => {
   return res.status(200).send(result.rows);
 });
 
+// delete an item from the current users cart
+router.delete("/:id", async (req, res, next) => {
+  if (!req.user) {
+    const error = new Error("You must be logged in to perform this action.");
+    error.status = 401;
+    return next(error);
+  }
+
+  const currentUserId = req.user.user_id;
+  const productToRemove = new Number(req.params.id);
+
+  const cartId = await pool.query(
+    "select cart_id from cart_items_with_names where user_id = $1 limit 1",
+    [currentUserId]
+  );
+
+  if (!cartId.rowCount) {
+    const error = new Error("This user does not have an active cart.");
+    error.status = 404;
+    return next(error);
+  }
+
+  const result = await pool.query(
+    "delete from cart_items where cart_id = $1 and product_id = $2",
+    [cartId.rows[0].cart_id, productToRemove]
+  );
+
+  if (!result.rowCount) {
+    const error = new Error(
+      "this user does not have that product in their cart"
+    );
+    error.status = 404;
+    return next(error);
+  }
+
+  res.status(200).send("The item has successfully been removed from the cart.");
+});
+
 module.exports = router;
