@@ -7,67 +7,104 @@ const pool = require(path.join(__dirname, "../database/db_connect"));
 
 // adds a product to the cart
 router.post("/", async (req, res, next) => {
-  if (req.user) {
-    const currentUser = req.user.user_id;
-    const { product_id, item_qty } = req.body;
-    // see if the user has an active cart_id
+  if (!req.user) {
+    const error = new Error("You must be logged in to see your cart.");
+    error.status = 401;
+    return next(error);
+  }
+
+  const currentUser = req.user.user_id;
+  const { product_id, item_qty } = req.body;
+  // see if the user has an active cart_id
+  const result = await pool.query(
+    "select cart_id from carts where user_id = $1 and is_active = true",
+    [currentUser]
+  );
+
+  if (!result) {
+    return next(new Error());
+  }
+  // if no active cart_id, create one
+  if (result.rowCount === 0) {
     const result = await pool.query(
-      "select cart_id from carts where user_id = $1 and is_active = true",
+      "insert into carts(user_id) values($1) returning cart_id",
       [currentUser]
     );
-    // if not create one
-    if (result.rowCount === 0) {
-      const result = await pool.query(
-        "insert into carts(user_id) values($1) returning cart_id",
-        [currentUser]
-      );
-      const newCartId = await result.rows[0].cart_id;
-      // add the item to the new cart
-      const itemAdded = await pool.query(
-        "insert into cart_items(cart_id, product_id, item_qty) values($1, $2, $3) returning *",
-        [newCartId, product_id, item_qty]
-      );
-      return res.status(200).send(itemAdded.rows[0]);
+    if (!result) {
+      return next(new Error());
     }
-    const currentCartId = await result.rows[0].cart_id;
-    // add the item to the current cart
-    const itemAdded = await pool.query(
+    const newCartId = await result.rows[0].cart_id;
+    // add the item to the new cart
+    const addedItem = await pool.query(
       "insert into cart_items(cart_id, product_id, item_qty) values($1, $2, $3) returning *",
-      [currentCartId, product_id, item_qty]
+      [newCartId, product_id, item_qty]
     );
-    return res.status(200).send(itemAdded.rows[0]);
+    if (!addedItem) {
+      return next(new Error());
+    }
+    return res.status(200).send(addedItem.rows[0]);
   }
-  return res.status(401).send("you must be logged in to see your cart");
+  const currentCartId = await result.rows[0].cart_id;
+  // add the item to the current cart
+  const addedItem = await pool.query(
+    "insert into cart_items(cart_id, product_id, item_qty) values($1, $2, $3) returning *",
+    [currentCartId, product_id, item_qty]
+  );
+  if (!addedItem) {
+    return next(new Error());
+  }
+  return res.status(200).send(addedItem.rows[0]);
 });
 
 // returns all the products and their qty for the current user's cart
 router.get("/", async (req, res, next) => {
-  if (req.user) {
-    const currentUserId = req.user.user_id;
-    const result = await pool.query(
-      "select product_name, item_qty from cart_items_with_names where user_id = $1",
-      [currentUserId]
-    );
-    if (result.rowCount === 0) {
-      return res.status(200).send("Thats one empty cart you got there!");
-    }
-    return res.status(200).send(result.rows);
+  if (!req.user) {
+    const error = new Error("You must be logged in to see your cart.");
+    error.status = 401;
+    return next(error);
   }
-  return res.status(401).send("you must be logged in to see your cart");
+  const currentUserId = req.user.user_id;
+  const result = await pool.query(
+    "select product_name, item_qty from cart_items_with_names where user_id = $1",
+    [currentUserId]
+  );
+  if (!result) {
+    return next(new Error());
+  }
+  if (result.rowCount === 0) {
+    return res.status(200).send("Thats one empty cart you got there!");
+  }
+  return res.status(200).send(result.rows);
 });
 
 // update the quantity of a product in the cart
 router.put("/", async (req, res, next) => {
+  if (!req.user) {
+    const error = new Error("You must be logged in to see your cart.");
+    error.status = 401;
+    return next(error);
+  }
   const currentUserId = req.user.user_id;
   const { product_id, item_qty } = req.body;
+
   const cartId = await pool.query(
     "select cart_id from cart_items_with_names where user_id = $1",
     [currentUserId]
   );
+
+  if (!cartId) {
+    return next(new Error());
+  }
+
   const result = await pool.query(
     "update cart_items set item_qty = $1 where product_id = $2 and cart_id = $3 returning *",
     [item_qty, product_id, cartId.rows[0].cart_id]
   );
+
+  if (!result) {
+    return next(new Error());
+  }
+
   return res.status(200).send(result.rows);
 });
 
@@ -88,9 +125,7 @@ router.delete("/:id", async (req, res, next) => {
   );
 
   if (!cartId.rowCount) {
-    const error = new Error("This user does not have an active cart.");
-    error.status = 404;
-    return next(error);
+    return res.status(200).send("Add an item to create a cart.");
   }
 
   const result = await pool.query(
@@ -100,7 +135,7 @@ router.delete("/:id", async (req, res, next) => {
 
   if (!result.rowCount) {
     const error = new Error(
-      "this user does not have that product in their cart"
+      "This user does not have that product in their cart."
     );
     error.status = 404;
     return next(error);

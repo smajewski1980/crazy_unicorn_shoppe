@@ -57,7 +57,9 @@ app.use("/cart", cartRoutes);
 
 app.use((err, req, res, next) => {
   console.log(err);
-  res.status(err.status || 500).send(err.message);
+  res
+    .status(err.status || 500)
+    .send(err.message || "Something went wrong on our end, please try again.");
 });
 
 app.listen(process.env.PORT, () => {

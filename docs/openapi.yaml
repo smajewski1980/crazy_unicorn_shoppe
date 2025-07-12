@@ -711,6 +711,12 @@ paths:
                       "product_id": 4,
                       "item_qty": 3
                     }
+        '401':
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to see your cart.
         '500':
           description: internal server error
           content:
@@ -750,6 +756,13 @@ paths:
               examples:
                 Empty Cart:
                   value: That's one empty cart you got there!
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
         '500':
           description: internal server error
           content:
@@ -783,6 +796,13 @@ paths:
                       "product_id": 4,
                       "item_qty": 2
                     }
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.                    
         '500':
           description: internal server error
           content:
@@ -828,7 +848,7 @@ paths:
             text/plain; charset=utf-8:
               examples:
                 user has no active cart:
-                  value: This user does not have an active cart.
+                  value: Add an item to create a cart.
                 users cart does not have product:
                   value: This user does not have that product in their cart.
         '500':
