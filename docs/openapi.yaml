@@ -722,9 +722,7 @@ paths:
         - cart
     get:
       summary: get the cart items
-      description: >-
-        This endpoint will return all of the cart items when given a cart id as
-        a url parameter.
+      description: This endpoint will return all of the cart items for the current user.
       operationId: get_cart
       responses:
         '200':
@@ -736,25 +734,22 @@ paths:
                   value: |-
                     [
                       {
-                        "product_id": 1,
+                        "product_name": "Unicorn Pants",
                         "item_qty": 3
                       },
                       {
-                        "product_id": 2,
+                        "product_name": "Unicorn Shirt",
                         "item_qty": 1
                       },
                       {
-                        "product_id": 3,
+                        "product_name": "Unicorn Vest",
                         "item_qty": 2
                       }
                     ]
-        '404':
-          description: not found
-          content:
             text/plain; charset=utf-8:
               examples:
-                not found:
-                  value: We could not find an active cart for that user id.
+                Empty Cart:
+                  value: That's one empty cart you got there!
         '500':
           description: internal server error
           content:
@@ -765,7 +760,7 @@ paths:
       tags:
         - cart
   /cart/{id}/{product_id}:
-    summary: remove a cart item
+    summary: update quantity for a cart item
     put:
       summary: change cart item quantity
       description: This operation will change the quantity of a cart item.
@@ -773,7 +768,13 @@ paths:
       parameters:
         - name: id
           in: path
-          description: The id of the cart whose items we seek.
+          description: The id of the cart whose items we seek to update.
+          required: true
+          schema:
+            type: string
+        - name: product_id
+          in: path
+          description: The id of the product whose quantity we seek to update.
           required: true
           schema:
             type: string
