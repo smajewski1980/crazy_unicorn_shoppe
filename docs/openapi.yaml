@@ -759,25 +759,10 @@ paths:
                   value: Something went wrong on our end, please try again.
       tags:
         - cart
-  /cart/{id}/{product_id}:
-    summary: update quantity for a cart item
     put:
       summary: change cart item quantity
       description: This operation will change the quantity of a cart item.
       operationId: put_cart
-      parameters:
-        - name: id
-          in: path
-          description: The id of the cart whose items we seek to update.
-          required: true
-          schema:
-            type: string
-        - name: product_id
-          in: path
-          description: The id of the product whose quantity we seek to update.
-          required: true
-          schema:
-            type: string
       requestBody:
         description: Updates a cart item quantity.
         required: true
@@ -789,17 +774,15 @@ paths:
         '200':
           description: OK
           content:
-            text/plain; charset=utf-8:
+            application/json:
               examples:
-                not found:
-                  value: Cart item quantity has been updated.
-        '404':
-          description: not found
-          content:
-            text/plain; charset=utf-8:
-              examples:
-                not found:
-                  value: We could not find a cart with that id.
+                update success:
+                  value: |-
+                    {
+                      "cart_id": 39,
+                      "product_id": 4,
+                      "item_qty": 2
+                    }
         '500':
           description: internal server error
           content:
@@ -809,6 +792,9 @@ paths:
                   value: Something went wrong on our end, please try again.
       tags:
         - cart
+  /cart/{id}:
+    summary: update quantity for a cart item
+    
     delete:
       summary: remove a cart item
       description: >-
@@ -819,13 +805,7 @@ paths:
         - name: id
           in: path
           required: true
-          description: The id of the cart whose item we seek to remove.
-          schema:
-            type: string
-        - name: product_id
-          in: path
-          required: true
-          description: The id of the item we seek to remove from the cart.
+          description: The id of the product we seek to remove.
           schema:
             type: string
       responses:
@@ -1164,7 +1144,7 @@ components:
           type: integer
           format: int32
           example: 3
-        new_qty:
+        item_qty:
           type: integer
           format: int32
           example: 2
