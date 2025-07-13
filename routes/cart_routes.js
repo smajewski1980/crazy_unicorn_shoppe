@@ -3,8 +3,6 @@ const router = express.Router();
 const path = require("path");
 const pool = require(path.join(__dirname, "../database/db_connect"));
 
-// ****there is no error handling yet********
-
 // adds a product to the cart
 router.post("/", async (req, res, next) => {
   if (!req.user) {
@@ -75,6 +73,26 @@ router.get("/", async (req, res, next) => {
     return res.status(200).send("Thats one empty cart you got there!");
   }
   return res.status(200).send(result.rows);
+});
+
+// get data to checkout
+router.get("/checkout", async (req, res, next) => {
+  if (!req.user) {
+    const error = new Error("You must be logged in to checkout.");
+    error.status = 401;
+    return next(error);
+  }
+
+  const user_id = req.user.user_id;
+  const result = await pool.query(
+    "select * from data_to_checkout where user_id = $1",
+    [user_id]
+  );
+  if (!result) return next(new Error());
+  if (result.rowCount === 0) {
+    return res.status(200).send("Thats one empty cart you got there!");
+  }
+  res.status(200).send(await result.rows);
 });
 
 // update the quantity of a product in the cart
