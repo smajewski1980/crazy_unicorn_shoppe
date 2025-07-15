@@ -973,7 +973,8 @@ paths:
                 create order success:
                   value: |-
                     {
-                      "order_id": 47
+                      "order_id": 47,
+                      "msg": "order created"
                     }
         '500':
           description: internal server error

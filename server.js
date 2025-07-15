@@ -10,6 +10,7 @@ const liveReloadServer = livereload.createServer();
 const userRoutes = require("./routes/user_routes");
 const productRoutes = require("./routes/product_routes");
 const cartRoutes = require("./routes/cart_routes");
+const orderRoutes = require("./routes/order_routes");
 // const cors = require("cors");
 // app.use(cors());
 const session = require("express-session");
@@ -50,6 +51,7 @@ app.use(express.static("public"));
 app.use("/user", userRoutes);
 app.use("/products", productRoutes);
 app.use("/cart", cartRoutes);
+app.use("/order", orderRoutes);
 
 // app.get("/", (req, res) => {
 //   res.sendFile("public/index.html");
