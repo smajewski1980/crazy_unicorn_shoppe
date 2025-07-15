@@ -95,6 +95,21 @@ router.get("/checkout", async (req, res, next) => {
   res.status(200).send(await result.rows);
 });
 
+// process payment and submit order
+router.post("/checkout", (req, res, next) => {
+  // const { payment_method, account_number, exp_date, cvv } = req.body;
+  // I guess in the real world this would be a bit different
+  //  and here would be some logic to handle the payment
+
+  // This will simulate an occasional rejected payment
+  const isPaymentGood = () => Math.floor(Math.random() * 25) > 0;
+  isPaymentGood()
+    ? res.sendStatus(200)
+    : res
+        .status(400)
+        .send("The payment was rejected, please try another method.");
+});
+
 // update the quantity of a product in the cart
 router.put("/", async (req, res, next) => {
   if (!req.user) {

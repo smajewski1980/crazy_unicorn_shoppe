@@ -871,14 +871,41 @@ paths:
       tags:
         - cart
     post:
-      summary: turn a cart into an order
+      summary: accepts and runs payment
       description: >-
-        This operation will take the cart data and the user's payment and submit
-        an order.
+        This operation will run the users payment method and return ok on success.
       operationId: post_cart_checkout
+      requestBody:
+        description: Runs the payment info and returns ok if successful.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Checkout'      
       responses:
-        default:
-          description: Default error sample response
+        '200':
+          description: OK
+        '400':
+          description: payment rejected
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: The payment was rejected, please try another method.
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to checkout.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
       tags:
         - cart
   /cart/{id}:
@@ -1270,3 +1297,20 @@ components:
         payment_method:
           type: string
           example: paypal
+    Checkout:
+      type: object
+      properties:
+        payment_method:
+          type: string
+          example: "Credit Card"
+        account_number:
+          type: integer
+          format: int32
+          example: 9067897594607590
+        exp_date:
+          type: string
+          example: "10/29"
+        cvv:
+          type: integer
+          format: int32
+          example: 123
