@@ -873,15 +873,8 @@ paths:
     post:
       summary: accepts and runs payment
       description: >-
-        This operation will run the users payment method and return ok on success.
+        This operation will pretend to run the users payment method and return ok on success, it is setup in code to return a failed payment at random(roughly 1 in 25 is the chance of a failed payment).
       operationId: post_cart_checkout
-      requestBody:
-        description: Runs the payment info and returns ok if successful.
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Checkout'      
       responses:
         '200':
           description: OK
@@ -1297,20 +1290,3 @@ components:
         payment_method:
           type: string
           example: paypal
-    Checkout:
-      type: object
-      properties:
-        payment_method:
-          type: string
-          example: "Credit Card"
-        account_number:
-          type: integer
-          format: int32
-          example: 9067897594607590
-        exp_date:
-          type: string
-          example: "10/29"
-        cvv:
-          type: integer
-          format: int32
-          example: 123
