@@ -871,11 +871,13 @@ paths:
       tags:
         - cart
     post:
-      summary: accepts and runs payment
+      summary: accepts and runs payment, adjust inventory
       description: >-
         This operation will pretend to run the users payment method and return
         ok on success, it is setup in code to return a failed payment at
-        random(roughly 1 in 25 is the chance of a failed payment).
+        random(roughly 1 in 25 is the chance of a failed payment). This will
+        also be the operation that will handle adjusting the product inventory
+        in the database.
       operationId: post_cart_checkout
       responses:
         '200':
@@ -1022,7 +1024,7 @@ paths:
                       "order_items": []
                     }
         '401':
-          description: not authorized       
+          description: not authorized
           content:
             text/plain; charset=utf-8:
               examples:
@@ -1063,7 +1065,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Update_order_status'            
+              $ref: '#/components/schemas/Update_order_status'
       responses:
         '200':
           description: OK
@@ -1077,12 +1079,12 @@ paths:
                       "order_status": "complete" 
                     }
         '401':
-          description: not authorized       
+          description: not authorized
           content:
             text/plain; charset=utf-8:
               examples:
                 not authorized:
-                  value: Mind your business, that is someone else's order id!                    
+                  value: Mind your business, that is someone else's order id!
         '404':
           description: not found
           content:
@@ -1114,10 +1116,21 @@ paths:
         '200':
           description: OK
           content:
+            application/json:
+              examples:
+                order canceled success:
+                  value: |-
+                    {
+                      "msg": "The order has been successfully canceled.",
+                      "order_status": "canceled" 
+                    }
+        '401':
+          description: not authorized
+          content:
             text/plain; charset=utf-8:
               examples:
-                cancel order success:
-                  value: The order has been successfully canceled.
+                not authorized:
+                  value: Mind your business, that is someone else's order id!
         '404':
           description: not found
           content:
@@ -1320,4 +1333,4 @@ components:
       properties:
         updatedOrderStatus:
           type: string
-          example: "complete"
+          example: complete

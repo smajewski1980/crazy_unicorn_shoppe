@@ -133,4 +133,62 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
+// cancel an order
+router.delete("/:id", async (req, res, next) => {
+  // i would think in a real world app, this would be where we would put some code for the payment processor to handle a refund, therefore this endpoint will just change the status of the order to canceled and put the items back in inventory.
+
+  // put items back into inventory
+
+  // change the order status to canceled
+  if (!req.user) {
+    const error = new Error(
+      "You must be logged in to change your orders status."
+    );
+    error.status = 401;
+    return next(error);
+  }
+
+  const orderId = req.params.id;
+  const currentUser = req.user.user_id;
+
+  try {
+    // get the order's user id
+    const orderUserId = await pool.query(
+      "select user_id from orders where order_id = $1",
+      [orderId]
+    );
+    // if the order id doesn't exist
+    if (orderUserId.rowCount === 0) {
+      const error = new Error("We could not find an order with that id.");
+      throw error;
+    }
+    // see if the current user is the order's user
+    if (currentUser !== orderUserId.rows[0].user_id) {
+      const error = new ReferenceError(
+        "Mind your business, that is someone else's order id!"
+      );
+      throw error;
+    }
+    // update the order status
+    const result = await pool.query(
+      "update orders set order_status = 'canceled' where order_id = $1 returning order_status",
+      [orderId]
+    );
+    return res.status(200).send({
+      msg: "The order has been successfully canceled.",
+      order_status: result.rows[0].order_status,
+    });
+  } catch (err) {
+    if (err instanceof ReferenceError) {
+      err.status = 401;
+      return next(err);
+    }
+    if (err instanceof Error) {
+      err.status = 404;
+      return next(err);
+    }
+    return next(err);
+  }
+});
+
 module.exports = router;

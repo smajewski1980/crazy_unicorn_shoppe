@@ -98,8 +98,10 @@ router.get("/checkout", async (req, res, next) => {
 // process payment and submit order
 router.post("/checkout", (req, res, next) => {
   // In the real world this would be a bit different, I think
-  // here would be some code for the payment processorto handle,
+  // here would be some code for the payment processor to handle,
   // which was encrypted and sent from a payment gateway on the frontend.
+
+  // here will go logic to adjust the products inventory
 
   // This will simulate an occasional rejected payment
   const isPaymentGood = () => Math.floor(Math.random() * 25) > 0;
