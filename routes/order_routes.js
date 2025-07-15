@@ -78,4 +78,59 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+// update the order status
+router.put("/:id", async (req, res, next) => {
+  // must be logged in to change order status
+  if (!req.user) {
+    const error = new Error(
+      "You must be logged in to change your orders status."
+    );
+    error.status = 401;
+    return next(error);
+  }
+
+  const orderId = req.params.id;
+  const currentUser = req.user.user_id;
+  const updatedOrderStatus = req.body.updatedOrderStatus;
+
+  try {
+    // get the order's user id
+    const orderUserId = await pool.query(
+      "select user_id from orders where order_id = $1",
+      [orderId]
+    );
+    // if the order id doesn't exist
+    if (orderUserId.rowCount === 0) {
+      const error = new Error("We could not find an order with that id.");
+      throw error;
+    }
+    // see if the current user is the order's user
+    if (currentUser !== orderUserId.rows[0].user_id) {
+      const error = new ReferenceError(
+        "Mind your business, that is someone else's order id!"
+      );
+      throw error;
+    }
+    // update the order status
+    const result = await pool.query(
+      "update orders set order_status = $1 where order_id = $2 returning order_status",
+      [updatedOrderStatus, orderId]
+    );
+    return res.status(200).send({
+      msg: "order status has been updated",
+      order_status: result.rows[0].order_status,
+    });
+  } catch (err) {
+    if (err instanceof ReferenceError) {
+      err.status = 401;
+      return next(err);
+    }
+    if (err instanceof Error) {
+      err.status = 404;
+      return next(err);
+    }
+    return next(err);
+  }
+});
+
 module.exports = router;

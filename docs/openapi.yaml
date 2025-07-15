@@ -873,7 +873,9 @@ paths:
     post:
       summary: accepts and runs payment
       description: >-
-        This operation will pretend to run the users payment method and return ok on success, it is setup in code to return a failed payment at random(roughly 1 in 25 is the chance of a failed payment).
+        This operation will pretend to run the users payment method and return
+        ok on success, it is setup in code to return a failed payment at
+        random(roughly 1 in 25 is the chance of a failed payment).
       operationId: post_cart_checkout
       responses:
         '200':
@@ -1011,6 +1013,7 @@ paths:
                     {
                       "order_id": 47,
                       "user_id": 9,
+                      "cart_id": 3,
                       "order_date": "2025-06-13 11:10:17.046068-04",
                       "order_total": 75,
                       "order_status": "pending",
@@ -1018,6 +1021,13 @@ paths:
                       "free_shipping_elligible": false,
                       "order_items": []
                     }
+        '401':
+          description: not authorized       
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: Mind your business, that is someone else's order id!
         '404':
           description: not found
           content:
@@ -1038,7 +1048,7 @@ paths:
       summary: updates order status
       description: >-
         This operation will take in a new status in the request body and update
-        the database.
+        the database. Choices are pending, complete, canceled
       operationId: put_order
       parameters:
         - name: id
@@ -1047,6 +1057,13 @@ paths:
           description: The id of the order whose status we seek to change.
           schema:
             type: string
+      requestBody:
+        description: Updates an order status.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Update_order_status'            
       responses:
         '200':
           description: OK
@@ -1057,8 +1074,15 @@ paths:
                   value: |-
                     {
                       "msg": "Order status has been updated",
-                      "order_status": "shipped" 
+                      "order_status": "complete" 
                     }
+        '401':
+          description: not authorized       
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: Mind your business, that is someone else's order id!                    
         '404':
           description: not found
           content:
@@ -1291,3 +1315,9 @@ components:
         payment_method:
           type: string
           example: paypal
+    Update_order_status:
+      type: object
+      properties:
+        updatedOrderStatus:
+          type: string
+          example: "complete"
