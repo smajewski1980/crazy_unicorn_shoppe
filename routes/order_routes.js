@@ -153,50 +153,86 @@ router.put("/:id", isAuth, async (req, res, next) => {
 
 // cancel an order
 router.delete("/:id", isAuth, async (req, res, next) => {
-  // i would think in a real world app, this would be where we would put some code for the payment processor to handle a refund, therefore this endpoint will just change the status of the order to canceled and put the items back in inventory.
+  // i would think in a real world app, this would be where we would put the code for the payment processor to handle a refund, therefore this endpoint will just change the status of the order to canceled and put the items back in inventory.
 
   // put items back into inventory
 
   const orderId = req.params.id;
   const currentUser = req.user.user_id;
 
+  // this transaction will rollback if not successful
+  // this transaction changes the order status, updates the product inventory
   try {
-    // get the order's user id
-    const orderUserId = await pool.query(
-      "select user_id from orders where order_id = $1",
-      [orderId]
-    );
-    // if the order id doesn't exist
-    if (orderUserId.rowCount === 0) {
-      const error = new Error("We could not find an order with that id.");
-      throw error;
-    }
-    // see if the current user is the order's user
-    if (currentUser !== orderUserId.rows[0].user_id) {
-      const error = new ReferenceError(
-        "Mind your business, that is someone else's order id!"
+    const client = await pool.connect();
+
+    try {
+      await client.query("BEGIN");
+      // get the order's user id
+      const orderUserId = await client.query(
+        "SELECT user_id FROM orders WHERE order_id = $1",
+        [orderId]
       );
-      throw error;
-    }
-    // update the order status
-    const result = await pool.query(
-      "update orders set order_status = 'canceled' where order_id = $1 returning order_status",
-      [orderId]
-    );
-    return res.status(200).send({
-      msg: "The order has been successfully canceled.",
-      order_status: result.rows[0].order_status,
-    });
-  } catch (err) {
-    if (err instanceof ReferenceError) {
-      err.status = 401;
+      // if the order id doesn't exist
+      if (orderUserId.rowCount === 0) {
+        const error = new Error("We could not find an order with that id.");
+        throw error;
+      }
+      // see if the current user is the order's user
+      if (currentUser !== orderUserId.rows[0].user_id) {
+        const error = new ReferenceError(
+          "Mind your business, that is someone else's order id!"
+        );
+        throw error;
+      }
+      // update the order status
+      const result = await client.query(
+        "update orders set order_status = 'canceled' where order_id = $1 returning order_status",
+        [orderId]
+      );
+      // put the items back into inventory
+      const cartId = await client.query(
+        "SELECT cart_id FROM orders WHERE order_id = $1",
+        [orderId]
+      );
+
+      const cartItemsResult = await client.query(
+        "select * from cart_items where cart_id = $1",
+        [cartId.rows[0].cart_id]
+      );
+      const cartItems = cartItemsResult.rows;
+
+      cartItems.forEach(async (item) => {
+        const id = item.product_id;
+        const qty = item.item_qty;
+        await client.query(
+          "update inventory set current_qty = current_qty + $1 where product_id = $2",
+          [qty, id]
+        );
+      });
+
+      await client.query("COMMIT");
+      return res.status(200).send({
+        msg: "The order has been successfully canceled.",
+        order_status: result.rows[0].order_status,
+      });
+    } catch (err) {
+      if (err instanceof ReferenceError) {
+        err.status = 401;
+        await client.query("ROLLBACK");
+        return next(err);
+      }
+      if (err instanceof Error) {
+        err.status = 404;
+        await client.query("ROLLBACK");
+        return next(err);
+      }
+      await client.query("ROLLBACK");
       return next(err);
+    } finally {
+      await client.release();
     }
-    if (err instanceof Error) {
-      err.status = 404;
-      return next(err);
-    }
-    return next(err);
+  } catch (error) {
+    return next(error);
   }
 });
 
