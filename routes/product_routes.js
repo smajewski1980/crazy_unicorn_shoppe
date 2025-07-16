@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const pool = require(path.join(__dirname, "../database/db_connect"));
+const isAdmin = require("../middleware/is_admin");
 const isAuth = require("../middleware/is_auth");
 
 const { checkSchema, validationResult } = require("express-validator");
@@ -24,9 +25,10 @@ router.get("/", async (req, res, next) => {
 });
 
 // adds a new product
-// ***will need isAdmin middleware
 router.post(
   "/",
+  isAuth,
+  isAdmin,
   checkSchema(productValidationSchema),
   async (req, res, next) => {
     const {
@@ -116,9 +118,10 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // updates a product by id
-// ***will need isAdmin middleware
 router.put(
   "/:id",
+  isAuth,
+  isAdmin,
   checkSchema(baseProductValidationSchema),
   async (req, res, next) => {
     const prod_id = req.params.id;
@@ -162,8 +165,7 @@ router.put(
 );
 
 // deletes a product
-// ***will need isAdmin middleware
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", isAuth, isAdmin, async (req, res, next) => {
   const prodId = req.params.id;
   await pool.query(
     "delete from products where product_id = $1",
@@ -201,9 +203,10 @@ router.get("/:id/inventory", async (req, res, next) => {
 });
 
 // updates the inventory of a product
-// ***will need isAdmin middleware
 router.put(
   "/:id/inventory",
+  isAuth,
+  isAdmin,
   checkSchema(putInventoryValidationSchema),
   async (req, res, next) => {
     const prodId = req.params.id;
