@@ -105,6 +105,15 @@ paths:
               examples:
                 bad request:
                   value: Please check your request fields and try again.
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
+                not admin:
+                  value: You must have admin access to perform this action.
         '500':
           description: internal server error
           content:
@@ -199,6 +208,15 @@ paths:
               examples:
                 bad request:
                   value: Please check the product data and try again.
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
+                not admin:
+                  value: You must have admin access to perform this action.                  
         '500':
           description: internal server error
           content:
@@ -222,6 +240,15 @@ paths:
       responses:
         '204':
           description: no content
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
+                not admin:
+                  value: You must have admin access to perform this action.          
         '404':
           description: not found
           content:
@@ -993,7 +1020,7 @@ paths:
             text/plain; charset=utf-8:
               examples:
                 not authorized:
-                  value: You must be logged in to perform this action.                    
+                  value: You must be logged in to perform this action.
         '500':
           description: internal server error
           content:
