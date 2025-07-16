@@ -216,7 +216,7 @@ paths:
                 not authorized:
                   value: You must be logged in to perform this action.
                 not admin:
-                  value: You must have admin access to perform this action.                  
+                  value: You must have admin access to perform this action.
         '500':
           description: internal server error
           content:
@@ -248,7 +248,7 @@ paths:
                 not authorized:
                   value: You must be logged in to perform this action.
                 not admin:
-                  value: You must have admin access to perform this action.          
+                  value: You must have admin access to perform this action.
         '404':
           description: not found
           content:
@@ -1179,6 +1179,95 @@ paths:
               examples:
                 not found:
                   value: We could not find a order with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - orders
+  /order/{id}/all:
+    summary: get all orders for a user
+    get:
+      summary: get all orders for a user
+      description: >-
+        This operation will take a user id as a url parameter and return all
+        orders for that user
+      operationId: get_orders_all
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the user whose orders we seek.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                get all orders success:
+                  value: |-
+                    [{
+                      "order_id": 47,
+                      "user_id": 2,
+                      "order_date": "2025-07-16 12:24:32.309714-04",
+                      "order_total": 470,
+                      "order_status": "pending",
+                      "payment_method": "credit card",
+                      "free_shipping_elligible": true,
+                      "order_items": [{
+                        "cart_id": 47,
+                        "product_name": "Unicorn Pants",
+                        "product_price": 10,
+                        "item_qty": 1,
+                        "item_subtotal": 10
+                      },{
+                        "cart_id": 47,
+                        "product_name": "Unicorn Shirt",
+                        "product_price": 15,
+                        "item_qty": 2,
+                        "item_subtotal": 30                      
+                      }]
+                    },{
+                      "order_id": 52,
+                      "user_id": 2,
+                      "order_date": "2025-07-26 12:24:32.309714-04",
+                      "order_total": 300,
+                      "order_status": "complete",
+                      "payment_method": "credit card",
+                      "free_shipping_elligible": true,
+                      "order_items": [{
+                        "cart_id": 70,
+                        "product_name": "Unicorn Cookies",
+                        "product_price": 5,
+                        "item_qty": 2,
+                        "item_subtotal": 10
+                      },{
+                        "cart_id": 70,
+                        "product_name": "Unicorn Pants",
+                        "product_price": 10,
+                        "item_qty": 1,
+                        "item_subtotal": 30                      
+                      }]                      
+                    }]
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find any orders for that user.
         '500':
           description: internal server error
           content:
