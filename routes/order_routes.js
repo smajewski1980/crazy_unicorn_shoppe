@@ -8,19 +8,51 @@ const isAuth = require("../middleware/is_auth");
 router.post("/", isAuth, async (req, res, next) => {
   const { user_id, order_total, payment_method, cart_id } = req.body;
 
+  // this transaction will rollback if there is a problem
+  // this transaction creates the order, adj the product inventory,
+  // and serts the is_active column to false in the db
   try {
-    const result = await pool.query(
-      "insert into orders(user_id, order_total, payment_method, cart_id) values($1, $2, $3, $4) returning order_id",
-      [user_id, order_total, payment_method, cart_id]
-    );
-    // here will go logic to adjust the products inventory
-    return res.status(200).send({
-      order_id: result.rows[0].order_id,
-      msg: "order created",
-    });
-  } catch (err) {
-    const error = new Error(err);
-    error.message = err.detail;
+    const client = await pool.connect();
+    try {
+      const result = await client.query(
+        "insert into orders(user_id, order_total, payment_method, cart_id) values($1, $2, $3, $4) returning order_id",
+        [user_id, order_total, payment_method, cart_id]
+      );
+      // adjust the products inventory
+      const cartItemsResult = await client.query(
+        "select * from cart_items where cart_id = $1",
+        [cart_id]
+      );
+      const cartItems = cartItemsResult.rows;
+
+      cartItems.forEach(async (item) => {
+        const id = item.product_id;
+        const qty = item.item_qty;
+        await client.query(
+          "update inventory set current_qty = current_qty - $1 where product_id = $2",
+          [qty, id]
+        );
+      });
+
+      await client.query(
+        "update carts set is_active = false where cart_id = $1",
+        [cart_id]
+      );
+
+      await client.query("commit");
+      return res.status(200).send({
+        order_id: result.rows[0].order_id,
+        msg: "order created",
+      });
+    } catch (err) {
+      const error = new Error(err);
+      await client.query("ROLLBACK");
+      error.message = err.detail + " Please try again.";
+      return next(error);
+    } finally {
+      await client.release();
+    }
+  } catch (error) {
     return next(error);
   }
 });
