@@ -1260,6 +1260,8 @@ paths:
             text/plain; charset=utf-8:
               examples:
                 not authorized:
+                  value: Mind your business, that's not your order!
+                not logged in:
                   value: You must be logged in to perform this action.
         '404':
           description: not found

@@ -15,12 +15,12 @@ router.post("/", isAuth, async (req, res, next) => {
     const client = await pool.connect();
     try {
       const result = await client.query(
-        "insert into orders(user_id, order_total, payment_method, cart_id) values($1, $2, $3, $4) returning order_id",
+        "INSERT INTO orders(user_id, order_total, payment_method, cart_id) VALUES($1, $2, $3, $4) RETURNING order_id",
         [user_id, order_total, payment_method, cart_id]
       );
       // adjust the products inventory
       const cartItemsResult = await client.query(
-        "select * from cart_items where cart_id = $1",
+        "SELECT * FROM cart_items WHERE cart_id = $1",
         [cart_id]
       );
       const cartItems = cartItemsResult.rows;
@@ -29,13 +29,13 @@ router.post("/", isAuth, async (req, res, next) => {
         const id = item.product_id;
         const qty = item.item_qty;
         await client.query(
-          "update inventory set current_qty = current_qty - $1 where product_id = $2",
+          "UPDATE inventory SET current_qty = current_qty - $1 WHERE product_id = $2",
           [qty, id]
         );
       });
 
       await client.query(
-        "update carts set is_active = false where cart_id = $1",
+        "UPDATE carts SET is_active = false WHERE cart_id = $1",
         [cart_id]
       );
 
@@ -66,7 +66,7 @@ router.get("/:id", isAuth, async (req, res, next) => {
   try {
     // get the order info
     const result = await pool.query(
-      "select * from orders where order_id = $1",
+      "SELECT * FROM orders WHERE order_id = $1",
       [order_id]
     );
     if (result.rowCount === 0) {
@@ -81,7 +81,7 @@ router.get("/:id", isAuth, async (req, res, next) => {
     // get and attach the order items to the result
     const cart_id = result.rows[0].cart_id;
     const orderItemsResult = await pool.query(
-      "select * from order_items_lookup where cart_id = $1",
+      "SELECT * FROM order_items_lookup WHERE cart_id = $1",
       [cart_id]
     );
 
@@ -114,7 +114,7 @@ router.put("/:id", isAuth, async (req, res, next) => {
   try {
     // get the order's user id
     const orderUserId = await pool.query(
-      "select user_id from orders where order_id = $1",
+      "SELECT user_id FROM orders WHERE order_id = $1",
       [orderId]
     );
     // if the order id doesn't exist
@@ -131,7 +131,7 @@ router.put("/:id", isAuth, async (req, res, next) => {
     }
     // update the order status
     const result = await pool.query(
-      "update orders set order_status = $1 where order_id = $2 returning order_status",
+      "UPDATE orders SET order_status = $1 WHERE order_id = $2 RETURNING order_status",
       [updatedOrderStatus, orderId]
     );
     return res.status(200).send({
@@ -186,7 +186,7 @@ router.delete("/:id", isAuth, async (req, res, next) => {
       }
       // update the order status
       const result = await client.query(
-        "update orders set order_status = 'canceled' where order_id = $1 returning order_status",
+        "UPDATE orders SET order_status = 'canceled' WHERE order_id = $1 RETURNING order_status",
         [orderId]
       );
       // put the items back into inventory
@@ -196,7 +196,7 @@ router.delete("/:id", isAuth, async (req, res, next) => {
       );
 
       const cartItemsResult = await client.query(
-        "select * from cart_items where cart_id = $1",
+        "SELECT * FROM cart_items WHERE cart_id = $1",
         [cartId.rows[0].cart_id]
       );
       const cartItems = cartItemsResult.rows;
@@ -205,7 +205,7 @@ router.delete("/:id", isAuth, async (req, res, next) => {
         const id = item.product_id;
         const qty = item.item_qty;
         await client.query(
-          "update inventory set current_qty = current_qty + $1 where product_id = $2",
+          "UPDATE inventory SET current_qty = current_qty + $1 WHERE product_id = $2",
           [qty, id]
         );
       });
@@ -234,6 +234,72 @@ router.delete("/:id", isAuth, async (req, res, next) => {
   } catch (error) {
     return next(error);
   }
+});
+
+// returns order info for all orders for a user
+router.get("/:id/all", isAuth, async (req, res, next) => {
+  const userId = req.params.id;
+
+  // get all the users orders
+  const result = await pool.query(
+    "SELECT * FROM get_all_orders WHERE user_id = $1",
+    [userId]
+  );
+
+  // if there are no orders for that user
+  if (result.rowCount === 0) {
+    const error = new Error("We could not find any orders for that user.");
+    error.status = 404;
+    return next(error);
+  }
+
+  // if someone got silly and changed the url param to a different users id
+  if (req.user.user_id !== result.rows[0].user_id) {
+    const error = new Error("Mind your business, that's not your order!");
+    error.status = 401;
+    return next(error);
+  }
+
+  // this is the final result to be sent back
+  const refinedResult = [];
+  // used to ensure the main order data only goes into refined result once
+  const orderIdTracker = [];
+
+  result.rows.forEach((row) => {
+    // if this order hasn't been seen by this loop yet
+    if (!orderIdTracker.includes(row.order_id)) {
+      orderIdTracker.push(row.order_id);
+
+      const orderObj = {
+        orderId: row.order_id,
+        userId: row.user_id,
+        orderDate: row.order_date,
+        orderTotal: parseInt(row.order_total),
+        orderStatus: row.order_status,
+        paymentMethod: row.payment_method,
+        freeShipping: row.free_shipping_elligible,
+        orderItems: [],
+      };
+
+      refinedResult.push(orderObj);
+    }
+
+    // find the index in refined result of this order
+    const idx = refinedResult.findIndex((item) => {
+      return item.orderId === row.order_id;
+    });
+    // creates an object for the current order item
+    const orderItem = {
+      productName: row.product_name,
+      productPrice: parseInt(row.product_price),
+      itemQty: row.item_qty,
+      subtotal: parseInt(row.subtotal),
+    };
+    // adds the current order item to the correct order's orderItems array
+    refinedResult[idx].orderItems.push(orderItem);
+  });
+
+  res.status(200).send(refinedResult);
 });
 
 module.exports = router;
