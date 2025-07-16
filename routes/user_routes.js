@@ -7,6 +7,7 @@ require("../passport");
 const bcrypt = require("bcrypt");
 const { url } = require("inspector");
 const saltRounds = 10;
+const isAuth = require("../middleware/is_auth");
 
 const { checkSchema, validationResult } = require("express-validator");
 const { userValidationSchema } = require("../utils/user_validation_schema");
@@ -104,7 +105,7 @@ router.get("/logout", (req, res, next) => {
   });
 });
 
-router.get("/:id", (req, res, next) => {
+router.get("/:id", isAuth, (req, res, next) => {
   const userId = req.params.id;
 
   pool.query(
@@ -124,6 +125,7 @@ router.get("/:id", (req, res, next) => {
 
 router.put(
   "/:id",
+  isAuth,
   checkSchema(userValidationSchema),
   async (req, res, next) => {
     const userId = req.params.id;
@@ -185,7 +187,7 @@ router.put(
   }
 );
 
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", isAuth, (req, res, next) => {
   const userId = req.params.id;
   pool.query(
     "delete from users where user_id = $1",

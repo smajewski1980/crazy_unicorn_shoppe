@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const pool = require(path.join(__dirname, "../database/db_connect"));
+const isAuth = require("../middleware/is_auth");
 
 const { checkSchema, validationResult } = require("express-validator");
 const {
@@ -23,6 +24,7 @@ router.get("/", async (req, res, next) => {
 });
 
 // adds a new product
+// ***will need isAdmin middleware
 router.post(
   "/",
   checkSchema(productValidationSchema),
@@ -114,6 +116,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // updates a product by id
+// ***will need isAdmin middleware
 router.put(
   "/:id",
   checkSchema(baseProductValidationSchema),
@@ -159,6 +162,7 @@ router.put(
 );
 
 // deletes a product
+// ***will need isAdmin middleware
 router.delete("/:id", async (req, res, next) => {
   const prodId = req.params.id;
   await pool.query(
@@ -197,6 +201,7 @@ router.get("/:id/inventory", async (req, res, next) => {
 });
 
 // updates the inventory of a product
+// ***will need isAdmin middleware
 router.put(
   "/:id/inventory",
   checkSchema(putInventoryValidationSchema),

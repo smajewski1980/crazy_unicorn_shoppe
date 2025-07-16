@@ -2,15 +2,10 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const pool = require(path.join(__dirname, "../database/db_connect"));
+const isAuth = require("../middleware/is_auth");
 
 // adds a product to the cart
-router.post("/", async (req, res, next) => {
-  if (!req.user) {
-    const error = new Error("You must be logged in to see your cart.");
-    error.status = 401;
-    return next(error);
-  }
-
+router.post("/", isAuth, async (req, res, next) => {
   const currentUser = req.user.user_id;
   const { product_id, item_qty } = req.body;
   // see if the user has an active cart_id
@@ -55,12 +50,7 @@ router.post("/", async (req, res, next) => {
 });
 
 // returns all the products and their qty for the current user's cart
-router.get("/", async (req, res, next) => {
-  if (!req.user) {
-    const error = new Error("You must be logged in to see your cart.");
-    error.status = 401;
-    return next(error);
-  }
+router.get("/", isAuth, async (req, res, next) => {
   const currentUserId = req.user.user_id;
   const result = await pool.query(
     "select product_name, item_qty from cart_items_with_names where user_id = $1",
@@ -76,13 +66,7 @@ router.get("/", async (req, res, next) => {
 });
 
 // get data to checkout
-router.get("/checkout", async (req, res, next) => {
-  if (!req.user) {
-    const error = new Error("You must be logged in to checkout.");
-    error.status = 401;
-    return next(error);
-  }
-
+router.get("/checkout", isAuth, async (req, res, next) => {
   const user_id = req.user.user_id;
   const result = await pool.query(
     "select * from data_to_checkout where user_id = $1",
@@ -96,12 +80,10 @@ router.get("/checkout", async (req, res, next) => {
 });
 
 // process payment and submit order
-router.post("/checkout", (req, res, next) => {
+router.post("/checkout", isAuth, (req, res, next) => {
   // In the real world this would be a bit different, I think
   // here would be some code for the payment processor to handle,
   // which was encrypted and sent from a payment gateway on the frontend.
-
-  // here will go logic to adjust the products inventory
 
   // This will simulate an occasional rejected payment
   const isPaymentGood = () => Math.floor(Math.random() * 25) > 0;
@@ -113,12 +95,7 @@ router.post("/checkout", (req, res, next) => {
 });
 
 // update the quantity of a product in the cart
-router.put("/", async (req, res, next) => {
-  if (!req.user) {
-    const error = new Error("You must be logged in to see your cart.");
-    error.status = 401;
-    return next(error);
-  }
+router.put("/", isAuth, async (req, res, next) => {
   const currentUserId = req.user.user_id;
   const { product_id, item_qty } = req.body;
 
@@ -144,13 +121,7 @@ router.put("/", async (req, res, next) => {
 });
 
 // delete an item from the current users cart
-router.delete("/:id", async (req, res, next) => {
-  if (!req.user) {
-    const error = new Error("You must be logged in to perform this action.");
-    error.status = 401;
-    return next(error);
-  }
-
+router.delete("/:id", isAuth, async (req, res, next) => {
   const currentUserId = req.user.user_id;
   const productToRemove = new Number(req.params.id);
 

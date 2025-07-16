@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const pool = require(path.join(__dirname, "../database/db_connect"));
+const isAuth = require("../middleware/is_auth");
 
 // creates a new order and gets an order_id
-router.post("/", async (req, res, next) => {
+router.post("/", isAuth, async (req, res, next) => {
   const { user_id, order_total, payment_method, cart_id } = req.body;
 
   try {
@@ -12,6 +13,7 @@ router.post("/", async (req, res, next) => {
       "insert into orders(user_id, order_total, payment_method, cart_id) values($1, $2, $3, $4) returning order_id",
       [user_id, order_total, payment_method, cart_id]
     );
+    // here will go logic to adjust the products inventory
     return res.status(200).send({
       order_id: result.rows[0].order_id,
       msg: "order created",
@@ -24,15 +26,8 @@ router.post("/", async (req, res, next) => {
 });
 
 // get order info by id
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", isAuth, async (req, res, next) => {
   const order_id = req.params.id;
-
-  // must be logged in to lookup an order
-  if (!req.user) {
-    const error = new Error("You must be logged in to see your cart.");
-    error.status = 401;
-    return next(error);
-  }
 
   const currentUser = req.user.user_id;
 
@@ -79,16 +74,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // update the order status
-router.put("/:id", async (req, res, next) => {
-  // must be logged in to change order status
-  if (!req.user) {
-    const error = new Error(
-      "You must be logged in to change your orders status."
-    );
-    error.status = 401;
-    return next(error);
-  }
-
+router.put("/:id", isAuth, async (req, res, next) => {
   const orderId = req.params.id;
   const currentUser = req.user.user_id;
   const updatedOrderStatus = req.body.updatedOrderStatus;
@@ -134,19 +120,10 @@ router.put("/:id", async (req, res, next) => {
 });
 
 // cancel an order
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", isAuth, async (req, res, next) => {
   // i would think in a real world app, this would be where we would put some code for the payment processor to handle a refund, therefore this endpoint will just change the status of the order to canceled and put the items back in inventory.
 
   // put items back into inventory
-
-  // change the order status to canceled
-  if (!req.user) {
-    const error = new Error(
-      "You must be logged in to change your orders status."
-    );
-    error.status = 401;
-    return next(error);
-  }
 
   const orderId = req.params.id;
   const currentUser = req.user.user_id;
