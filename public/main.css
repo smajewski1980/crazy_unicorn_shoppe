@@ -301,7 +301,26 @@ main .testimonials-wrapper .testimonials-inner-wrapper .testimonial p {
   max-width: 25ch;
 }
 
-body {
+#add-new-product-body {
+  padding-inline-start: 1rem;
+}
+
+p {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  margin-block-end: 2rem;
+}
+
+#add-product-form label {
+  display: block;
+  margin-block-end: 0.25rem;
+}
+#add-product-form input,
+#add-product-form textarea {
+  margin-block-end: 1rem;
+}
+
+#index-body {
   display: grid;
   grid-template-columns: 25% 75%;
 }

@@ -1,0 +1,23 @@
+@use "../abstracts/variables" as *;
+
+#add-new-product-body {
+  padding-inline-start: 1rem;
+}
+p {
+  font-family: $font-para;
+  font-weight: 600;
+  margin-block-end: 2rem;
+}
+
+// temp styles
+
+#add-product-form {
+  label {
+    display: block;
+    margin-block-end: 0.25rem;
+  }
+  input,
+  textarea {
+    margin-block-end: 1rem;
+  }
+}
