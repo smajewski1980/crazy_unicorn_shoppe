@@ -20,4 +20,8 @@ p {
   textarea {
     margin-block-end: 1rem;
   }
+  button {
+    font-family: $font-para;
+    padding: 0.25rem 1rem;
+  }
 }
