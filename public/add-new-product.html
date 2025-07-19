@@ -12,6 +12,40 @@
     <a href="./index.html">Home</a><br />
     <p>eventually this page will require admin status</p>
     <form id="add-product-form">
+      <div id="action-choice">
+        <p>Choose an action</p>
+        <div id="radio-wrapper">
+          <div id="product-action-radio-wrapper">
+            <div class="action-choice-wrapper">
+              <label for="radio-add-product">Add product</label>
+              <input
+                type="radio"
+                name="product-choice"
+                id="radio-add-product"
+                value="add-product"
+              />
+            </div>
+            <div class="action-choice-wrapper">
+              <label for="radio-update-product">Update product</label>
+              <input
+                type="radio"
+                name="product-choice"
+                id="radio-update-product"
+                value="update-product"
+              />
+            </div>
+            <div class="action-choice-wrapper">
+              <label for="radio-delete-product">Delete product</label>
+              <input
+                type="radio"
+                name="product-choice"
+                id="radio-delete-product"
+                value="delete-product"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
       <div id="product-name-input-wrapper">
         <label for="product-name">Product Name</label>
         <input

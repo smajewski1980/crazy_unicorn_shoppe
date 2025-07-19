@@ -12,6 +12,17 @@ p {
 // temp styles
 
 #add-product-form {
+  #product-action-radio-wrapper {
+    display: flex;
+    .action-choice-wrapper {
+      label {
+        display: inline;
+      }
+      input {
+        margin-right: 1rem;
+      }
+    }
+  }
   label {
     display: block;
     margin-block-end: 0.25rem;
