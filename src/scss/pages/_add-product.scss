@@ -10,18 +10,25 @@ p {
 }
 
 // temp styles
+#product-action-radio-wrapper {
+  display: flex;
+  .action-choice-wrapper {
+    label {
+      display: inline;
+    }
+    input {
+      margin-right: 1rem;
+    }
+  }
+}
 
 #add-product-form {
-  #product-action-radio-wrapper {
-    display: flex;
-    .action-choice-wrapper {
-      label {
-        display: inline;
-      }
-      input {
-        margin-right: 1rem;
-      }
-    }
+  > * {
+    display: none;
+  }
+
+  #product-id-input-wrapper {
+    display: none;
   }
   label {
     display: block;

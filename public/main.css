@@ -311,14 +311,21 @@ p {
   margin-block-end: 2rem;
 }
 
-#add-product-form #product-action-radio-wrapper {
+#product-action-radio-wrapper {
   display: flex;
 }
-#add-product-form #product-action-radio-wrapper .action-choice-wrapper label {
+#product-action-radio-wrapper .action-choice-wrapper label {
   display: inline;
 }
-#add-product-form #product-action-radio-wrapper .action-choice-wrapper input {
+#product-action-radio-wrapper .action-choice-wrapper input {
   margin-right: 1rem;
+}
+
+#add-product-form > * {
+  display: none;
+}
+#add-product-form #product-id-input-wrapper {
+  display: none;
 }
 #add-product-form label {
   display: block;
