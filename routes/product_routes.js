@@ -41,7 +41,6 @@ router.post(
       min_qty,
       max_qty,
     } = req.body;
-
     const validationErrors = validationResult(req);
     if (!validationErrors.isEmpty()) {
       return res.status(400).send(validationErrors);
