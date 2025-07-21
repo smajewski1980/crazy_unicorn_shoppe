@@ -1,61 +1,147 @@
 header {
-  padding-inline: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    "logo nav nav"
+    "logo head head"
+    "logo head head";
 
   .logo-wrapper {
-    width: 85%;
-    // outline: 2px solid lime;
     height: 300px;
-    margin-inline: auto;
     display: grid;
     place-content: center;
-    margin-bottom: 5rem;
+    min-width: 150px;
+    grid-area: logo;
   }
 
-  ul {
-    img {
-      margin-inline: auto;
-      opacity: 0.6;
+  nav {
+    grid-area: nav;
+    margin-block-start: 1rem;
+    ul {
+      display: flex;
+      justify-content: space-between;
+      margin-inline: 1rem;
+
+      li {
+        list-style-type: none;
+        position: relative;
+
+        img {
+          opacity: 0.6;
+          width: clamp(5rem, 10vw, 10rem);
+        }
+      }
+
+      li:nth-child(1) {
+        rotate: 15deg;
+      }
+      // li:nth-child(2) {
+      //   rotate: -10deg;
+      // }
+      li:nth-child(3) {
+        rotate: -10deg;
+      }
+
+      li a::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-wrap: nowrap;
+        font-size: 1.5rem;
+      }
+
+      li:nth-child(1) a::after {
+        content: "Sign In";
+      }
+
+      li:nth-child(2) a::after {
+        content: "Shop";
+        top: 53%;
+      }
+
+      li:nth-child(3) a::after {
+        content: "Dev Stuff";
+        font-size: 1.125rem;
+      }
     }
-    li:nth-child(1) img {
-      max-width: 50%;
-    }
-    li:nth-child(2) img {
-      max-width: 60%;
-      margin-block: 1.5rem 2.5rem;
-    }
-    li:nth-child(3) img {
-      max-width: 50%;
-    }
-    li:nth-child(1) {
-      rotate: 10deg;
-    }
-    li:nth-child(2) {
-      rotate: -6deg;
-    }
-    li:nth-child(3) {
-      rotate: 7deg;
-    }
-    li {
-      list-style-type: none;
-      position: relative;
+  }
+
+  .heading-social-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-block-start: 2rem;
+
+    .heading-social-star {
+      position: absolute;
+      top: 2.5rem;
+      left: 1.5rem;
+      min-width: 1rem;
+      width: 2.5vw;
+      rotate: -7deg;
     }
 
-    li a::after {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-wrap: nowrap;
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+      margin-inline: auto;
+      flex: 1;
+
+      span {
+        font-size: clamp(2rem, 5.5vw, 7rem);
+        display: inline-block;
+        transform: translateY(0.5rem);
+      }
+      span:nth-of-type(1) {
+        color: indigo;
+        rotate: 15deg;
+        transform: translateY(1.5rem);
+      }
+      span:nth-of-type(2) {
+        color: blue;
+        rotate: -12deg;
+        transform: translateY(-0.1rem);
+      }
+      span:nth-of-type(3) {
+        color: rgb(255, 0, 191);
+        rotate: 10deg;
+        transform: translateY(1.5rem);
+      }
+      span:nth-of-type(4) {
+        color: yellow;
+        rotate: -12deg;
+      }
+      :nth-of-type(5) {
+        color: orangered;
+        transform: translateY(1rem);
+        rotate: 10deg;
+      }
+      :nth-of-type(6) {
+        // color: orangered;
+        rotate: 15deg;
+        font-size: 4rem;
+        transform: translate(-1rem, 0.25rem);
+      }
+      span:last-child {
+        color: chartreuse;
+        margin-inline-start: 0.25rem;
+      }
     }
-    li:nth-child(1) a::after {
-      content: "Sign In";
-    }
-    li:nth-child(2) a::after {
-      content: "Shop";
-      top: 53%;
-    }
-    li:nth-child(3) a::after {
-      content: "Contact";
+
+    .social-wrapper {
+      padding-inline-end: 2.5rem;
+
+      .icons-wrapper {
+        margin-block-start: 0.5rem;
+        display: grid;
+        gap: 0.75rem;
+
+        img {
+          width: 35px;
+          margin-inline: auto;
+        }
+      }
     }
   }
 }

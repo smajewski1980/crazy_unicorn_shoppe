@@ -1,39 +1,103 @@
 @use "../abstracts/variables" as *;
 
 #punctuation {
-  font-size: 50rem;
-  bottom: 10%;
-  left: 10%;
-  rotate: 25deg;
-  opacity: 0.1;
+  inset: 0;
   position: absolute;
   z-index: -99;
+  overflow-x: clip;
+
+  p {
+    font-size: 50rem;
+    bottom: 7.5vw;
+    left: 0;
+    rotate: -25deg;
+    opacity: 0.1;
+    position: absolute;
+  }
 }
 
-// * {
-//   outline: 2px solid lime;
-// }
+.testimonials-wrapper {
+  grid-column: 1 / 4;
+
+  h2 {
+    font-family: $font-para;
+    font-weight: 500;
+    margin-block-end: 0.5rem;
+    margin-inline-start: 2rem;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    transform-origin: left bottom;
+    rotate: -4deg;
+
+    span {
+      transform-origin: left bottom;
+      rotate: 12deg;
+      display: inline-block;
+      transform: translate(-5px, 3px);
+    }
+  }
+
+  .testimonials-inner-wrapper {
+    display: flex;
+
+    .testimonial {
+      flex: 1;
+      text-align: center;
+
+      .testimonial-content-top {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+
+        img:not(.stars-wrapper img) {
+          border-radius: 50%;
+          width: 65px;
+        }
+
+        .stars-wrapper {
+          display: flex;
+          gap: 0.25rem;
+          flex-basis: calc(100px + (0.25rem * 3));
+
+          img {
+            width: 25px;
+          }
+        }
+      }
+
+      p {
+        font-family: $font-para;
+        font-weight: 600;
+        margin-inline: auto;
+        margin-block-start: 0.5rem;
+        max-width: 25ch;
+      }
+    }
+  }
+}
 
 main {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 65% 35%;
 
   .featured-card {
     font-family: $font-para;
-    grid-column: 1 / 3;
     outline: 2px solid chartreuse;
     padding: 1rem 1rem 1.5rem;
     border-radius: 50px 0 50px 0;
     background: rgba(255, 255, 255, 0.25);
-    width: 97%;
-    align-self: center;
+    width: 90%;
+    margin-inline: auto;
     position: relative;
+    align-self: start;
 
     .featured-star {
       position: absolute;
       right: 2rem;
       top: 1rem;
-      width: 60px;
+      min-width: 1rem;
+      width: 3vw;
       filter: drop-shadow(2px 2px 0px chartreuse);
     }
 
@@ -41,7 +105,7 @@ main {
       font-family: "Kbcurioussoul-m3W9";
       margin-block-end: 0.5rem;
       margin-inline-start: 1.125rem;
-      font-size: 2.25rem;
+      font-size: clamp(1rem, 2.25vw, 2.25rem);
       color: chartreuse;
     }
 
@@ -51,6 +115,10 @@ main {
       font-size: 1.125rem;
       place-items: center;
 
+      h3 {
+        font-size: clamp(1rem, 1.35vw, 1.35rem);
+      }
+
       img {
         width: 85%;
       }
@@ -58,6 +126,7 @@ main {
       p {
         max-width: 35ch;
         margin-block-end: 1rem;
+        font-size: clamp(0.75rem, 1vw, 1rem);
       }
 
       button {
@@ -72,226 +141,90 @@ main {
     }
   }
 
-  .give-away-wrapper {
-    align-self: center;
-    justify-self: end;
-
-    h3 {
-      font-size: 1.5rem;
-      color: chartreuse;
-      position: relative;
-
-      &::after {
-        content: "*";
-        position: absolute;
-        margin-inline-start: 0.15rem;
-      }
-
-      span {
-        font-size: 2rem;
-        color: orange;
-        vertical-align: middle;
-      }
-    }
-
-    .give-away-img-wrapper {
-      position: relative;
-
-      #give-away-star-1 {
-        position: absolute;
-        left: 4rem;
-        top: 0.5rem;
-        width: 40px;
-        filter: drop-shadow(2px 2px 0px chartreuse);
-      }
-
-      #give-away-star-2 {
-        position: absolute;
-        right: 1rem;
-        bottom: -0.5rem;
-        width: 75px;
-        rotate: 17deg;
-        filter: drop-shadow(2px 2px 0px chartreuse);
-      }
-
-      img:not(#give-away-star-1):not(#give-away-star-2) {
-        width: 250px;
-        margin-inline: auto;
-        border-radius: 50px 0 50px 0;
-        outline: 2px solid chartreuse;
-      }
-    }
-
-    input {
-      display: block;
-      width: 70%;
-      margin-inline: auto;
-      font-size: 1.25rem;
-      padding: 0.15rem;
-      border-radius: 5px;
-      margin-block: 0.5rem 1.5rem;
-      font-family: $font-para;
-      border: none;
-      outline: 2px solid chartreuse;
-
-      &::placeholder {
-        font-family: "Kbcurioussoul-m3W9";
-        opacity: 0.65;
-      }
-    }
-
-    .give-away-disclaimer {
-      text-align: center;
-      font-family: $font-para;
-      font-size: 0.85rem;
-      max-width: 30ch;
-      margin: 0.5rem auto;
-      line-height: 1.3;
-      color: chartreuse;
-    }
-  }
-
-  .heading-social-wrapper {
-    grid-column: 1 / 3;
-    // align-self: self-start;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    position: relative;
-
-    .heading-social-star {
-      position: absolute;
-      top: 2.5rem;
-      left: 1rem;
-      width: 50px;
-      rotate: -7deg;
-    }
-
-    h1 {
-      font-size: 3rem;
-      text-align: center;
-      margin-inline: auto;
-
-      span {
-        font-size: 7rem;
-        display: inline-block;
-        transform: translateY(0.5rem);
-      }
-      span:nth-of-type(1) {
-        color: indigo;
-        rotate: 15deg;
-        transform: translateY(1.5rem);
-      }
-      span:nth-of-type(2) {
-        color: blue;
-        rotate: -12deg;
-        transform: translateY(-0.1rem);
-      }
-      span:nth-of-type(3) {
-        color: rgb(102, 141, 24);
-        rotate: 10deg;
-        transform: translateY(1.5rem);
-      }
-      span:nth-of-type(4) {
-        color: yellow;
-        rotate: -12deg;
-      }
-      :nth-of-type(5) {
-        color: orangered;
-        transform: translateY(1rem);
-        rotate: 10deg;
-      }
-      :nth-of-type(6) {
-        // color: orangered;
-        rotate: 15deg;
-        font-size: 4rem;
-        transform: translate(-1rem, 0.25rem);
-      }
-      span:last-child {
-        color: chartreuse;
-        margin-inline-start: 0.25rem;
-      }
-    }
-
-    .social-wrapper {
-      margin-inline: auto;
-      padding-inline-end: 1.5rem;
-
-      .icons-wrapper {
-        margin-block-start: 0.5rem;
-        display: grid;
-        gap: 0.75rem;
-
-        img {
-          width: 35px;
-          margin-inline: auto;
-        }
-      }
-    }
-  }
-
   .home-text-wrapper {
+    display: inline;
     padding-inline: 1rem;
-    align-self: center;
     font-family: $font-para;
-  }
+    font-size: clamp(0.75rem, 1vw, 1rem);
 
-  .testimonials-wrapper {
-    grid-column: 1 / 4;
+    .give-away-wrapper {
+      align-self: center;
+      justify-self: center;
 
-    h2 {
-      font-family: $font-para;
-      font-weight: 500;
-      margin-block-end: 0.25rem;
-      font-size: 1.5rem;
-      letter-spacing: 1px;
-      transform-origin: left bottom;
-      rotate: -2deg;
-
-      span {
-        transform-origin: left bottom;
-        rotate: 12deg;
-        display: inline-block;
-        transform: translate(-5px, 3px);
-      }
-    }
-
-    .testimonials-inner-wrapper {
-      display: flex;
-
-      .testimonial {
-        flex: 1;
+      h3 {
+        font-size: clamp(1rem, 1.35vw, 1.35rem);
+        color: chartreuse;
+        position: relative;
+        font-family: "Kbcurioussoul-m3W9";
         text-align: center;
 
-        .testimonial-content-top {
-          display: flex;
-          gap: 1rem;
-          align-items: center;
-          justify-content: center;
-
-          img:not(.stars-wrapper img) {
-            border-radius: 50%;
-            width: 65px;
-          }
-
-          .stars-wrapper {
-            display: flex;
-            gap: 0.25rem;
-            flex-basis: calc(100px + (0.25rem * 3));
-
-            img {
-              width: 25px;
-            }
-          }
+        &::after {
+          content: "*";
+          position: absolute;
+          margin-inline-start: 0.15rem;
         }
 
-        p {
-          font-family: $font-para;
-          font-weight: 600;
+        span {
+          font-size: 2rem;
+          color: orange;
+          vertical-align: middle;
+        }
+      }
+
+      .give-away-img-wrapper {
+        position: relative;
+
+        #give-away-star-1 {
+          position: absolute;
+          left: 4rem;
+          top: 0.5rem;
+          width: 2vw;
+          filter: drop-shadow(2px 2px 0px chartreuse);
+        }
+
+        #give-away-star-2 {
+          position: absolute;
+          right: 1rem;
+          bottom: -0.5rem;
+          width: 4vw;
+          rotate: 17deg;
+          filter: drop-shadow(2px 2px 0px chartreuse);
+        }
+
+        img:not(#give-away-star-1):not(#give-away-star-2) {
+          width: 250px;
           margin-inline: auto;
-          margin-block-start: 0.5rem;
-          max-width: 25ch;
+          border-radius: 50px 0 50px 0;
+          outline: 2px solid chartreuse;
         }
+      }
+
+      input {
+        display: block;
+        width: 85%;
+        margin-inline: auto;
+        font-size: 1.25rem;
+        padding: 0.15rem;
+        border-radius: 5px;
+        margin-block: 0.5rem 1.5rem;
+        font-family: $font-para;
+        border: none;
+        outline: 2px solid chartreuse;
+
+        &::placeholder {
+          font-family: "Kbcurioussoul-m3W9";
+          opacity: 0.65;
+        }
+      }
+
+      .give-away-disclaimer {
+        text-align: center;
+        font-family: $font-para;
+        font-size: 0.85rem;
+        max-width: 30ch;
+        margin: 0.5rem auto;
+        line-height: 1.3;
+        color: chartreuse;
       }
     }
   }

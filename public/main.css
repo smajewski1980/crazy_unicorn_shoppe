@@ -46,42 +46,100 @@ body {
 }
 
 #punctuation {
-  font-size: 50rem;
-  bottom: 10%;
-  left: 10%;
-  rotate: 25deg;
-  opacity: 0.1;
+  inset: 0;
   position: absolute;
   z-index: -99;
+  overflow-x: clip;
+}
+#punctuation p {
+  font-size: 50rem;
+  bottom: 7.5vw;
+  left: 0;
+  rotate: -25deg;
+  opacity: 0.1;
+  position: absolute;
+}
+
+.testimonials-wrapper {
+  grid-column: 1/4;
+}
+.testimonials-wrapper h2 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  margin-block-end: 0.5rem;
+  margin-inline-start: 2rem;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  transform-origin: left bottom;
+  rotate: -4deg;
+}
+.testimonials-wrapper h2 span {
+  transform-origin: left bottom;
+  rotate: 12deg;
+  display: inline-block;
+  transform: translate(-5px, 3px);
+}
+.testimonials-wrapper .testimonials-inner-wrapper {
+  display: flex;
+}
+.testimonials-wrapper .testimonials-inner-wrapper .testimonial {
+  flex: 1;
+  text-align: center;
+}
+.testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+.testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top img:not(.stars-wrapper img) {
+  border-radius: 50%;
+  width: 65px;
+}
+.testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top .stars-wrapper {
+  display: flex;
+  gap: 0.25rem;
+  flex-basis: calc(100px + 0.75rem);
+}
+.testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top .stars-wrapper img {
+  width: 25px;
+}
+.testimonials-wrapper .testimonials-inner-wrapper .testimonial p {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  margin-inline: auto;
+  margin-block-start: 0.5rem;
+  max-width: 25ch;
 }
 
 main {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 65% 35%;
 }
 main .featured-card {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  grid-column: 1/3;
   outline: 2px solid chartreuse;
   padding: 1rem 1rem 1.5rem;
   border-radius: 50px 0 50px 0;
   background: rgba(255, 255, 255, 0.25);
-  width: 97%;
-  align-self: center;
+  width: 90%;
+  margin-inline: auto;
   position: relative;
+  align-self: start;
 }
 main .featured-card .featured-star {
   position: absolute;
   right: 2rem;
   top: 1rem;
-  width: 60px;
+  min-width: 1rem;
+  width: 3vw;
   filter: drop-shadow(2px 2px 0px chartreuse);
 }
 main .featured-card h2 {
   font-family: "Kbcurioussoul-m3W9";
   margin-block-end: 0.5rem;
   margin-inline-start: 1.125rem;
-  font-size: 2.25rem;
+  font-size: clamp(1rem, 2.25vw, 2.25rem);
   color: chartreuse;
 }
 main .featured-card .featured-content-wrapper {
@@ -90,12 +148,16 @@ main .featured-card .featured-content-wrapper {
   font-size: 1.125rem;
   place-items: center;
 }
+main .featured-card .featured-content-wrapper h3 {
+  font-size: clamp(1rem, 1.35vw, 1.35rem);
+}
 main .featured-card .featured-content-wrapper img {
   width: 85%;
 }
 main .featured-card .featured-content-wrapper p {
   max-width: 35ch;
   margin-block-end: 1rem;
+  font-size: clamp(0.75rem, 1vw, 1rem);
 }
 main .featured-card .featured-content-wrapper button {
   width: 100%;
@@ -106,52 +168,60 @@ main .featured-card .featured-content-wrapper button {
   border-width: 1px;
   cursor: pointer;
 }
-main .give-away-wrapper {
-  align-self: center;
-  justify-self: end;
+main .home-text-wrapper {
+  display: inline;
+  padding-inline: 1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: clamp(0.75rem, 1vw, 1rem);
 }
-main .give-away-wrapper h3 {
-  font-size: 1.5rem;
+main .home-text-wrapper .give-away-wrapper {
+  align-self: center;
+  justify-self: center;
+}
+main .home-text-wrapper .give-away-wrapper h3 {
+  font-size: clamp(1rem, 1.35vw, 1.35rem);
   color: chartreuse;
   position: relative;
+  font-family: "Kbcurioussoul-m3W9";
+  text-align: center;
 }
-main .give-away-wrapper h3::after {
+main .home-text-wrapper .give-away-wrapper h3::after {
   content: "*";
   position: absolute;
   margin-inline-start: 0.15rem;
 }
-main .give-away-wrapper h3 span {
+main .home-text-wrapper .give-away-wrapper h3 span {
   font-size: 2rem;
   color: orange;
   vertical-align: middle;
 }
-main .give-away-wrapper .give-away-img-wrapper {
+main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper {
   position: relative;
 }
-main .give-away-wrapper .give-away-img-wrapper #give-away-star-1 {
+main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper #give-away-star-1 {
   position: absolute;
   left: 4rem;
   top: 0.5rem;
-  width: 40px;
+  width: 2vw;
   filter: drop-shadow(2px 2px 0px chartreuse);
 }
-main .give-away-wrapper .give-away-img-wrapper #give-away-star-2 {
+main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper #give-away-star-2 {
   position: absolute;
   right: 1rem;
   bottom: -0.5rem;
-  width: 75px;
+  width: 4vw;
   rotate: 17deg;
   filter: drop-shadow(2px 2px 0px chartreuse);
 }
-main .give-away-wrapper .give-away-img-wrapper img:not(#give-away-star-1):not(#give-away-star-2) {
+main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper img:not(#give-away-star-1):not(#give-away-star-2) {
   width: 250px;
   margin-inline: auto;
   border-radius: 50px 0 50px 0;
   outline: 2px solid chartreuse;
 }
-main .give-away-wrapper input {
+main .home-text-wrapper .give-away-wrapper input {
   display: block;
-  width: 70%;
+  width: 85%;
   margin-inline: auto;
   font-size: 1.25rem;
   padding: 0.15rem;
@@ -161,11 +231,11 @@ main .give-away-wrapper input {
   border: none;
   outline: 2px solid chartreuse;
 }
-main .give-away-wrapper input::placeholder {
+main .home-text-wrapper .give-away-wrapper input::placeholder {
   font-family: "Kbcurioussoul-m3W9";
   opacity: 0.65;
 }
-main .give-away-wrapper .give-away-disclaimer {
+main .home-text-wrapper .give-away-wrapper .give-away-disclaimer {
   text-align: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 0.85rem;
@@ -173,131 +243,6 @@ main .give-away-wrapper .give-away-disclaimer {
   margin: 0.5rem auto;
   line-height: 1.3;
   color: chartreuse;
-}
-main .heading-social-wrapper {
-  grid-column: 1/3;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  position: relative;
-}
-main .heading-social-wrapper .heading-social-star {
-  position: absolute;
-  top: 2.5rem;
-  left: 1rem;
-  width: 50px;
-  rotate: -7deg;
-}
-main .heading-social-wrapper h1 {
-  font-size: 3rem;
-  text-align: center;
-  margin-inline: auto;
-}
-main .heading-social-wrapper h1 span {
-  font-size: 7rem;
-  display: inline-block;
-  transform: translateY(0.5rem);
-}
-main .heading-social-wrapper h1 span:nth-of-type(1) {
-  color: indigo;
-  rotate: 15deg;
-  transform: translateY(1.5rem);
-}
-main .heading-social-wrapper h1 span:nth-of-type(2) {
-  color: blue;
-  rotate: -12deg;
-  transform: translateY(-0.1rem);
-}
-main .heading-social-wrapper h1 span:nth-of-type(3) {
-  color: rgb(102, 141, 24);
-  rotate: 10deg;
-  transform: translateY(1.5rem);
-}
-main .heading-social-wrapper h1 span:nth-of-type(4) {
-  color: yellow;
-  rotate: -12deg;
-}
-main .heading-social-wrapper h1 :nth-of-type(5) {
-  color: orangered;
-  transform: translateY(1rem);
-  rotate: 10deg;
-}
-main .heading-social-wrapper h1 :nth-of-type(6) {
-  rotate: 15deg;
-  font-size: 4rem;
-  transform: translate(-1rem, 0.25rem);
-}
-main .heading-social-wrapper h1 span:last-child {
-  color: chartreuse;
-  margin-inline-start: 0.25rem;
-}
-main .heading-social-wrapper .social-wrapper {
-  margin-inline: auto;
-  padding-inline-end: 1.5rem;
-}
-main .heading-social-wrapper .social-wrapper .icons-wrapper {
-  margin-block-start: 0.5rem;
-  display: grid;
-  gap: 0.75rem;
-}
-main .heading-social-wrapper .social-wrapper .icons-wrapper img {
-  width: 35px;
-  margin-inline: auto;
-}
-main .home-text-wrapper {
-  padding-inline: 1rem;
-  align-self: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-main .testimonials-wrapper {
-  grid-column: 1/4;
-}
-main .testimonials-wrapper h2 {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-weight: 500;
-  margin-block-end: 0.25rem;
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-  transform-origin: left bottom;
-  rotate: -2deg;
-}
-main .testimonials-wrapper h2 span {
-  transform-origin: left bottom;
-  rotate: 12deg;
-  display: inline-block;
-  transform: translate(-5px, 3px);
-}
-main .testimonials-wrapper .testimonials-inner-wrapper {
-  display: flex;
-}
-main .testimonials-wrapper .testimonials-inner-wrapper .testimonial {
-  flex: 1;
-  text-align: center;
-}
-main .testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-}
-main .testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top img:not(.stars-wrapper img) {
-  border-radius: 50%;
-  width: 65px;
-}
-main .testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top .stars-wrapper {
-  display: flex;
-  gap: 0.25rem;
-  flex-basis: calc(100px + 0.75rem);
-}
-main .testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top .stars-wrapper img {
-  width: 25px;
-}
-main .testimonials-wrapper .testimonials-inner-wrapper .testimonial p {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-weight: 600;
-  margin-inline: auto;
-  margin-block-start: 0.5rem;
-  max-width: 25ch;
 }
 
 #add-new-product-body {
@@ -340,62 +285,131 @@ p {
 }
 
 #index-body {
-  display: grid;
-  grid-template-columns: 25% 75%;
+  width: 70%;
+  margin-inline: auto;
 }
 
 header {
-  padding-inline: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "logo nav nav" "logo head head" "logo head head";
 }
 header .logo-wrapper {
-  width: 85%;
   height: 300px;
-  margin-inline: auto;
   display: grid;
   place-content: center;
-  margin-bottom: 5rem;
+  min-width: 150px;
+  grid-area: logo;
 }
-header ul img {
-  margin-inline: auto;
-  opacity: 0.6;
+header nav {
+  grid-area: nav;
+  margin-block-start: 1rem;
 }
-header ul li:nth-child(1) img {
-  max-width: 50%;
+header nav ul {
+  display: flex;
+  justify-content: space-between;
+  margin-inline: 1rem;
 }
-header ul li:nth-child(2) img {
-  max-width: 60%;
-  margin-block: 1.5rem 2.5rem;
-}
-header ul li:nth-child(3) img {
-  max-width: 50%;
-}
-header ul li:nth-child(1) {
-  rotate: 10deg;
-}
-header ul li:nth-child(2) {
-  rotate: -6deg;
-}
-header ul li:nth-child(3) {
-  rotate: 7deg;
-}
-header ul li {
+header nav ul li {
   list-style-type: none;
   position: relative;
 }
-header ul li a::after {
+header nav ul li img {
+  opacity: 0.6;
+  width: clamp(5rem, 10vw, 10rem);
+}
+header nav ul li:nth-child(1) {
+  rotate: 15deg;
+}
+header nav ul li:nth-child(3) {
+  rotate: -10deg;
+}
+header nav ul li a::after {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-wrap: nowrap;
+  font-size: 1.5rem;
 }
-header ul li:nth-child(1) a::after {
+header nav ul li:nth-child(1) a::after {
   content: "Sign In";
 }
-header ul li:nth-child(2) a::after {
+header nav ul li:nth-child(2) a::after {
   content: "Shop";
   top: 53%;
 }
-header ul li:nth-child(3) a::after {
-  content: "Contact";
+header nav ul li:nth-child(3) a::after {
+  content: "Dev Stuff";
+  font-size: 1.125rem;
+}
+header .heading-social-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-block-start: 2rem;
+}
+header .heading-social-wrapper .heading-social-star {
+  position: absolute;
+  top: 2.5rem;
+  left: 1.5rem;
+  min-width: 1rem;
+  width: 2.5vw;
+  rotate: -7deg;
+}
+header .heading-social-wrapper h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin-inline: auto;
+  flex: 1;
+}
+header .heading-social-wrapper h1 span {
+  font-size: clamp(2rem, 5.5vw, 7rem);
+  display: inline-block;
+  transform: translateY(0.5rem);
+}
+header .heading-social-wrapper h1 span:nth-of-type(1) {
+  color: indigo;
+  rotate: 15deg;
+  transform: translateY(1.5rem);
+}
+header .heading-social-wrapper h1 span:nth-of-type(2) {
+  color: blue;
+  rotate: -12deg;
+  transform: translateY(-0.1rem);
+}
+header .heading-social-wrapper h1 span:nth-of-type(3) {
+  color: rgb(255, 0, 191);
+  rotate: 10deg;
+  transform: translateY(1.5rem);
+}
+header .heading-social-wrapper h1 span:nth-of-type(4) {
+  color: yellow;
+  rotate: -12deg;
+}
+header .heading-social-wrapper h1 :nth-of-type(5) {
+  color: orangered;
+  transform: translateY(1rem);
+  rotate: 10deg;
+}
+header .heading-social-wrapper h1 :nth-of-type(6) {
+  rotate: 15deg;
+  font-size: 4rem;
+  transform: translate(-1rem, 0.25rem);
+}
+header .heading-social-wrapper h1 span:last-child {
+  color: chartreuse;
+  margin-inline-start: 0.25rem;
+}
+header .heading-social-wrapper .social-wrapper {
+  padding-inline-end: 2.5rem;
+}
+header .heading-social-wrapper .social-wrapper .icons-wrapper {
+  margin-block-start: 0.5rem;
+  display: grid;
+  gap: 0.75rem;
+}
+header .heading-social-wrapper .social-wrapper .icons-wrapper img {
+  width: 35px;
+  margin-inline: auto;
 }
