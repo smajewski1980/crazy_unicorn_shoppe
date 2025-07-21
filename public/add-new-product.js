@@ -2,6 +2,7 @@ const form = document.getElementById("add-product-form");
 const btnSubmit = document.getElementById("btn-add-prod-submit");
 const radioBtns = Array.from(document.querySelectorAll("input[type='radio']"));
 const idInputWrapper = document.getElementById("product-id-input-wrapper");
+const btnEnterId = document.getElementById("btn-enter-id");
 
 function uncheckRadioBtns() {
   radioBtns.forEach((btn) => {
@@ -26,11 +27,14 @@ function handleRadioBtn(e) {
       idInputWrapper.style.display = "none";
       break;
     case "update-product":
+      // need to change this to take in the id, then retrieve the info to edit <-------
       changeInputDisplay("block");
+      btnEnterId.style.display = "block";
       break;
     case "delete-product":
       changeInputDisplay("none");
       idInputWrapper.style.display = "block";
+      btnEnterId.style.display = "none";
       btnSubmit.style.display = "block";
       break;
     default:
@@ -101,8 +105,40 @@ function handleFormSubmit(e) {
   uncheckRadioBtns();
   changeInputDisplay("none");
 }
+// this populates the form fields with the data for the entered products id to edit
+async function handlePopulateFormData(e) {
+  e.preventDefault();
+  const id = form[0].value;
+  const response = await fetch(`/products/${id}`);
+  if (!response.ok) {
+    console.log("that is not a valid product id");
+    return;
+  }
+  const data = await response.json();
+  const {
+    product_name,
+    product_description,
+    product_price,
+    image_url,
+    category_id,
+    current_qty,
+    min_qty,
+    max_qty,
+  } = data;
+  form[2].value = product_name;
+  form[3].value = product_description;
+  form[4].value = product_price;
+  form[5].value = image_url;
+  form[6].value = category_id;
+  form[7].value = current_qty;
+  form[8].value = min_qty;
+  form[9].value = max_qty;
+}
+
+btnEnterId.addEventListener("click", handlePopulateFormData);
 
 radioBtns.forEach((btn) => {
   btn.addEventListener("change", handleRadioBtn);
 });
+
 btnSubmit.addEventListener("click", handleFormSubmit);
