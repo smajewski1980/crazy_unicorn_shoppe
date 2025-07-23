@@ -1,4 +1,5 @@
 const productsDiv = document.getElementById('product-cards-wrapper');
+// tbd if this array with the Product objects was needed or not
 const productObjects = [];
 class Product {
   constructor(
@@ -27,6 +28,7 @@ class Product {
   }
 }
 
+// take the category_id and return the appropriate string
 function getProdCategory(catId) {
   switch (catId) {
     case 1:
@@ -49,6 +51,7 @@ function getProdCategory(catId) {
   }
 }
 
+// get and display all the products
 async function getAllProducts() {
   try {
     const response = await fetch('/products');
@@ -119,8 +122,7 @@ async function getAllProducts() {
   }
 }
 
-getAllProducts();
-
+// get the product id of the card that was clicked
 document.addEventListener('click', (e) => {
   const productCard = e.target.closest('.product-card');
 
@@ -128,4 +130,8 @@ document.addEventListener('click', (e) => {
     const prodId = productCard.dataset.prodId;
     console.log(prodId);
   }
+  // later going to have a modal with more info and bigger pic
+  // open when a card is clicked
 });
+
+getAllProducts();
