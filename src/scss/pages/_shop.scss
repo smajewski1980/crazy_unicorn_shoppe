@@ -1,0 +1,7 @@
+@use '../abstracts/variables' as *;
+
+.products-display-wrapper {
+  #product-cards-wrapper {
+    font-family: $font-para;
+  }
+}
