@@ -2,9 +2,9 @@ header {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-areas:
-    "logo nav nav"
-    "logo head head"
-    "logo head head";
+    'logo nav nav'
+    'logo head head'
+    'logo head head';
 
   .logo-wrapper {
     height: 300px;
@@ -52,19 +52,24 @@ header {
       }
 
       li:nth-child(1) a::after {
-        content: "Sign In";
+        content: 'Sign In';
       }
 
       li:nth-child(2) a::after {
-        content: "Shop";
+        content: 'Shop';
         top: 53%;
       }
 
       li:nth-child(3) a::after {
-        content: "Dev Stuff";
+        content: 'Dev Stuff';
         font-size: 1.125rem;
       }
     }
+  }
+
+  #shop-heading-text {
+    margin-block-start: 5rem;
+    text-align: center;
   }
 
   .heading-social-wrapper {

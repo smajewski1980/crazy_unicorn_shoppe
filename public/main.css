@@ -291,7 +291,7 @@ p {
   max-width: 100px;
 }
 
-#index-body {
+body {
   width: 70%;
   margin-inline: auto;
 }
@@ -349,6 +349,10 @@ header nav ul li:nth-child(2) a::after {
 header nav ul li:nth-child(3) a::after {
   content: "Dev Stuff";
   font-size: 1.125rem;
+}
+header #shop-heading-text {
+  margin-block-start: 5rem;
+  text-align: center;
 }
 header .heading-social-wrapper {
   display: flex;
