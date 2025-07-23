@@ -17,6 +17,7 @@ header {
   nav {
     grid-area: nav;
     margin-block-start: 1rem;
+
     ul {
       display: flex;
       justify-content: space-between;
@@ -65,11 +66,9 @@ header {
         font-size: 1.125rem;
       }
     }
-  }
-
-  #shop-heading-text {
-    margin-block-start: 5rem;
-    text-align: center;
+    #shop-heading-text {
+      text-align: center;
+    }
   }
 
   .heading-social-wrapper {
@@ -148,5 +147,20 @@ header {
         }
       }
     }
+  }
+}
+
+#shop-page-header {
+  display: flex;
+  .logo-wrapper {
+    flex-basis: 35vw;
+    margin-inline-start: 2rem;
+    align-self: center;
+  }
+  nav {
+    padding-inline-start: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
   }
 }

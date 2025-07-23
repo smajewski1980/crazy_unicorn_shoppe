@@ -350,8 +350,7 @@ header nav ul li:nth-child(3) a::after {
   content: "Dev Stuff";
   font-size: 1.125rem;
 }
-header #shop-heading-text {
-  margin-block-start: 5rem;
+header nav #shop-heading-text {
   text-align: center;
 }
 header .heading-social-wrapper {
@@ -423,4 +422,19 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper {
 header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   width: 35px;
   margin-inline: auto;
+}
+
+#shop-page-header {
+  display: flex;
+}
+#shop-page-header .logo-wrapper {
+  flex-basis: 35vw;
+  margin-inline-start: 2rem;
+  align-self: center;
+}
+#shop-page-header nav {
+  padding-inline-start: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
 }
