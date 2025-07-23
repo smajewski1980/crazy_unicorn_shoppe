@@ -27,10 +27,34 @@ class Product {
   }
 }
 
+function getProdCategory(catId) {
+  switch (catId) {
+    case 1:
+      return 'Food & Beverage';
+      break;
+    case 2:
+      return 'Fashion and Accessories';
+      break;
+    case 3:
+      return 'Electronics';
+      break;
+    case 4:
+      return 'Home Decor';
+      break;
+    case 5:
+      return 'Gifts and Gadgets of Crazy';
+      break;
+    default:
+      break;
+  }
+}
+
 async function getAllProducts() {
   try {
     const response = await fetch('/products');
     const data = await response.json();
+
+    console.log(data);
 
     for (const prod of data) {
       const {
@@ -44,13 +68,50 @@ async function getAllProducts() {
         product_name,
         product_price,
       } = prod;
+
+      const classObj = new Product(
+        category_id,
+        current_qty,
+        image_url,
+        max_qty,
+        min_qty,
+        product_description,
+        product_id,
+        product_name,
+        product_price,
+      );
+      productObjects.push(classObj);
+
       const div = document.createElement('div');
+      div.classList.add('product-card');
+      div.dataset.prodId = product_id;
+
       const h3 = document.createElement('h3');
-      const p = document.createElement('p');
       h3.textContent = product_name;
-      p.textContent = `id: ${product_id}; price: ${product_price} on hand: ${current_qty}`;
+
+      const catP = document.createElement('p');
+      catP.textContent = `Category: ${getProdCategory(category_id)}`;
+
+      const imgWrapper = document.createElement('div');
+      const img = document.createElement('img');
+      img.src = image_url;
+      img.alt = product_name;
+      imgWrapper.appendChild(img);
+
+      const prodInfoDiv = document.createElement('div');
+      prodInfoDiv.classList.add('product-info-content');
+      const descP = document.createElement('p');
+      descP.classList.add('product-desc');
+      descP.textContent = product_description;
+      const priceP = document.createElement('p');
+      priceP.textContent = `$${product_price}`;
+      prodInfoDiv.appendChild(descP);
+      prodInfoDiv.appendChild(priceP);
+
       div.appendChild(h3);
-      div.appendChild(p);
+      div.appendChild(catP);
+      div.appendChild(img);
+      div.appendChild(prodInfoDiv);
       productsDiv.appendChild(div);
     }
   } catch (error) {
@@ -59,3 +120,12 @@ async function getAllProducts() {
 }
 
 getAllProducts();
+
+document.addEventListener('click', (e) => {
+  const productCard = e.target.closest('.product-card');
+
+  if (productCard) {
+    const prodId = productCard.dataset.prodId;
+    console.log(prodId);
+  }
+});

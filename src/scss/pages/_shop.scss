@@ -3,5 +3,11 @@
 .products-display-wrapper {
   #product-cards-wrapper {
     font-family: $font-para;
+
+    .product-card {
+      img {
+        max-width: 100px;
+      }
+    }
   }
 }
