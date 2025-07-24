@@ -1,10 +1,11 @@
-@use "../abstracts/variables" as *;
+@use '../abstracts/variables' as *;
 
 #punctuation {
   inset: 0;
   position: absolute;
   z-index: -99;
   overflow-x: clip;
+  pointer-events: none;
 
   p {
     font-size: 50rem;
@@ -102,7 +103,7 @@ main {
     }
 
     h2 {
-      font-family: "Kbcurioussoul-m3W9";
+      font-family: 'Kbcurioussoul-m3W9';
       margin-block-end: 0.5rem;
       margin-inline-start: 1.125rem;
       font-size: clamp(1rem, 2.25vw, 2.25rem);
@@ -155,11 +156,11 @@ main {
         font-size: clamp(1rem, 1.35vw, 1.35rem);
         color: chartreuse;
         position: relative;
-        font-family: "Kbcurioussoul-m3W9";
+        font-family: 'Kbcurioussoul-m3W9';
         text-align: center;
 
         &::after {
-          content: "*";
+          content: '*';
           position: absolute;
           margin-inline-start: 0.15rem;
         }
@@ -212,7 +213,7 @@ main {
         outline: 2px solid chartreuse;
 
         &::placeholder {
-          font-family: "Kbcurioussoul-m3W9";
+          font-family: 'Kbcurioussoul-m3W9';
           opacity: 0.65;
         }
       }

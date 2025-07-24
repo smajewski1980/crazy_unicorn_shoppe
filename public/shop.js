@@ -94,8 +94,10 @@ async function getAllProducts() {
 
       const catP = document.createElement('p');
       catP.textContent = `Category: ${getProdCategory(category_id)}`;
+      catP.classList.add('card-category-title');
 
       const imgWrapper = document.createElement('div');
+      imgWrapper.classList.add('card-img-wrapper');
       const img = document.createElement('img');
       img.src = image_url;
       img.alt = product_name;
@@ -107,13 +109,14 @@ async function getAllProducts() {
       descP.classList.add('product-desc');
       descP.textContent = product_description;
       const priceP = document.createElement('p');
-      priceP.textContent = `$${product_price}`;
+      priceP.innerHTML = `<span>$ </span>${product_price}`;
+      priceP.classList.add('card-prod-price');
       prodInfoDiv.appendChild(descP);
       prodInfoDiv.appendChild(priceP);
 
       div.appendChild(h3);
       div.appendChild(catP);
-      div.appendChild(img);
+      div.appendChild(imgWrapper);
       div.appendChild(prodInfoDiv);
       productsDiv.appendChild(div);
     }
