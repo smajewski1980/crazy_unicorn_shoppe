@@ -59,8 +59,42 @@
         </p>
       </nav>
     </header>
-    <a href="./index.html">Home</a><br />
-    <a href="./add-new-product.html">Add new product</a>
+
+    <section id="shopping-sub-head">
+      <h1>Pretend buy unicorn stuff!</h1>
+      <div class="shopping-action-wrapper">
+        <div class="input-wrapper">
+          <label for="select-category">Filter By Category</label>
+          <select
+            name="category_id"
+            id="select-category"
+            autocomplete="off"
+          >
+            <option
+              value=""
+              disabled
+              selected
+            >
+              -- select an option --
+            </option>
+            <option value="1">Food & Beverage</option>
+            <option value="2">Fashion & Accessories</option>
+            <option value="3">Electronics</option>
+            <option value="4">Home Decor</option>
+            <option value="5">Gifts & Gadgets of Crazy</option>
+          </select>
+        </div>
+        <div class="shopping-home-link-wrapper">
+          <a href="./index.html">
+            <img
+              src="./assets/icons/home_icon.jpg"
+              alt="go to the homepage"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+
     <div class="products-display-wrapper">
       <p>for now, heres the raw product data:</p>
       <div id="product-cards-wrapper"></div>
@@ -68,5 +102,6 @@
     <div id="punctuation">
       <p>?!?!?!?</p>
     </div>
+    <!-- <a href="./add-new-product.html">Add new product</a> -->
   </body>
 </html>

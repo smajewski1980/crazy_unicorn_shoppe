@@ -1,5 +1,56 @@
 @use '../abstracts/variables' as *;
 
+#shopping-sub-head {
+  border-top: 1px solid rgba(128, 255, 0, 0.5);
+  border-bottom: 1px solid rgba(128, 255, 0, 0.5);
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  h1 {
+    font-size: 3rem;
+    text-wrap: balance;
+    line-height: 1.5;
+    color: rgba(128, 255, 0, 0.75);
+  }
+
+  .shopping-action-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    .shopping-home-link-wrapper {
+      position: relative;
+
+      :before {
+        content: 'HOME';
+        position: absolute;
+        font-size: 1rem;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        // color: rgba(0, 0, 0, 0.5);
+      }
+      // :after {
+      //   content: 'PAGE';
+      //   position: absolute;
+      //   font-size: 1rem;
+      //   bottom: 0rem;
+      //   left: 50%;
+      //   transform: translateX(-50%);
+      //   // color: chartreuse;
+      // }
+
+      img {
+        min-width: 60px;
+        width: 60px;
+        border-radius: 15px 0px 15px 0px;
+      }
+    }
+  }
+}
+
 .products-display-wrapper {
   #product-cards-wrapper {
     font-family: $font-para;
