@@ -317,11 +317,6 @@ p {
   left: 50%;
   transform: translateX(-50%);
 }
-#shopping-sub-head .shopping-action-wrapper .shopping-home-link-wrapper img {
-  min-width: 60px;
-  width: 60px;
-  border-radius: 15px 0px 15px 0px;
-}
 
 .products-display-wrapper h2 {
   margin-block: 1.5rem;
@@ -492,4 +487,13 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   display: flex;
   flex-direction: column;
   gap: 5rem;
+}
+
+#shop-page-header ul li:nth-child(2) a::after {
+  content: "Home";
+  top: 40%;
+}
+#shop-page-header nav li:nth-child(2) img {
+  max-width: 75px;
+  border-radius: 15px 0px 15px 0px;
 }

@@ -164,3 +164,16 @@ header {
     gap: 5rem;
   }
 }
+
+#shop-page-header {
+  ul li:nth-child(2) a::after {
+    content: 'Home';
+    top: 40%;
+  }
+  nav li:nth-child(2) {
+    img {
+      max-width: 75px;
+      border-radius: 15px 0px 15px 0px;
+    }
+  }
+}
