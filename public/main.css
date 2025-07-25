@@ -40,6 +40,10 @@ input {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+::selection {
+  background-color: salmon;
+}
+
 body {
   background-image: radial-gradient(rgb(243, 160, 243), purple);
   min-height: 100vh;
@@ -308,21 +312,13 @@ p {
   align-items: center;
   gap: 1rem;
 }
-#shopping-sub-head .shopping-action-wrapper .shopping-home-link-wrapper {
-  position: relative;
-}
-#shopping-sub-head .shopping-action-wrapper .shopping-home-link-wrapper :before {
-  content: "HOME";
-  position: absolute;
-  font-size: 1rem;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
 
 .products-display-wrapper h2 {
   margin-block: 1.5rem;
   margin-inline-start: 1.5rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  letter-spacing: 1px;
+  color: rgba(128, 255, 0, 0.75);
 }
 .products-display-wrapper #product-cards-wrapper {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -344,96 +340,96 @@ p {
 }
 
 #shopping-sub-head .h1-animation span:nth-child(1) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.05s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.025s;
 }
 #shopping-sub-head .h1-animation span:nth-child(2) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.1s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.05s;
 }
 #shopping-sub-head .h1-animation span:nth-child(3) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.15s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.075s;
 }
 #shopping-sub-head .h1-animation span:nth-child(4) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.2s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.1s;
 }
 #shopping-sub-head .h1-animation span:nth-child(5) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.25s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.125s;
 }
 #shopping-sub-head .h1-animation span:nth-child(6) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.3s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.15s;
 }
 #shopping-sub-head .h1-animation span:nth-child(7) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.35s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.175s;
 }
 #shopping-sub-head .h1-animation span:nth-child(8) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.4s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.2s;
 }
 #shopping-sub-head .h1-animation span:nth-child(9) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.45s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.225s;
 }
 #shopping-sub-head .h1-animation span:nth-child(10) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.5s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.25s;
 }
 #shopping-sub-head .h1-animation span:nth-child(11) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.55s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.275s;
 }
 #shopping-sub-head .h1-animation span:nth-child(12) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.6s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.3s;
 }
 #shopping-sub-head .h1-animation span:nth-child(13) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.65s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.325s;
 }
 #shopping-sub-head .h1-animation span:nth-child(14) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.7s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.35s;
 }
 #shopping-sub-head .h1-animation span:nth-child(15) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.75s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.375s;
 }
 #shopping-sub-head .h1-animation span:nth-child(16) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.8s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.4s;
 }
 #shopping-sub-head .h1-animation span:nth-child(17) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.85s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.425s;
 }
 #shopping-sub-head .h1-animation span:nth-child(18) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.9s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.45s;
 }
 #shopping-sub-head .h1-animation span:nth-child(19) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 0.95s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.475s;
 }
 #shopping-sub-head .h1-animation span:nth-child(20) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 1s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.5s;
 }
 #shopping-sub-head .h1-animation span:nth-child(21) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 1.05s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.525s;
 }
 #shopping-sub-head .h1-animation span:nth-child(22) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 1.1s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.55s;
 }
 #shopping-sub-head .h1-animation span:nth-child(23) {
-  animation: h1-color-animation 0.15s forwards;
-  animation-delay: 1.15s;
+  animation: h1-color-animation 0.1s forwards;
+  animation-delay: 0.575s;
 }
 
 @keyframes h1-color-animation {

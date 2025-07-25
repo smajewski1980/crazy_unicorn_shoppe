@@ -126,6 +126,7 @@ async function getAllProducts() {
 }
 
 const h1Elem = document.querySelector('h1');
+const h2Elem = document.querySelector('h2');
 
 function runH1Animation() {
   h1Elem.classList.add('h1-animation');
@@ -134,10 +135,15 @@ function runH1Animation() {
   }, 1500);
 }
 
+function updateCardsTitle(category) {
+  h2Elem.innerText = category;
+}
+
 // get the product id of the card that was clicked
 document.addEventListener('click', (e) => {
   const productCard = e.target.closest('.product-card');
   const option = e.target.closest('option');
+  const category = getProdCategory(parseInt(option.value));
 
   if (productCard) {
     const prodId = productCard.dataset.prodId;
@@ -148,6 +154,7 @@ document.addEventListener('click', (e) => {
 
   if (option) {
     runH1Animation();
+    updateCardsTitle(category);
   }
 });
 
