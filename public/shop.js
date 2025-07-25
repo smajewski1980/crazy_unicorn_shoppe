@@ -125,16 +125,30 @@ async function getAllProducts() {
   }
 }
 
+const h1Elem = document.querySelector('h1');
+
+function runH1Animation() {
+  h1Elem.classList.add('h1-animation');
+  setTimeout(() => {
+    h1Elem.classList.remove('h1-animation');
+  }, 1500);
+}
+
 // get the product id of the card that was clicked
 document.addEventListener('click', (e) => {
   const productCard = e.target.closest('.product-card');
+  const option = e.target.closest('option');
 
   if (productCard) {
     const prodId = productCard.dataset.prodId;
     console.log(prodId);
+    // later going to have a modal with more info and bigger pic
+    // open when a card is clicked
   }
-  // later going to have a modal with more info and bigger pic
-  // open when a card is clicked
+
+  if (option) {
+    runH1Animation();
+  }
 });
 
 getAllProducts();

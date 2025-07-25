@@ -9,11 +9,16 @@
   align-items: center;
   padding: 1.5rem;
   margin-top: 2rem;
+
   h1 {
-    font-size: 3rem;
-    text-wrap: balance;
+    // font-size: 3rem;
     line-height: 1.5;
     color: rgba(128, 255, 0, 0.75);
+    text-wrap: balance;
+
+    span {
+      font-size: clamp(1.5rem, 2.75vw, 3rem);
+    }
   }
 
   .shopping-action-wrapper {
@@ -31,12 +36,6 @@
         left: 50%;
         transform: translateX(-50%);
       }
-
-      // img {
-      //   min-width: 60px;
-      //   width: 60px;
-      //   border-radius: 15px 0px 15px 0px;
-      // }
     }
   }
 }

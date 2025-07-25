@@ -296,10 +296,12 @@ p {
   margin-top: 2rem;
 }
 #shopping-sub-head h1 {
-  font-size: 3rem;
-  text-wrap: balance;
   line-height: 1.5;
   color: rgba(128, 255, 0, 0.75);
+  text-wrap: balance;
+}
+#shopping-sub-head h1 span {
+  font-size: clamp(1.5rem, 2.75vw, 3rem);
 }
 #shopping-sub-head .shopping-action-wrapper {
   display: flex;
@@ -341,6 +343,128 @@ p {
   font-size: 2.5rem;
 }
 
+#shopping-sub-head .h1-animation span:nth-child(1) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.05s;
+}
+#shopping-sub-head .h1-animation span:nth-child(2) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.1s;
+}
+#shopping-sub-head .h1-animation span:nth-child(3) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.15s;
+}
+#shopping-sub-head .h1-animation span:nth-child(4) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.2s;
+}
+#shopping-sub-head .h1-animation span:nth-child(5) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.25s;
+}
+#shopping-sub-head .h1-animation span:nth-child(6) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.3s;
+}
+#shopping-sub-head .h1-animation span:nth-child(7) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.35s;
+}
+#shopping-sub-head .h1-animation span:nth-child(8) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.4s;
+}
+#shopping-sub-head .h1-animation span:nth-child(9) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.45s;
+}
+#shopping-sub-head .h1-animation span:nth-child(10) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.5s;
+}
+#shopping-sub-head .h1-animation span:nth-child(11) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.55s;
+}
+#shopping-sub-head .h1-animation span:nth-child(12) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.6s;
+}
+#shopping-sub-head .h1-animation span:nth-child(13) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.65s;
+}
+#shopping-sub-head .h1-animation span:nth-child(14) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.7s;
+}
+#shopping-sub-head .h1-animation span:nth-child(15) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.75s;
+}
+#shopping-sub-head .h1-animation span:nth-child(16) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.8s;
+}
+#shopping-sub-head .h1-animation span:nth-child(17) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.85s;
+}
+#shopping-sub-head .h1-animation span:nth-child(18) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.9s;
+}
+#shopping-sub-head .h1-animation span:nth-child(19) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 0.95s;
+}
+#shopping-sub-head .h1-animation span:nth-child(20) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 1s;
+}
+#shopping-sub-head .h1-animation span:nth-child(21) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 1.05s;
+}
+#shopping-sub-head .h1-animation span:nth-child(22) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 1.1s;
+}
+#shopping-sub-head .h1-animation span:nth-child(23) {
+  animation: h1-color-animation 0.15s forwards;
+  animation-delay: 1.15s;
+}
+
+@keyframes h1-color-animation {
+  0% {
+    color: hotpink;
+  }
+  24% {
+    color: hotpink;
+  }
+  25% {
+    color: gold;
+  }
+  49% {
+    color: gold;
+  }
+  50% {
+    color: blue;
+  }
+  74% {
+    color: blue;
+  }
+  75% {
+    color: cyan;
+  }
+  99% {
+    color: cyan;
+  }
+  100% {
+    color: rgba(128, 255, 0, 0.75);
+  }
+}
 body {
   width: 70%;
   margin-inline: auto;
