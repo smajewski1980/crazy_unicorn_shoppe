@@ -26,6 +26,42 @@ class Product {
   productGetInfo() {
     console.log(this);
   }
+  addProductToHTML() {
+    const div = document.createElement('div');
+    div.classList.add('product-card');
+    div.dataset.prodId = this.productId;
+
+    const h3 = document.createElement('h3');
+    h3.textContent = this.productName;
+
+    const catP = document.createElement('p');
+    catP.textContent = `Category: ${getProdCategory(this.categoryId)}`;
+    catP.classList.add('card-category-title');
+
+    const imgWrapper = document.createElement('div');
+    imgWrapper.classList.add('card-img-wrapper');
+    const img = document.createElement('img');
+    img.src = this.imageURL;
+    img.alt = this.productName;
+    imgWrapper.appendChild(img);
+
+    const prodInfoDiv = document.createElement('div');
+    prodInfoDiv.classList.add('product-info-content');
+    const descP = document.createElement('p');
+    descP.classList.add('product-desc');
+    descP.textContent = this.productDescription;
+    const priceP = document.createElement('p');
+    priceP.innerHTML = `<span>$ </span>${this.productPrice}`;
+    priceP.classList.add('card-prod-price');
+    prodInfoDiv.appendChild(descP);
+    prodInfoDiv.appendChild(priceP);
+
+    div.appendChild(h3);
+    div.appendChild(catP);
+    div.appendChild(imgWrapper);
+    div.appendChild(prodInfoDiv);
+    productsDiv.appendChild(div);
+  }
 }
 
 // take the category_id and return the appropriate string
@@ -58,7 +94,7 @@ async function getAllProducts() {
     const data = await response.json();
 
     console.log(data);
-
+    // take the data and create a class object for each product
     for (const prod of data) {
       const {
         category_id,
@@ -83,43 +119,12 @@ async function getAllProducts() {
         product_name,
         product_price,
       );
+      // put them all in an array
       productObjects.push(classObj);
-
-      const div = document.createElement('div');
-      div.classList.add('product-card');
-      div.dataset.prodId = product_id;
-
-      const h3 = document.createElement('h3');
-      h3.textContent = product_name;
-
-      const catP = document.createElement('p');
-      catP.textContent = `Category: ${getProdCategory(category_id)}`;
-      catP.classList.add('card-category-title');
-
-      const imgWrapper = document.createElement('div');
-      imgWrapper.classList.add('card-img-wrapper');
-      const img = document.createElement('img');
-      img.src = image_url;
-      img.alt = product_name;
-      imgWrapper.appendChild(img);
-
-      const prodInfoDiv = document.createElement('div');
-      prodInfoDiv.classList.add('product-info-content');
-      const descP = document.createElement('p');
-      descP.classList.add('product-desc');
-      descP.textContent = product_description;
-      const priceP = document.createElement('p');
-      priceP.innerHTML = `<span>$ </span>${product_price}`;
-      priceP.classList.add('card-prod-price');
-      prodInfoDiv.appendChild(descP);
-      prodInfoDiv.appendChild(priceP);
-
-      div.appendChild(h3);
-      div.appendChild(catP);
-      div.appendChild(imgWrapper);
-      div.appendChild(prodInfoDiv);
-      productsDiv.appendChild(div);
     }
+    productObjects.forEach((p) => {
+      p.addProductToHTML();
+    });
   } catch (error) {
     console.log(error);
   }
@@ -139,11 +144,26 @@ function updateCardsTitle(category) {
   h2Elem.innerText = category;
 }
 
-// get the product id of the card that was clicked
+// filter the productObjects and add them to the html
+function filterProducts(categoryId) {
+  productsDiv.innerHTML = '';
+  const filteredProducts = productObjects.filter(
+    (p) => p.categoryId === parseInt(categoryId),
+  );
+
+  filteredProducts.forEach((p) => {
+    p.addProductToHTML();
+  });
+}
+
 document.addEventListener('click', (e) => {
+  // get the product id if a card was clicked
   const productCard = e.target.closest('.product-card');
+  // if a select option is clicked
   const option = e.target.closest('option');
-  const category = getProdCategory(parseInt(option.value));
+  // get the category
+  const categoryId = option.value;
+  const category = getProdCategory(parseInt(categoryId));
 
   if (productCard) {
     const prodId = productCard.dataset.prodId;
@@ -152,9 +172,11 @@ document.addEventListener('click', (e) => {
     // open when a card is clicked
   }
 
+  // runs the h1 text animation
   if (option) {
     runH1Animation();
     updateCardsTitle(category);
+    filterProducts(categoryId);
   }
 });
 
