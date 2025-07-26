@@ -434,28 +434,28 @@ p {
 
 @keyframes h1-color-animation {
   0% {
-    color: hotpink;
+    color: hsl(330, 100%, 57%);
   }
   24% {
-    color: hotpink;
+    color: hsl(330, 100%, 57%);
   }
   25% {
-    color: gold;
+    color: hsl(270, 100%, 65.75%);
   }
   49% {
-    color: gold;
+    color: hsl(270, 100%, 65.75%);
   }
   50% {
-    color: blue;
+    color: hsl(210, 100%, 60.5%);
   }
   74% {
-    color: blue;
+    color: hsl(210, 100%, 60.5%);
   }
   75% {
-    color: cyan;
+    color: hsl(150, 100%, 55.25%);
   }
   99% {
-    color: cyan;
+    color: hsl(150, 100%, 55.25%);
   }
   100% {
     color: rgba(128, 255, 0, 0.75);

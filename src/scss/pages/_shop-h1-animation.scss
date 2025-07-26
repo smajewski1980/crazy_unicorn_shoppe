@@ -99,28 +99,28 @@
 
 @keyframes h1-color-animation {
   0% {
-    color: hotpink;
+    color: $h1-anim-clr-1;
   }
   24% {
-    color: hotpink;
+    color: $h1-anim-clr-1;
   }
   25% {
-    color: gold;
+    color: $h1-anim-clr-2;
   }
   49% {
-    color: gold;
+    color: $h1-anim-clr-2;
   }
   50% {
-    color: blue;
+    color: $h1-anim-clr-3;
   }
   74% {
-    color: blue;
+    color: $h1-anim-clr-3;
   }
   75% {
-    color: cyan;
+    color: $h1-anim-clr-4;
   }
   99% {
-    color: cyan;
+    color: $h1-anim-clr-4;
   }
 
   100% {
