@@ -83,51 +83,55 @@ function getProdCategory(catId) {
       return 'Gifts and Gadgets of Crazy';
       break;
     default:
+      return 'All Products';
       break;
   }
 }
 
-// get and display all the products
+// get and/or display all the products
 async function getAllProducts() {
-  try {
-    const response = await fetch('/products');
-    const data = await response.json();
+  if (!productObjects.length) {
+    try {
+      const response = await fetch('/products');
+      const data = await response.json();
 
-    console.log(data);
-    // take the data and create a class object for each product
-    for (const prod of data) {
-      const {
-        category_id,
-        current_qty,
-        image_url,
-        max_qty,
-        min_qty,
-        product_description,
-        product_id,
-        product_name,
-        product_price,
-      } = prod;
+      console.log(data);
+      // take the data and create a class object for each product
+      for (const prod of data) {
+        const {
+          category_id,
+          current_qty,
+          image_url,
+          max_qty,
+          min_qty,
+          product_description,
+          product_id,
+          product_name,
+          product_price,
+        } = prod;
 
-      const classObj = new Product(
-        category_id,
-        current_qty,
-        image_url,
-        max_qty,
-        min_qty,
-        product_description,
-        product_id,
-        product_name,
-        product_price,
-      );
-      // put them all in an array
-      productObjects.push(classObj);
+        const classObj = new Product(
+          category_id,
+          current_qty,
+          image_url,
+          max_qty,
+          min_qty,
+          product_description,
+          product_id,
+          product_name,
+          product_price,
+        );
+        // put them all in an array
+        productObjects.push(classObj);
+      }
+    } catch (error) {
+      console.log(error);
     }
-    productObjects.forEach((p) => {
-      p.addProductToHTML();
-    });
-  } catch (error) {
-    console.log(error);
   }
+  // add the products to the page
+  productObjects.forEach((p) => {
+    p.addProductToHTML();
+  });
 }
 
 const h1Elem = document.querySelector('h1');
@@ -147,6 +151,11 @@ function updateCardsTitle(category) {
 // filter the productObjects and add them to the html
 function filterProducts(categoryId) {
   productsDiv.innerHTML = '';
+  console.log('category is: ' + categoryId);
+  if (categoryId === 'all') {
+    getAllProducts();
+    return;
+  }
   const filteredProducts = productObjects.filter(
     (p) => p.categoryId === parseInt(categoryId),
   );
