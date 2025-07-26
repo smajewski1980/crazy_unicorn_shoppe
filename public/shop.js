@@ -1,4 +1,13 @@
 const productsDiv = document.getElementById('product-cards-wrapper');
+
+const productDialog = document.getElementById('product-dialog');
+const btnDialogClose = document.getElementById('btn-close');
+const prodDialogTitle = document.getElementById('product-dialog-h3');
+const prodDialogCategory = document.getElementById('product-dialog-category');
+const prodDialogImg = document.getElementById('dialog-img');
+const prodDialogDesc = document.getElementById('product-dialog-desc');
+const prodDialogPrice = document.getElementById('product-dialog-price');
+
 // tbd if this array with the Product objects was needed or not
 const productObjects = [];
 class Product {
@@ -61,6 +70,17 @@ class Product {
     div.appendChild(imgWrapper);
     div.appendChild(prodInfoDiv);
     productsDiv.appendChild(div);
+  }
+  populateModalContent() {
+    prodDialogTitle.innerText = '';
+    prodDialogCategory.innerText = '';
+    prodDialogDesc.innerText = '';
+    prodDialogPrice.innerText = '';
+    prodDialogTitle.innerText = this.productName;
+    prodDialogCategory.innerText = getProdCategory(this.categoryId);
+    prodDialogImg.src = this.imageURL;
+    prodDialogDesc.innerText = this.productDescription;
+    prodDialogPrice.innerHTML = `<span>$</span>${this.productPrice}`;
   }
 }
 
@@ -144,6 +164,7 @@ function runH1Animation() {
   }, 1500);
 }
 
+// updates the h2 that shows the category of the products
 function updateCardsTitle(category) {
   h2Elem.innerText = category;
 }
@@ -165,24 +186,30 @@ function filterProducts(categoryId) {
   });
 }
 
+btnDialogClose.addEventListener('click', () => {
+  productDialog.close();
+});
+
 document.addEventListener('click', (e) => {
   // get the product id if a card was clicked
   const productCard = e.target.closest('.product-card');
   // if a select option is clicked
   const option = e.target.closest('option');
-  // get the category
-  const categoryId = option.value;
-  const category = getProdCategory(parseInt(categoryId));
 
   if (productCard) {
     const prodId = productCard.dataset.prodId;
-    console.log(prodId);
-    // later going to have a modal with more info and bigger pic
-    // open when a card is clicked
+    const clickedProduct = productObjects.filter(
+      (p) => p.productId === parseInt(prodId),
+    );
+    clickedProduct[0].populateModalContent();
+    productDialog.showModal();
   }
 
   // runs the h1 text animation
   if (option) {
+    // get the category
+    const categoryId = option.value;
+    const category = getProdCategory(parseInt(categoryId));
     runH1Animation();
     updateCardsTitle(category);
     filterProducts(categoryId);
