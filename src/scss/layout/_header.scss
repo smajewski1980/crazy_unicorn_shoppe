@@ -1,3 +1,5 @@
+@use '../abstracts/variables' as *;
+
 header {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -35,10 +37,23 @@ header {
 
       li:nth-child(1) {
         rotate: 15deg;
+
+        button {
+          cursor: pointer;
+          padding: 0.5rem 1rem 0.25rem;
+          border-radius: 15px 0px 15px 0px;
+          border: 1px solid chartreuse;
+          background: radial-gradient(
+            rgb(249, 239, 255),
+            rgb(241, 205, 241),
+            rgb(235, 172, 235),
+            rgb(238, 149, 238),
+            violet
+          );
+          box-shadow: 2px 2px 0px black;
+        }
       }
-      // li:nth-child(2) {
-      //   rotate: -10deg;
-      // }
+
       li:nth-child(3) {
         rotate: -10deg;
       }
