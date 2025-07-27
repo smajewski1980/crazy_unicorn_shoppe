@@ -7,6 +7,9 @@ const prodDialogCategory = document.getElementById('product-dialog-category');
 const prodDialogImg = document.getElementById('dialog-img');
 const prodDialogDesc = document.getElementById('product-dialog-desc');
 const prodDialogPrice = document.getElementById('product-dialog-price');
+const prodDialogInStock = document.getElementById('product-dialog-in-stock');
+const btnAddToCart = document.getElementById('btn-product-dialog-add');
+const qtyToAdd = document.getElementById('product-add-qty');
 
 // tbd if this array with the Product objects was needed or not
 const productObjects = [];
@@ -76,11 +79,14 @@ class Product {
     prodDialogCategory.innerText = '';
     prodDialogDesc.innerText = '';
     prodDialogPrice.innerText = '';
+    qtyToAdd.value = 1;
+    productDialog.dataset.prodId = this.productId;
     prodDialogTitle.innerText = this.productName;
     prodDialogCategory.innerText = getProdCategory(this.categoryId);
     prodDialogImg.src = this.imageURL;
     prodDialogDesc.innerText = this.productDescription;
     prodDialogPrice.innerHTML = `<span>$</span>${this.productPrice}`;
+    prodDialogInStock.innerText = `There are currently ${this.currentQty} in stock`;
   }
 }
 
@@ -186,6 +192,14 @@ function filterProducts(categoryId) {
   });
 }
 
+// add an item to the cart
+function handleAddItem(e) {
+  const prodId = e.target.closest('dialog').dataset.prodId;
+  const qty = qtyToAdd.value;
+  console.log(qty + ' ' + prodId + 's');
+  // when we are ready to hook it up, we have the product id and the quantity
+}
+
 btnDialogClose.addEventListener('click', () => {
   productDialog.close();
 });
@@ -215,5 +229,7 @@ document.addEventListener('click', (e) => {
     filterProducts(categoryId);
   }
 });
+
+btnAddToCart.addEventListener('click', handleAddItem);
 
 getAllProducts();
