@@ -67,7 +67,7 @@ header {
         font-size: 1.5rem;
       }
 
-      li:nth-child(1) a::after {
+      #first-li:not(:has(#logout-cart-wrapper)) a::after {
         content: 'Sign In';
       }
 
@@ -205,6 +205,7 @@ header {
       max-width: 60px;
     }
     span {
+      pointer-events: none;
       font-family: $font-para;
       display: grid;
       place-content: center;

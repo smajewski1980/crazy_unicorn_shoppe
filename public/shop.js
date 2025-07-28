@@ -280,7 +280,7 @@ async function isLoggedIn() {
         <div id="logout-cart-wrapper">
           <button id="logout-link">LOGOUT</button>
           <div id="cart-icon-wrapper">
-            <img id="cart-icon" src="./assets/icons/cart-yellow.png" alt="cart"/>
+            <a href="./checkout.html"><img id="cart-icon" src="./assets/icons/cart-yellow.png" alt="cart"/></a>
             <span></span>
           </div>
         </div>
