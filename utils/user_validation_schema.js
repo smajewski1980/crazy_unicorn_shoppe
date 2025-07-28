@@ -1,10 +1,10 @@
 const userValidationSchema = {
   name: {
     notEmpty: {
-      errorMessage: "Name field must not be empty.",
+      errorMessage: 'Name field must not be empty.',
     },
     isString: {
-      errorMessage: "Name field must be a string.",
+      errorMessage: 'Name field must be a string.',
     },
     escape: true,
   },
@@ -14,20 +14,20 @@ const userValidationSchema = {
         min: 8,
         max: 20,
       },
-      errorMessage: "The password must be between 8 and 20 characters.",
+      errorMessage: 'The password must be between 8 and 20 characters.',
     },
     escape: true,
   },
   email: {
     isEmail: {
-      errorMessage: "Email must be in the form of a valid email address.",
+      errorMessage: 'Email must be in the form of a valid email address.',
     },
     normalizeEmail: true,
     escape: true,
   },
   phone: {
     isMobilePhone: {
-      errorMessage: "Phone number must be in the format 555-555-5555.",
+      errorMessage: 'Phone number must be in the format 555-555-5555.',
     },
     escape: true,
   },
@@ -37,7 +37,7 @@ const userValidationSchema = {
         min: 5,
         max: 50,
       },
-      errorMessage: "Address line 1 must be between 5 and 50 characters.",
+      errorMessage: 'Address line 1 must be between 5 and 50 characters.',
     },
     escape: true,
   },
@@ -47,7 +47,7 @@ const userValidationSchema = {
       options: {
         max: 50,
       },
-      errorMessage: "Address line 2 must be less than 50 characters.",
+      errorMessage: 'Address line 2 must be less than 50 characters.',
     },
     escape: true,
   },
@@ -57,7 +57,7 @@ const userValidationSchema = {
         min: 3,
         max: 50,
       },
-      errorMessage: "City must be between 3 and 50 characters.",
+      errorMessage: 'City must be between 3 and 50 characters.',
     },
     escape: true,
   },
@@ -67,7 +67,7 @@ const userValidationSchema = {
         min: 2,
         max: 2,
       },
-      errorMessage: "Please enter the 2 character state abbreviation.",
+      errorMessage: 'Please enter the 2 character state abbreviation.',
     },
     escape: true,
   },
@@ -77,7 +77,7 @@ const userValidationSchema = {
         min: 5,
         max: 10,
       },
-      errorMessage: "Zip code must be between 5 and 10 characters.",
+      errorMessage: 'Zip code must be between 5 and 10 characters.',
     },
     escape: true,
   },

@@ -323,12 +323,14 @@ isLoggedIn();
 
 async function setCartItemQty() {
   const cartQtySpan = document.querySelector('#cart-icon-wrapper span');
-  const response = await fetch('/cart');
-  const data = await response.json();
-  //  we need to sum the item_qtys, duh...
-  const qty = await data.reduce((acc, curr) => {
-    return acc + curr.item_qty;
-  }, 0);
-  console.log('qty: ' + qty);
-  cartQtySpan.textContent = qty.toString();
+  try {
+    const response = await fetch('/cart');
+    const data = await response.json();
+    const qty = await data.reduce((acc, curr) => {
+      return acc + curr.item_qty;
+    }, 0);
+    cartQtySpan.textContent = qty.toString();
+  } catch (error) {
+    throw new Error(error);
+  }
 }

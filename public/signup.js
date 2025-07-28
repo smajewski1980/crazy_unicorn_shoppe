@@ -1,17 +1,18 @@
-const form = document.getElementById("sign-up-form");
-const btnSignup = document.getElementById("btn-signup");
+const form = document.getElementById('sign-up-form');
+const btnSignup = document.getElementById('btn-signup');
 
 async function sendFormData(data) {
   const options = {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "content-type": "application/json",
+      'content-type': 'application/json',
     },
     body: JSON.stringify(data),
   };
 
-  const response = await fetch("/user/register", options);
-  console.log(response);
+  const response = await fetch('/user/register', options);
+  const resData = await response.json();
+  console.log(resData);
 }
 
 function handleSignup(e) {
@@ -22,4 +23,4 @@ function handleSignup(e) {
   form.reset();
 }
 
-btnSignup.addEventListener("click", handleSignup);
+btnSignup.addEventListener('click', handleSignup);
