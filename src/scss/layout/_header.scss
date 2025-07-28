@@ -192,3 +192,38 @@ header {
     }
   }
 }
+
+#logout-cart-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+
+  #cart-icon-wrapper {
+    --cart-item-qty: '0';
+    position: relative;
+    #cart-icon {
+      max-width: 60px;
+    }
+    &::after {
+      font-family: $font-para;
+      display: grid;
+      place-content: center;
+      content: var(--cart-item-qty);
+      width: 20px;
+      aspect-ratio: 1;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 50%;
+      background: radial-gradient(
+        rgb(249, 239, 255),
+        rgb(241, 205, 241),
+        rgb(235, 172, 235),
+        rgb(238, 149, 238),
+        violet
+      );
+      outline: 2px solid chartreuse;
+    }
+  }
+}

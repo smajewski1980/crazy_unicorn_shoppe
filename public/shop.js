@@ -263,7 +263,12 @@ async function isLoggedIn() {
       console.log('user is logged in');
       navFirstItem.innerHTML = `
         <p>Logged in as ${response.name}.</p>
-        <button id="logout-link">LOGOUT</button>
+        <div id="logout-cart-wrapper">
+          <button id="logout-link">LOGOUT</button>
+          <div id="cart-icon-wrapper">
+            <img id="cart-icon" src="./assets/icons/cart-yellow.png" alt="cart"/>
+          </div>
+        </div>
       `;
       document
         .getElementById('logout-link')
