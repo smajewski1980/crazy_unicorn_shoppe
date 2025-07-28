@@ -193,11 +193,25 @@ function filterProducts(categoryId) {
 }
 
 // add an item to the cart
-function handleAddItem(e) {
+async function handleAddItem(e) {
   const prodId = e.target.closest('dialog').dataset.prodId;
   const qty = qtyToAdd.value;
   console.log(qty + ' ' + prodId + 's');
   // when we are ready to hook it up, we have the product id and the quantity
+  const response = await fetch('/cart', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      product_id: prodId,
+      item_qty: qty,
+    }),
+  });
+  const data = await response.json();
+  setCartItemQty();
+  productDialog.close();
+  console.log(data);
 }
 
 btnDialogClose.addEventListener('click', () => {
@@ -311,6 +325,10 @@ async function setCartItemQty() {
   const cartQtySpan = document.querySelector('#cart-icon-wrapper span');
   const response = await fetch('/cart');
   const data = await response.json();
-  const qty = await data.length;
+  //  we need to sum the item_qtys, duh...
+  const qty = await data.reduce((acc, curr) => {
+    return acc + curr.item_qty;
+  }, 0);
+  console.log('qty: ' + qty);
   cartQtySpan.textContent = qty.toString();
 }
