@@ -19,6 +19,7 @@ router.post(
     const {
       name,
       password,
+      conf_password,
       email,
       phone,
       address_line_1,
@@ -27,7 +28,10 @@ router.post(
       state,
       zip_code,
     } = req.body;
-    // console.log(req.body);
+
+    if (conf_password !== password) {
+      return res.status(400).send({ msg: "passwords don't match" });
+    }
     const validationErrors = validationResult(req);
     if (!validationErrors.isEmpty()) {
       return res.status(400).send(validationErrors);
