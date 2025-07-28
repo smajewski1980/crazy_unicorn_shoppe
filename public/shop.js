@@ -325,11 +325,14 @@ async function setCartItemQty() {
   const cartQtySpan = document.querySelector('#cart-icon-wrapper span');
   try {
     const response = await fetch('/cart');
+    if (!response.ok) {
+      cartQtySpan.textContent = '0';
+      return;
+    }
     const data = await response.json();
     const qty = await data.reduce((acc, curr) => {
       return acc + curr.item_qty;
     }, 0);
-    console.log(qty);
     cartQtySpan.textContent = qty.toString();
   } catch (error) {
     throw new Error(error);
