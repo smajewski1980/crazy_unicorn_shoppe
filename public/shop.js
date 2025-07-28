@@ -267,6 +267,7 @@ async function isLoggedIn() {
           <button id="logout-link">LOGOUT</button>
           <div id="cart-icon-wrapper">
             <img id="cart-icon" src="./assets/icons/cart-yellow.png" alt="cart"/>
+            <span></span>
           </div>
         </div>
       `;
@@ -274,6 +275,7 @@ async function isLoggedIn() {
         .getElementById('logout-link')
         .addEventListener('click', handleLogout);
       styleLogOut();
+      setCartItemQty();
       return;
     }
     console.log('user is not logged in');
@@ -304,3 +306,11 @@ async function handleLogout() {
 }
 
 isLoggedIn();
+
+async function setCartItemQty() {
+  const cartQtySpan = document.querySelector('#cart-icon-wrapper span');
+  const response = await fetch('/cart');
+  const data = await response.json();
+  const qty = await data.length;
+  cartQtySpan.textContent = qty.toString();
+}

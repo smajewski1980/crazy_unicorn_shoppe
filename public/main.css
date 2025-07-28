@@ -634,18 +634,16 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   justify-content: space-around;
 }
 #logout-cart-wrapper #cart-icon-wrapper {
-  --cart-item-qty: "0";
   position: relative;
 }
 #logout-cart-wrapper #cart-icon-wrapper #cart-icon {
   max-width: 60px;
 }
-#logout-cart-wrapper #cart-icon-wrapper::after {
+#logout-cart-wrapper #cart-icon-wrapper span {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   display: grid;
   place-content: center;
-  content: var(--cart-item-qty);
-  width: 20px;
+  width: 1.5rem;
   aspect-ratio: 1;
   position: absolute;
   bottom: 0;
