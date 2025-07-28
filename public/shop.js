@@ -329,6 +329,7 @@ async function setCartItemQty() {
     const qty = await data.reduce((acc, curr) => {
       return acc + curr.item_qty;
     }, 0);
+    console.log(qty);
     cartQtySpan.textContent = qty.toString();
   } catch (error) {
     throw new Error(error);

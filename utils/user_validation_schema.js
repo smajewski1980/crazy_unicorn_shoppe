@@ -27,6 +27,7 @@ const userValidationSchema = {
   },
   phone: {
     isMobilePhone: {
+      options: ['any'],
       errorMessage: 'Phone number must be in the format 555-555-5555.',
     },
     escape: true,
