@@ -38,3 +38,20 @@
     }
   }
 }
+
+#payment-method-section {
+  h2 {
+    font-family: $font-para;
+    text-align: center;
+    margin-block: 1rem;
+  }
+  #payment-choice-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .payment-img-wrapper {
+      max-width: 250px;
+    }
+  }
+}
