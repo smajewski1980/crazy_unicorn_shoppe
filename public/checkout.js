@@ -25,15 +25,15 @@ function populateCheckoutData(data) {
   });
   invoiceTableBody.innerHTML = htmlString;
 
-  invoiceTableFoot.innerHTML = `<tr><th>Invoice Subtotal</th><td></td><td></td><td>$${invoiceSubtotal}</td></tr>`;
-  invoiceTableFoot.innerHTML += `<tr><th>Shipping</th><td></td><td></td><td>${
+  invoiceTableFoot.innerHTML = `<tr><td></td><td></td><th>Invoice Subtotal</th><td>$${invoiceSubtotal}</td></tr>`;
+  invoiceTableFoot.innerHTML += `<tr><td></td><td></td><th>Shipping</th><td>${
     invoiceSubtotal > 99 ? 'FREE' : `$${invoiceSubtotal * 0.1}`
   }</td></tr>`;
 
   const taxCalc =
     (invoiceSubtotal > 99 ? 0 : invoiceSubtotal * 0.1) + invoiceSubtotal;
 
-  invoiceTableFoot.innerHTML += `<tr><th>Sales Tax</th><td></td><td></td><td>$${
+  invoiceTableFoot.innerHTML += `<tr><td></td><td></td><th>Sales Tax</th><td>$${
     taxCalc * 0.08
   }</td></tr>`;
 
@@ -41,7 +41,7 @@ function populateCheckoutData(data) {
     taxCalc * 0.08 +
     (invoiceSubtotal > 99 ? 0 : invoiceSubtotal * 0.1) +
     invoiceSubtotal;
-  invoiceTableFoot.innerHTML += `<tr><th>Total</th><td></td><td></td><td>$${total}</td></tr>`;
+  invoiceTableFoot.innerHTML += `<tr><td></td><td></td><th>Total</th><td>$${total}</td></tr>`;
 }
 
 getCheckoutData();

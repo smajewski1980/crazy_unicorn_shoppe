@@ -462,6 +462,44 @@ p {
     color: rgba(128, 255, 0, 0.75);
   }
 }
+#checkout-h1 {
+  text-align: center;
+  font-size: clamp(2rem, 5.5vw, 5rem);
+}
+
+#invoice-wrapper {
+  grid-template-columns: 1fr;
+  max-width: 80%;
+  margin-inline: auto;
+}
+#invoice-wrapper table {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  border-spacing: 0;
+  border: 1px solid chartreuse;
+  border-radius: 15px 0px 15px 0px;
+}
+#invoice-wrapper table tr:first-child th {
+  padding-block-start: 1rem;
+}
+#invoice-wrapper table td {
+  text-align: center;
+}
+#invoice-wrapper table tr:last-child td {
+  padding-block-end: 1rem;
+}
+#invoice-wrapper table tfoot tr:first-child td,
+#invoice-wrapper table tfoot tr:first-child th {
+  border-top: 1px solid chartreuse;
+  padding-block-start: 1rem;
+}
+#invoice-wrapper table tfoot th {
+  text-align: right;
+}
+#invoice-wrapper table tfoot tr:last-child td,
+#invoice-wrapper table tfoot tr:last-child th {
+  padding-block-end: 1rem;
+}
+
 body {
   width: 70%;
   margin-inline: auto;
