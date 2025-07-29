@@ -518,7 +518,7 @@ header nav ul li a::after {
   text-wrap: nowrap;
   font-size: 1.5rem;
 }
-header nav ul #first-li:not(:has(#logout-cart-wrapper)) a::after {
+header nav ul li:nth-child(1):not(:has(#logout-cart-wrapper)) a::after {
   content: "Sign In";
 }
 header nav ul li:nth-child(2) a::after {

@@ -67,7 +67,7 @@ header {
         font-size: 1.5rem;
       }
 
-      #first-li:not(:has(#logout-cart-wrapper)) a::after {
+      li:nth-child(1):not(:has(#logout-cart-wrapper)) a::after {
         content: 'Sign In';
       }
 
