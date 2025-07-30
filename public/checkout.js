@@ -11,32 +11,51 @@ async function getCheckoutData() {
     console.log(error);
   }
 }
-
+// this creates the html for the invoice data
 function populateCheckoutData(data) {
   console.log(data);
   let htmlString = '';
   let invoiceSubtotal = 0;
+  // there would always be at least one item
+  // so pull the cart id and user from the first item in the array
   const cartId = data[0].cart_id;
   const userId = data[0].user_id;
+
+  // the html for the controls to be generated with every table row
+  const itemControls = `
+    <div class="invoice-item-controls-wrapper">
+      <img src="./assets/icons/remove-cart.png" alt="subtract from quantity"/>
+      <img src="./assets/icons/add-to-cart.png" alt="add to quantity"/>
+      <img src="./assets/icons/remove-from-cart.png" alt="remove item from cart"/>
+    </div>
+  `;
+
+  // loop through adding to the subtotal
+  // and generating html for each item
   data.forEach((item) => {
     invoiceSubtotal += item.item_qty * item.product_price;
     htmlString += `
-      <tr><td>${item.item_qty}</td><td>${item.product_name}</td><td>$${
+      <tr><td>${item.item_qty}<td data-prod-id=${
+      item.product_id
+    }>${itemControls}</td><td>${item.product_name}</td><td>$${
       item.product_price
     }</td><td>$${item.item_qty * item.product_price}</td></tr>
     `;
   });
+
   invoiceTableBody.innerHTML = htmlString;
 
-  invoiceTableFoot.innerHTML = `<tr><td></td><td></td><th>Invoice Subtotal</th><td>$${invoiceSubtotal}</td></tr>`;
-  invoiceTableFoot.innerHTML += `<tr><td></td><td></td><th>Shipping</th><td>${
+  invoiceTableFoot.innerHTML = `<tr><td></td><td></td><td></td><th>Invoice Subtotal</th><td>$${invoiceSubtotal}</td></tr>`;
+  // if the order is over 99 dollars, free shipping, woo hoo! otherwise we just tack on 10%
+  invoiceTableFoot.innerHTML += `<tr><td></td><td></td><td></td><th>Shipping</th><td>${
     invoiceSubtotal > 99 ? 'FREE' : `$${invoiceSubtotal * 0.1}`
   }</td></tr>`;
 
+  // the adds the shipping and the subtotal to use to calculate the tax
   const taxCalc =
     (invoiceSubtotal > 99 ? 0 : invoiceSubtotal * 0.1) + invoiceSubtotal;
-
-  invoiceTableFoot.innerHTML += `<tr><td></td><td></td><th>Sales Tax</th><td>$${
+  // add in 8% tsales tax
+  invoiceTableFoot.innerHTML += `<tr><td></td><td></td><td></td><th>Sales Tax</th><td>$${
     taxCalc * 0.08
   }</td></tr>`;
 
@@ -44,8 +63,9 @@ function populateCheckoutData(data) {
     taxCalc * 0.08 +
     (invoiceSubtotal > 99 ? 0 : invoiceSubtotal * 0.1) +
     invoiceSubtotal;
-  invoiceTableFoot.innerHTML += `<tr><td></td><td></td><th>Total</th><td>$${total}</td></tr>`;
+  invoiceTableFoot.innerHTML += `<tr><td></td><td></td><td></td><th>Total</th><td>$${total}</td></tr>`;
 
+  // add this info to the order object for sending to the server
   orderObject.cart_id = cartId;
   orderObject.user_id = userId;
   orderObject.order_total = total;
@@ -53,6 +73,7 @@ function populateCheckoutData(data) {
 }
 
 function prepareOrder(order) {
+  // this is the last place in line at the moment
   // orderObject.crazy = true;
   console.log(order);
 }
@@ -63,12 +84,15 @@ const paymentH4 = paymentModal.querySelector('h4');
 const btnPaymentModal = document.getElementById('btn-payment-modal');
 const shippingSectionEl = document.getElementById('shipping-section');
 
+// this handles when the payment method is selected
+// opens a modal with a message to then continue to review the shipping info
 function handlePaymentBtn(e) {
   const paymentMethod = e.target.closest('.payment-img-wrapper').dataset
     .payType;
   paymentH4.textContent = `Thank you for choosing to pay with: ${paymentMethod}`;
   orderObject.payment_method = paymentMethod;
   paymentModal.showModal();
+  // make the payment buttons unclickable and grey out the non selected one
   paymentBtns.forEach((btn) => {
     btn.style.pointerEvents = 'none';
     if (btn.dataset.payType !== paymentMethod) {
@@ -89,6 +113,7 @@ const confirmCity = document.getElementById('input-city');
 const confirmState = document.getElementById('input-state');
 const confirmZip = document.getElementById('input-zip');
 
+// populates the confirm info form
 async function populateShippingSection() {
   try {
     const response = await fetch('/user/status');
@@ -108,6 +133,7 @@ async function populateShippingSection() {
   }
 }
 
+// after the modal closes, show the form that was hiding
 function handlePaymentModal() {
   paymentModal.close();
   populateShippingSection();

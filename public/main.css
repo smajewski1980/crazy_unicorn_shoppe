@@ -499,6 +499,15 @@ p {
 #invoice-wrapper table tfoot tr:last-child th {
   padding-block-end: 1rem;
 }
+#invoice-wrapper table tr .invoice-item-controls-wrapper {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-around;
+}
+#invoice-wrapper table tr .invoice-item-controls-wrapper img {
+  max-width: 30px;
+  cursor: pointer;
+}
 
 #payment-method-section h2 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;

@@ -36,6 +36,19 @@
         padding-block-end: 1rem;
       }
     }
+
+    tr {
+      .invoice-item-controls-wrapper {
+        width: 100%;
+        display: inline-flex;
+        justify-content: space-around;
+
+        img {
+          max-width: 30px;
+          cursor: pointer;
+        }
+      }
+    }
   }
 }
 
