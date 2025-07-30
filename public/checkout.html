@@ -36,19 +36,28 @@
       <section id="payment-method-section">
         <h2>Please select your payment method:</h2>
         <div id="payment-choice-wrapper">
-          <div class="payment-img-wrapper">
+          <div
+            class="payment-img-wrapper"
+            data-pay-type="pretend-pal"
+          >
             <img
               src="./assets/images/pretendpal_btn.png"
               alt="pretend pal"
             />
           </div>
-          <div class="payment-img-wrapper">
+          <div
+            class="payment-img-wrapper"
+            data-pay-type="debit-credit"
+          >
             <img
               src="./assets/images/debit_credit_btn.png"
               alt="debit or credit card"
             />
           </div>
-          <div class="payment-img-wrapper">
+          <div
+            class="payment-img-wrapper"
+            data-pay-type="unicorn-pay"
+          >
             <img
               src="./assets/images/unicorn_pay_btn.png"
               alt="unicorn pay"
@@ -56,6 +65,88 @@
           </div>
         </div>
       </section>
+      <section id="shipping-section">
+        <h3>Confirm your information:</h3>
+
+        <form id="shipping-confirm-info-wrapper">
+          <div id="name-input-wrapper">
+            <label for="input-name">username</label>
+            <input
+              type="text"
+              name="name"
+              id="input-name"
+            />
+          </div>
+
+          <div id="email-input-wrapper">
+            <label for="input-email">email</label>
+            <input
+              type="email"
+              name="email"
+              id="input-email"
+            />
+          </div>
+          <div id="phone-input-wrapper">
+            <label for="input-phone">phone</label>
+            <input
+              type="tel"
+              name="phone"
+              id="input-phone"
+            />
+          </div>
+          <div id="address-one-input-wrapper">
+            <label for="input-address-1">address line 1</label>
+            <input
+              type="text"
+              name="address_line_1"
+              id="input-address-1"
+            />
+          </div>
+          <div id="address-two-input-wrapper">
+            <label for="input-address-2">address line 2</label>
+            <input
+              type="text"
+              name="address_line_2"
+              id="input-address-2"
+            />
+          </div>
+          <div id="city-input-wrapper">
+            <label for="input-city">city</label>
+            <input
+              type="text"
+              name="city"
+              id="input-city"
+            />
+          </div>
+          <div id="state-input-wrapper">
+            <label for="input-state">state</label>
+            <input
+              type="text"
+              name="state"
+              id="input-state"
+            />
+          </div>
+          <div id="zip-input-wrapper">
+            <label for="input-zip">zip code</label>
+            <input
+              type="text"
+              name="zip_code"
+              id="input-zip"
+            />
+          </div>
+          <button>Edit Info</button>
+          <button>Place Order</button>
+        </form>
+      </section>
     </main>
+    <dialog id="payment-modal">
+      <h4></h4>
+      <p>
+        Since this is all pretend, imagine we live in wonderful world like Star
+        Trek where we don't use money. Continue on as if you just entered your
+        payment details.
+      </p>
+      <button id="btn-payment-modal">Continue to shipping info</button>
+    </dialog>
   </body>
 </html>

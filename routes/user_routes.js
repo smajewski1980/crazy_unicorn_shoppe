@@ -79,7 +79,7 @@ router.post(
 
 router.get('/status', (req, res, next) => {
   return req.user
-    ? res.status(200).send(req.user)
+    ? res.status(200).json(req.user)
     : res.status(401).send({ msg: 'not authenticated' });
 });
 

@@ -43,7 +43,7 @@
   h2 {
     font-family: $font-para;
     text-align: center;
-    margin-block: 1rem;
+    margin-block-start: 1rem;
   }
   #payment-choice-wrapper {
     display: flex;
@@ -52,6 +52,53 @@
 
     .payment-img-wrapper {
       max-width: 250px;
+      cursor: pointer;
+    }
+  }
+}
+#payment-modal {
+  font-family: $font-para;
+  margin: auto;
+  max-width: 60%;
+  border: 2px solid chartreuse;
+  outline: none;
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+#shipping-section {
+  font-family: $font-para;
+  display: none;
+  h3 {
+    text-align: center;
+  }
+
+  #shipping-confirm-info-wrapper {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    div {
+      pointer-events: none;
+      display: grid;
+      grid-template-columns: 80%;
+      gap: 0.25rem;
+      justify-content: center;
+
+      input {
+        margin-block-end: 0.35rem;
+        text-align: center;
+      }
+    }
+
+    button {
+      cursor: pointer;
+      padding: 0.5rem 2.5rem;
+      margin-block-start: 1rem;
+      width: 30%;
+      justify-self: center;
+      grid-column: 1 / -1;
     }
   }
 }
