@@ -162,13 +162,6 @@ function handlePaymentBtn(e) {
   paymentH4.textContent = `Thank you for choosing to pay with: ${paymentMethod}`;
   orderObject.payment_method = paymentMethod;
   paymentModal.showModal();
-  // make the payment buttons unclickable and grey out the non selected one
-  paymentBtns.forEach((btn) => {
-    btn.style.pointerEvents = 'none';
-    if (btn.dataset.payType !== paymentMethod) {
-      btn.style.opacity = '.35';
-    }
-  });
 }
 
 const shippingConfirmWrapper = document.getElementById(
@@ -204,10 +197,31 @@ async function populateShippingSection() {
 }
 
 // after the modal closes, show the form that was hiding
-function handlePaymentModal() {
+async function handlePaymentModal() {
   paymentModal.close();
-  populateShippingSection();
-  shippingSectionEl.style.display = 'block';
+  // add logic for our "random payment denial"
+  // there is a payment endpoint that returns denied at a random 1 in 20 interval
+  try {
+    const response = await fetch('/cart/checkout', { method: 'POST' });
+    console.log(response.status);
+    if (response.status === 400) {
+      alert('Your payment was denied, please try again.');
+    } else if (response.status === 200) {
+      populateShippingSection();
+      shippingSectionEl.style.display = 'block';
+      // make the payment buttons unclickable and grey out the non selected one
+      paymentBtns.forEach((btn) => {
+        btn.style.pointerEvents = 'none';
+        if (btn.dataset.payType !== orderObject.payment_method) {
+          btn.style.opacity = '.35';
+        }
+      });
+    } else {
+      alert('something weird happened, try again');
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 btnPaymentModal.addEventListener('click', handlePaymentModal);

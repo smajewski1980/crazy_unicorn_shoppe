@@ -86,7 +86,7 @@ router.post('/checkout', isAuth, (req, res, next) => {
   // which was encrypted and sent from a payment gateway on the frontend.
 
   // This will simulate an occasional rejected payment
-  const isPaymentGood = () => Math.floor(Math.random() * 25) > 0;
+  const isPaymentGood = () => Math.floor(Math.random() * 15) > 0;
   isPaymentGood()
     ? res.sendStatus(200)
     : res
