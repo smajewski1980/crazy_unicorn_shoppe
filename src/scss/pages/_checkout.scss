@@ -91,9 +91,10 @@
     text-align: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    --pointer-ev: none;
 
     div {
-      pointer-events: none;
+      pointer-events: var(--pointer-ev);
       display: grid;
       grid-template-columns: 80%;
       gap: 0.25rem;

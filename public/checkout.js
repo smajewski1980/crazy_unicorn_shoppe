@@ -200,7 +200,7 @@ async function populateShippingSection() {
 async function handlePaymentModal() {
   paymentModal.close();
   // add logic for our "random payment denial"
-  // there is a payment endpoint that returns denied at a random 1 in 20 interval
+  // there is a payment endpoint with a 1 in 15 chance that it returns denied
   try {
     const response = await fetch('/cart/checkout', { method: 'POST' });
     console.log(response.status);
@@ -231,3 +231,53 @@ paymentBtns.forEach((btn) => {
 });
 
 getCheckoutData();
+
+const btnEditInfo = document.getElementById('btn-edit-info');
+const btnPlaceOrder = document.getElementById('btn-place-order');
+
+async function handleSaveChanges(e) {
+  e.preventDefault();
+  const form = new FormData(shippingConfirmWrapper);
+  const formData = Object.fromEntries(form);
+  const options = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData),
+  };
+  try {
+    const response = await fetch(`/user/${orderObject.user_id}`, options);
+    if (response.status === 201) {
+      // reverse all the stuff we changed to go from edit to save
+      // lock out the fields again
+      shippingConfirmWrapper.style.setProperty('--pointer-ev', 'none');
+      // change button text back
+      btnEditInfo.innerText = 'Edit Info';
+      // reactivate the place order button
+      btnPlaceOrder.style.pointerEvents = 'auto';
+      btnPlaceOrder.style.opacity = '1';
+      // swap the listeners back
+      btnEditInfo.removeEventListener('click', handleSaveChanges);
+      btnEditInfo.addEventListener('click', handleEditInfo);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function handleEditInfo(e) {
+  e.preventDefault();
+  // undo pointer events none on the fields
+  shippingConfirmWrapper.style.setProperty('--pointer-ev', 'auto');
+  // change edit button text, grey out order btn and swap listener
+  btnEditInfo.innerText = 'Save Changes';
+  // deactivate the place order button
+  btnPlaceOrder.style.pointerEvents = 'none';
+  btnPlaceOrder.style.opacity = '.5';
+  // swap the listeners
+  btnEditInfo.removeEventListener('click', handleEditInfo);
+  btnEditInfo.addEventListener('click', handleSaveChanges);
+}
+
+btnEditInfo.addEventListener('click', handleEditInfo);

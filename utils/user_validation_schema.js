@@ -16,6 +16,13 @@ const userValidationSchema = {
       },
       errorMessage: 'The password must be between 8 and 20 characters.',
     },
+    optional: {
+      // Options to customize optional behavior
+      options: {
+        nullable: true, // Treat null values as optional
+        checkFalsy: true, // Treat falsy values (e.g., "", 0, false) as optional
+      },
+    },
     escape: true,
   },
   email: {
@@ -25,13 +32,14 @@ const userValidationSchema = {
     normalizeEmail: true,
     escape: true,
   },
-  phone: {
-    isMobilePhone: {
-      options: ['any'],
-      errorMessage: 'Phone number must be in the format 555-555-5555.',
-    },
-    escape: true,
-  },
+  // need to revisit this one later
+  // phone: {
+  //   isMobilePhone: {
+  //     options: ['en-US'],
+  //     errorMessage: 'Phone number must be in the format 555-555-5555.',
+  //   },
+  //   escape: true,
+  // },
   address_line_1: {
     isLength: {
       options: {

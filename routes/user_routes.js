@@ -144,41 +144,49 @@ router.put(
       state,
       zip_code,
     } = req.body;
-    const hashedPw = await bcrypt.hash(password, saltRounds);
-
+    // console.log('phone is: ' + phone);
     const validationErrors = validationResult(req);
     if (!validationErrors.isEmpty()) {
       return res.status(400).send(validationErrors);
     }
 
     try {
+      let query = '';
+      let params = [];
       const client = await pool.connect();
       try {
+        // if there is a password present or not determines which update statement gets used
+        if (!password) {
+          query =
+            'update users set name = $1, email = $2, phone = $3 where user_id = $4';
+          params = [...[name, email, phone, userId]];
+        } else {
+          const hashedPw = await bcrypt.hash(password, saltRounds);
+          query =
+            'update users set name = $1, hashed_pw = $2, email = $3, phone = $4 where user_id = $5';
+          params = [...[name, hashedPw, email, phone, userId]];
+        }
         await client.query('BEGIN');
-        await client.query(
-          'update users set name = $1, hashed_pw = $2, email = $3, phone = $4 where user_id = $5',
-          [name, hashedPw, email, phone, userId],
-          async (err, result) => {
-            if (err) {
-              const error = new Error(err);
-              await client.query('ROLLBACK');
-              return next(error);
-            }
-            client.query(
-              'update user_address set address_line_1 = $2, address_line_2 = $3, city = $4, state = $5, zip_code = $6 where user_id = $1',
-              [userId, address_line_1, address_line_2, city, state, zip_code],
-              async (err, result) => {
-                if (err) {
-                  const error = new Error(err);
-                  await client.query('ROLLBACK');
-                  return next(error);
-                }
-                await client.query('COMMIT');
-                res.sendStatus(201);
-              },
-            );
-          },
-        );
+        await client.query(query, params, async (err, result) => {
+          if (err) {
+            const error = new Error(err);
+            await client.query('ROLLBACK');
+            return next(error);
+          }
+          client.query(
+            'update user_address set address_line_1 = $2, address_line_2 = $3, city = $4, state = $5, zip_code = $6 where user_id = $1',
+            [userId, address_line_1, address_line_2, city, state, zip_code],
+            async (err, result) => {
+              if (err) {
+                const error = new Error(err);
+                await client.query('ROLLBACK');
+                return next(error);
+              }
+              await client.query('COMMIT');
+              res.sendStatus(201);
+            },
+          );
+        });
       } catch (error) {
         await client.query('ROLLBACK');
         next(error);
