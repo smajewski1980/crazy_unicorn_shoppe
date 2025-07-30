@@ -147,7 +147,7 @@ router.delete('/:id', isAuth, async (req, res, next) => {
     return next(error);
   }
 
-  res.status(200).send('The item has successfully been removed from the cart.');
+  res.status(204).send('The item has successfully been removed from the cart.');
 });
 
 module.exports = router;

@@ -24,9 +24,9 @@ function populateCheckoutData(data) {
   // the html for the controls to be generated with every table row
   const itemControls = `
     <div class="invoice-item-controls-wrapper">
-      <img src="./assets/icons/remove-cart.png" alt="subtract from quantity"/>
-      <img src="./assets/icons/add-to-cart.png" alt="add to quantity"/>
-      <img src="./assets/icons/remove-from-cart.png" alt="remove item from cart"/>
+      <img data-action="sub" src="./assets/icons/minus.png" alt="subtract from quantity"/>
+      <img data-action="add" src="./assets/icons/plus.png" alt="add to quantity"/>
+      <img data-action="rem" src="./assets/icons/remove.png" alt="remove item from cart"/>
     </div>
   `;
 
@@ -55,25 +55,95 @@ function populateCheckoutData(data) {
   const taxCalc =
     (invoiceSubtotal > 99 ? 0 : invoiceSubtotal * 0.1) + invoiceSubtotal;
   // add in 8% tsales tax
-  invoiceTableFoot.innerHTML += `<tr><td></td><td></td><td></td><th>Sales Tax</th><td>$${
+  invoiceTableFoot.innerHTML += `<tr><td></td><td></td><td></td><th>Sales Tax</th><td>$${(
     taxCalc * 0.08
-  }</td></tr>`;
+  ).toFixed(2)}</td></tr>`;
 
   const total =
     taxCalc * 0.08 +
     (invoiceSubtotal > 99 ? 0 : invoiceSubtotal * 0.1) +
     invoiceSubtotal;
-  invoiceTableFoot.innerHTML += `<tr><td></td><td></td><td></td><th>Total</th><td>$${total}</td></tr>`;
+  invoiceTableFoot.innerHTML += `<tr><td></td><td></td><td></td><th>Total</th><td>$${total.toFixed(
+    2,
+  )}</td></tr>`;
 
   // add this info to the order object for sending to the server
   orderObject.cart_id = cartId;
   orderObject.user_id = userId;
   orderObject.order_total = total;
   prepareOrder(orderObject);
+
+  // this will handle the updating of the cart/invoice on user input
+  function handleInvoiceControlAction(e) {
+    const productId = e.target.closest('td').dataset.prodId;
+    const action = e.target.dataset.action;
+    const currentQty = parseInt(
+      e.target.closest('tr').querySelector('td').textContent,
+    );
+    switch (action) {
+      case 'add':
+        updateCartQty(productId, currentQty + 1);
+        break;
+      case 'sub':
+        updateCartQty(productId, currentQty - 1);
+        break;
+      case 'rem':
+        updateCartRem(productId);
+        break;
+      default:
+        console.log('somehow, you found a fourth option');
+        break;
+    }
+  }
+
+  // the update cart functions
+  async function updateCartQty(id, newQty) {
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        product_id: id,
+        item_qty: newQty,
+      }),
+    };
+    try {
+      const response = await fetch('/cart', options);
+      const data = await response.json();
+      if (response.status === 200) {
+        console.log(data);
+        getCheckoutData();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function updateCartRem(id) {
+    try {
+      const response = await fetch(`/cart/${id}`, { method: 'DELETE' });
+      console.log(response);
+      if (response.status === 204) {
+        getCheckoutData();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // add listeners for the product controls
+  const allControlBtns = document.querySelectorAll(
+    '.invoice-item-controls-wrapper img',
+  );
+
+  allControlBtns.forEach((btn) => {
+    btn.addEventListener('click', handleInvoiceControlAction);
+  });
 }
 
 function prepareOrder(order) {
-  // this is the last place in line at the moment
+  // this is the last place in line at the moment <-------------------------------
   // orderObject.crazy = true;
   console.log(order);
 }
