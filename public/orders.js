@@ -1,8 +1,35 @@
 const ordersTableBody = document.querySelector('#orders-summary-main tbody');
 const orderReviewModal = document.getElementById('order-review-modal');
-const orderReviewInfoEl = document.getElementById('order-review-info');
+const orderReviewH2 = document.getElementById('order-review-h2');
+const orderReviewCaption = document.getElementById('order-review-caption');
+const orderReviewTbody = document.getElementById('order-review-tbody');
+const orderReviewFoot = document.getElementById('order-review-foot');
+const orderReviewFootSub = document.getElementById('order-review-foot-sub');
+const orderReviewFootShip = document.getElementById('order-review-foot-ship');
+const orderReviewFootTax = document.getElementById('order-review-foot-tax');
+const orderReviewFootTotal = document.getElementById('order-review-foot-total');
 const orderReviewModalBtn = orderReviewModal.querySelector('button');
 
+// this function will reformat the db timestamp
+function formatDate(date) {
+  const newDate = date.split('T')[0];
+  const dateParts = newDate.split('-');
+  const year = dateParts[0];
+  const month = dateParts[1];
+  const day = dateParts[2];
+  return `${month}-${day}-${year}`;
+}
+
+// format the price field
+function formatBucks(price) {
+  // if theres free shipping, show it
+  if (price === 0) return 'FREE';
+
+  const num = parseFloat(price);
+  return `$${num.toFixed(2)}`;
+}
+
+// starts the chain of events to populate the data on the page
 async function getUser() {
   try {
     const response = await fetch('/user/status');
@@ -28,10 +55,10 @@ function displayOrderData(data) {
   let htmlStr = '';
   data.forEach((o) => {
     const tableRow = `
-      <tr data-order-id="${o.order_id}" data-cart-id="${o.cart_id}">
+      <tr data-order-id="${o.order_id}">
         <td>${o.order_id}</td>
-        <td>${o.order_date}</td>
-        <td>${o.order_total}</td>
+        <td>${formatDate(o.order_date)}</td>
+        <td>${formatBucks(o.order_total)}</td>
         <td>${o.payment_method}</td>
       </tr>
     `;
@@ -39,17 +66,54 @@ function displayOrderData(data) {
   });
   ordersTableBody.innerHTML = htmlStr;
   const tableRows = ordersTableBody.querySelectorAll('tr');
+  // add a listener to each row so when clicked, a modal with details opens
   tableRows.forEach((r) => {
     r.addEventListener('click', handleOrderClick);
   });
 }
 
-function handleOrderClick(e) {
+// populate and open the order review modal
+async function handleOrderClick(e) {
   const orderId = e.target.closest('tr').dataset.orderId;
-  const cartId = e.target.closest('tr').dataset.cartId;
-  // will have to fetch the info for the order
-  orderReviewInfoEl.innerText = `The order id is: ${orderId}, and the cart id is : ${cartId}`;
-  orderReviewModal.showModal();
+  let subtotal = 0;
+  try {
+    const response = await fetch(`/order/${orderId}`);
+    const data = await response.json();
+
+    orderReviewH2.textContent = `Order number: ${orderId}`;
+    orderReviewCaption.textContent = `Order was placed on ${formatDate(
+      data.order_date,
+    )} with ${data.payment_method}`;
+
+    let orderItemHtml = '';
+
+    data.order_items.forEach((i) => {
+      subtotal += parseFloat(i.item_subtotal);
+      const newTr = `
+        <tr>
+          <td>${i.item_qty}</td>
+          <td>${i.product_name}</td>
+          <td>${formatBucks(i.product_price)}</td>
+          <td>${formatBucks(i.item_subtotal)}</td>
+        </tr>
+      `;
+      orderItemHtml += newTr;
+    });
+
+    // prepare the footer info and populate
+    orderReviewFootSub.textContent = formatBucks(subtotal);
+    const shipping = subtotal > 99 ? 0 : subtotal * 0.1;
+    orderReviewFootShip.textContent = formatBucks(shipping);
+    const tax = (subtotal + shipping) * 0.08;
+    orderReviewFootTax.textContent = formatBucks(tax);
+    const orderTotal = subtotal + shipping + tax;
+    orderReviewFootTotal.textContent = formatBucks(orderTotal);
+    orderReviewTbody.innerHTML = orderItemHtml;
+
+    orderReviewModal.showModal();
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 orderReviewModalBtn.addEventListener('click', () => {

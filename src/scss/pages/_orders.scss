@@ -10,3 +10,14 @@
     }
   }
 }
+
+#order-review-modal {
+  font-family: $font-para;
+  margin: auto;
+  max-width: 60%;
+  border: 2px solid chartreuse;
+  outline: none;
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+}
