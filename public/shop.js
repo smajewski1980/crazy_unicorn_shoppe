@@ -196,22 +196,32 @@ function filterProducts(categoryId) {
 async function handleAddItem(e) {
   const prodId = e.target.closest('dialog').dataset.prodId;
   const qty = qtyToAdd.value;
-  console.log(qty + ' ' + prodId + 's');
-  // when we are ready to hook it up, we have the product id and the quantity
-  const response = await fetch('/cart', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      product_id: prodId,
-      item_qty: qty,
-    }),
-  });
-  const data = await response.json();
-  setCartItemQty();
-  productDialog.close();
-  console.log(data);
+  try {
+    const response = await fetch(`/products/${prodId}/inventory`);
+    const data = await response.json();
+    const currentQty = data.current_qty;
+    if (currentQty >= qty) {
+      try {
+        const response = await fetch('/cart', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            product_id: prodId,
+            item_qty: qty,
+          }),
+        });
+        const data = await response.json();
+        setCartItemQty();
+        productDialog.close();
+      } catch (error) {
+        console.log(error);
+      }
+    } else throw new Error('not enough in inventory to add that many');
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 btnDialogClose.addEventListener('click', () => {

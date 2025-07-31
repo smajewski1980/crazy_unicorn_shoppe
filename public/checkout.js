@@ -49,7 +49,7 @@ function populateCheckoutData(data) {
   invoiceTableFoot.innerHTML = `<tr><td></td><td></td><td></td><th>Invoice Subtotal</th><td>$${invoiceSubtotal}</td></tr>`;
   // if the order is over 99 dollars, free shipping, woo hoo! otherwise we just tack on 10%
   invoiceTableFoot.innerHTML += `<tr><td></td><td></td><td></td><th>Shipping</th><td>${
-    invoiceSubtotal > 99 ? 'FREE' : `$${invoiceSubtotal * 0.1}`
+    invoiceSubtotal > 99 ? 'FREE' : `$${(invoiceSubtotal * 0.1).toFixed(2)}`
   }</td></tr>`;
 
   // the adds the shipping and the subtotal to use to calculate the tax

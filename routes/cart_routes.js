@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const pool = require(path.join(__dirname, '../database/db_connect'));
 const isAuth = require('../middleware/is_auth');
+// const checkInventory = require('../middleware/checkInventory');
 
 // adds a product to the cart
 router.post('/', isAuth, async (req, res, next) => {
@@ -28,6 +29,9 @@ router.post('/', isAuth, async (req, res, next) => {
     }
     const newCartId = await result.rows[0].cart_id;
     // add the item to the new cart
+
+    // here we need to see if there is enough inventory to add the item to the cart
+
     const addedItem = await pool.query(
       'insert into cart_items(cart_id, product_id, item_qty) values($1, $2, $3) returning *',
       [newCartId, product_id, item_qty],
