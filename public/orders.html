@@ -19,5 +19,27 @@
   <body>
     <h1>Orders Page</h1>
     <a href="/">home</a>
+    <main id="orders-summary-main">
+      <table>
+        <thead>
+          <tr>
+            <th>Order Id</th>
+            <th>Order Date</th>
+            <th>Order Total</th>
+            <th>Order Payment Method</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <dialog
+        id="order-review-modal"
+        closedby="any"
+      >
+        <div id="order-review-modal-content">
+          <p id="order-review-info"></p>
+          <button>Close</button>
+        </div>
+      </dialog>
+    </main>
   </body>
 </html>

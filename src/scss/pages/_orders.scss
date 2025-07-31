@@ -1,0 +1,12 @@
+@use '../abstracts/variables' as *;
+
+#orders-summary-main {
+  table {
+    font-family: $font-para;
+    text-align: center;
+
+    tr:not(:has(th)) {
+      cursor: pointer;
+    }
+  }
+}
