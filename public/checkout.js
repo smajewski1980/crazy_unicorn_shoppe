@@ -6,6 +6,7 @@ async function getCheckoutData() {
   try {
     const response = await fetch('/cart/checkout');
     const data = await response.json();
+    console.log(data);
     populateCheckoutData(data);
   } catch (error) {
     console.log(error);
@@ -71,7 +72,6 @@ function populateCheckoutData(data) {
   orderObject.cart_id = cartId;
   orderObject.user_id = userId;
   orderObject.order_total = total;
-  prepareOrder(orderObject);
 
   // this will handle the updating of the cart/invoice on user input
   function handleInvoiceControlAction(e) {
@@ -142,12 +142,6 @@ function populateCheckoutData(data) {
   });
 }
 
-function prepareOrder(order) {
-  // this is the last place in line at the moment <-------------------------------
-  // orderObject.crazy = true;
-  console.log(order);
-}
-
 const paymentBtns = document.querySelectorAll('.payment-img-wrapper');
 const paymentModal = document.getElementById('payment-modal');
 const paymentH4 = paymentModal.querySelector('h4');
@@ -190,7 +184,7 @@ async function populateShippingSection() {
     confirmCity.value = data.city;
     confirmState.value = data.state;
     confirmZip.value = data.zip_code;
-    console.log(orderObject);
+    // console.log(orderObject);
   } catch (error) {
     console.log(error);
   }
@@ -280,4 +274,46 @@ function handleEditInfo(e) {
   btnEditInfo.addEventListener('click', handleSaveChanges);
 }
 
+const orderCompleteModal = document.getElementById('order-complete-modal');
+const orderModalConf = document.getElementById('order-conf-num');
+const orderModalMsg = document.getElementById('order-conf-msg');
+const btnOrderModal = document.getElementById('btn-order-modal');
+
+function populateOrderCompleteModal(confNum) {
+  orderModalConf.textContent = confNum;
+  orderModalMsg.textContent = `Thank you for your order ${confirmName.value}! You will not receive an email shortly with your order details, but feel free to go to the orders page and see the order details there.`;
+}
+
+async function handlePlaceOrder(e) {
+  e.preventDefault();
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(orderObject),
+  };
+
+  try {
+    const response = await fetch('/order', options);
+    const data = await response.json();
+    if (response.ok) {
+      // get rid of the info for the now complete order
+      const mainEl = document.getElementById('invoice-wrapper');
+      mainEl.style.display = 'none';
+      //poulate the dynamic parts of the modal
+      populateOrderCompleteModal(data.order_id);
+      console.log(data.msg);
+      orderCompleteModal.showModal();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 btnEditInfo.addEventListener('click', handleEditInfo);
+btnPlaceOrder.addEventListener('click', handlePlaceOrder);
+
+btnOrderModal.addEventListener('click', () => {
+  window.location.href = '/index.html';
+});
