@@ -638,6 +638,29 @@ header nav ul li:nth-child(3) a::after {
 header nav #shop-heading-text {
   text-align: center;
 }
+header nav #orders-link {
+  background-image: url("/assets/images/orders-link-bg.jpg");
+  background-size: cover;
+  width: 20rem;
+  margin-inline: auto;
+  padding: 2rem;
+  border-radius: 50px;
+  outline-offset: 2px;
+  background-blend-mode: darken;
+  background-color: rgba(231, 39, 231, 0.75);
+  position: relative;
+  outline: 1px solid chartreuse;
+  box-shadow: inset -2px 0px 0px black, inset 2px 0px 0px black;
+}
+header nav #orders-link::after {
+  content: "View Orders";
+  position: absolute;
+  text-wrap: nowrap;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: chartreuse;
+}
 header .heading-social-wrapper {
   display: flex;
   align-items: center;
