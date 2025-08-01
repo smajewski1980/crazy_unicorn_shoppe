@@ -52,7 +52,7 @@ DROP TABLE IF EXISTS products CASCADE;
 CREATE TABLE products(
   product_id serial PRIMARY KEY,
   product_name varchar(100) NOT NULL,
-  product_description varchar(255) NOT NULL,
+  product_description TEXT NOT NULL,
   product_price DECIMAL NOT NULL,
   image_url varchar(255),
   category_id integer REFERENCES category(category_id) NOT NULL

@@ -63,7 +63,9 @@ class Product {
     descP.classList.add('product-desc');
     descP.textContent = this.productDescription;
     const priceP = document.createElement('p');
-    priceP.innerHTML = `<span>$ </span>${this.productPrice}`;
+    priceP.innerHTML = `<span>$ </span>${
+      this.productPrice === '999' ? 'Call for price' : this.productPrice
+    }`;
     priceP.classList.add('card-prod-price');
     prodInfoDiv.appendChild(descP);
     prodInfoDiv.appendChild(priceP);
