@@ -2,25 +2,63 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Sign Up To Be Crazy</title>
-    <link rel="stylesheet" href="main.css" />
-    <script src="./signin.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="main.css"
+    />
+    <script
+      src="./signin.js"
+      defer
+    ></script>
   </head>
   <body>
-    <h1>the sign in page goes here</h1>
-    <a href="./index.html">Home</a>
-    <form id="form-login">
-      <div id="username-form-group">
-        <label for="username">username</label>
-        <input type="text" name="username" id="username" />
+    <main id="sign-in-page">
+      <h1>Let your presence be known</h1>
+
+      <form id="form-login">
+        <div class="login-form-group">
+          <label for="username">username</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <div class="login-form-group">
+          <label for="password">password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            required
+            min="8"
+            max="20"
+            autocomplete="off"
+            title="the password must be between 8-20 characters"
+          />
+        </div>
+        <button id="btn-login">SIGN IN</button>
+      </form>
+      <p id="signup-link">
+        don't have an account, sign up <a href="./signup.html">here.</a>
+      </p>
+      <p>
+        <a
+          class="home-link"
+          href="./index.html"
+          >Back To Home</a
+        >
+      </p>
+      <div id="punctuation">
+        <p>?!?!?!?</p>
       </div>
-      <div id="password-form-group">
-        <label for="password">password</label>
-        <input type="password" name="password" id="password" />
-      </div>
-      <button id="btn-login">sign in</button>
-    </form>
-    <p>don't have an account, sign up <a href="./signup.html">here.</a></p>
+    </main>
   </body>
 </html>

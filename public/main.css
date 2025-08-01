@@ -32,7 +32,6 @@ body {
 
 a {
   text-decoration: none;
-  font-size: clamp(1rem, 3.5vw, 2rem);
 }
 
 label,
@@ -117,11 +116,11 @@ body {
   max-width: 25ch;
 }
 
-main {
+#home-main {
   display: grid;
   grid-template-columns: 65% 35%;
 }
-main .featured-card {
+#home-main .featured-card {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   outline: 2px solid chartreuse;
   padding: 1rem 1rem 1.5rem;
@@ -132,7 +131,7 @@ main .featured-card {
   position: relative;
   align-self: start;
 }
-main .featured-card .featured-star {
+#home-main .featured-card .featured-star {
   position: absolute;
   right: 2rem;
   top: 1rem;
@@ -140,31 +139,31 @@ main .featured-card .featured-star {
   width: 3vw;
   filter: drop-shadow(2px 2px 0px chartreuse);
 }
-main .featured-card h2 {
+#home-main .featured-card h2 {
   font-family: "Kbcurioussoul-m3W9";
   margin-block-end: 0.5rem;
   margin-inline-start: 1.125rem;
   font-size: clamp(1rem, 2.25vw, 2.25rem);
   color: chartreuse;
 }
-main .featured-card .featured-content-wrapper {
+#home-main .featured-card .featured-content-wrapper {
   display: grid;
   grid-template-columns: 35% 65%;
   font-size: 1.125rem;
   place-items: center;
 }
-main .featured-card .featured-content-wrapper h3 {
+#home-main .featured-card .featured-content-wrapper h3 {
   font-size: clamp(1rem, 1.35vw, 1.35rem);
 }
-main .featured-card .featured-content-wrapper img {
+#home-main .featured-card .featured-content-wrapper img {
   width: 85%;
 }
-main .featured-card .featured-content-wrapper p {
+#home-main .featured-card .featured-content-wrapper p {
   max-width: 35ch;
   margin-block-end: 1rem;
   font-size: clamp(0.75rem, 1vw, 1rem);
 }
-main .featured-card .featured-content-wrapper button {
+#home-main .featured-card .featured-content-wrapper button {
   width: 100%;
   padding-block: 0.5rem;
   background-color: rgba(255, 255, 255, 0.25);
@@ -173,44 +172,44 @@ main .featured-card .featured-content-wrapper button {
   border-width: 1px;
   cursor: pointer;
 }
-main .home-text-wrapper {
+#home-main .home-text-wrapper {
   display: inline;
   padding-inline: 1rem;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: clamp(0.75rem, 1vw, 1rem);
 }
-main .home-text-wrapper .give-away-wrapper {
+#home-main .home-text-wrapper .give-away-wrapper {
   align-self: center;
   justify-self: center;
 }
-main .home-text-wrapper .give-away-wrapper h3 {
+#home-main .home-text-wrapper .give-away-wrapper h3 {
   font-size: clamp(1rem, 1.35vw, 1.35rem);
   color: chartreuse;
   position: relative;
   font-family: "Kbcurioussoul-m3W9";
   text-align: center;
 }
-main .home-text-wrapper .give-away-wrapper h3::after {
+#home-main .home-text-wrapper .give-away-wrapper h3::after {
   content: "*";
   position: absolute;
   margin-inline-start: 0.15rem;
 }
-main .home-text-wrapper .give-away-wrapper h3 span {
+#home-main .home-text-wrapper .give-away-wrapper h3 span {
   font-size: 2rem;
   color: orange;
   vertical-align: middle;
 }
-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper {
+#home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper {
   position: relative;
 }
-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper #give-away-star-1 {
+#home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper #give-away-star-1 {
   position: absolute;
   left: 4rem;
   top: 0.5rem;
   width: 2vw;
   filter: drop-shadow(2px 2px 0px chartreuse);
 }
-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper #give-away-star-2 {
+#home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper #give-away-star-2 {
   position: absolute;
   right: 1rem;
   bottom: -0.5rem;
@@ -218,13 +217,13 @@ main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper #give-away-sta
   rotate: 17deg;
   filter: drop-shadow(2px 2px 0px chartreuse);
 }
-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper img:not(#give-away-star-1):not(#give-away-star-2) {
+#home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper img:not(#give-away-star-1):not(#give-away-star-2) {
   width: 250px;
   margin-inline: auto;
   border-radius: 50px 0 50px 0;
   outline: 2px solid chartreuse;
 }
-main .home-text-wrapper .give-away-wrapper input {
+#home-main .home-text-wrapper .give-away-wrapper input {
   display: block;
   width: 85%;
   margin-inline: auto;
@@ -236,11 +235,11 @@ main .home-text-wrapper .give-away-wrapper input {
   border: none;
   outline: 2px solid chartreuse;
 }
-main .home-text-wrapper .give-away-wrapper input::placeholder {
+#home-main .home-text-wrapper .give-away-wrapper input::placeholder {
   font-family: "Kbcurioussoul-m3W9";
   opacity: 0.65;
 }
-main .home-text-wrapper .give-away-wrapper .give-away-disclaimer {
+#home-main .home-text-wrapper .give-away-wrapper .give-away-disclaimer {
   text-align: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 0.85rem;
@@ -587,6 +586,57 @@ p {
 }
 #order-review-modal::backdrop {
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+#sign-in-page {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  min-height: 100vh;
+}
+#sign-in-page h1 {
+  text-align: center;
+  font-size: clamp(1.5rem, 0.852rem + 3.457vw, 5rem);
+  text-wrap: balance;
+  margin-block-end: 2rem;
+}
+#sign-in-page form {
+  display: grid;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+#sign-in-page form .login-form-group {
+  width: clamp(18.75rem, 17.593rem + 6.173vw, 25rem);
+  display: grid;
+  text-align: center;
+}
+#sign-in-page form .login-form-group input {
+  text-align: inherit;
+  padding-block: 0.35rem;
+  margin-block-start: 0.25rem;
+  border-radius: 15px 0px 15px;
+  outline-offset: 3px;
+}
+#sign-in-page form .login-form-group input:focus-within:invalid {
+  outline: 3px solid red;
+}
+#sign-in-page form .login-form-group input:focus-within:valid {
+  outline: 3px solid lime;
+}
+#sign-in-page form #btn-login {
+  margin-block: 0.75rem;
+  padding-block: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  border: 2px solid chartreuse;
+  border-radius: 15px 0px 15px;
+}
+#sign-in-page #signup-link a {
+  font-size: clamp(1rem, 3.5vw, 2rem);
 }
 
 body {

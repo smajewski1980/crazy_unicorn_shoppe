@@ -1,0 +1,60 @@
+@use '../abstracts/variables' as *;
+
+#sign-in-page {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  min-height: 100vh;
+
+  h1 {
+    text-align: center;
+    font-size: clamp(1.5rem, 0.852rem + 3.457vw, 5rem);
+    text-wrap: balance;
+    margin-block-end: 2rem;
+  }
+
+  form {
+    display: grid;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-family: $font-para;
+
+    .login-form-group {
+      width: clamp(18.75rem, 17.593rem + 6.173vw, 25rem);
+      display: grid;
+      text-align: center;
+
+      input {
+        text-align: inherit;
+        padding-block: 0.35rem;
+        margin-block-start: 0.25rem;
+        border-radius: 15px 0px 15px;
+        outline-offset: 3px;
+        &:focus-within:invalid {
+          outline: 3px solid red;
+        }
+        &:focus-within:valid {
+          outline: 3px solid lime;
+        }
+      }
+    }
+
+    #btn-login {
+      margin-block: 0.75rem;
+      padding-block: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(4px);
+      border: 2px solid chartreuse;
+      border-radius: 15px 0px 15px;
+    }
+  }
+
+  #signup-link {
+    a {
+      font-size: clamp(1rem, 3.5vw, 2rem);
+    }
+  }
+}
