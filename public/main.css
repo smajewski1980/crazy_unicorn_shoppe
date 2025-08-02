@@ -588,15 +588,19 @@ p {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+body:has(#sign-in-page) {
+  overflow-y: hidden;
+}
+
 #sign-in-page {
   display: grid;
   place-content: center;
   justify-items: center;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 #sign-in-page h1 {
   text-align: center;
-  font-size: clamp(1.5rem, 0.852rem + 3.457vw, 5rem);
+  font-size: clamp(1.5rem, 0.852rem + 3.457vw, 4rem);
   text-wrap: balance;
   margin-block-end: 2rem;
 }
@@ -634,6 +638,16 @@ p {
   backdrop-filter: blur(4px);
   border: 2px solid chartreuse;
   border-radius: 15px 0px 15px;
+}
+#sign-in-page #home-link {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  outline: 2px solid chartreuse;
+  border-radius: 15px 0px 15px;
+}
+#sign-in-page #home-link a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
 }
 #sign-in-page #signup-link a {
   font-size: clamp(1rem, 3.5vw, 2rem);
