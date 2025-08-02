@@ -10,6 +10,7 @@ const prodDialogPrice = document.getElementById('product-dialog-price');
 const prodDialogInStock = document.getElementById('product-dialog-in-stock');
 const btnAddToCart = document.getElementById('btn-product-dialog-add');
 const qtyToAdd = document.getElementById('product-add-qty');
+const categoryQtySpan = document.getElementById('qty-span');
 
 // tbd if this array with the Product objects was needed or not
 const productObjects = [];
@@ -160,10 +161,12 @@ async function getAllProducts() {
   productObjects.forEach((p) => {
     p.addProductToHTML();
   });
+  console.log(productObjects.length);
+  categoryQtySpan.textContent = `(${productObjects.length})`;
 }
 
 const h1Elem = document.querySelector('h1');
-const h2Elem = document.querySelector('h2');
+const h2Elem = document.getElementById('cat-span');
 
 function runH1Animation() {
   h1Elem.classList.add('h1-animation');
@@ -174,7 +177,7 @@ function runH1Animation() {
 
 // updates the h2 that shows the category of the products
 function updateCardsTitle(category) {
-  h2Elem.innerText = category;
+  h2Elem.textContent = category;
 }
 
 // filter the productObjects and add them to the html
@@ -188,6 +191,8 @@ function filterProducts(categoryId) {
   const filteredProducts = productObjects.filter(
     (p) => p.categoryId === parseInt(categoryId),
   );
+
+  categoryQtySpan.textContent = `(${filteredProducts.length})`;
 
   filteredProducts.forEach((p) => {
     p.addProductToHTML();
