@@ -1,0 +1,13 @@
+@use '../abstracts/mixins' as m;
+
+h1 {
+  @include m.h1Styles;
+}
+
+#sign-up-form {
+  @include m.formStyles;
+
+  .sign-up-input-wrapper {
+    @include m.formGroup;
+  }
+}

@@ -1,0 +1,30 @@
+@use './variables' as *;
+
+@mixin h1Styles {
+  text-align: center;
+  font-size: clamp(1.5rem, 0.852rem + 3.457vw, 4rem);
+  text-wrap: balance;
+  margin-block-end: 2rem;
+}
+
+@mixin formStyles {
+  display: grid;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-family: $font-para;
+}
+
+@mixin formGroup {
+  width: clamp(18.75rem, 17.593rem + 6.173vw, 25rem);
+  display: grid;
+  text-align: center;
+}
+
+@mixin formInput {
+  text-align: inherit;
+  padding-block: 0.35rem;
+  margin-block-start: 0.25rem;
+  border-radius: 15px 0px 15px;
+  outline-offset: 3px;
+}
