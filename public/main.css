@@ -603,6 +603,10 @@ body:has(#sign-in-page) {
   font-size: clamp(2rem, 0.852rem + 3.457vw, 4rem);
   text-wrap: balance;
   margin-block-end: 2rem;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, transparent 15%, rgba(128, 255, 0, 0.65) 50%, transparent 85%);
+  border-image-slice: 1;
+  padding-block-end: 1.25rem;
 }
 #sign-in-page form {
   display: grid;
@@ -661,12 +665,19 @@ body:has(#sign-in-page) {
 
 #sign-up-body {
   overflow-y: hidden;
+  align-content: center;
 }
 #sign-up-body h1 {
   text-align: center;
   font-size: clamp(2rem, 0.852rem + 3.457vw, 4rem);
   text-wrap: balance;
   margin-block-end: 2rem;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, transparent 15%, rgba(128, 255, 0, 0.65) 50%, transparent 85%);
+  border-image-slice: 1;
+  padding-block-end: 1.25rem;
+  width: fit-content;
+  margin-inline: auto;
 }
 #sign-up-body #sign-up-form {
   display: flex;
