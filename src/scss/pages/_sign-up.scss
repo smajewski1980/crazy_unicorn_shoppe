@@ -1,7 +1,7 @@
+@use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as m;
 
 #sign-up-body {
-  overflow-y: hidden;
   align-content: center;
 
   h1 {
@@ -9,31 +9,73 @@
     width: fit-content;
     margin-inline: auto;
   }
+
   #sign-up-form {
     @include m.formStyles(flex);
-    gap: 2rem;
+    column-gap: 2rem;
     flex-wrap: wrap;
-    margin-block-end: 2rem;
+    margin-block: -1rem 1rem;
+
+    #sign-up-form-left-col,
+    #sign-up-form-right-col {
+      display: grid;
+      gap: 0.5rem;
+    }
 
     .sign-up-input-wrapper {
-      @include m.formGroup;
+      @include m.formGroup(grid);
 
       input {
         @include m.formInput;
       }
     }
+  }
+  fieldset {
+    border-color: chartreuse;
+    padding-inline: 1rem;
+    padding-block-end: 0.5rem;
+    width: fit-content;
+    margin-inline: auto;
+    // margin-block-end: 1rem;
 
-    button {
-      flex-basis: calc(60% + 2rem);
-      padding-block: 0.5rem;
-      border-radius: 15px 0px 15px;
-      cursor: pointer;
+    legend {
+      font-family: $font-para;
+      font-weight: 600;
+      font-size: 1rem;
+      padding-inline: 0.25rem;
+      padding-block-end: 0.25rem;
+    }
+
+    .sign-up-input-wrapper {
+      @include m.formGroup(flex);
+      font-size: 1rem;
+      gap: 0.5rem;
+      justify-content: start;
+      max-width: fit-content;
+
+      input {
+        accent-color: chartreuse;
+      }
     }
   }
+
+  button {
+    @include m.btn-form;
+    margin-inline: auto;
+    width: 200px;
+    padding: 0.75rem 1.5rem;
+    display: block;
+  }
+
   #home-link {
-    text-align: center;
-    width: 100%;
+    @include m.btn-home-link;
     display: inline-block;
-    font-size: 2rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-block-start: 1.5rem;
+
+    a {
+      @include m.btn-link;
+    }
   }
 }

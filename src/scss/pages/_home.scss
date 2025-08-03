@@ -4,7 +4,7 @@
   inset: 0;
   position: absolute;
   z-index: -99;
-  overflow-x: clip;
+  overflow: clip;
   pointer-events: none;
 
   p {
@@ -14,6 +14,7 @@
     rotate: -25deg;
     opacity: 0.1;
     position: absolute;
+    padding-block-end: 1rem;
   }
 }
 

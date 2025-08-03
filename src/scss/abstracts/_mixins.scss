@@ -24,9 +24,9 @@
   font-family: $font-para;
 }
 
-@mixin formGroup {
+@mixin formGroup($display) {
   width: clamp(18.75rem, 17.593rem + 6.173vw, 25rem);
-  display: grid;
+  display: $display;
   text-align: center;
 }
 
@@ -36,4 +36,28 @@
   margin-block-start: 0.25rem;
   border-radius: 15px 0px 15px;
   outline-offset: 3px;
+  box-shadow: 1px 1px 2px chartreuse;
+}
+
+@mixin btn-home-link {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  border-radius: 15px 0px 15px;
+  outline: 2px solid chartreuse;
+}
+
+@mixin btn-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+}
+
+@mixin btn-form {
+  margin-block: 0.75rem;
+  cursor: pointer;
+  border-radius: 15px 0px 15px;
+  backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+  pointer-events: none;
 }

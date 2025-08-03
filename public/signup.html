@@ -104,16 +104,39 @@
           />
         </div>
       </div>
-      <button id="btn-signup">Sign up</button>
-      <!-- <p>later add a question or two here like get newsletter or something</p> -->
     </form>
 
-    <a
-      id="home-link"
-      href="./index.html"
-      >Back to home</a
-    >
+    <button id="btn-signup">Sign up</button>
 
+    <fieldset>
+      <legend>Get bothered with</legend>
+      <div class="sign-up-input-wrapper">
+        <input
+          type="checkbox"
+          name="newsletter"
+          id="sign-up-newsletter"
+        />
+        <label for="sign-up-newsletter">an hourly newsletter</label>
+      </div>
+      <div class="sign-up-input-wrapper">
+        <input
+          type="checkbox"
+          name="sales"
+          id="sign-up-sales"
+        />
+        <label for="sign-up-newsletter">crap on sale from our friends</label>
+      </div>
+    </fieldset>
+
+    <p id="home-link">
+      <a
+        class="home-link"
+        href="./index.html"
+        ><span>Back To Home</span></a
+      >
+    </p>
+
+    <!-- doing this this way makes overflow, need to make a bg image -->
     <div id="punctuation">
       <p>?!?!?!?</p>
     </div>
