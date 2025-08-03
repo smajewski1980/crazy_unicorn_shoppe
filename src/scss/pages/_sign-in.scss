@@ -16,7 +16,7 @@ body:has(#sign-in-page) {
   }
 
   form {
-    @include m.formStyles;
+    @include m.formStyles(grid);
 
     .login-form-group {
       @include m.formGroup;

@@ -2,13 +2,13 @@
 
 @mixin h1Styles {
   text-align: center;
-  font-size: clamp(1.5rem, 0.852rem + 3.457vw, 4rem);
+  font-size: clamp(2rem, 0.852rem + 3.457vw, 4rem);
   text-wrap: balance;
   margin-block-end: 2rem;
 }
 
-@mixin formStyles {
-  display: grid;
+@mixin formStyles($display) {
+  display: $display;
   justify-content: center;
   gap: 0.5rem;
   font-size: 1.5rem;

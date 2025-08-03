@@ -16,93 +16,106 @@
       defer
     ></script>
   </head>
-  <body>
+  <body id="sign-up-body">
     <h1>Sign up for craziness!</h1>
 
     <form id="sign-up-form">
-      <div class="sign-up-input-wrapper">
-        <label for="input-name">username</label>
-        <input
-          type="text"
-          name="name"
-          id="input-name"
-        />
+      <div id="sign-up-form-left-col">
+        <div class="sign-up-input-wrapper">
+          <label for="input-name">username</label>
+          <input
+            type="text"
+            name="name"
+            id="input-name"
+          />
+        </div>
+        <div class="sign-up-input-wrapper">
+          <label for="input-password">password</label>
+          <input
+            type="password"
+            name="password"
+            id="input-password"
+          />
+        </div>
+        <div class="sign-up-input-wrapper">
+          <label for="input-conf-password">confirm password</label>
+          <input
+            type="password"
+            name="conf_password"
+            id="input-conf-password"
+          />
+        </div>
+        <div class="sign-up-input-wrapper">
+          <label for="input-email">email</label>
+          <input
+            type="email"
+            name="email"
+            id="input-email"
+          />
+        </div>
+        <div class="sign-up-input-wrapper">
+          <label for="input-phone">phone</label>
+          <input
+            type="tel"
+            name="phone"
+            id="input-phone"
+          />
+        </div>
       </div>
-      <div class="sign-up-input-wrapper">
-        <label for="input-password">password</label>
-        <input
-          type="password"
-          name="password"
-          id="input-password"
-        />
-      </div>
-      <div class="sign-up-input-wrapper">
-        <label for="input-conf-password">confirm password</label>
-        <input
-          type="password"
-          name="conf_password"
-          id="input-conf-password"
-        />
-      </div>
-      <div class="sign-up-input-wrapper">
-        <label for="input-email">email</label>
-        <input
-          type="email"
-          name="email"
-          id="input-email"
-        />
-      </div>
-      <div class="sign-up-input-wrapper">
-        <label for="input-phone">phone</label>
-        <input
-          type="tel"
-          name="phone"
-          id="input-phone"
-        />
-      </div>
-      <div class="sign-up-input-wrapper">
-        <label for="input-address-1">address line 1</label>
-        <input
-          type="text"
-          name="address_line_1"
-          id="input-address-1"
-        />
-      </div>
-      <div class="sign-up-input-wrapper">
-        <label for="input-address-2">address line 2</label>
-        <input
-          type="text"
-          name="address_line_2"
-          id="input-address-2"
-        />
-      </div>
-      <div class="sign-up-input-wrapper">
-        <label for="input-city">city</label>
-        <input
-          type="text"
-          name="city"
-          id="input-city"
-        />
-      </div>
-      <div class="sign-up-input-wrapper">
-        <label for="input-state">state</label>
-        <input
-          type="text"
-          name="state"
-          id="input-state"
-        />
-      </div>
-      <div class="sign-up-input-wrapper">
-        <label for="input-zip">zip code</label>
-        <input
-          type="text"
-          name="zip_code"
-          id="input-zip"
-        />
+      <div id="sign-up-form-right-col">
+        <div class="sign-up-input-wrapper">
+          <label for="input-address-1">address line 1</label>
+          <input
+            type="text"
+            name="address_line_1"
+            id="input-address-1"
+          />
+        </div>
+        <div class="sign-up-input-wrapper">
+          <label for="input-address-2">address line 2</label>
+          <input
+            type="text"
+            name="address_line_2"
+            id="input-address-2"
+          />
+        </div>
+        <div class="sign-up-input-wrapper">
+          <label for="input-city">city</label>
+          <input
+            type="text"
+            name="city"
+            id="input-city"
+          />
+        </div>
+        <div class="sign-up-input-wrapper">
+          <label for="input-state">state</label>
+          <input
+            type="text"
+            name="state"
+            id="input-state"
+          />
+        </div>
+        <div class="sign-up-input-wrapper">
+          <label for="input-zip">zip code</label>
+          <input
+            type="text"
+            name="zip_code"
+            id="input-zip"
+          />
+        </div>
       </div>
       <button id="btn-signup">Sign up</button>
       <!-- <p>later add a question or two here like get newsletter or something</p> -->
     </form>
-    <a href="./index.html">Back to home</a>
+
+    <a
+      id="home-link"
+      href="./index.html"
+      >Back to home</a
+    >
+
+    <div id="punctuation">
+      <p>?!?!?!?</p>
+    </div>
   </body>
 </html>

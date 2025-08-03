@@ -1,13 +1,36 @@
 @use '../abstracts/mixins' as m;
 
-h1 {
-  @include m.h1Styles;
-}
+#sign-up-body {
+  overflow-y: hidden;
 
-#sign-up-form {
-  @include m.formStyles;
+  h1 {
+    @include m.h1Styles;
+  }
+  #sign-up-form {
+    @include m.formStyles(flex);
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-block-end: 2rem;
 
-  .sign-up-input-wrapper {
-    @include m.formGroup;
+    .sign-up-input-wrapper {
+      @include m.formGroup;
+
+      input {
+        @include m.formInput;
+      }
+    }
+
+    button {
+      flex-basis: calc(60% + 2rem);
+      padding-block: 0.5rem;
+      border-radius: 15px 0px 15px;
+      cursor: pointer;
+    }
+  }
+  #home-link {
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    font-size: 2rem;
   }
 }
