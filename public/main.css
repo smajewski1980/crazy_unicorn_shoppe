@@ -573,11 +573,42 @@ p {
   grid-column: 1/-1;
 }
 
-#orders-summary-main table {
+#orders-body {
+  align-content: center;
+}
+#orders-body h1 {
+  text-align: center;
+  font-size: clamp(2rem, 0.852rem + 3.457vw, 4rem);
+  text-wrap: balance;
+  margin-block-end: 2rem;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, transparent 15%, rgba(128, 255, 0, 0.65) 50%, transparent 85%);
+  border-image-slice: 1;
+  padding-block-end: 1.25rem;
+}
+#orders-body #orders-summary-main {
+  width: 100%;
+  margin-inline: auto;
+}
+#orders-body #orders-summary-main table {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   text-align: center;
+  columns: 25%;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.5rem;
 }
-#orders-summary-main table tr:not(:has(th)) {
+#orders-body #orders-summary-main table thead tr th {
+  border-bottom: 1px solid chartreuse;
+  padding-block-end: 1.5rem;
+}
+#orders-body #orders-summary-main table tbody tr:first-child td {
+  padding-block-start: 1.5rem;
+}
+#orders-body #orders-summary-main table tbody tr td {
+  padding-block-end: 0.5rem;
+}
+#orders-body #orders-summary-main table tr:not(:has(th)) {
   cursor: pointer;
 }
 

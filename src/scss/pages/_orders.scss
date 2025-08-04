@@ -1,12 +1,44 @@
 @use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as m;
 
-#orders-summary-main {
-  table {
-    font-family: $font-para;
-    text-align: center;
+#orders-body {
+  align-content: center;
 
-    tr:not(:has(th)) {
-      cursor: pointer;
+  h1 {
+    @include m.h1Styles;
+  }
+
+  #orders-summary-main {
+    width: 100%;
+    margin-inline: auto;
+
+    table {
+      font-family: $font-para;
+      text-align: center;
+      columns: 25%;
+      width: 100%;
+      border-collapse: collapse;
+      // clamp this later
+      font-size: 1.5rem;
+
+      thead tr th {
+        border-bottom: 1px solid chartreuse;
+        padding-block-end: 1.5rem;
+      }
+
+      tbody {
+        tr:first-child td {
+          padding-block-start: 1.5rem;
+        }
+
+        tr td {
+          padding-block-end: 0.5rem;
+        }
+      }
+
+      tr:not(:has(th)) {
+        cursor: pointer;
+      }
     }
   }
 }

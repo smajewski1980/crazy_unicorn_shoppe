@@ -16,9 +16,9 @@
       defer
     ></script>
   </head>
-  <body>
+  <body id="orders-body">
     <h1>Orders Page</h1>
-    <a href="/">home</a>
+
     <main id="orders-summary-main">
       <table>
         <thead>
@@ -31,55 +31,57 @@
         </thead>
         <tbody></tbody>
       </table>
-      <dialog
-        id="order-review-modal"
-        closedby="any"
-      >
-        <div id="order-review-modal-content">
-          <h2 id="order-review-h2"></h2>
-          <div id="order-review-info">
-            <table>
-              <caption id="order-review-caption"></caption>
-              <thead>
-                <tr>
-                  <th>Quantity</th>
-                  <th>Product Name</th>
-                  <th>Price</th>
-                  <th>Product Subtotal</th>
-                </tr>
-              </thead>
-              <tbody id="order-review-tbody"></tbody>
-              <tfoot id="order-review-foot">
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <th>subtotal</th>
-                  <td id="order-review-foot-sub"></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <th>shipping</th>
-                  <td id="order-review-foot-ship"></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <th>sales tax</th>
-                  <td id="order-review-foot-tax"></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <th>total</th>
-                  <td id="order-review-foot-total"></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-          <button>Close</button>
-        </div>
-      </dialog>
     </main>
+
+    <dialog
+      id="order-review-modal"
+      closedby="any"
+    >
+      <div id="order-review-modal-content">
+        <h2 id="order-review-h2"></h2>
+        <div id="order-review-info">
+          <table>
+            <caption id="order-review-caption"></caption>
+            <thead>
+              <tr>
+                <th>Quantity</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Product Subtotal</th>
+              </tr>
+            </thead>
+            <tbody id="order-review-tbody"></tbody>
+            <tfoot id="order-review-foot">
+              <tr>
+                <td></td>
+                <td></td>
+                <th>subtotal</th>
+                <td id="order-review-foot-sub"></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <th>shipping</th>
+                <td id="order-review-foot-ship"></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <th>sales tax</th>
+                <td id="order-review-foot-tax"></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <th>total</th>
+                <td id="order-review-foot-total"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <button>Close</button>
+      </div>
+    </dialog>
+    <a href="/">home</a>
   </body>
 </html>
