@@ -30,9 +30,7 @@
     }
 
     &:valid #btn-login {
-      border: 2px solid chartreuse;
-      pointer-events: auto;
-      color: rgba(0, 0, 0);
+      @include m.btn-submit-form-valid;
     }
 
     #btn-login {

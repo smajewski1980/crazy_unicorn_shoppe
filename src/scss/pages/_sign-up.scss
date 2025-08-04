@@ -14,7 +14,7 @@
     @include m.formStyles(flex);
     column-gap: 2rem;
     flex-wrap: wrap;
-    margin-block: -1rem 1rem;
+    margin-block: -1rem 1.5rem;
 
     #sign-up-form-left-col,
     #sign-up-form-right-col {
@@ -27,55 +27,69 @@
 
       input {
         @include m.formInput;
+
+        &:focus-within:invalid {
+          outline: 3px solid red;
+        }
+        &.validity-style:focus-within:valid {
+          outline: 3px solid lime;
+        }
       }
     }
-  }
-  fieldset {
-    border-color: chartreuse;
-    padding-inline: 1rem;
-    padding-block-end: 0.5rem;
-    width: fit-content;
-    margin-inline: auto;
-    // margin-block-end: 1rem;
-
-    legend {
-      font-family: $font-para;
-      font-weight: 600;
-      font-size: 1rem;
-      padding-inline: 0.25rem;
-      padding-block-end: 0.25rem;
+    &:valid #btn-signup {
+      @include m.btn-submit-form-valid;
     }
 
-    .sign-up-input-wrapper {
-      @include m.formGroup(flex);
-      font-size: 1rem;
-      gap: 0.5rem;
-      justify-content: start;
-      max-width: fit-content;
+    fieldset {
+      border-color: chartreuse;
+      padding-inline: 1rem;
+      padding-block-end: 0.5rem;
+      // width: fit-content;
+      margin-inline: 15rem;
+      margin-block: 1.5rem;
 
-      input {
-        accent-color: chartreuse;
+      legend {
+        font-family: $font-para;
+        font-weight: 600;
+        font-size: 1rem;
+        padding-inline: 0.25rem;
+        padding-block-end: 0.25rem;
+      }
+
+      .sign-up-input-wrapper {
+        @include m.formGroup(flex);
+        font-size: 1rem;
+        gap: 0.5rem;
+        justify-content: start;
+        max-width: fit-content;
+
+        input {
+          accent-color: chartreuse;
+        }
       }
     }
-  }
 
-  button {
-    @include m.btn-form;
-    margin-inline: auto;
-    width: 200px;
-    padding: 0.75rem 1.5rem;
-    display: block;
+    #btn-signup {
+      @include m.btn-form;
+      margin-inline: auto;
+      width: 200px;
+      padding: 0.75rem 1.5rem;
+      display: block;
+      margin-block-end: 0rem;
+    }
   }
-
   #home-link {
     @include m.btn-home-link;
     display: inline-block;
     margin-left: 50%;
     transform: translateX(-50%);
-    margin-block-start: 1.5rem;
+    // margin-block-start: 1.5rem;
 
     a {
       @include m.btn-link;
     }
   }
 }
+
+// need to do the validation styles
+// need to reactivate the sign up btn when form:valid

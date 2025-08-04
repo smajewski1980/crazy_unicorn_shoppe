@@ -24,17 +24,27 @@
         <div class="sign-up-input-wrapper">
           <label for="input-name">username</label>
           <input
+            class="validity-style"
             type="text"
             name="name"
             id="input-name"
+            required
+            title="Username must be silly."
+            autocomplete="off"
           />
         </div>
         <div class="sign-up-input-wrapper">
           <label for="input-password">password</label>
           <input
+            class="validity-style"
             type="password"
             name="password"
             id="input-password"
+            required
+            minlength="8"
+            maxlength="20"
+            autocomplete="off"
+            title="the password must be between 8-20 characters"
           />
         </div>
         <div class="sign-up-input-wrapper">
@@ -43,22 +53,37 @@
             type="password"
             name="conf_password"
             id="input-conf-password"
+            required
+            minlength="8"
+            maxlength="20"
+            autocomplete="off"
+            title="the password must be between 8-20 characters"
           />
         </div>
         <div class="sign-up-input-wrapper">
           <label for="input-email">email</label>
           <input
+            class="validity-style"
             type="email"
             name="email"
             id="input-email"
+            required
+            pattern="^[a-zA-Z0-9._%+]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$"
+            title="please include an email address"
+            autocomplete="off"
           />
         </div>
         <div class="sign-up-input-wrapper">
           <label for="input-phone">phone</label>
           <input
+            class="validity-style"
             type="tel"
             name="phone"
             id="input-phone"
+            required
+            pattern="^\(?1?-?([0-9]{3})\)?[\-. ]?([0-9]{3})[\-. ]?([0-9]{4})$"
+            title="this is a silly site, please don't use your real phone number."
+            autocomplete="off"
           />
         </div>
       </div>
@@ -66,67 +91,86 @@
         <div class="sign-up-input-wrapper">
           <label for="input-address-1">address line 1</label>
           <input
+            class="validity-style"
             type="text"
             name="address_line_1"
             id="input-address-1"
+            required
+            title="use your imaginary house in the hills"
+            autocomplete="off"
           />
         </div>
         <div class="sign-up-input-wrapper">
           <label for="input-address-2">address line 2</label>
           <input
+            class="validity-style"
             type="text"
             name="address_line_2"
             id="input-address-2"
+            title="this field is optional"
+            autocomplete="off"
           />
         </div>
         <div class="sign-up-input-wrapper">
           <label for="input-city">city</label>
           <input
+            class="validity-style"
             type="text"
             name="city"
             id="input-city"
+            required
+            autocomplete="off"
           />
         </div>
         <div class="sign-up-input-wrapper">
           <label for="input-state">state</label>
           <input
+            class="validity-style"
             type="text"
             name="state"
             id="input-state"
+            required
+            autocomplete="off"
           />
         </div>
         <div class="sign-up-input-wrapper">
           <label for="input-zip">zip code</label>
           <input
+            class="validity-style"
             type="text"
             name="zip_code"
             id="input-zip"
+            required
+            autocomplete="off"
           />
         </div>
       </div>
+      <div class="field-btn-wrapper">
+        <fieldset>
+          <legend>Get bothered with</legend>
+          <div class="sign-up-input-wrapper">
+            <input
+              type="checkbox"
+              name="newsletter"
+              id="sign-up-newsletter"
+              autocomplete="off"
+            />
+            <label for="sign-up-newsletter">an hourly newsletter</label>
+          </div>
+          <div class="sign-up-input-wrapper">
+            <input
+              type="checkbox"
+              name="sales"
+              id="sign-up-sales"
+              autocomplete="off"
+            />
+            <label for="sign-up-sales">crap on sale from our friends</label>
+          </div>
+        </fieldset>
+
+        <button id="btn-signup">Sign up</button>
+      </div>
     </form>
-
-    <button id="btn-signup">Sign up</button>
-
-    <fieldset>
-      <legend>Get bothered with</legend>
-      <div class="sign-up-input-wrapper">
-        <input
-          type="checkbox"
-          name="newsletter"
-          id="sign-up-newsletter"
-        />
-        <label for="sign-up-newsletter">an hourly newsletter</label>
-      </div>
-      <div class="sign-up-input-wrapper">
-        <input
-          type="checkbox"
-          name="sales"
-          id="sign-up-sales"
-        />
-        <label for="sign-up-newsletter">crap on sale from our friends</label>
-      </div>
-    </fieldset>
 
     <p id="home-link">
       <a

@@ -61,3 +61,9 @@
   font-weight: 600;
   pointer-events: none;
 }
+
+@mixin btn-submit-form-valid {
+  border: 2px solid chartreuse;
+  pointer-events: auto;
+  color: rgba(0, 0, 0);
+}
