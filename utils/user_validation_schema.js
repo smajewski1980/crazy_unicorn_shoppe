@@ -16,13 +16,6 @@ const userValidationSchema = {
       },
       errorMessage: 'The password must be between 8 and 20 characters.',
     },
-    optional: {
-      // Options to customize optional behavior
-      options: {
-        nullable: true, // Treat null values as optional
-        checkFalsy: true, // Treat falsy values (e.g., "", 0, false) as optional
-      },
-    },
     escape: true,
   },
   email: {

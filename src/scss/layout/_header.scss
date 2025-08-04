@@ -1,6 +1,7 @@
 @use '../abstracts/variables' as *;
 
 header {
+  margin-block-start: 2rem;
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-areas:
@@ -190,11 +191,8 @@ header {
 }
 
 #shop-page-header {
-  display: flex;
   .logo-wrapper {
-    flex-basis: 35vw;
-    margin-inline-start: 2rem;
-    align-self: center;
+    align-self: start;
   }
   nav {
     padding-inline-start: 2.25rem;

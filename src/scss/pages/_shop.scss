@@ -1,5 +1,11 @@
 @use '../abstracts/variables' as *;
 
+#shop-page-header {
+  .logo-wrapper {
+    align-self: start;
+  }
+}
+
 #shopping-sub-head {
   border-top: 1px solid rgba(128, 255, 0, 0.5);
   border-bottom: 1px solid rgba(128, 255, 0, 0.5);
