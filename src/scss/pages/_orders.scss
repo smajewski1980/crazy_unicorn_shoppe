@@ -61,9 +61,16 @@
 #order-review-modal {
   font-family: $font-para;
   margin: auto;
+  // left off here <--------- trying to make the modal wider
   max-width: 60%;
-  border: 2px solid chartreuse;
-  outline: none;
+  background-image: radial-gradient(rgb(243, 160, 243), rgb(192, 84, 192));
+  border: 3px solid chartreuse;
+  border-radius: 15px 0px 15px;
+  box-shadow: 0px 0px 25px #7fff0082;
+  outline: 1px solid chartreuse;
+  outline-offset: -1rem;
+  padding: 2rem;
+
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.6);
   }
