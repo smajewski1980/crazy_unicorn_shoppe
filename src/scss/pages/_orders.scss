@@ -61,17 +61,62 @@
 #order-review-modal {
   font-family: $font-para;
   margin: auto;
-  // left off here <--------- trying to make the modal wider
-  max-width: 60%;
   background-image: radial-gradient(rgb(243, 160, 243), rgb(192, 84, 192));
   border: 3px solid chartreuse;
-  border-radius: 15px 0px 15px;
+  border-radius: 30px 0px 30px;
   box-shadow: 0px 0px 25px #7fff0082;
   outline: 1px solid chartreuse;
   outline-offset: -1rem;
-  padding: 2rem;
+  padding: 3rem 5rem;
 
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  h2 {
+    text-align: center;
+    font-size: clamp(1.5rem, 2.75vw, 3rem);
+    margin-block-end: 0.5rem;
+  }
+
+  #order-review-info {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+
+    table {
+      text-align: center;
+      columns: 25%;
+      width: 1000px;
+      border-collapse: collapse;
+
+      caption {
+        padding-block-end: 1rem;
+      }
+
+      tr td {
+        padding-block: 0.25rem;
+      }
+
+      tbody {
+        tr:last-child td {
+          border-bottom: 1px solid chartreuse;
+          padding-block-end: 0.75rem;
+        }
+      }
+
+      tfoot {
+        tr:first-child td {
+          padding-block-start: 0.75rem;
+        }
+      }
+    }
+  }
+  button {
+    width: 50%;
+    padding-block: 1rem;
+    margin-block-start: 2rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    @include m.regular-button;
+    box-shadow: 0px 0px 15px #7fff0082;
   }
 }
