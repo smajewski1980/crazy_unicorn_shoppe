@@ -6,6 +6,7 @@
 
   h1 {
     @include m.h1Styles;
+    padding-block-start: 2rem;
   }
 
   #orders-summary-main {
@@ -23,22 +24,36 @@
 
       thead tr th {
         border-bottom: 1px solid chartreuse;
-        padding-block-end: 1.5rem;
+        padding-block-end: 2rem;
       }
 
       tbody {
         tr:first-child td {
-          padding-block-start: 1.5rem;
+          padding-block-start: 0.75rem;
+        }
+        tr:last-child td {
+          border-bottom: 1px solid chartreuse;
+          padding-block-end: 0.75rem;
         }
 
         tr td {
-          padding-block-end: 0.5rem;
+          padding-block: 0.5rem;
+          border-bottom: 1px dotted chartreuse;
         }
       }
 
       tr:not(:has(th)) {
         cursor: pointer;
       }
+    }
+  }
+  #home-link {
+    @include m.btn-home-link;
+    width: fit-content;
+    margin-inline: auto;
+    margin-block-start: 1.5rem;
+    a {
+      @include m.btn-link;
     }
   }
 }

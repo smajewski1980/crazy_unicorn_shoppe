@@ -585,6 +585,7 @@ p {
   border-image: linear-gradient(to right, transparent 15%, rgba(128, 255, 0, 0.65) 50%, transparent 85%);
   border-image-slice: 1;
   padding-block-end: 1.25rem;
+  padding-block-start: 2rem;
 }
 #orders-body #orders-summary-main {
   width: 100%;
@@ -600,16 +601,34 @@ p {
 }
 #orders-body #orders-summary-main table thead tr th {
   border-bottom: 1px solid chartreuse;
-  padding-block-end: 1.5rem;
+  padding-block-end: 2rem;
 }
 #orders-body #orders-summary-main table tbody tr:first-child td {
-  padding-block-start: 1.5rem;
+  padding-block-start: 0.75rem;
+}
+#orders-body #orders-summary-main table tbody tr:last-child td {
+  border-bottom: 1px solid chartreuse;
+  padding-block-end: 0.75rem;
 }
 #orders-body #orders-summary-main table tbody tr td {
-  padding-block-end: 0.5rem;
+  padding-block: 0.5rem;
+  border-bottom: 1px dotted chartreuse;
 }
 #orders-body #orders-summary-main table tr:not(:has(th)) {
   cursor: pointer;
+}
+#orders-body #home-link {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  border-radius: 15px 0px 15px;
+  outline: 2px solid chartreuse;
+  width: fit-content;
+  margin-inline: auto;
+  margin-block-start: 1.5rem;
+}
+#orders-body #home-link a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
 }
 
 #order-review-modal {
