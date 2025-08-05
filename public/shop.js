@@ -285,6 +285,12 @@ function styleLogOut() {
   navFirstItem.style.placeItems = 'center';
 }
 
+function styleViewOrdersBtn() {
+  const viewOrdersButton = document.getElementById('orders-link');
+
+  viewOrdersButton.style.pointerEvents = 'auto';
+  viewOrdersButton.style.opacity = '1';
+}
 async function isLoggedIn() {
   // if a user is logged in on page load, load appropriate UI
   try {
@@ -307,6 +313,7 @@ async function isLoggedIn() {
         .addEventListener('click', handleLogout);
       styleLogOut();
       setCartItemQty();
+      styleViewOrdersBtn();
       return;
     }
     console.log('user is not logged in');
