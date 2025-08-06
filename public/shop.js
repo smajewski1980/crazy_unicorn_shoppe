@@ -64,9 +64,9 @@ class Product {
     descP.classList.add('product-desc');
     descP.textContent = this.truncateDescription(this.productDescription);
     const priceP = document.createElement('p');
-    priceP.innerHTML = `<span>$ </span>${
+    priceP.innerHTML = `<span>$</span>${
       this.productPrice === '999' ? 'Call for price' : this.productPrice
-    }`;
+    }<span>$</span>`;
     priceP.classList.add('card-prod-price');
     prodInfoDiv.appendChild(descP);
     prodInfoDiv.appendChild(priceP);
@@ -93,7 +93,7 @@ class Product {
   }
   truncateDescription(description) {
     const wordsArray = description.split(' ');
-    const shortenedArray = wordsArray.slice(0, 23);
+    const shortenedArray = wordsArray.slice(0, 14);
     shortenedArray.push('. . .');
     const shortenedDescription = shortenedArray.join(' ');
     return shortenedDescription;
