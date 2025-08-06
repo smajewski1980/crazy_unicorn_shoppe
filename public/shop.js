@@ -62,7 +62,7 @@ class Product {
     prodInfoDiv.classList.add('product-info-content');
     const descP = document.createElement('p');
     descP.classList.add('product-desc');
-    descP.textContent = this.productDescription;
+    descP.textContent = this.truncateDescription(this.productDescription);
     const priceP = document.createElement('p');
     priceP.innerHTML = `<span>$ </span>${
       this.productPrice === '999' ? 'Call for price' : this.productPrice
@@ -90,6 +90,13 @@ class Product {
     prodDialogDesc.innerText = this.productDescription;
     prodDialogPrice.innerHTML = `<span>$</span>${this.productPrice}`;
     prodDialogInStock.innerText = `There are currently ${this.currentQty} in stock`;
+  }
+  truncateDescription(description) {
+    const wordsArray = description.split(' ');
+    const shortenedArray = wordsArray.slice(0, 23);
+    shortenedArray.push('. . .');
+    const shortenedDescription = shortenedArray.join(' ');
+    return shortenedDescription;
   }
 }
 
