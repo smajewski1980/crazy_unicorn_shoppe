@@ -287,7 +287,6 @@ function styleLogOut() {
 
 function styleViewOrdersBtn() {
   const viewOrdersButton = document.getElementById('orders-link');
-
   viewOrdersButton.style.pointerEvents = 'auto';
   viewOrdersButton.style.opacity = '1';
 }

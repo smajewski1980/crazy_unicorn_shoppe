@@ -43,8 +43,8 @@ input {
 }
 
 body {
-  background-image: radial-gradient(rgb(243, 160, 243), purple);
-  min-height: 100vh;
+  background-image: radial-gradient(rgb(241, 137, 241), purple);
+  background-size: 100vw 100vh;
 }
 
 #punctuation {
@@ -297,7 +297,7 @@ p {
 #shopping-sub-head {
   border-top: 1px solid rgba(128, 255, 0, 0.5);
   border-bottom: 1px solid rgba(128, 255, 0, 0.5);
-  border-radius: 0.5rem;
+  border-radius: 15px 0px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -312,10 +312,22 @@ p {
 #shopping-sub-head h1 span {
   font-size: clamp(1.5rem, 2.75vw, 3rem);
 }
-#shopping-sub-head .shopping-action-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+#shopping-sub-head #input-wrapper {
+  font-size: 1.25rem;
+}
+#shopping-sub-head #input-wrapper label {
+  font-weight: 600;
+}
+#shopping-sub-head #input-wrapper select {
+  background-color: rgb(243, 160, 243);
+  font-size: inherit;
+  margin-inline-start: 0.5rem;
+  text-align: center;
+  padding-block: 0.25rem;
+  border-radius: 15px 0px 15px;
+}
+#shopping-sub-head #input-wrapper select option {
+  text-align-last: center;
 }
 
 .products-display-wrapper h2 {
@@ -948,7 +960,7 @@ header nav #orders-link {
   width: 20rem;
   margin-inline: auto;
   padding: 2rem;
-  border-radius: 50px;
+  border-radius: 15px 0px 15px;
   outline-offset: 2px;
   background-blend-mode: darken;
   background-color: rgba(231, 39, 231, 0.75);
