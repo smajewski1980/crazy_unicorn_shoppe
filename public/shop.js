@@ -13,7 +13,6 @@ const productThumbs = Array.from(
   document.querySelectorAll('.thumb-wrapper img'),
 );
 
-// tbd if this array with the Product objects was needed or not
 const productObjects = [];
 class Product {
   constructor(
@@ -79,6 +78,7 @@ class Product {
     productsDiv.appendChild(div);
   }
   populateModalContent() {
+    prodDialogImg.src = '';
     productThumbs.forEach((thumb) => {
       thumb.src = '';
       thumb.alt = '';
@@ -96,6 +96,7 @@ class Product {
       const thumb = productThumbs[i];
       thumb.alt = this.productName;
       thumb.src = `./assets/products/${this.productId}/${i}.jpg`;
+      thumb.addEventListener('click', this.handleDialogPicChange);
     }
   }
   truncateDescription(description) {
@@ -104,6 +105,14 @@ class Product {
     shortenedArray.push('. . .');
     const shortenedDescription = shortenedArray.join(' ');
     return shortenedDescription;
+  }
+  handleDialogPicChange(e) {
+    const baseURL = './assets/products/';
+    const clickedThumb = e.target.closest('.thumb-wrapper').dataset.thumb;
+    const productId = e.target.closest('.thumb-wrapper').closest('dialog')
+      .dataset.prodId;
+    const newSrc = baseURL + productId + `/${clickedThumb}.jpg`;
+    prodDialogImg.src = newSrc;
   }
 }
 

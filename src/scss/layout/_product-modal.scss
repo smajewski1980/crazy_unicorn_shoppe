@@ -45,10 +45,20 @@
       display: grid;
       align-items: center;
 
+      .active-thumb {
+        outline-offset: 5px;
+        outline-width: 5px;
+
+        img {
+          opacity: 0.5;
+        }
+      }
+
       .thumb-wrapper {
         border-radius: 15px 0px 15px;
         overflow: hidden;
         outline: 1px solid chartreuse;
+        cursor: pointer;
       }
     }
   }

@@ -1159,10 +1159,18 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   display: grid;
   align-items: center;
 }
+#product-dialog #dialog-outer-images-wrapper #dialog-thumbs-wrapper .active-thumb {
+  outline-offset: 5px;
+  outline-width: 5px;
+}
+#product-dialog #dialog-outer-images-wrapper #dialog-thumbs-wrapper .active-thumb img {
+  opacity: 0.5;
+}
 #product-dialog #dialog-outer-images-wrapper #dialog-thumbs-wrapper .thumb-wrapper {
   border-radius: 15px 0px 15px;
   overflow: hidden;
   outline: 1px solid chartreuse;
+  cursor: pointer;
 }
 #product-dialog #product-dialog-desc {
   margin-inline: 5rem;
