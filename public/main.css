@@ -1148,6 +1148,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   display: grid;
   grid-template-columns: 75% 15%;
   justify-items: center;
+  cursor: pointer;
 }
 #product-dialog #dialog-outer-images-wrapper #dialog-img-wrapper {
   border-radius: 15px 0px 15px;
@@ -1164,7 +1165,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   outline-width: 5px;
 }
 #product-dialog #dialog-outer-images-wrapper #dialog-thumbs-wrapper .active-thumb img {
-  opacity: 0.5;
+  opacity: 0.35;
 }
 #product-dialog #dialog-outer-images-wrapper #dialog-thumbs-wrapper .thumb-wrapper {
   border-radius: 15px 0px 15px;

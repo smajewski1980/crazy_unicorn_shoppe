@@ -12,8 +12,8 @@ const categoryQtySpan = document.getElementById('qty-span');
 const productThumbs = Array.from(
   document.querySelectorAll('.thumb-wrapper img'),
 );
-
 const productObjects = [];
+
 class Product {
   constructor(
     categoryId,
@@ -83,6 +83,7 @@ class Product {
       thumb.src = '';
       thumb.alt = '';
     });
+    removeActiveThumb();
     prodDialogTitle.innerText = '';
     prodDialogDesc.innerText = '';
     qtyToAdd.value = 1;
@@ -94,10 +95,18 @@ class Product {
     // need to loop through the thumbs and set the src depending on which product
     for (let i = 0; i < productThumbs.length; i++) {
       const thumb = productThumbs[i];
+      if (i === 0) {
+        const thumbWrapper = thumb.parentElement;
+        thumbWrapper.classList.add('active-thumb');
+      }
       thumb.alt = this.productName;
       thumb.src = `./assets/products/${this.productId}/${i}.jpg`;
       thumb.addEventListener('click', this.handleDialogPicChange);
     }
+    prodDialogImg.addEventListener('click', this.handleMainImg);
+  }
+  handleMainImg(e) {
+    window.open(prodDialogImg.src, '_blank');
   }
   truncateDescription(description) {
     const wordsArray = description.split(' ');
@@ -106,14 +115,24 @@ class Product {
     const shortenedDescription = shortenedArray.join(' ');
     return shortenedDescription;
   }
+
   handleDialogPicChange(e) {
+    removeActiveThumb();
     const baseURL = './assets/products/';
     const clickedThumb = e.target.closest('.thumb-wrapper').dataset.thumb;
     const productId = e.target.closest('.thumb-wrapper').closest('dialog')
       .dataset.prodId;
     const newSrc = baseURL + productId + `/${clickedThumb}.jpg`;
     prodDialogImg.src = newSrc;
+    // change the active thumb class
+    e.target.closest('.thumb-wrapper').classList.add('active-thumb');
   }
+}
+
+function removeActiveThumb() {
+  document.querySelectorAll('.thumb-wrapper').forEach((t) => {
+    t.classList.remove('active-thumb');
+  });
 }
 
 // take the category_id and return the appropriate string

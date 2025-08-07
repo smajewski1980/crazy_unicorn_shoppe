@@ -34,6 +34,7 @@
     display: grid;
     grid-template-columns: 75% 15%;
     justify-items: center;
+    cursor: pointer;
 
     #dialog-img-wrapper {
       border-radius: 15px 0px 15px;
@@ -50,7 +51,7 @@
         outline-width: 5px;
 
         img {
-          opacity: 0.5;
+          opacity: 0.35;
         }
       }
 
