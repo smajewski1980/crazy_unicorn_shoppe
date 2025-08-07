@@ -3,14 +3,15 @@ const productsDiv = document.getElementById('product-cards-wrapper');
 const productDialog = document.getElementById('product-dialog');
 const btnDialogClose = document.getElementById('btn-product-dialog-close');
 const prodDialogTitle = document.getElementById('product-dialog-h3');
-// const prodDialogCategory = document.getElementById('product-dialog-category');
 const prodDialogImg = document.getElementById('dialog-img');
 const prodDialogDesc = document.getElementById('product-dialog-desc');
-// const prodDialogPrice = document.getElementById('product-dialog-price');
 const prodDialogInStock = document.getElementById('product-dialog-in-stock');
 const btnAddToCart = document.getElementById('btn-product-dialog-add');
 const qtyToAdd = document.getElementById('product-add-qty');
 const categoryQtySpan = document.getElementById('qty-span');
+const productThumbs = Array.from(
+  document.querySelectorAll('.thumb-wrapper img'),
+);
 
 // tbd if this array with the Product objects was needed or not
 const productObjects = [];
@@ -78,18 +79,24 @@ class Product {
     productsDiv.appendChild(div);
   }
   populateModalContent() {
+    productThumbs.forEach((thumb) => {
+      thumb.src = '';
+      thumb.alt = '';
+    });
     prodDialogTitle.innerText = '';
-    // prodDialogCategory.innerText = '';
     prodDialogDesc.innerText = '';
-    // prodDialogPrice.innerText = '';
     qtyToAdd.value = 1;
     productDialog.dataset.prodId = this.productId;
     prodDialogTitle.innerHTML = `${this.productName}<span>&nbsp;&nbsp;&nbsp;$${this.productPrice}</span>`;
-    // prodDialogCategory.innerText = getProdCategory(this.categoryId);
     prodDialogImg.src = this.imageURL;
     prodDialogDesc.innerText = this.productDescription;
-    // prodDialogPrice.innerHTML = `<span>$</span>${this.productPrice}`;
     prodDialogInStock.innerText = `${this.currentQty} in stock`;
+    // need to loop through the thumbs and set the src depending on which product
+    for (let i = 0; i < productThumbs.length; i++) {
+      const thumb = productThumbs[i];
+      thumb.alt = this.productName;
+      thumb.src = `./assets/products/${this.productId}/${i}.jpg`;
+    }
   }
   truncateDescription(description) {
     const wordsArray = description.split(' ');
@@ -231,8 +238,9 @@ async function handleAddItem(e) {
         productDialog.close();
       } catch (error) {
         console.log(error);
+        alert('You must be logged in to add items to your cart.');
       }
-    } else throw new Error('not enough in inventory to add that many');
+    } else alert('not enough in inventory to add that many');
   } catch (error) {
     console.log(error);
   }
