@@ -1,12 +1,12 @@
 const productsDiv = document.getElementById('product-cards-wrapper');
 
 const productDialog = document.getElementById('product-dialog');
-const btnDialogClose = document.getElementById('btn-close');
+const btnDialogClose = document.getElementById('btn-product-dialog-close');
 const prodDialogTitle = document.getElementById('product-dialog-h3');
-const prodDialogCategory = document.getElementById('product-dialog-category');
+// const prodDialogCategory = document.getElementById('product-dialog-category');
 const prodDialogImg = document.getElementById('dialog-img');
 const prodDialogDesc = document.getElementById('product-dialog-desc');
-const prodDialogPrice = document.getElementById('product-dialog-price');
+// const prodDialogPrice = document.getElementById('product-dialog-price');
 const prodDialogInStock = document.getElementById('product-dialog-in-stock');
 const btnAddToCart = document.getElementById('btn-product-dialog-add');
 const qtyToAdd = document.getElementById('product-add-qty');
@@ -79,17 +79,17 @@ class Product {
   }
   populateModalContent() {
     prodDialogTitle.innerText = '';
-    prodDialogCategory.innerText = '';
+    // prodDialogCategory.innerText = '';
     prodDialogDesc.innerText = '';
-    prodDialogPrice.innerText = '';
+    // prodDialogPrice.innerText = '';
     qtyToAdd.value = 1;
     productDialog.dataset.prodId = this.productId;
-    prodDialogTitle.innerText = this.productName;
-    prodDialogCategory.innerText = getProdCategory(this.categoryId);
+    prodDialogTitle.innerHTML = `${this.productName}<span>&nbsp;&nbsp;&nbsp;$${this.productPrice}</span>`;
+    // prodDialogCategory.innerText = getProdCategory(this.categoryId);
     prodDialogImg.src = this.imageURL;
     prodDialogDesc.innerText = this.productDescription;
-    prodDialogPrice.innerHTML = `<span>$</span>${this.productPrice}`;
-    prodDialogInStock.innerText = `There are currently ${this.currentQty} in stock`;
+    // prodDialogPrice.innerHTML = `<span>$</span>${this.productPrice}`;
+    prodDialogInStock.innerText = `${this.currentQty} in stock`;
   }
   truncateDescription(description) {
     const wordsArray = description.split(' ');

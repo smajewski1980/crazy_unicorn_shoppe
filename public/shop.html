@@ -100,29 +100,62 @@
       id="product-dialog"
       closedby="any"
     >
-      <div id="btn-close">X</div>
+      <!-- <div id="btn-close">X</div> -->
       <div id="product-dialog-content">
         <h3 id="product-dialog-h3"></h3>
-        <p id="product-dialog-category"></p>
-        <div class="dialog-img-wrapper">
-          <img
-            src="./assets/product_thumbs/placeholder1.png"
-            alt=""
-            id="dialog-img"
-          />
+
+        <!-- <p id="product-dialog-category"></p> -->
+
+        <div id="dialog-outer-images-wrapper">
+          <div id="dialog-img-wrapper">
+            <img
+              src="./assets/product_thumbs/placeholder1.png"
+              alt=""
+              id="dialog-img"
+            />
+          </div>
+
+          <div id="dialog-thumbs-wrapper">
+            <div class="thumb-wrapper">
+              <img
+                src="./assets/product_thumbs/placeholder1.png"
+                alt=""
+              />
+            </div>
+            <div class="thumb-wrapper">
+              <img
+                src="./assets/product_thumbs/placeholder2.png"
+                alt=""
+              />
+            </div>
+            <div class="thumb-wrapper">
+              <img
+                src="./assets/product_thumbs/placeholder3.png"
+                alt=""
+              />
+            </div>
+          </div>
         </div>
+
         <p id="product-dialog-desc"></p>
-        <p id="product-dialog-price"></p>
-        <p id="product-dialog-in-stock"></p>
-        <label for="product-add-qty">Qty</label>
-        <input
-          type="number"
-          name="product-add-qty"
-          id="product-add-qty"
-          min="0"
-          autocomplete="off"
-        />
-        <button id="btn-product-dialog-add">Add To Cart</button>
+
+        <!-- <p id="product-dialog-price"></p> -->
+        <div id="product-dialog-footer">
+          <p id="product-dialog-in-stock"></p>
+
+          <div id="dialog-qty-input-wrapper">
+            <label for="product-add-qty">Qty</label>
+            <input
+              type="number"
+              name="product-add-qty"
+              id="product-add-qty"
+              min="0"
+              autocomplete="off"
+            />
+          </div>
+          <button id="btn-product-dialog-add">Add To Cart</button>
+          <button id="btn-product-dialog-close">Close</button>
+        </div>
       </div>
     </dialog>
 

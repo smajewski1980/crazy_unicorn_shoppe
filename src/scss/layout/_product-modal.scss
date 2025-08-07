@@ -1,15 +1,103 @@
+@use '../abstracts/variables' as *;
+
 #product-dialog {
   margin: auto;
-  max-width: 60%;
+  max-width: 50%;
   border: 2px solid chartreuse;
+  border-radius: 15px 0px 15px;
   outline: none;
+  padding: 2rem;
+  text-align: center;
+  background-color: transparent;
+  background-image: radial-gradient(
+    rgba(241, 137, 241, 0.75) 40%,
+    rgba(241, 137, 241, 0.75) 40%,
+    rgba(128, 0, 128, 0.35)
+  );
+  backdrop-filter: blur(4px);
+
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.6);
   }
+  h3 {
+    font-size: clamp(1.5rem, 2.75vw, 3rem);
+    margin-block-end: 1rem;
+    color: chartreuse;
 
-  #btn-close {
-    cursor: pointer;
+    span {
+      font-family: $font-para;
+    }
   }
+
+  #dialog-outer-images-wrapper {
+    display: grid;
+    grid-template-columns: 75% 15%;
+    justify-items: center;
+
+    #dialog-img-wrapper {
+      border-radius: 15px 0px 15px;
+      overflow: hidden;
+      width: 75%;
+    }
+    #dialog-thumbs-wrapper {
+      display: grid;
+      align-items: center;
+
+      .thumb-wrapper {
+        border-radius: 15px 0px 15px;
+        overflow: hidden;
+      }
+    }
+  }
+  #product-dialog-desc {
+    margin-inline: 5rem;
+    margin-block-start: 1rem;
+    font-size: 1.125rem;
+  }
+
+  #product-dialog-footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    #product-dialog-in-stock {
+      color: chartreuse;
+      margin-block: auto;
+    }
+
+    #dialog-qty-input-wrapper {
+      label {
+        color: chartreuse;
+        font-size: 1.125rem;
+        margin-inline-end: 0.5rem;
+      }
+
+      input {
+        width: 4.5rem;
+        text-align: center;
+        padding: 0.25rem;
+        border-radius: 15px 0px 15px;
+
+        &:focus-visible {
+          outline: 2px solid chartreuse;
+        }
+      }
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      border-radius: 15px 0px 15px;
+      cursor: pointer;
+
+      &:focus-visible {
+        outline: 2px solid chartreuse;
+      }
+    }
+  }
+
+  // #btn-close {
+  //   cursor: pointer;
+  // }
 
   // #product-dialog-content {
   // }
