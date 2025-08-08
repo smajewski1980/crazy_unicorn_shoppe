@@ -57,7 +57,7 @@ app.use('/order', orderRoutes);
 //   res.sendFile("public/index.html");
 // });
 
-app.use((err, req, res, next) => {
+app.use((err, req, res, _next) => {
   console.log(err);
   res
     .status(err.status || 500)

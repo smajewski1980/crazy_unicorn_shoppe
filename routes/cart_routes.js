@@ -80,7 +80,7 @@ router.get('/checkout', isAuth, async (req, res, next) => {
 });
 
 // process payment and submit order
-router.post('/checkout', isAuth, (req, res, next) => {
+router.post('/checkout', isAuth, (req, res, _next) => {
   // In the real world this would be a bit different, I think
   // here would be some code for the payment processor to handle,
   // which was encrypted and sent from a payment gateway on the frontend.

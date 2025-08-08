@@ -105,7 +105,7 @@ class Product {
     }
     prodDialogImg.addEventListener('click', this.handleMainImg);
   }
-  handleMainImg(e) {
+  handleMainImg() {
     window.open(prodDialogImg.src, '_blank');
   }
   truncateDescription(description) {
@@ -140,22 +140,16 @@ function getProdCategory(catId) {
   switch (catId) {
     case 1:
       return 'Food & Beverage';
-      break;
     case 2:
       return 'Fashion and Accessories';
-      break;
     case 3:
       return 'Electronics';
-      break;
     case 4:
       return 'Home Decor';
-      break;
     case 5:
       return 'Gifts and Gadgets of Crazy';
-      break;
     default:
       return 'All Products';
-      break;
   }
 }
 
@@ -251,7 +245,7 @@ async function handleAddItem(e) {
     const currentQty = data.current_qty;
     if (currentQty >= qty) {
       try {
-        const response = await fetch('/cart', {
+        await fetch('/cart', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -261,7 +255,7 @@ async function handleAddItem(e) {
             item_qty: qty,
           }),
         });
-        const data = await response.json();
+        // const data = await response.json();
         setCartItemQty();
         productDialog.close();
       } catch (error) {

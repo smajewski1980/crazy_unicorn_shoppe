@@ -3,7 +3,6 @@ const orderReviewModal = document.getElementById('order-review-modal');
 const orderReviewH2 = document.getElementById('order-review-h2');
 const orderReviewCaption = document.getElementById('order-review-caption');
 const orderReviewTbody = document.getElementById('order-review-tbody');
-const orderReviewFoot = document.getElementById('order-review-foot');
 const orderReviewFootSub = document.getElementById('order-review-foot-sub');
 const orderReviewFootShip = document.getElementById('order-review-foot-ship');
 const orderReviewFootTax = document.getElementById('order-review-foot-tax');

@@ -5,7 +5,7 @@ const pool = require(path.join(__dirname, '../database/db_connect'));
 const passport = require('passport');
 require('../passport');
 const bcrypt = require('bcrypt');
-const { url } = require('inspector');
+// const { url } = require('inspector');
 const saltRounds = 10;
 const isAuth = require('../middleware/is_auth');
 
@@ -57,7 +57,7 @@ router.post(
           client.query(
             'insert into user_address(user_id, address_line_1, address_line_2, city, state, zip_code) values($1, $2, $3, $4, $5, $6)',
             [newUserId, address_line_1, address_line_2, city, state, zip_code],
-            async (err, result) => {
+            async (err, _result) => {
               if (err) {
                 const error = new Error(err);
                 next(error);
@@ -77,7 +77,7 @@ router.post(
   },
 );
 
-router.get('/status', (req, res, next) => {
+router.get('/status', (req, res, _next) => {
   return req.user
     ? res.status(200).json(req.user)
     : res.status(401).send({ msg: 'not authenticated' });
@@ -90,7 +90,7 @@ router.post(
     successRedirect: '/',
     // failureRedirect: "/user/login",
   }),
-  (req, res, next) => {
+  (req, res, _next) => {
     res.sendStatus(404);
   },
 );
@@ -167,7 +167,7 @@ router.put(
           params = [...[name, hashedPw, email, phone, userId]];
         }
         await client.query('BEGIN');
-        await client.query(query, params, async (err, result) => {
+        await client.query(query, params, async (err, _result) => {
           if (err) {
             const error = new Error(err);
             await client.query('ROLLBACK');
@@ -176,7 +176,7 @@ router.put(
           client.query(
             'update user_address set address_line_1 = $2, address_line_2 = $3, city = $4, state = $5, zip_code = $6 where user_id = $1',
             [userId, address_line_1, address_line_2, city, state, zip_code],
-            async (err, result) => {
+            async (err, _result) => {
               if (err) {
                 const error = new Error(err);
                 await client.query('ROLLBACK');
