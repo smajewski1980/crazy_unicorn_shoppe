@@ -52,17 +52,22 @@ router.post('/', isAuth, async (req, res, next) => {
 // returns all the products and their qty for the current user's cart
 router.get('/', isAuth, async (req, res, next) => {
   const currentUserId = req.user.user_id;
-  const result = await pool.query(
-    'select product_name, item_qty from cart_items_with_names where user_id = $1',
-    [currentUserId],
-  );
-  if (!result) {
-    return next(new Error());
+
+  try {
+    const result = await pool.query(
+      'select product_name, item_qty from cart_items_with_names where user_id = $1',
+      [currentUserId],
+    );
+
+    if (result.rowCount === 0) {
+      return res.status(400).send('Thats one empty cart you got there!');
+    }
+
+    return res.status(200).send(result.rows);
+  } catch (error) {
+    const err = new Error(error);
+    return next(err);
   }
-  if (result.rowCount === 0) {
-    return res.status(400).send('Thats one empty cart you got there!');
-  }
-  return res.status(200).send(result.rows);
 });
 
 // get data to checkout
