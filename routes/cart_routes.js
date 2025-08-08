@@ -134,29 +134,24 @@ router.delete('/:id', isAuth, async (req, res, next) => {
   const currentUserId = req.user.user_id;
   const productToRemove = new Number(req.params.id);
 
-  const cartId = await pool.query(
-    'select cart_id from cart_items_with_names where user_id = $1 limit 1',
-    [currentUserId],
-  );
-
-  if (!cartId.rowCount) {
-    return res.status(200).send('Add an item to create a cart.');
-  }
-
-  const result = await pool.query(
-    'delete from cart_items where cart_id = $1 and product_id = $2',
-    [cartId.rows[0].cart_id, productToRemove],
-  );
-
-  if (!result.rowCount) {
-    const error = new Error(
-      'This user does not have that product in their cart.',
+  try {
+    const cartId = await pool.query(
+      'select cart_id from cart_items_with_names where user_id = $1 limit 1',
+      [currentUserId],
     );
-    error.status = 404;
-    return next(error);
-  }
 
-  res.status(204).send('The item has successfully been removed from the cart.');
+    await pool.query(
+      'delete from cart_items where cart_id = $1 and product_id = $2',
+      [cartId.rows[0].cart_id, productToRemove],
+    );
+
+    res
+      .status(204)
+      .json({ msg: 'The item has successfully been removed from the cart.' });
+  } catch (error) {
+    const err = new Error(error);
+    return next(err);
+  }
 });
 
 module.exports = router;
