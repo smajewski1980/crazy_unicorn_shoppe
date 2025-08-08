@@ -111,25 +111,22 @@ router.put('/', isAuth, async (req, res, next) => {
   const currentUserId = req.user.user_id;
   const { product_id, item_qty } = req.body;
 
-  const cartId = await pool.query(
-    'select cart_id from cart_items_with_names where user_id = $1',
-    [currentUserId],
-  );
+  try {
+    const cartId = await pool.query(
+      'select cart_id from cart_items_with_names where user_id = $1',
+      [currentUserId],
+    );
 
-  if (!cartId) {
-    return next(new Error());
+    const result = await pool.query(
+      'update cart_items set item_qty = $1 where product_id = $2 and cart_id = $3 returning *',
+      [item_qty, product_id, cartId.rows[0].cart_id],
+    );
+
+    return res.status(200).send(result.rows);
+  } catch (error) {
+    const err = new Error(error);
+    return next(err);
   }
-
-  const result = await pool.query(
-    'update cart_items set item_qty = $1 where product_id = $2 and cart_id = $3 returning *',
-    [item_qty, product_id, cartId.rows[0].cart_id],
-  );
-
-  if (!result) {
-    return next(new Error());
-  }
-
-  return res.status(200).send(result.rows);
 });
 
 // delete an item from the current users cart
