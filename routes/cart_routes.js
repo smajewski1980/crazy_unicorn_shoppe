@@ -8,45 +8,45 @@ const isAuth = require('../middleware/is_auth');
 router.post('/', isAuth, async (req, res, next) => {
   const currentUser = req.user.user_id;
   const { product_id, item_qty } = req.body;
-  // see if the user has an active cart_id
-  const result = await pool.query(
-    'select cart_id from carts where user_id = $1 and is_active = true',
-    [currentUser],
-  );
 
-  if (!result) {
-    return next(new Error());
-  }
-  // if no active cart_id, create one
-  if (result.rowCount === 0) {
+  try {
+    // see if the user has an active cart_id
     const result = await pool.query(
-      'insert into carts(user_id) values($1) returning cart_id',
+      'select cart_id from carts where user_id = $1 and is_active = true',
       [currentUser],
     );
-    if (!result) {
-      return next(new Error());
+
+    // if no active cart_id, create one
+    if (result.rowCount === 0) {
+      const result = await pool.query(
+        'insert into carts(user_id) values($1) returning cart_id',
+        [currentUser],
+      );
+
+      const newCartId = await result.rows[0].cart_id;
+
+      // add the item to the new cart
+      const addedItem = await pool.query(
+        'insert into cart_items(cart_id, product_id, item_qty) values($1, $2, $3) returning *',
+        [newCartId, product_id, item_qty],
+      );
+
+      return res.status(200).send(addedItem.rows[0]);
     }
-    const newCartId = await result.rows[0].cart_id;
-    // add the item to the new cart
+
+    const currentCartId = await result.rows[0].cart_id;
+
+    // add the item to the current cart
     const addedItem = await pool.query(
       'insert into cart_items(cart_id, product_id, item_qty) values($1, $2, $3) returning *',
-      [newCartId, product_id, item_qty],
+      [currentCartId, product_id, item_qty],
     );
-    if (!addedItem) {
-      return next(new Error());
-    }
+
     return res.status(200).send(addedItem.rows[0]);
+  } catch (error) {
+    const err = new Error(error);
+    return next(err);
   }
-  const currentCartId = await result.rows[0].cart_id;
-  // add the item to the current cart
-  const addedItem = await pool.query(
-    'insert into cart_items(cart_id, product_id, item_qty) values($1, $2, $3) returning *',
-    [currentCartId, product_id, item_qty],
-  );
-  if (!addedItem) {
-    return next(new Error());
-  }
-  return res.status(200).send(addedItem.rows[0]);
 });
 
 // returns all the products and their qty for the current user's cart
