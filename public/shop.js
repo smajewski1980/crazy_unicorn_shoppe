@@ -339,7 +339,7 @@ async function isLoggedIn() {
         <div id="logout-cart-wrapper">
           <button id="logout-link">LOGOUT</button>
           <div id="cart-icon-wrapper">
-            <a href="./checkout.html"><img id="cart-icon" src="./assets/icons/cart-yellow.png" alt="cart"/></a>
+            <a href="#"><img id="cart-icon" src="./assets/icons/cart-yellow.png" alt="cart"/></a>
             <span></span>
           </div>
         </div>
@@ -383,6 +383,7 @@ isLoggedIn();
 
 async function setCartItemQty() {
   const cartQtySpan = document.querySelector('#cart-icon-wrapper span');
+  const cartQtyLink = document.querySelector('#cart-icon-wrapper a');
   try {
     const response = await fetch('/cart');
     if (!response.ok) {
@@ -394,6 +395,7 @@ async function setCartItemQty() {
       return acc + curr.item_qty;
     }, 0);
     cartQtySpan.textContent = qty.toString();
+    cartQtyLink.href = './checkout.html';
   } catch (error) {
     throw new Error(error);
   }

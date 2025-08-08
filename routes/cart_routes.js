@@ -73,15 +73,22 @@ router.get('/', isAuth, async (req, res, next) => {
 // get data to checkout
 router.get('/checkout', isAuth, async (req, res, next) => {
   const user_id = req.user.user_id;
-  const result = await pool.query(
-    'select * from data_to_checkout where user_id = $1',
-    [user_id],
-  );
-  if (!result) return next(new Error());
-  if (result.rowCount === 0) {
-    return res.status(200).send('Thats one empty cart you got there!');
+
+  try {
+    const result = await pool.query(
+      'select * from data_to_checkout where user_id = $1',
+      [user_id],
+    );
+    if (result.rowCount === 0) {
+      return res
+        .status(200)
+        .json({ msg: 'Thats one empty cart you got there!' });
+    }
+    res.status(200).send(await result.rows);
+  } catch (error) {
+    const err = new Error(error);
+    return next(err);
   }
-  res.status(200).send(await result.rows);
 });
 
 // process payment and submit order
