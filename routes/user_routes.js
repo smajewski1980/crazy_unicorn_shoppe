@@ -11,6 +11,9 @@ const isAuth = require('../middleware/is_auth');
 
 const { checkSchema, validationResult } = require('express-validator');
 const { userValidationSchema } = require('../utils/user_validation_schema');
+const {
+  checkoutUpdateValidationSchema,
+} = require('../utils/checkout_update_schema');
 
 router.post(
   '/register',
@@ -147,7 +150,7 @@ router.get('/:id', isAuth, async (req, res, next) => {
 router.put(
   '/:id',
   isAuth,
-  checkSchema(userValidationSchema),
+  checkSchema(checkoutUpdateValidationSchema),
   async (req, res, next) => {
     const userId = req.params.id;
     const {
