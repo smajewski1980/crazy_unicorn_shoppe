@@ -36,43 +36,58 @@ router.post(
     if (!validationErrors.isEmpty()) {
       return res.status(400).send(validationErrors);
     }
-    // need to refactor this below try/catch
-    try {
-      // this transaction will rollback if there is a problem with the second query
-      const client = await pool.connect();
-      client.query('BEGIN');
 
-      const hashedPw = await bcrypt.hash(password, saltRounds);
-      await client.query(
-        'insert into users(name, hashed_pw, email, phone) values($1, $2, $3, $4) returning user_id',
-        [name, hashedPw, email, phone],
-        async (err, result) => {
-          if (err) {
-            const error = new Error(err);
-            next(error);
-            await client.query('ROLLBACK');
-            return;
-          }
-          const newUserId = result.rows[0].user_id;
-          client.query(
-            'insert into user_address(user_id, address_line_1, address_line_2, city, state, zip_code) values($1, $2, $3, $4, $5, $6)',
-            [newUserId, address_line_1, address_line_2, city, state, zip_code],
-            async (err, _result) => {
-              if (err) {
-                const error = new Error(err);
-                next(error);
-                await client.query('ROLLBACK');
-                return;
-              }
-              await client.query('COMMIT');
-              await client.release();
-              res.status(201).send('new user was created');
-            },
-          );
-        },
-      );
+    // this transaction will rollback if there is a problem with the second query
+    try {
+      const client = await pool.connect();
+
+      try {
+        await client.query('BEGIN');
+
+        const hashedPw = await bcrypt.hash(password, saltRounds);
+        await client.query(
+          'insert into users(name, hashed_pw, email, phone) values($1, $2, $3, $4) returning user_id',
+          [name, hashedPw, email, phone],
+          async (err, result) => {
+            if (err) {
+              const error = new Error(err);
+              next(error);
+              await client.query('ROLLBACK');
+              return;
+            }
+            const newUserId = result.rows[0].user_id;
+            client.query(
+              'insert into user_address(user_id, address_line_1, address_line_2, city, state, zip_code) values($1, $2, $3, $4, $5, $6)',
+              [
+                newUserId,
+                address_line_1,
+                address_line_2,
+                city,
+                state,
+                zip_code,
+              ],
+              async (err, _result) => {
+                if (err) {
+                  const error = new Error(err);
+                  next(error);
+                  await client.query('ROLLBACK');
+                  return;
+                }
+                await client.query('COMMIT');
+                res.status(201).send('new user was created');
+              },
+            );
+          },
+        );
+      } catch (error) {
+        const err = new Error(error);
+        return next(err);
+      } finally {
+        await client.release();
+      }
     } catch (error) {
-      throw new Error(error);
+      const err = new Error(error);
+      return next(err);
     }
   },
 );
@@ -95,9 +110,9 @@ router.post(
   },
 );
 
-router.get('/login', (req, res) => {
-  res.status(200).send();
-});
+// router.get('/login', (req, res) => {
+//   res.status(200).send();
+// });
 
 router.get('/logout', (req, res, next) => {
   req.logOut((err) => {
@@ -109,22 +124,24 @@ router.get('/logout', (req, res, next) => {
   });
 });
 
-router.get('/:id', isAuth, (req, res, next) => {
+router.get('/:id', isAuth, async (req, res, next) => {
   const userId = req.params.id;
 
-  pool.query(
-    'select * from users as u join user_address as ua on u.user_id = ua.user_id where u.user_id = $1',
-    [userId],
-    (err, result) => {
-      if (err) return next(err);
-      if (result.rowCount === 0) {
-        const error = new Error('We could not find a user with that id.');
-        error.status = 404;
-        return next(error);
-      }
-      res.status(200).send(result.rows[0]);
-    },
-  );
+  try {
+    const result = await pool.query(
+      'select * from users as u join user_address as ua on u.user_id = ua.user_id where u.user_id = $1',
+      [userId],
+    );
+    if (result.rowCount === 0) {
+      const error = new Error('We could not find a user with that id.');
+      error.status = 404;
+      throw error;
+    }
+    return res.status(200).send(result.rows[0]);
+  } catch (error) {
+    const err = new Error(error);
+    return next(err);
+  }
 });
 
 router.put(
