@@ -42,7 +42,9 @@ class Product {
   addProductToHTML() {
     const div = document.createElement('div');
     div.classList.add('product-card');
+    div.tabIndex = '0';
     div.dataset.prodId = this.productId;
+    div.addEventListener('keydown', this.handleKeyboardInput);
 
     const h3 = document.createElement('h3');
     h3.textContent = this.productName;
@@ -126,6 +128,21 @@ class Product {
     prodDialogImg.src = newSrc;
     // change the active thumb class
     e.target.closest('.thumb-wrapper').classList.add('active-thumb');
+  }
+
+  handleKeyboardInput(e) {
+    if (e.key === ' ') {
+      e.preventDefault();
+    }
+    if (e.key === 'Enter' || e.key === ' ') {
+      const productId = e.target.closest('.product-card').dataset.prodId;
+      const clickedProduct = productObjects.filter(
+        (p) => p.productId === parseInt(productId),
+      );
+      clickedProduct[0].populateModalContent();
+      productDialog.showModal();
+      console.log(productId);
+    }
   }
 }
 

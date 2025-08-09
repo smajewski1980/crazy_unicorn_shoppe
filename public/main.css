@@ -353,6 +353,10 @@ p {
   cursor: pointer;
   text-align: center;
 }
+.products-display-wrapper #product-cards-wrapper .product-card:focus-visible {
+  outline: 5px solid chartreuse;
+  outline-offset: 5px;
+}
 .products-display-wrapper #product-cards-wrapper .product-card h3 {
   font-size: clamp(1.25rem, 1.111rem + 0.741vw, 2rem);
 }
