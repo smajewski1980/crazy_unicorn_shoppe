@@ -3,12 +3,14 @@
 #checkout-h1 {
   text-align: center;
   font-size: clamp(2rem, 5.5vw, 5rem);
+  margin-block-start: 2rem;
 }
 #invoice-wrapper {
-  grid-template-columns: 1fr;
-  max-width: 80%;
-  margin-inline: auto;
+  // grid-template-columns: 1fr;
+
   table {
+    width: 100%;
+    margin-inline: auto;
     font-family: $font-para;
     border-spacing: 0;
     border: 1px solid chartreuse;
