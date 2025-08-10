@@ -508,104 +508,122 @@ p {
     color: rgba(128, 255, 0, 0.75);
   }
 }
-#checkout-h1 {
+#checkout-body #checkout-h1 {
   text-align: center;
   font-size: clamp(2rem, 5.5vw, 5rem);
   margin-block-start: 2rem;
 }
-
-#invoice-wrapper table {
+#checkout-body nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-block: 1rem 2rem;
+}
+#checkout-body nav a {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: chartreuse;
+  border-radius: 10px 0 10px 0;
+  border-width: 1px;
+  cursor: pointer;
+  outline: none;
+  font-weight: 600;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  padding: 0.5rem 1rem;
+  outline: 1px solid chartreuse;
+  font-weight: 600;
+}
+#checkout-body #invoice-wrapper table {
   width: 100%;
   margin-inline: auto;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   border-spacing: 0;
   border: 1px solid chartreuse;
   border-radius: 15px 0px 15px 0px;
+  font-size: 1.25rem;
 }
-#invoice-wrapper table tr:first-child th {
-  padding-block-start: 1rem;
+#checkout-body #invoice-wrapper table tr:first-child th {
+  padding-block: 1rem;
 }
-#invoice-wrapper table td {
+#checkout-body #invoice-wrapper table td {
   text-align: center;
 }
-#invoice-wrapper table tr:last-child td {
+#checkout-body #invoice-wrapper table tr:last-child td {
   padding-block-end: 1rem;
 }
-#invoice-wrapper table tfoot tr:first-child td,
-#invoice-wrapper table tfoot tr:first-child th {
+#checkout-body #invoice-wrapper table tfoot tr:first-child td,
+#checkout-body #invoice-wrapper table tfoot tr:first-child th {
   border-top: 1px solid chartreuse;
   padding-block-start: 1rem;
 }
-#invoice-wrapper table tfoot th {
+#checkout-body #invoice-wrapper table tfoot th {
   text-align: right;
 }
-#invoice-wrapper table tfoot tr:last-child td,
-#invoice-wrapper table tfoot tr:last-child th {
+#checkout-body #invoice-wrapper table tfoot tr:last-child td,
+#checkout-body #invoice-wrapper table tfoot tr:last-child th {
   padding-block-end: 1rem;
 }
-#invoice-wrapper table tr .invoice-item-controls-wrapper {
+#checkout-body #invoice-wrapper table tr .invoice-item-controls-wrapper {
   width: 100%;
   display: inline-flex;
   justify-content: space-around;
 }
-#invoice-wrapper table tr .invoice-item-controls-wrapper img {
+#checkout-body #invoice-wrapper table tr .invoice-item-controls-wrapper img {
   max-width: 30px;
   cursor: pointer;
 }
-
-#payment-method-section h2 {
+#checkout-body #payment-method-section h2 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   text-align: center;
   margin-block-start: 1rem;
 }
-#payment-method-section #payment-choice-wrapper {
+#checkout-body #payment-method-section #payment-choice-wrapper {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-#payment-method-section #payment-choice-wrapper .payment-img-wrapper {
+#checkout-body #payment-method-section #payment-choice-wrapper .payment-img-wrapper {
   max-width: 250px;
   cursor: pointer;
 }
-
-#payment-modal,
-#order-complete-modal {
+#checkout-body #payment-modal,
+#checkout-body #order-complete-modal {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin: auto;
   max-width: 60%;
   border: 2px solid chartreuse;
   outline: none;
 }
-#payment-modal::backdrop,
-#order-complete-modal::backdrop {
+#checkout-body #payment-modal::backdrop,
+#checkout-body #order-complete-modal::backdrop {
   background-color: rgba(0, 0, 0, 0.6);
 }
-
-#shipping-section {
+#checkout-body #shipping-section {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   display: none;
 }
-#shipping-section h3 {
+#checkout-body #shipping-section h3 {
   text-align: center;
 }
-#shipping-section #shipping-confirm-info-wrapper {
+#checkout-body #shipping-section #shipping-confirm-info-wrapper {
   text-align: center;
   display: grid;
   grid-template-columns: 1fr 1fr;
   --pointer-ev: none;
 }
-#shipping-section #shipping-confirm-info-wrapper div {
+#checkout-body #shipping-section #shipping-confirm-info-wrapper div {
   pointer-events: var(--pointer-ev);
   display: grid;
   grid-template-columns: 80%;
   gap: 0.25rem;
   justify-content: center;
 }
-#shipping-section #shipping-confirm-info-wrapper div input {
+#checkout-body #shipping-section #shipping-confirm-info-wrapper div input {
   margin-block-end: 0.35rem;
   text-align: center;
 }
-#shipping-section #shipping-confirm-info-wrapper button {
+#checkout-body #shipping-section #shipping-confirm-info-wrapper button {
   cursor: pointer;
   padding: 0.5rem 2.5rem;
   margin-block-start: 1rem;
