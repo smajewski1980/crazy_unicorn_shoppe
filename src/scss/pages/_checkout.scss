@@ -156,7 +156,20 @@
           margin-block-end: 0.35rem;
           text-align: center;
           @include m.formInput;
+
+          &:focus-within:invalid {
+            outline: 3px solid red;
+          }
+          &:focus-within:valid {
+            outline: 3px solid lime;
+          }
         }
+      }
+
+      &:invalid #btn-edit-info {
+        @include m.btn-form;
+        margin-block-start: 1.5rem;
+        margin-block-end: 0;
       }
 
       button {

@@ -232,6 +232,12 @@ const btnPlaceOrder = document.getElementById('btn-place-order');
 async function handleSaveChanges(e) {
   e.preventDefault();
   const form = new FormData(shippingConfirmWrapper);
+
+  if (!shippingConfirmWrapper.checkValidity()) {
+    alert('Check your form fields');
+    return;
+  }
+
   const formData = Object.fromEntries(form);
   const options = {
     method: 'PUT',

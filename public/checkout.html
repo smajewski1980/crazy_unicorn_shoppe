@@ -84,6 +84,9 @@
               type="text"
               name="name"
               id="input-name"
+              required
+              title="Username must be silly."
+              autocomplete="off"
             />
           </div>
 
@@ -93,6 +96,10 @@
               type="email"
               name="email"
               id="input-email"
+              required
+              pattern="^[a-zA-Z0-9._%+]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$"
+              title="please include an email address"
+              autocomplete="off"
             />
           </div>
           <div id="phone-input-wrapper">
@@ -101,6 +108,10 @@
               type="tel"
               name="phone"
               id="input-phone"
+              required
+              pattern="^\(?1?-?([0-9]{3})\)?[\-. ]?([0-9]{3})[\-. ]?([0-9]{4})$"
+              title="this is a silly site, please don't use your real phone number."
+              autocomplete="off"
             />
           </div>
           <div id="address-one-input-wrapper">
@@ -109,6 +120,9 @@
               type="text"
               name="address_line_1"
               id="input-address-1"
+              required
+              title="use your imaginary house in the hills"
+              autocomplete="off"
             />
           </div>
           <div id="address-two-input-wrapper">
@@ -117,6 +131,8 @@
               type="text"
               name="address_line_2"
               id="input-address-2"
+              title="this field is optional"
+              autocomplete="off"
             />
           </div>
           <div id="city-input-wrapper">
@@ -125,6 +141,8 @@
               type="text"
               name="city"
               id="input-city"
+              required
+              autocomplete="off"
             />
           </div>
           <div id="state-input-wrapper">
@@ -133,6 +151,8 @@
               type="text"
               name="state"
               id="input-state"
+              required
+              autocomplete="off"
             />
           </div>
           <div id="zip-input-wrapper">
@@ -141,6 +161,8 @@
               type="text"
               name="zip_code"
               id="input-zip"
+              required
+              autocomplete="off"
             />
           </div>
           <button id="btn-edit-info">Edit Info</button>
