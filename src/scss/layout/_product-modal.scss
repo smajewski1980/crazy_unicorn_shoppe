@@ -2,24 +2,8 @@
 @use '../abstracts/mixins' as m;
 
 #product-dialog {
-  margin: auto;
-  max-width: 50%;
-  border: 2px solid chartreuse;
-  border-radius: 15px 0px 15px;
-  outline: none;
-  padding: 1rem 2rem 2rem;
-  text-align: center;
-  background-color: transparent;
-  background-image: radial-gradient(
-    rgba(241, 137, 241, 0.75) 40%,
-    rgba(241, 137, 241, 0.75) 40%,
-    rgba(128, 0, 128, 0.35)
-  );
-  backdrop-filter: blur(4px);
+  @include m.modal-styles;
 
-  &::backdrop {
-    background-color: rgba(0, 0, 0, 0.6);
-  }
   h3 {
     font-size: clamp(1.5rem, 2.75vw, 3rem);
     margin-block-end: 1rem;

@@ -5,7 +5,7 @@
   #checkout-h1 {
     text-align: center;
     font-size: clamp(2rem, 5.5vw, 5rem);
-    margin-block-start: 2rem;
+    padding-block-start: 2rem;
   }
 
   nav {
@@ -96,19 +96,33 @@
   }
   #payment-modal,
   #order-complete-modal {
-    font-family: $font-para;
-    margin: auto;
-    max-width: 60%;
-    border: 2px solid chartreuse;
-    outline: none;
-    &::backdrop {
-      background-color: rgba(0, 0, 0, 0.6);
+    @include m.modal-styles;
+    max-width: 40%;
+  }
+
+  #payment-modal {
+    h4 {
+      font-size: clamp(1rem, 0.815rem + 0.988vw, 2rem);
+      margin-block: 1rem 2rem;
+      color: chartreuse;
+    }
+
+    p {
+      max-width: 75%;
+      margin-inline: auto;
+    }
+
+    button {
+      @include m.regular-button;
+      font-family: $font-para;
+      padding: 0.75rem 2.5rem;
     }
   }
 
   #shipping-section {
     font-family: $font-para;
     display: none;
+
     h3 {
       text-align: center;
     }
@@ -129,6 +143,7 @@
         input {
           margin-block-end: 0.35rem;
           text-align: center;
+          @include m.formInput;
         }
       }
 

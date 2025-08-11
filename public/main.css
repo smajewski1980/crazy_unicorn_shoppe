@@ -167,7 +167,7 @@ body {
 #home-main .featured-card .featured-content-wrapper button {
   width: 100%;
   padding-block: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
   border-width: 1px;
@@ -511,7 +511,7 @@ p {
 #checkout-body #checkout-h1 {
   text-align: center;
   font-size: clamp(2rem, 5.5vw, 5rem);
-  margin-block-start: 2rem;
+  padding-block-start: 2rem;
 }
 #checkout-body nav {
   width: 100%;
@@ -522,7 +522,7 @@ p {
   margin-block: 1rem 2rem;
 }
 #checkout-body nav a {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
   border-width: 1px;
@@ -589,15 +589,41 @@ p {
 }
 #checkout-body #payment-modal,
 #checkout-body #order-complete-modal {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  margin: auto;
-  max-width: 60%;
+  backdrop-filter: blur(4px);
+  background-color: transparent;
+  background-image: radial-gradient(rgba(241, 137, 241, 0.75) 40%, rgba(241, 137, 241, 0.75) 40%, rgba(156, 0, 156, 0.25));
   border: 2px solid chartreuse;
+  border-radius: 15px 0px 15px;
+  margin: auto;
+  max-width: 50%;
   outline: none;
+  padding: 1rem 2rem 2rem;
+  text-align: center;
+  max-width: 40%;
 }
 #checkout-body #payment-modal::backdrop,
 #checkout-body #order-complete-modal::backdrop {
   background-color: rgba(0, 0, 0, 0.6);
+}
+#checkout-body #payment-modal h4 {
+  font-size: clamp(1rem, 0.815rem + 0.988vw, 2rem);
+  margin-block: 1rem 2rem;
+  color: chartreuse;
+}
+#checkout-body #payment-modal p {
+  max-width: 75%;
+  margin-inline: auto;
+}
+#checkout-body #payment-modal button {
+  background-color: rgba(255, 255, 255, 0.35);
+  border-color: chartreuse;
+  border-radius: 10px 0 10px 0;
+  border-width: 1px;
+  cursor: pointer;
+  outline: none;
+  font-weight: 600;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  padding: 0.75rem 2.5rem;
 }
 #checkout-body #shipping-section {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -622,6 +648,12 @@ p {
 #checkout-body #shipping-section #shipping-confirm-info-wrapper div input {
   margin-block-end: 0.35rem;
   text-align: center;
+  text-align: inherit;
+  padding-block: 0.35rem;
+  margin-block-start: 0.25rem;
+  border-radius: 15px 0px 15px;
+  outline-offset: 3px;
+  box-shadow: 1px 1px 2px chartreuse;
 }
 #checkout-body #shipping-section #shipping-confirm-info-wrapper button {
   cursor: pointer;
@@ -737,7 +769,7 @@ p {
   margin-block-start: 2rem;
   margin-left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
   border-width: 1px;
@@ -1142,16 +1174,16 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 }
 
 #product-dialog {
-  margin: auto;
-  max-width: 50%;
+  backdrop-filter: blur(4px);
+  background-color: transparent;
+  background-image: radial-gradient(rgba(241, 137, 241, 0.75) 40%, rgba(241, 137, 241, 0.75) 40%, rgba(156, 0, 156, 0.25));
   border: 2px solid chartreuse;
   border-radius: 15px 0px 15px;
+  margin: auto;
+  max-width: 50%;
   outline: none;
   padding: 1rem 2rem 2rem;
   text-align: center;
-  background-color: transparent;
-  background-image: radial-gradient(rgba(241, 137, 241, 0.75) 40%, rgba(241, 137, 241, 0.75) 40%, rgba(128, 0, 128, 0.35));
-  backdrop-filter: blur(4px);
 }
 #product-dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.6);
@@ -1222,7 +1254,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   outline: 2px solid chartreuse;
 }
 #product-dialog #product-dialog-footer button {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
   border-width: 1px;
