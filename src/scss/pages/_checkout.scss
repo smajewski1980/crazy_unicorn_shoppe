@@ -94,13 +94,12 @@
       }
     }
   }
+
   #payment-modal,
   #order-complete-modal {
     @include m.modal-styles;
     max-width: 40%;
-  }
 
-  #payment-modal {
     h4 {
       font-size: clamp(1rem, 0.815rem + 0.988vw, 2rem);
       margin-block: 1rem 2rem;
@@ -112,11 +111,20 @@
       margin-inline: auto;
     }
 
+    #order-conf-num {
+      font-size: clamp(1rem, 0.815rem + 0.988vw, 2rem);
+    }
+
     button {
       @include m.regular-button;
       font-family: $font-para;
       padding: 0.75rem 2.5rem;
+      margin-block-start: 0.5rem;
     }
+  }
+
+  #order-complete-modal {
+    padding-block: 1rem 2rem;
   }
 
   #shipping-section {
@@ -125,6 +133,7 @@
 
     h3 {
       text-align: center;
+      margin-block: 1rem;
     }
 
     #shipping-confirm-info-wrapper {
@@ -132,6 +141,9 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       --pointer-ev: none;
+      max-width: 50%;
+      margin-inline: auto;
+      margin-block-end: 2rem;
 
       div {
         pointer-events: var(--pointer-ev);
@@ -148,10 +160,12 @@
       }
 
       button {
-        cursor: pointer;
+        // cursor: pointer;
+        @include m.regular-button;
+        pointer-events: auto;
         padding: 0.5rem 2.5rem;
-        margin-block-start: 1rem;
-        width: 30%;
+        margin-block-start: 1.5rem;
+        // max-width: 16rem;
         justify-self: center;
         grid-column: 1 / -1;
       }
