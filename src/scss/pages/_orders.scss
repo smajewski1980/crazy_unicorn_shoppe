@@ -16,7 +16,7 @@
     table {
       font-family: $font-para;
       text-align: center;
-      columns: 25%;
+      columns: 20%;
       width: 100%;
       border-collapse: collapse;
       // clamp this later
@@ -94,6 +94,7 @@
 
       tr td {
         padding-block: 0.25rem;
+        height: 3rem;
       }
 
       tbody {
@@ -110,7 +111,18 @@
       }
     }
   }
-  button {
+
+  #btn-cancel-order {
+    display: none;
+    @include m.regular-button;
+    font-size: 1rem;
+    color: red;
+    margin-left: auto;
+    height: 100%;
+    padding-inline: 1rem;
+  }
+
+  #btn-close-order-review {
     width: 50%;
     padding-block: 1rem;
     margin-block-start: 2rem;

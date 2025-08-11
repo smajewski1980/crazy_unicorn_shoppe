@@ -7,7 +7,8 @@ const orderReviewFootSub = document.getElementById('order-review-foot-sub');
 const orderReviewFootShip = document.getElementById('order-review-foot-ship');
 const orderReviewFootTax = document.getElementById('order-review-foot-tax');
 const orderReviewFootTotal = document.getElementById('order-review-foot-total');
-const orderReviewModalBtn = orderReviewModal.querySelector('button');
+const orderReviewModalBtn = document.getElementById('btn-close-order-review');
+const btnOrderCancel = document.getElementById('btn-cancel-order');
 
 // this function will reformat the db timestamp
 function formatDate(date) {
@@ -54,11 +55,12 @@ function displayOrderData(data) {
   let htmlStr = '';
   data.forEach((o) => {
     const tableRow = `
-      <tr data-order-id="${o.order_id}">
+      <tr data-order-id="${o.order_id}" data-status="${o.order_status}">
         <td>${o.order_id}</td>
         <td>${formatDate(o.order_date)}</td>
         <td>${formatBucks(o.order_total)}</td>
         <td>${o.payment_method}</td>
+        <td>${o.order_status}</td>
       </tr>
     `;
     htmlStr += tableRow;
@@ -75,10 +77,14 @@ function displayOrderData(data) {
 async function handleOrderClick(e) {
   const orderId = e.target.closest('tr').dataset.orderId;
   let subtotal = 0;
+  btnOrderCancel.style.display = 'none';
+  const status = e.target.closest('tr').dataset.status;
   try {
     const response = await fetch(`/order/${orderId}`);
     const data = await response.json();
-
+    if (status === 'pending') {
+      btnOrderCancel.style.display = 'block';
+    }
     orderReviewH2.textContent = `Order number: ${orderId}`;
     orderReviewCaption.textContent = `Order was placed on ${formatDate(
       data.order_date,
