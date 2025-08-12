@@ -60,13 +60,27 @@
       }
     }
   }
-  #home-link {
-    @include m.btn-home-link;
-    width: fit-content;
-    margin-inline: auto;
-    margin-block-start: 1.5rem;
-    a {
-      @include m.btn-link;
+
+  nav {
+    margin-block: 2rem 3rem;
+    ul {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+
+      #home-link,
+      #shop-link {
+        @include m.btn-home-link;
+        list-style-type: none;
+        width: fit-content;
+        font-family: $font-para;
+        font-size: 1.125rem;
+        padding-block-end: 0.2rem;
+
+        a {
+          @include m.btn-link;
+        }
+      }
     }
   }
 }
