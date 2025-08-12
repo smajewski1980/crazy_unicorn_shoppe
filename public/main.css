@@ -153,27 +153,33 @@ body {
   font-size: 1.125rem;
   place-items: center;
 }
-#home-main .featured-card .featured-content-wrapper h3 {
-  font-size: clamp(1rem, 1.35vw, 1.35rem);
-}
 #home-main .featured-card .featured-content-wrapper img {
   width: 85%;
+  border-radius: 15px 0px 15px;
 }
-#home-main .featured-card .featured-content-wrapper p {
+#home-main .featured-card .featured-content-wrapper #featured-info-wrapper {
+  display: grid;
+  justify-items: start;
+  gap: 0.5rem;
+}
+#home-main .featured-card .featured-content-wrapper #featured-info-wrapper h3 {
+  font-size: clamp(1rem, 1.35vw, 1.35rem);
+}
+#home-main .featured-card .featured-content-wrapper #featured-info-wrapper p {
   max-width: 35ch;
-  margin-block-end: 1rem;
+  margin-block-end: 0.5rem;
   font-size: clamp(0.75rem, 1vw, 1rem);
 }
-#home-main .featured-card .featured-content-wrapper button {
-  width: 100%;
-  padding-block: 0.5rem;
+#home-main .featured-card .featured-content-wrapper #featured-info-wrapper a {
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
   border-width: 1px;
+  border-style: solid;
   cursor: pointer;
   outline: none;
   font-weight: 600;
+  padding: 0.5rem 1.5rem 0.65rem;
 }
 #home-main .home-text-wrapper {
   display: inline;
@@ -552,6 +558,7 @@ p {
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
   border-width: 1px;
+  border-style: solid;
   cursor: pointer;
   outline: none;
   font-weight: 600;
@@ -657,6 +664,7 @@ p {
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
   border-width: 1px;
+  border-style: solid;
   cursor: pointer;
   outline: none;
   font-weight: 600;
@@ -724,6 +732,7 @@ p {
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
   border-width: 1px;
+  border-style: solid;
   cursor: pointer;
   outline: none;
   font-weight: 600;
@@ -859,6 +868,7 @@ p {
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
   border-width: 1px;
+  border-style: solid;
   cursor: pointer;
   outline: none;
   font-weight: 600;
@@ -879,6 +889,7 @@ p {
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
   border-width: 1px;
+  border-style: solid;
   cursor: pointer;
   outline: none;
   font-weight: 600;
@@ -1382,6 +1393,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
   border-width: 1px;
+  border-style: solid;
   cursor: pointer;
   outline: none;
   font-weight: 600;

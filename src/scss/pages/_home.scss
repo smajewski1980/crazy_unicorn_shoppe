@@ -118,25 +118,29 @@
       font-size: 1.125rem;
       place-items: center;
 
-      h3 {
-        font-size: clamp(1rem, 1.35vw, 1.35rem);
-      }
-
       img {
         width: 85%;
+        border-radius: 15px 0px 15px;
       }
 
-      p {
-        max-width: 35ch;
-        margin-block-end: 1rem;
-        font-size: clamp(0.75rem, 1vw, 1rem);
-      }
+      #featured-info-wrapper {
+        display: grid;
+        justify-items: start;
+        gap: 0.5rem;
 
-      button {
-        width: 100%;
-        padding-block: 0.5rem;
+        h3 {
+          font-size: clamp(1rem, 1.35vw, 1.35rem);
+        }
+        p {
+          max-width: 35ch;
+          margin-block-end: 0.5rem;
+          font-size: clamp(0.75rem, 1vw, 1rem);
+        }
 
-        @include m.regular-button;
+        a {
+          @include m.regular-button;
+          padding: 0.5rem 1.5rem 0.65rem;
+        }
       }
     }
   }
