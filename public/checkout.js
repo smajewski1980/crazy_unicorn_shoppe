@@ -15,7 +15,7 @@ async function getCheckoutData() {
       setTimeout(() => {
         alert('Your cart is now empty! What are you thinking?');
         window.location.href = '/shop.html';
-      }, 10);
+      }, 100);
     }
 
     populateCheckoutData(data);

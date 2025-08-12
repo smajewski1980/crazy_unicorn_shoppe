@@ -64,13 +64,19 @@
 
       tr {
         .invoice-item-controls-wrapper {
-          width: 100%;
+          gap: 1rem;
           display: inline-flex;
           justify-content: space-around;
 
           img {
-            max-width: 30px;
             cursor: pointer;
+            width: 25px;
+            height: 25px;
+          }
+
+          img:last-child {
+            width: 30px;
+            height: 30px;
           }
         }
       }
