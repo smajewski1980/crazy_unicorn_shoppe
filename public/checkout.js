@@ -120,6 +120,15 @@ function populateCheckoutData(data) {
       }),
     };
     try {
+      const invData = await fetch(`/products/${id}/inventory`);
+      const itemQty = await invData.json();
+      const currQty = await itemQty.current_qty;
+
+      if (newQty > currQty) {
+        alert("Sorry, there aren't enough in inventory to add any more");
+        return;
+      }
+
       const response = await fetch('/cart', options);
       const data = await response.json();
       if (response.status === 200) {
