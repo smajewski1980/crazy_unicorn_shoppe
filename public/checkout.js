@@ -6,7 +6,18 @@ async function getCheckoutData() {
   try {
     const response = await fetch('/cart/checkout');
     const data = await response.json();
-    console.log(data);
+
+    // if this is running after the last cart item was removed
+    // the endpoint returns a message for an empty cart
+    if (data.msg) {
+      invoiceTableBody.style.display = 'none';
+      invoiceTableFoot.style.display = 'none';
+      setTimeout(() => {
+        alert('Your cart is now empty! What are you thinking?');
+        window.location.href = '/shop.html';
+      }, 10);
+    }
+
     populateCheckoutData(data);
   } catch (error) {
     console.log(error);

@@ -1,0 +1,22 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as m;
+
+#dev-info {
+  h1 {
+    font-family: $font-para;
+    margin-block: 1rem;
+  }
+
+  nav {
+    margin-block-end: 1rem;
+    ul {
+      display: flex;
+      list-style-type: none;
+      gap: 2rem;
+    }
+  }
+  li {
+    font-size: 1.5rem;
+    font-family: $font-para;
+  }
+}
