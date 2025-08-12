@@ -712,10 +712,11 @@ p {
   text-wrap: balance;
   margin-block-end: 2rem;
   border-bottom: 2px solid;
-  border-image: linear-gradient(to right, transparent 15%, rgba(128, 255, 0, 0.65) 50%, transparent 85%);
+  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
   border-image-slice: 1;
   padding-block-end: 1.25rem;
   padding-block-start: 2rem;
+  margin-block-end: 1rem;
 }
 #orders-body #orders-summary-main {
   width: 100%;
@@ -729,9 +730,15 @@ p {
   border-collapse: collapse;
   font-size: 1.5rem;
 }
+#orders-body #orders-summary-main table caption {
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
+  border-image-slice: 1;
+  padding-block-end: 1rem;
+}
 #orders-body #orders-summary-main table thead tr th {
   border-bottom: 1px solid chartreuse;
-  padding-block-end: 2rem;
+  padding-block: 1rem;
 }
 #orders-body #orders-summary-main table tbody tr:first-child td {
   padding-block-start: 0.75rem;
@@ -814,9 +821,10 @@ p {
   font-weight: 600;
   font-size: 1rem;
   color: red;
-  margin-left: auto;
+  justify-self: center;
   height: 100%;
   padding-inline: 1rem;
+  margin-inline: auto;
 }
 #order-review-modal #btn-close-order-review {
   width: 50%;
@@ -846,7 +854,7 @@ p {
   text-wrap: balance;
   margin-block-end: 2rem;
   border-bottom: 2px solid;
-  border-image: linear-gradient(to right, transparent 15%, rgba(128, 255, 0, 0.65) 50%, transparent 85%);
+  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
   border-image-slice: 1;
   padding-block-end: 1.25rem;
 }
@@ -915,7 +923,7 @@ p {
   text-wrap: balance;
   margin-block-end: 2rem;
   border-bottom: 2px solid;
-  border-image: linear-gradient(to right, transparent 15%, rgba(128, 255, 0, 0.65) 50%, transparent 85%);
+  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
   border-image-slice: 1;
   padding-block-end: 1.25rem;
   width: fit-content;

@@ -7,6 +7,7 @@
   h1 {
     @include m.h1Styles;
     padding-block-start: 2rem;
+    margin-block-end: 1rem;
   }
 
   #orders-summary-main {
@@ -22,9 +23,21 @@
       // clamp this later
       font-size: 1.5rem;
 
+      caption {
+        border-bottom: 2px solid;
+        border-image: linear-gradient(
+          to right,
+          transparent 30%,
+          rgba(128, 255, 0, 0.65) 50%,
+          transparent 70%
+        );
+        border-image-slice: 1;
+        padding-block-end: 1rem;
+      }
+
       thead tr th {
         border-bottom: 1px solid chartreuse;
-        padding-block-end: 2rem;
+        padding-block: 1rem;
       }
 
       tbody {
@@ -117,9 +130,10 @@
     @include m.regular-button;
     font-size: 1rem;
     color: red;
-    margin-left: auto;
+    justify-self: center;
     height: 100%;
     padding-inline: 1rem;
+    margin-inline: auto;
   }
 
   #btn-close-order-review {

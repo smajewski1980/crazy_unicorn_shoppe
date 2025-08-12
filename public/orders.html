@@ -26,6 +26,9 @@
 
     <main id="orders-summary-main">
       <table>
+        <caption>
+          click on an order for more details
+        </caption>
         <thead>
           <tr>
             <th>Order Number</th>
@@ -42,6 +45,7 @@
     <dialog
       id="order-review-modal"
       closedby="any"
+      data-order-id=""
     >
       <div id="order-review-modal-content">
         <h2 id="order-review-h2"></h2>
@@ -78,8 +82,8 @@
                 <td id="order-review-foot-tax"></td>
               </tr>
               <tr>
-                <td></td>
                 <td><button id="btn-cancel-order">Cancel Order</button></td>
+                <td></td>
                 <th>total</th>
                 <td id="order-review-foot-total"></td>
               </tr>

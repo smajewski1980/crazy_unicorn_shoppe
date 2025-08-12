@@ -76,6 +76,7 @@ function displayOrderData(data) {
 // populate and open the order review modal
 async function handleOrderClick(e) {
   const orderId = e.target.closest('tr').dataset.orderId;
+  orderReviewModal.dataset.orderId = orderId;
   let subtotal = 0;
   btnOrderCancel.style.display = 'none';
   const status = e.target.closest('tr').dataset.status;
@@ -121,8 +122,26 @@ async function handleOrderClick(e) {
   }
 }
 
+async function handleOrderCancel(e) {
+  const orderId = e.target.closest('dialog').dataset.orderId;
+  try {
+    const response = await fetch(`/order/${orderId}`, { method: 'DELETE' });
+    if (response.ok) {
+      alert(`Order number ${orderId} has been succesfully canceled.`);
+      orderReviewModal.close();
+      window.location.reload();
+      return;
+    }
+  } catch (error) {
+    console.log(error);
+    alert('something went wrong, please try again');
+  }
+}
+
 orderReviewModalBtn.addEventListener('click', () => {
   orderReviewModal.close();
 });
+
+btnOrderCancel.addEventListener('click', handleOrderCancel);
 
 getUser();
