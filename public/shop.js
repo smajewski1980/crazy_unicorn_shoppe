@@ -258,6 +258,14 @@ async function handleAddItem(e) {
   const prodId = e.target.closest('dialog').dataset.prodId;
   const qty = qtyToAdd.value;
   try {
+    // if not logged in, let user know
+    const loginRes = await fetch('/user/status');
+    if (!loginRes.ok) {
+      alert('please login to add an item to a cart');
+      productDialog.close();
+      return;
+    }
+
     const response = await fetch(`/products/${prodId}/inventory`);
     const data = await response.json();
     const currentQty = data.current_qty;
@@ -438,11 +446,3 @@ window.addEventListener('scroll', () => {
     upArrow.style.pointerEvents = 'none';
   }
 });
-
-// lockout the view orders button if the customer has no orders yet
-
-// if not logged in lock out the view orders button
-
-// get user id
-// get how many orders the user has
-// if 0, alert user to make an order
