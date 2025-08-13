@@ -129,6 +129,10 @@ function populateCheckoutData(data) {
         return;
       }
 
+      if (newQty === 0) {
+        updateCartRem(id);
+      }
+
       const response = await fetch('/cart', options);
       const data = await response.json();
       if (response.status === 200) {
