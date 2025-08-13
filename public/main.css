@@ -601,15 +601,16 @@ p {
   gap: 1rem;
   display: inline-flex;
   justify-content: space-around;
+  align-items: center;
 }
 #checkout-body #invoice-wrapper table tr .invoice-item-controls-wrapper img {
   cursor: pointer;
-  width: 25px;
-  height: 25px;
+  width: 1rem;
+  height: 1rem;
 }
 #checkout-body #invoice-wrapper table tr .invoice-item-controls-wrapper img:last-child {
-  width: 30px;
-  height: 30px;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 #checkout-body #payment-method-section h2 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
