@@ -100,7 +100,7 @@ header {
       font-size: clamp(1rem, 3.5vw, 2rem);
 
       pointer-events: none;
-      opacity: 30%;
+      opacity: 0;
 
       &::after {
         content: 'View Orders';
