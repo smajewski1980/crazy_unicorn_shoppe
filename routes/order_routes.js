@@ -10,7 +10,7 @@ router.post('/', isAuth, async (req, res, next) => {
 
   // this transaction will rollback if there is a problem
   // this transaction creates the order, adj the product inventory,
-  // and serts the is_active column to false in the db
+  // and sets the is_active column to false in the db
   try {
     const client = await pool.connect();
     try {

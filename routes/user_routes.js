@@ -113,10 +113,6 @@ router.post(
   },
 );
 
-// router.get('/login', (req, res) => {
-//   res.status(200).send();
-// });
-
 router.get('/logout', (req, res, next) => {
   req.logOut((err) => {
     if (err) {
@@ -129,10 +125,17 @@ router.get('/logout', (req, res, next) => {
 
 router.get('/:id', isAuth, async (req, res, next) => {
   const userId = req.params.id;
+  const correctUser = parseInt(userId) === req.user.user_id;
+
+  if (!correctUser) {
+    const err = new Error('that isnt the current users id');
+    err.status = 403;
+    return next(err);
+  }
 
   try {
     const result = await pool.query(
-      'select * from users as u join user_address as ua on u.user_id = ua.user_id where u.user_id = $1',
+      'select * from get_user_info where user_id = $1',
       [userId],
     );
     if (result.rowCount === 0) {

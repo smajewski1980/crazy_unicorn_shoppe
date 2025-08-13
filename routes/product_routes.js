@@ -16,7 +16,7 @@ const {
 router.get('/', async (req, res, next) => {
   try {
     const result = await pool.query(
-      'select * from products as p join inventory as i on p.product_id = i.product_id order by product_name',
+      'select * from get_all_products order by product_name',
       [],
     );
     res.status(200).send(result.rows);
@@ -89,7 +89,7 @@ router.get('/:id', async (req, res, next) => {
   // going rogue here, need to update swagger file later...
   try {
     const result = await pool.query(
-      'select * from products join inventory on products.product_id = inventory.product_id where products.product_id = $1',
+      'SELECT * FROM get_all_products WHERE product_id = $1',
       [prodId],
     );
     if (!result.rows.length) {
@@ -180,7 +180,7 @@ router.get('/:id/inventory', async (req, res, next) => {
 
   try {
     const result = await pool.query(
-      'select p.product_id, i.current_qty, i.min_qty, i.max_qty from products as p join inventory as i on i.product_id = p.product_id where p.product_id = $1',
+      'select current_qty, min_qty, max_qty from get_all_products where product_id = $1',
       [prodId],
     );
 
@@ -239,7 +239,7 @@ router.get('/category/:id', async (req, res, next) => {
 
   try {
     const result = await pool.query(
-      'select * from products join inventory on products.product_id = inventory.product_id where products.category_id = $1',
+      'select * from get_all_products where category_id = $1',
       [categoryId],
     );
     if (result.rowCount === 0) {
