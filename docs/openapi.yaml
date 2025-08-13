@@ -91,28 +91,26 @@ paths:
       responses:
         '201':
           description: content created
-          content:
-            application/json:
-              examples:
-                product created:
-                  value:
-                    - msg: product successfully added
-                      added_item_id: 47
         '400':
           description: bad request
           content:
             text/plain; charset=utf-8:
               examples:
                 bad request:
-                  value: Please check your request fields and try again.
+                  value: Please check your form fields and try again.
         '401':
+          description: not authenticated
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authenticated:
+                  value: You must be logged in to perform this action.
+        '403':
           description: not authorized
           content:
             text/plain; charset=utf-8:
               examples:
                 not authorized:
-                  value: You must be logged in to perform this action.
-                not admin:
                   value: You must have admin access to perform this action.
         '500':
           description: internal server error
@@ -152,8 +150,10 @@ paths:
                       "product_description": "Once you sit in our cozy Unicorn couch you will never want to .....",
                       "product_price": 300,
                       "image_url": "./assets/images/unicorn_couch.webp",
-                      "category_id": 4
-                      
+                      "category_id": 4,
+                      "current_qty": 10,
+                      "min_qty": 3,
+                      "max_qty": 10
                     }
         '404':
           description: not found
@@ -207,15 +207,20 @@ paths:
             text/plain; charset=utf-8:
               examples:
                 bad request:
-                  value: Please check the product data and try again.
+                  value: Please check your form fields and try again.
         '401':
+          description: not authenticated
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authenticated:
+                  value: You must be logged in to perform this action.
+        '403':
           description: not authorized
           content:
             text/plain; charset=utf-8:
               examples:
                 not authorized:
-                  value: You must be logged in to perform this action.
-                not admin:
                   value: You must have admin access to perform this action.
         '500':
           description: internal server error
@@ -241,13 +246,18 @@ paths:
         '204':
           description: no content
         '401':
+          description: not authenticated
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authenticated:
+                  value: You must be logged in to perform this action.
+        '403':
           description: not authorized
           content:
             text/plain; charset=utf-8:
               examples:
                 not authorized:
-                  value: You must be logged in to perform this action.
-                not admin:
                   value: You must have admin access to perform this action.
         '404':
           description: not found
@@ -290,7 +300,6 @@ paths:
                 product inventory:
                   value: |-
                     {
-                      "product_id": 47,
                       "current_qty": 5,
                       "min_qty": 2,
                       "max_qty": 7
@@ -343,6 +352,20 @@ paths:
                       "msg": "inventory successfully updated",
                       "product_id": 47
                     }
+        '401':
+          description: not authenticated
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authenticated:
+                  value: You must be logged in to perform this action.
+        '403':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must have admin access to perform this action.
         '404':
           description: not found
           content:
@@ -439,24 +462,17 @@ paths:
             schema:
               $ref: '#/components/schemas/New_user'
       responses:
-        '200':
-          description: OK
-          content:
-            text/plain; charset=utf-8:
-              examples:
-                user created:
-                  value: |-
-                    {
-                      "msg": "user account created",
-                      "user_id": 47
-                    }
+        '201':
+          description: created
         '400':
           description: bad request
           content:
             text/plain; charset=utf-8:
               examples:
                 bad request:
-                  value: Please check your values and resubmit.
+                  value: Please check your form fields and try again.
+                passwords do not match:
+                  value: Passwords don't match.
         '500':
           description: internal server error
           content:
@@ -483,9 +499,10 @@ paths:
                     {
                       "user_id": 21,
                       "name": "Fred Flintstone",
-                      "password": "bedrock_47",
+                      "hashed_pw": "$2b$10$CxacDKqOspwZbqs5R6jWCeZncCD7hg5tX1aiNYzxDSR4nXfp2pxXm",
                       "email": "fred@stoneage.com",
                       "phone": "555-555-5555",
+                      "is_admin": false,
                       "address_line_1": "123 Rock Blvd",
                       "address_line_2": "Boulder 1",
                       "city": "Bedrock",
@@ -519,36 +536,8 @@ paths:
       responses:
         '200':
           description: OK
-        '401':
-          description: unauthorized
-          content:
-            text/plain; charset=utf-8:
-              examples:
-                unauthorized:
-                  value: Please check your values and resubmit.
-        '500':
-          description: internal server error
-          content:
-            text/plain; charset=utf-8:
-              examples:
-                server error:
-                  value: Something went wrong on our end, please try again.
-      tags:
-        - user
-    get:
-      summary: Redirect destination
-      description: >-
-        If the credentials to sign in were invalid, this is the endpoint where
-        they land to try again.
-      operationId: get_user_login
-      responses:
-        '200':
-          description: The login page
-          content:
-            text/html:
-              examples:
-                get_user_login:
-                  value: <this will be the html of the login page>
+        '404':
+          description: not found
         '500':
           description: internal server error
           content:
@@ -611,6 +600,7 @@ paths:
                       "hashed_pw": "$2a$05$LhayLxezLhK1LhWvKxCyLOj0j1u.Kj0jZ0pEmm134uzrQlFvQJLF6",
                       "email": "fred@stoneage.com",
                       "phone": "555-555-5555",
+                      "is_admin": false,
                       "address_line_1": "123 Rock Blvd",
                       "address_line_2": "Boulder 1",
                       "city": "Bedrock",
@@ -618,12 +608,19 @@ paths:
                       "zip_code": "98765"
                     }
         '401':
-          description: not authorized
+          description: not authenticated
           content:
             text/plain; charset=utf-8:
               examples:
-                not found:
+                not authenticated:
                   value: You must be logged in to perform this action.
+        '403':
+          description: wrong user
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                wrong user:
+                  value: That isnt the current users id.
         '404':
           description: not found
           content:
@@ -663,12 +660,14 @@ paths:
               $ref: '#/components/schemas/Updated_user'
       responses:
         '201':
-          description: OK
+          description: created
+        '400':
+          description: bad request
           content:
             text/plain; charset=utf-8:
               examples:
-                not found:
-                  value: created
+                bad request:
+                  value: Please check your form fields and try again.
         '404':
           description: not found
           content:
@@ -701,6 +700,13 @@ paths:
       responses:
         '204':
           description: no content
+        '401':
+          description: not authenticated
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authenticated:
+                  value: You must be logged in to perform this action.
         '404':
           description: not found
           content:
@@ -787,10 +793,13 @@ paths:
                         "item_qty": 2
                       }
                     ]
+        '400':
+          description: empty cart
+          content:
             text/plain; charset=utf-8:
               examples:
-                Empty Cart:
-                  value: That's one empty cart you got there!
+                empty cart:
+                  value: Thats one empty cart you got there!                    
         '401':
           description: not authorized
           content:
@@ -821,16 +830,6 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              examples:
-                update success:
-                  value: |-
-                    {
-                      "cart_id": 39,
-                      "product_id": 4,
-                      "item_qty": 2
-                    }
         '401':
           description: not authorized
           content:
@@ -868,21 +867,24 @@ paths:
                       "user_id": 47,
                       "product_name": "Unicorn Slippers",
                       "item_qty": 2,
-                      "product_price": 20
+                      "product_price": 20,
+                      "product_id": 47
                     },
                     {
                       "cart_id": 477,
                       "user_id": 47,
                       "product_name": "Unicorn Car",
                       "item_qty": 1,
-                      "product_price": 2000
+                      "product_price": 2000,
+                      "product_id": 47
                     },
                     {
                       "cart_id": 477,
                       "user_id": 47,
                       "product_name": "Unicorn Shirt",
                       "item_qty": 1,
-                      "product_price": 20
+                      "product_price": 20,
+                      "product_id": 47
                     }]
             text/plain; charset=utf-8:
               examples:
@@ -956,12 +958,7 @@ paths:
             type: string
       responses:
         '204':
-          description: OK
-          content:
-            text/plain; charset=utf-8:
-              examples:
-                delete item success:
-                  value: The item has successfully been removed from the cart.
+          description: no content
         '401':
           description: not authorized
           content:
@@ -969,15 +966,6 @@ paths:
               examples:
                 not authorized:
                   value: You must be logged in to perform this action.
-        '404':
-          description: no active cart
-          content:
-            text/plain; charset=utf-8:
-              examples:
-                user has no active cart:
-                  value: Add an item to create a cart.
-                users cart does not have product:
-                  value: This user does not have that product in their cart.
         '500':
           description: internal server error
           content:
@@ -1062,7 +1050,22 @@ paths:
                       "order_status": "pending",
                       "payment_method": "credit card",
                       "free_shipping_elligible": false,
-                      "order_items": []
+                      "order_items": [
+                        {
+                          "cart_id": 3,
+                          "product_name": "Unicorn Painting",
+                          "product_price": "75",
+                          "item_qty": 1,
+                          "item_subtotal": "75"
+                        },
+                        {
+                          "cart_id": 3,
+                          "product_name": "Unicorn Cupcake",
+                          "product_price": "4",
+                          "item_qty": 2,
+                          "item_subtotal": "8"
+                        }                        
+                      ]
                     }
         '401':
           description: not authorized
@@ -1193,8 +1196,8 @@ paths:
     get:
       summary: get a summerized list of all orders for a user
       description: >-
-        This operation will take a user id as a url parameter and return a summerized list of
-        orders for that user.
+        This operation will take a user id as a url parameter and return a
+        summerized list of orders for that user.
       operationId: get_orders_all
       parameters:
         - name: id
@@ -1217,7 +1220,8 @@ paths:
                       "order_date": "2025-07-16 12:24:32.309714-04",
                       "order_total": 470,
                       "payment_method": "credit card",
-                      "cart_id": 47
+                      "cart_id": 47,
+                      "order_status": "pending"
                       },
                       {
                       "order_id": 52,
@@ -1225,7 +1229,8 @@ paths:
                       "order_date": "2025-07-26 12:24:32.309714-04",
                       "order_total": 300,
                       "payment_method": "credit card",
-                      "cart_id": 70                     
+                      "cart_id": 70,         
+                      "order_status": "canceled"
                     }]
         '401':
           description: not authorized
@@ -1289,10 +1294,6 @@ components:
     Product_inventory_update:
       type: object
       properties:
-        product_id:
-          type: integer
-          format: int32
-          example: 47
         current_qty:
           type: integer
           format: int32
@@ -1300,9 +1301,6 @@ components:
     Product_update:
       type: object
       properties:
-        product_id:
-          type: integer
-          example: 47
         product_name:
           type: string
           example: updated Unicorn Couch
@@ -1329,6 +1327,9 @@ components:
         password:
           type: string
           example: bedrock_47
+        conf_password:
+          type: string
+          example: bedrock_47
         email:
           type: string
           example: fred@stoneage.com
@@ -1353,16 +1354,9 @@ components:
     Updated_user:
       type: object
       properties:
-        user_id:
-          type: integer
-          format: int32
-          example: 47
         name:
           type: string
           example: Freddy Flintstone
-        password:
-          type: string
-          example: bedrock_47
         email:
           type: string
           example: updated_fred@stoneage.com

@@ -10,7 +10,7 @@ router.post('/', isAuth, async (req, res, next) => {
 
   // this transaction will rollback if there is a problem
   // this transaction creates the order, adj the product inventory,
-  // and sets the is_active column to false in the db
+  // and sets the is_active cart column to false in the db
   try {
     const client = await pool.connect();
     try {
@@ -175,6 +175,7 @@ router.delete('/:id', isAuth, async (req, res, next) => {
       // if the order id doesn't exist
       if (orderUserId.rowCount === 0) {
         const error = new Error('We could not find an order with that id.');
+        error.status = 404;
         throw error;
       }
       // see if the current user is the order's user

@@ -163,7 +163,7 @@ router.delete('/:id', isAuth, isAdmin, async (req, res, next) => {
       [prodId],
     );
     if (result.rowCount === 0) {
-      const error = new Error('product id not found');
+      const error = new Error('We could not find a product with that id.');
       error.status = 404;
       throw error;
     }
@@ -243,7 +243,7 @@ router.get('/category/:id', async (req, res, next) => {
       [categoryId],
     );
     if (result.rowCount === 0) {
-      const error = new Error('There is no category with that id.');
+      const error = new Error('We could not find a category with that id.');
       error.status = 404;
       return next(error);
     }

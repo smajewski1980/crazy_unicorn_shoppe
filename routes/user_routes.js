@@ -77,7 +77,7 @@ router.post(
                   return;
                 }
                 await client.query('COMMIT');
-                res.status(201).send('new user was created');
+                res.status(201).send();
               },
             );
           },
@@ -128,7 +128,7 @@ router.get('/:id', isAuth, async (req, res, next) => {
   const correctUser = parseInt(userId) === req.user.user_id;
 
   if (!correctUser) {
-    const err = new Error('that isnt the current users id');
+    const err = new Error('That isnt the current users id.');
     err.status = 403;
     return next(err);
   }
