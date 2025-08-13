@@ -100,7 +100,12 @@ ORDER BY
 CREATE
 OR REPLACE VIEW get_user_info AS
 select
-  *
+  u.*,
+  ua.address_line_1,
+  ua.address_line_2,
+  ua.city,
+  ua.state,
+  ua.zip_code
 from
   users as u
   join user_address as ua on u.user_id = ua.user_id;

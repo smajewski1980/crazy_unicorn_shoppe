@@ -12,7 +12,7 @@ CREATE TABLE users(
   name varchar(100) UNIQUE NOT NULL,
   hashed_pw varchar(255) NOT NULL,
   email varchar(100) UNIQUE NOT NULL,
-  phone varchar(12),
+  phone varchar(14),
   is_admin boolean DEFAULT false
 );
 
@@ -29,13 +29,6 @@ CREATE TABLE user_address(
   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
--- originally the above did not include ON DELETE CASCADE on the fkey
--- so i did this in a pg admin query
--- BEGIN;
--- ALTER TABLE user_address DROP CONSTRAINT user_address_user_id_fkey;
--- ALTER TABLE user_address ADD CONSTRAINT user_address_user_id_fkey FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE;
--- COMMIT;
--- 
 DROP TABLE IF EXISTS products CASCADE;
 
 CREATE TABLE products(
@@ -58,13 +51,6 @@ CREATE TABLE inventory(
   FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
 );
 
--- originally the above did not include ON DELETE CASCADE on the fkey
--- so i did this in a pg admin query
--- BEGIN;
--- ALTER TABLE inventory DROP CONSTRAINT inventory_product_id_fkey;
--- ALTER TABLE inventory ADD CONSTRAINT inventory_product_id_fkey FOREIGN KEY (product_id) REFERENCES PRODUCTS (product_id) ON DELETE CASCADE;
--- COMMIT;
---
 DROP TABLE IF EXISTS carts CASCADE;
 
 CREATE TABLE carts(
@@ -95,23 +81,6 @@ CREATE TABLE orders(
   free_shipping_elligible boolean GENERATED ALWAYS AS (order_total > 99) STORED NOT NULL
 );
 
--- added to create table
--- ALTER TABLE
---   orders
--- ADD
---   COLUMN cart_id integer;
--- ALTER TABLE
---   orders
--- ADD
---   CONSTRAINT orders_cart_id_fkey FOREIGN KEY (cart_id) REFERENCES carts(cart_id);
--- originally the above did not include ON DELETE CASCADE on the fkey
--- so i did this in a pg admin query
--- BEGIN;
--- ALTER TABLE cart_items DROP CONSTRAINT cart_items_cart_id_fkey;
--- ALTER TABLE cart_items ADD CONSTRAINT cart_items_cart_id_fkey FOREIGN KEY (cart_id) REFERENCES carts (cart_id) ON DELETE CASCADE;
--- COMMIT;
---
--- **************************************************************
 insert into
   category(category_name)
 values
@@ -120,5 +89,3 @@ values
   ('Electronics'),
   ('Home Decor'),
   ('Gifts and Gadgets of Crazy');
-
--- ***********

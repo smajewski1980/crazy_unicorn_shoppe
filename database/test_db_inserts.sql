@@ -1,13 +1,4 @@
 insert into
-  category(category_name)
-values
-  ('Food & Beverage'),
-  ('Fashion and Accessories'),
-  ('Electronics'),
-  ('Home Decor'),
-  ('Gifts and Gadgets of Crazy');
-
-insert into
   users(name, hashed_pw, email, phone)
 values
   (
