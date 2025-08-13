@@ -9,6 +9,7 @@ const prodDialogInStock = document.getElementById('product-dialog-in-stock');
 const btnAddToCart = document.getElementById('btn-product-dialog-add');
 const qtyToAdd = document.getElementById('product-add-qty');
 const categoryQtySpan = document.getElementById('qty-span');
+const btnViewOrders = document.getElementById('orders-link');
 const productThumbs = Array.from(
   document.querySelectorAll('.thumb-wrapper img'),
 );
@@ -339,10 +340,15 @@ function styleLogOut() {
   navFirstItem.style.placeItems = 'center';
 }
 
-function styleViewOrdersBtn() {
-  const viewOrdersButton = document.getElementById('orders-link');
-  viewOrdersButton.style.pointerEvents = 'auto';
-  viewOrdersButton.style.opacity = '1';
+async function styleViewOrdersBtn(id) {
+  // if there are no orders for this user, don't make btn active
+  const response = await fetch(`/order/${id}/all`);
+  if (!response.ok) {
+    return;
+  }
+
+  btnViewOrders.style.pointerEvents = 'auto';
+  btnViewOrders.style.opacity = '1';
 }
 async function isLoggedIn() {
   // if a user is logged in on page load, load appropriate UI
@@ -366,7 +372,7 @@ async function isLoggedIn() {
         .addEventListener('click', handleLogout);
       styleLogOut();
       setCartItemQty();
-      styleViewOrdersBtn();
+      styleViewOrdersBtn(response.user_id);
       return;
     }
     console.log('user is not logged in');
@@ -432,3 +438,11 @@ window.addEventListener('scroll', () => {
     upArrow.style.pointerEvents = 'none';
   }
 });
+
+// lockout the view orders button if the customer has no orders yet
+
+// if not logged in lock out the view orders button
+
+// get user id
+// get how many orders the user has
+// if 0, alert user to make an order
