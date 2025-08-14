@@ -30,3 +30,10 @@ function handleLogin(e) {
 }
 
 btnLogin.addEventListener('click', handleLogin);
+
+const btnGoogle = document.querySelector('.gsi-material-button');
+
+btnGoogle.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.location.href = '/user/auth/google';
+});

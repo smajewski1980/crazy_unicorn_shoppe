@@ -3,6 +3,39 @@ const btnSignup = document.getElementById('btn-signup');
 const pw = document.getElementById('input-password');
 const confpw = document.getElementById('input-conf-password');
 
+const nameField = document.getElementById('input-name');
+const nameFieldLabel = document.getElementById('name-label');
+const pwField = document.getElementById('input-password');
+const confPwField = document.getElementById('input-conf-password');
+
+function updateFormForGoogleLogin(name, id) {
+  nameField.value = name;
+  nameFieldLabel.textContent = 'google username';
+  nameField.readOnly = true;
+  pwField.value = id;
+  pwField.closest('div').style.visibility = 'hidden';
+  confPwField.value = id;
+  confPwField.closest('div').style.visibility = 'hidden';
+}
+
+async function getStatus() {
+  const response = await fetch('/user/status');
+  const data = await response.json();
+  console.log(data);
+  if (data.provider === 'google') {
+    const googleName = data.displayName;
+    const googleID = data.id;
+    updateFormForGoogleLogin(googleName, googleID);
+    return;
+  }
+  if (data.user_id) {
+    window.location.href = 'index.html';
+  }
+  return;
+}
+
+getStatus();
+
 async function sendFormData(data) {
   const options = {
     method: 'POST',

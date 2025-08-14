@@ -5,7 +5,6 @@ const pool = require(path.join(__dirname, '../database/db_connect'));
 const passport = require('passport');
 require('../passport');
 const bcrypt = require('bcrypt');
-// const { url } = require('inspector');
 const saltRounds = 10;
 const isAuth = require('../middleware/is_auth');
 
@@ -109,6 +108,23 @@ router.post(
     // failureRedirect: "/user/login",
   }),
   (req, res, _next) => {
+    res.sendStatus(404);
+  },
+);
+
+// next two not added to swagger file yet
+router.get(
+  '/auth/google',
+  passport.authenticate('google', { scope: ['profile'] }),
+);
+
+router.get(
+  '/auth/google/callback',
+  passport.authenticate('google', {
+    successRedirect: '/signup.html',
+    failureRedirect: '/signin.html',
+  }),
+  (req, res) => {
     res.sendStatus(404);
   },
 );

@@ -6,13 +6,10 @@ const connectLiveReload = require('connect-livereload');
 const livereload = require('livereload');
 const app = express();
 const liveReloadServer = livereload.createServer();
-// const pool = require(path.join(__dirname, "/database/db_connect"));
 const userRoutes = require('./routes/user_routes');
 const productRoutes = require('./routes/product_routes');
 const cartRoutes = require('./routes/cart_routes');
 const orderRoutes = require('./routes/order_routes');
-// const cors = require("cors");
-// app.use(cors());
 const session = require('express-session');
 const passport = require('passport');
 const helmet = require('helmet');
@@ -54,10 +51,6 @@ app.use('/user', userRoutes);
 app.use('/products', productRoutes);
 app.use('/cart', cartRoutes);
 app.use('/order', orderRoutes);
-
-// app.get("/", (req, res) => {
-//   res.sendFile("public/index.html");
-// });
 
 app.use((err, req, res, _next) => {
   console.log(err);
