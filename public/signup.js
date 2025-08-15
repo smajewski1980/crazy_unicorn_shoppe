@@ -9,6 +9,7 @@ const pwField = document.getElementById('input-password');
 const confPwField = document.getElementById('input-conf-password');
 const emailField = document.getElementById('input-email');
 const formLeftCol = document.getElementById('sign-up-form-left-col');
+const fieldset = document.querySelector('fieldset');
 
 let isGoogleSignup = false;
 
@@ -23,6 +24,7 @@ function updateFormForGoogleLogin(name, id, email) {
   // confPwField.closest('div').style.visibility = 'hidden';
   emailField.value = email;
   emailField.readOnly = true;
+  fieldset.classList.remove('unicorn-hover');
   formLeftCol.classList.add('google-signup');
   isGoogleSignup = true;
 }

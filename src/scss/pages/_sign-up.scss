@@ -24,18 +24,35 @@
 
     #sign-up-form-left-col.google-signup {
       .sign-up-input-wrapper:nth-child(1) {
-        visibility: hidden;
-      }
-      .sign-up-input-wrapper:nth-child(2) {
         position: relative;
         visibility: hidden;
+
         ::after {
           content: 'You have chosen to sign up with google, there is one more step to finish the sign up process.';
           position: absolute;
-          top: 0;
+          top: 0rem;
           left: 0;
           visibility: visible;
         }
+
+        ::before {
+          content: '';
+          width: 125px;
+          height: 150px;
+          display: block;
+          background-image: url('./assets/images/unicorn_stuffed.png');
+          background-size: contain;
+          position: absolute;
+          bottom: -182px;
+          left: 50%;
+          transform: skewX(0deg) skewY(0deg) translateX(-55%) scale(1) rotate(0);
+          filter: brightness(1.25);
+          visibility: visible;
+          animation: unicorn-dance 15s linear infinite;
+        }
+      }
+      .sign-up-input-wrapper:nth-child(2) {
+        visibility: hidden;
       }
       .sign-up-input-wrapper:nth-child(3) {
         visibility: hidden;
@@ -67,6 +84,7 @@
       // width: fit-content;
       margin-inline: 15rem;
       margin-block: 1.5rem;
+      position: relative;
 
       legend {
         font-family: $font-para;
@@ -86,6 +104,22 @@
         input {
           accent-color: chartreuse;
         }
+      }
+    }
+    .unicorn-hover {
+      ::before {
+        content: '';
+        width: 125px;
+        height: 150px;
+        display: block;
+        background-image: url('./assets/images/unicorn_stuffed.png');
+        background-size: contain;
+        position: absolute;
+        bottom: -5rem;
+        left: -6rem;
+        transform: skewX(0deg) skewY(0deg) translateX(-55%) scale(1) rotate(0);
+        filter: brightness(1.25);
+        animation: unicorn-dance 15s linear infinite;
       }
     }
 
@@ -112,5 +146,17 @@
   }
 }
 
-// need to do the validation styles
-// need to reactivate the sign up btn when form:valid
+@keyframes unicorn-dance {
+  0%,
+  100% {
+    transform: skewX(0deg) skewY(0deg) translateX(-55%) scale(1) rotate(0);
+  }
+
+  33% {
+    transform: skewX(0deg) skewY(1deg) translateX(-57%) scale(0.97)
+      rotate(-2deg);
+  }
+  66% {
+    transform: skewX(1deg) skewY(0deg) translateX(-53%) scale(0.97) rotate(1deg);
+  }
+}
