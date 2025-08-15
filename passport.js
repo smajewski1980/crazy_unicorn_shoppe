@@ -3,7 +3,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const pool = require('./database/db_connect');
 const bcrypt = require('bcrypt');
-const saltRounds = 10;
 require('dotenv').config();
 
 passport.serializeUser((user, done) => {

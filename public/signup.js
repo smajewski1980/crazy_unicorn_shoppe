@@ -10,6 +10,8 @@ const confPwField = document.getElementById('input-conf-password');
 const emailField = document.getElementById('input-email');
 const formLeftCol = document.getElementById('sign-up-form-left-col');
 
+let isGoogleSignup = false;
+
 function updateFormForGoogleLogin(name, id, email) {
   // need to make seperate classes for google or not forms and toggle here
   nameField.value = name;
@@ -22,12 +24,13 @@ function updateFormForGoogleLogin(name, id, email) {
   emailField.value = email;
   emailField.readOnly = true;
   formLeftCol.classList.add('google-signup');
+  isGoogleSignup = true;
 }
 
 async function getStatus() {
   const response = await fetch('/user/status');
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
   if (data.provider === 'google') {
     const googleName = data.displayName;
     const googleID = data.id;
@@ -53,10 +56,30 @@ async function sendFormData(data) {
   };
 
   const response = await fetch('/user/register', options);
-  // const resData = await response.json();
-  if (response.ok) {
-    window.location.href = './signin.html';
+
+  if (!response.ok) {
+    console.log(response);
   }
+  // local signup, logs in and redirects home
+  if (response.ok && !isGoogleSignup) {
+    console.log(data);
+    options.body = JSON.stringify({
+      username: data.name,
+      password: data.password,
+    });
+    const response = await fetch('/user/login', options);
+    if (response.ok) {
+      window.location.href = './index.html';
+    }
+  }
+
+  // google sign up redirects to google auth endpoint
+  // which will ultimately redirect to the homepage
+  if (response.ok && isGoogleSignup) {
+    window.location.href = '/user/auth/google';
+  }
+
+  return;
 }
 
 function handleSignup(e) {
