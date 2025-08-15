@@ -8,17 +8,20 @@ const nameFieldLabel = document.getElementById('name-label');
 const pwField = document.getElementById('input-password');
 const confPwField = document.getElementById('input-conf-password');
 const emailField = document.getElementById('input-email');
+const formLeftCol = document.getElementById('sign-up-form-left-col');
 
 function updateFormForGoogleLogin(name, id, email) {
+  // need to make seperate classes for google or not forms and toggle here
   nameField.value = name;
   nameFieldLabel.textContent = 'google username';
   nameField.readOnly = true;
   pwField.value = id;
-  pwField.closest('div').style.visibility = 'hidden';
+  // pwField.closest('div').style.visibility = 'hidden';
   confPwField.value = id;
-  confPwField.closest('div').style.visibility = 'hidden';
+  // confPwField.closest('div').style.visibility = 'hidden';
   emailField.value = email;
   emailField.readOnly = true;
+  formLeftCol.classList.add('google-signup');
 }
 
 async function getStatus() {

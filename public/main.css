@@ -1094,6 +1094,23 @@ p {
   display: grid;
   gap: 0.5rem;
 }
+#sign-up-body #sign-up-form #sign-up-form-left-col.google-signup .sign-up-input-wrapper:nth-child(1) {
+  visibility: hidden;
+}
+#sign-up-body #sign-up-form #sign-up-form-left-col.google-signup .sign-up-input-wrapper:nth-child(2) {
+  position: relative;
+  visibility: hidden;
+}
+#sign-up-body #sign-up-form #sign-up-form-left-col.google-signup .sign-up-input-wrapper:nth-child(2) ::after {
+  content: "You have chosen to sign up with google, there is one more step to finish the sign up process.";
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: visible;
+}
+#sign-up-body #sign-up-form #sign-up-form-left-col.google-signup .sign-up-input-wrapper:nth-child(3) {
+  visibility: hidden;
+}
 #sign-up-body #sign-up-form .sign-up-input-wrapper {
   width: clamp(18.75rem, 17.593rem + 6.173vw, 25rem);
   display: grid;

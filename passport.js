@@ -11,6 +11,8 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((user_id, done) => {
+  // this catches a user the first time they log in with google
+  // the user_id arg is actually the google profile obj in this instance
   if (typeof user_id !== 'number') {
     return done(null, user_id);
   }
@@ -48,6 +50,9 @@ const local = passport.use(
   }),
 );
 
+// if the google login returns good for the first time,
+// user gets redirected to finish the sign up
+// otherwise they are logged in and redirected to the homepage
 const google = passport.use(
   new GoogleStrategy(
     {
@@ -62,8 +67,6 @@ const google = passport.use(
         'select * from users where email = $1',
         [email],
         async (err, result) => {
-          console.log(result);
-          // debugging here
           if (result.rowCount === 0) return done(null, profile);
           const user = result.rows[0];
           try {
@@ -75,9 +78,6 @@ const google = passport.use(
           }
         },
       );
-      // still working happy path, have to finish this
-
-      // return done(null, profile);
     },
   ),
 );

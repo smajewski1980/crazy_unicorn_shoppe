@@ -22,6 +22,26 @@
       gap: 0.5rem;
     }
 
+    #sign-up-form-left-col.google-signup {
+      .sign-up-input-wrapper:nth-child(1) {
+        visibility: hidden;
+      }
+      .sign-up-input-wrapper:nth-child(2) {
+        position: relative;
+        visibility: hidden;
+        ::after {
+          content: 'You have chosen to sign up with google, there is one more step to finish the sign up process.';
+          position: absolute;
+          top: 0;
+          left: 0;
+          visibility: visible;
+        }
+      }
+      .sign-up-input-wrapper:nth-child(3) {
+        visibility: hidden;
+      }
+    }
+
     .sign-up-input-wrapper {
       @include m.formGroup(grid);
 
@@ -78,6 +98,7 @@
       margin-block-end: 0rem;
     }
   }
+
   #home-link {
     @include m.btn-home-link;
     display: inline-block;
