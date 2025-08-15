@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE users(
   user_id serial PRIMARY KEY,
-  name varchar(100) UNIQUE NOT NULL,
+  name varchar(100) NOT NULL,
   hashed_pw varchar(255) NOT NULL,
   email varchar(100) UNIQUE NOT NULL,
   phone varchar(14),

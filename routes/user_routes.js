@@ -115,7 +115,7 @@ router.post(
 // next two not added to swagger file yet
 router.get(
   '/auth/google',
-  passport.authenticate('google', { scope: ['profile'] }),
+  passport.authenticate('google', { scope: ['email', 'profile'] }),
 );
 
 router.get(

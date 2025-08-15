@@ -7,8 +7,9 @@ const nameField = document.getElementById('input-name');
 const nameFieldLabel = document.getElementById('name-label');
 const pwField = document.getElementById('input-password');
 const confPwField = document.getElementById('input-conf-password');
+const emailField = document.getElementById('input-email');
 
-function updateFormForGoogleLogin(name, id) {
+function updateFormForGoogleLogin(name, id, email) {
   nameField.value = name;
   nameFieldLabel.textContent = 'google username';
   nameField.readOnly = true;
@@ -16,6 +17,8 @@ function updateFormForGoogleLogin(name, id) {
   pwField.closest('div').style.visibility = 'hidden';
   confPwField.value = id;
   confPwField.closest('div').style.visibility = 'hidden';
+  emailField.value = email;
+  emailField.readOnly = true;
 }
 
 async function getStatus() {
@@ -25,7 +28,8 @@ async function getStatus() {
   if (data.provider === 'google') {
     const googleName = data.displayName;
     const googleID = data.id;
-    updateFormForGoogleLogin(googleName, googleID);
+    const googleEmail = data.emails[0].value;
+    updateFormForGoogleLogin(googleName, googleID, googleEmail);
     return;
   }
   if (data.user_id) {

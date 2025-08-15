@@ -22,7 +22,7 @@ const userValidationSchema = {
     isEmail: {
       errorMessage: 'Email must be in the form of a valid email address.',
     },
-    normalizeEmail: true,
+    normalizeEmail: { options: { gmail_remove_dots: false } },
     escape: true,
   },
   // need to revisit this one later
