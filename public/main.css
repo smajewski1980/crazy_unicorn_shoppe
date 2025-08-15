@@ -925,6 +925,24 @@ p {
   display: grid;
   text-align: center;
 }
+#sign-in-page form .login-form-group:first-child, #sign-in-page form .login-form-group:nth-child(2) {
+  position: relative;
+}
+#sign-in-page form .login-form-group:first-child ::before, #sign-in-page form .login-form-group:nth-child(2) ::before {
+  content: "";
+  display: block;
+  background-image: url("./assets/images/testimonial-star.webp");
+  background-size: contain;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: -5rem;
+}
+#sign-in-page form .login-form-group:first-child:nth-child(2) ::before, #sign-in-page form .login-form-group:nth-child(2):nth-child(2) ::before {
+  left: initial;
+  right: -5rem;
+  top: 4rem;
+}
 #sign-in-page form .login-form-group input {
   text-align: inherit;
   padding-block: 0.35rem;

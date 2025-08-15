@@ -17,6 +17,28 @@
     .login-form-group {
       @include m.formGroup(grid);
 
+      &:first-child,
+      &:nth-child(2) {
+        position: relative;
+        ::before {
+          content: '';
+          display: block;
+          background-image: url('./assets/images/testimonial-star.webp');
+          background-size: contain;
+          position: absolute;
+          width: 50px;
+          height: 50px;
+          left: -5rem;
+        }
+        &:nth-child(2) {
+          ::before {
+            left: initial;
+            right: -5rem;
+            top: 4rem;
+          }
+        }
+      }
+
       input {
         @include m.formInput;
 
