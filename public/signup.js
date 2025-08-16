@@ -25,7 +25,7 @@ function updateFormForGoogleLogin(name, id, email) {
   // confPwField.closest('div').style.visibility = 'hidden';
   emailField.value = email;
   emailField.readOnly = true;
-  fieldset.classList.remove('unicorn-hover');
+  fieldset.classList.remove('unicorn-float');
   formLeftCol.classList.add('google-signup');
   isGoogleSignup = true;
   btnHome.style.display = 'none';

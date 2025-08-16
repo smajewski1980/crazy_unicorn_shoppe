@@ -56,7 +56,7 @@
       }
 
       tr:not(:has(th)) {
-        cursor: pointer;
+        cursor: url('./assets/icons/pointer.png'), auto;
       }
     }
   }

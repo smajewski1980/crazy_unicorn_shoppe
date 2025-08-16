@@ -31,11 +31,15 @@ body {
 
 a {
   text-decoration: none;
+  cursor: url("./assets/icons/pointer.png"), auto;
 }
 
 label,
-input {
+input,
+select,
+option {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  cursor: url("./assets/icons/pointer.png"), auto;
 }
 
 ::selection {
@@ -46,6 +50,10 @@ body {
   background-image: radial-gradient(rgb(241, 137, 241), purple);
   min-height: 100vh;
   background-size: 100vw 100vh;
+}
+
+html {
+  cursor: url("./assets/icons/cursor.png"), auto;
 }
 
 #punctuation {
@@ -176,7 +184,7 @@ body {
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
   outline: none;
   font-weight: 600;
   padding: 0.5rem 1.5rem 0.65rem;
@@ -356,7 +364,7 @@ p {
   backdrop-filter: blur(10px);
   padding: 1.5rem 2rem;
   border-radius: 15px 0px 15px;
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
   text-align: center;
 }
 .products-display-wrapper #product-cards-wrapper .product-card:focus-visible {
@@ -559,7 +567,7 @@ p {
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
   outline: none;
   font-weight: 600;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -604,7 +612,7 @@ p {
   align-items: center;
 }
 #checkout-body #invoice-wrapper table tr .invoice-item-controls-wrapper img {
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
   width: 1rem;
   height: 1rem;
 }
@@ -624,7 +632,7 @@ p {
 }
 #checkout-body #payment-method-section #payment-choice-wrapper .payment-img-wrapper {
   max-width: 250px;
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
 }
 #checkout-body #payment-modal,
 #checkout-body #order-complete-modal {
@@ -666,7 +674,7 @@ p {
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
   outline: none;
   font-weight: 600;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -718,7 +726,7 @@ p {
 }
 #checkout-body #shipping-section #shipping-confirm-info-wrapper:invalid #btn-edit-info {
   margin-block: 0.75rem;
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
   border-radius: 15px 0px 15px;
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
@@ -734,7 +742,7 @@ p {
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
   outline: none;
   font-weight: 600;
   pointer-events: auto;
@@ -793,7 +801,7 @@ p {
   border-bottom: 1px dotted chartreuse;
 }
 #orders-body #orders-summary-main table tr:not(:has(th)) {
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
 }
 #orders-body nav {
   margin-block: 2rem 3rem;
@@ -870,7 +878,7 @@ p {
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
   outline: none;
   font-weight: 600;
   font-size: 1rem;
@@ -891,7 +899,7 @@ p {
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
   outline: none;
   font-weight: 600;
   box-shadow: 0px 0px 15px rgba(127, 255, 0, 0.5098039216);
@@ -965,7 +973,7 @@ p {
 #sign-in-page form #btn-login {
   padding-block: 0.5rem;
   margin-block: 0.75rem;
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
   border-radius: 15px 0px 15px;
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
@@ -998,7 +1006,7 @@ p {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: #1f1f1f;
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
   font-family: "Roboto", arial, sans-serif;
   font-size: 14px;
   height: 40px;
@@ -1130,6 +1138,7 @@ p {
   display: block;
   background-image: url("./assets/images/unicorn_stuffed.png");
   background-size: contain;
+  background-repeat: no-repeat;
   position: absolute;
   bottom: -182px;
   left: 50%;
@@ -1195,13 +1204,14 @@ p {
 #sign-up-body #sign-up-form fieldset .sign-up-input-wrapper input {
   accent-color: chartreuse;
 }
-#sign-up-body #sign-up-form .unicorn-hover ::before {
+#sign-up-body #sign-up-form .unicorn-float ::before {
   content: "";
   width: 125px;
   height: 150px;
   display: block;
   background-image: url("./assets/images/unicorn_stuffed.png");
   background-size: contain;
+  background-repeat: no-repeat;
   position: absolute;
   bottom: -5rem;
   left: -6rem;
@@ -1211,7 +1221,7 @@ p {
 }
 #sign-up-body #sign-up-form #btn-signup {
   margin-block: 0.75rem;
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
   border-radius: 15px 0px 15px;
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
@@ -1305,7 +1315,7 @@ header nav ul li:nth-child(1) {
   rotate: 15deg;
 }
 header nav ul li:nth-child(1) button {
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
   padding: 0.5rem 1rem 0.25rem;
   border-radius: 15px 0px 15px 0px;
   border: 1px solid chartreuse;
@@ -1507,7 +1517,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   display: grid;
   grid-template-columns: 75% 15%;
   justify-items: center;
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
 }
 #product-dialog #dialog-outer-images-wrapper #dialog-img-wrapper {
   border-radius: 15px 0px 15px;
@@ -1530,7 +1540,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   border-radius: 15px 0px 15px;
   overflow: hidden;
   outline: 1px solid chartreuse;
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
 }
 #product-dialog #product-dialog-desc {
   margin-inline: 5rem;
@@ -1566,7 +1576,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: pointer;
+  cursor: url("./assets/icons/pointer.png"), auto;
   outline: none;
   font-weight: 600;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;

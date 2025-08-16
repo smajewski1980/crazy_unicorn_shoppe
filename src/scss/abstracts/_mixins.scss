@@ -53,7 +53,7 @@
 
 @mixin btn-form {
   margin-block: 0.75rem;
-  cursor: pointer;
+  cursor: url('./assets/icons/pointer.png'), auto;
   border-radius: 15px 0px 15px;
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
@@ -74,7 +74,7 @@
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: pointer;
+  cursor: url('./assets/icons/pointer.png'), auto;
   outline: none;
   font-weight: 600;
 }
@@ -97,4 +97,8 @@
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.6);
   }
+}
+
+@mixin pointer {
+  cursor: url('./assets/icons/pointer.png'), auto;
 }

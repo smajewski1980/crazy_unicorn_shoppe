@@ -42,6 +42,7 @@
           display: block;
           background-image: url('./assets/images/unicorn_stuffed.png');
           background-size: contain;
+          background-repeat: no-repeat;
           position: absolute;
           bottom: -182px;
           left: 50%;
@@ -106,7 +107,7 @@
         }
       }
     }
-    .unicorn-hover {
+    .unicorn-float {
       ::before {
         content: '';
         width: 125px;
@@ -114,6 +115,7 @@
         display: block;
         background-image: url('./assets/images/unicorn_stuffed.png');
         background-size: contain;
+        background-repeat: no-repeat;
         position: absolute;
         bottom: -5rem;
         left: -6rem;

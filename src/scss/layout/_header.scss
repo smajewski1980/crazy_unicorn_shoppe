@@ -40,7 +40,7 @@ header {
         rotate: 15deg;
 
         button {
-          cursor: pointer;
+          cursor: url('./assets/icons/pointer.png'), auto;
           padding: 0.5rem 1rem 0.25rem;
           border-radius: 15px 0px 15px 0px;
           border: 1px solid chartreuse;

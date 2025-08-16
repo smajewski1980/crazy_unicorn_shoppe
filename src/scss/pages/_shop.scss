@@ -70,7 +70,7 @@
       backdrop-filter: blur(10px);
       padding: 1.5rem 2rem;
       border-radius: 15px 0px 15px;
-      cursor: pointer;
+      cursor: url('./assets/icons/pointer.png'), auto;
       text-align: center;
 
       &:focus-visible {

@@ -11,11 +11,15 @@ body {
 
 a {
   text-decoration: none;
+  cursor: url('./assets/icons/pointer.png'), auto;
 }
 
 label,
-input {
+input,
+select,
+option {
   font-family: $font-para;
+  cursor: url('./assets/icons/pointer.png'), auto;
 }
 
 ::selection {
