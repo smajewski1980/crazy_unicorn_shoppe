@@ -4,6 +4,12 @@
 #sign-up-body {
   align-content: center;
 
+  .logo-wrapper {
+    max-width: 200px;
+    margin-inline: auto;
+    margin-block: 2rem 1rem;
+  }
+
   h1 {
     @include m.h1Styles;
     width: fit-content;
@@ -44,7 +50,7 @@
           background-size: contain;
           background-repeat: no-repeat;
           position: absolute;
-          bottom: -182px;
+          bottom: -9rem;
           left: 50%;
           transform: skewX(0deg) skewY(0deg) translateX(-55%) scale(1) rotate(0);
           filter: brightness(1.25);

@@ -20,7 +20,7 @@
   display: $display;
   justify-content: center;
   gap: 0.5rem;
-  font-size: 1.5rem;
+  // font-size: 1.25rem;
   font-family: $font-para;
 }
 
@@ -32,7 +32,7 @@
 
 @mixin formInput {
   text-align: inherit;
-  padding-block: 0.35rem;
+  padding-block: 0.5rem;
   margin-block-start: 0.25rem;
   border-radius: 15px 0px 15px;
   outline-offset: 3px;
