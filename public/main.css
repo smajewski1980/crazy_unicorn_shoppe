@@ -757,7 +757,7 @@ p {
 }
 #orders-body h1 {
   text-align: center;
-  font-size: clamp(2rem, 0.852rem + 3.457vw, 4rem);
+  font-size: clamp(2rem, 0.852rem + 3.457vw, 3.5rem);
   text-wrap: balance;
   margin-block-end: 2rem;
   border-bottom: 2px solid;
@@ -911,9 +911,13 @@ p {
   justify-items: center;
   min-height: 100dvh;
 }
+#sign-in-page .logo-wrapper {
+  max-width: 200px;
+  margin-block-end: 0.5rem;
+}
 #sign-in-page h1 {
   text-align: center;
-  font-size: clamp(2rem, 0.852rem + 3.457vw, 4rem);
+  font-size: clamp(2rem, 0.852rem + 3.457vw, 3.5rem);
   text-wrap: balance;
   margin-block-end: 2rem;
   border-bottom: 2px solid;
@@ -1095,7 +1099,7 @@ p {
 }
 #sign-up-body h1 {
   text-align: center;
-  font-size: clamp(2rem, 0.852rem + 3.457vw, 4rem);
+  font-size: clamp(2rem, 0.852rem + 3.457vw, 3.5rem);
   text-wrap: balance;
   margin-block-end: 2rem;
   border-bottom: 2px solid;
