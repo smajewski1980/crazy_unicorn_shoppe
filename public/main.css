@@ -755,6 +755,11 @@ p {
 #orders-body {
   align-content: center;
 }
+#orders-body .logo-wrapper {
+  max-width: 300px;
+  margin-inline: auto;
+  margin-block-start: 2rem;
+}
 #orders-body h1 {
   text-align: center;
   font-size: clamp(2rem, 0.852rem + 3.457vw, 3.5rem);

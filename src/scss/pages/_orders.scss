@@ -4,6 +4,12 @@
 #orders-body {
   align-content: center;
 
+  .logo-wrapper {
+    max-width: 300px;
+    margin-inline: auto;
+    margin-block-start: 2rem;
+  }
+
   h1 {
     @include m.h1Styles;
     padding-block-start: 2rem;
