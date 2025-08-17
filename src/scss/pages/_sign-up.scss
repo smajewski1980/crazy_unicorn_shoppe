@@ -32,6 +32,7 @@
       .sign-up-input-wrapper:nth-child(1) {
         position: relative;
         visibility: hidden;
+        pointer-events: none;
 
         ::after {
           content: 'You have chosen to sign up with google, there is one more step to finish the sign up process.';

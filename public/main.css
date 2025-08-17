@@ -1130,6 +1130,7 @@ p {
 #sign-up-body #sign-up-form #sign-up-form-left-col.google-signup .sign-up-input-wrapper:nth-child(1) {
   position: relative;
   visibility: hidden;
+  pointer-events: none;
 }
 #sign-up-body #sign-up-form #sign-up-form-left-col.google-signup .sign-up-input-wrapper:nth-child(1) ::after {
   content: "You have chosen to sign up with google, there is one more step to finish the sign up process.";

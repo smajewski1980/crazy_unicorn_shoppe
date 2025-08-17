@@ -13,6 +13,13 @@ const orderRoutes = require('./routes/order_routes');
 const session = require('express-session');
 const passport = require('passport');
 const helmet = require('helmet');
+const fs = require('fs');
+const morgan = require('morgan');
+
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {
+  flags: 'a',
+});
+app.use(morgan('combined', { stream: accessLogStream }));
 
 liveReloadServer.watch(path.join(__dirname, '/public'));
 app.use(connectLiveReload());
