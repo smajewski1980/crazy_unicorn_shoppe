@@ -11,6 +11,29 @@
     display: none;
   }
 
+  #redirect-image-wrapper {
+    max-width: 500px;
+    margin-inline: auto;
+    display: none;
+    border-radius: 15px 0px 15px;
+    border: 2px solid chartreuse;
+    outline: 2px solid chartreuse;
+    outline-offset: 3px;
+    padding: 2rem;
+
+    p {
+      font-size: 2.5rem;
+      color: chartreuse;
+      text-align: center;
+      font-weight: 600;
+      font-family: revert;
+    }
+
+    img {
+      border-radius: 15px 0px 15px;
+    }
+  }
+
   h1 {
     @include m.h1Styles;
     width: fit-content;

@@ -1107,6 +1107,26 @@ p {
   margin-block: 2rem 1rem;
   display: none;
 }
+#sign-up-body #redirect-image-wrapper {
+  max-width: 500px;
+  margin-inline: auto;
+  display: none;
+  border-radius: 15px 0px 15px;
+  border: 2px solid chartreuse;
+  outline: 2px solid chartreuse;
+  outline-offset: 3px;
+  padding: 2rem;
+}
+#sign-up-body #redirect-image-wrapper p {
+  font-size: 2.5rem;
+  color: chartreuse;
+  text-align: center;
+  font-weight: 600;
+  font-family: revert;
+}
+#sign-up-body #redirect-image-wrapper img {
+  border-radius: 15px 0px 15px;
+}
 #sign-up-body h1 {
   text-align: center;
   font-size: clamp(2rem, 0.852rem + 3.457vw, 3.5rem);

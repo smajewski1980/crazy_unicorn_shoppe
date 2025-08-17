@@ -12,6 +12,7 @@ const formLeftCol = document.getElementById('sign-up-form-left-col');
 const fieldset = document.querySelector('fieldset');
 const btnHome = document.getElementById('home-link');
 const logo = document.querySelector('.logo-wrapper');
+const redirectImage = document.getElementById('redirect-image-wrapper');
 
 let isGoogleSignup = false;
 
@@ -37,7 +38,10 @@ async function getStatus() {
   const data = await response.json();
   // console.log(data);
   if (data.user_id) {
-    window.location.href = 'index.html';
+    redirectImage.style.display = 'block';
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 1500);
     return;
   }
   if (data.provider === 'google') {
