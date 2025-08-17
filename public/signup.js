@@ -2,7 +2,7 @@ const form = document.getElementById('sign-up-form');
 const btnSignup = document.getElementById('btn-signup');
 const pw = document.getElementById('input-password');
 const confpw = document.getElementById('input-conf-password');
-
+const h1El = document.querySelector('h1');
 const nameField = document.getElementById('input-name');
 const nameFieldLabel = document.getElementById('name-label');
 const pwField = document.getElementById('input-password');
@@ -11,6 +11,7 @@ const emailField = document.getElementById('input-email');
 const formLeftCol = document.getElementById('sign-up-form-left-col');
 const fieldset = document.querySelector('fieldset');
 const btnHome = document.getElementById('home-link');
+const logo = document.querySelector('.logo-wrapper');
 
 let isGoogleSignup = false;
 
@@ -35,16 +36,25 @@ async function getStatus() {
   const response = await fetch('/user/status');
   const data = await response.json();
   // console.log(data);
+  if (data.user_id) {
+    window.location.href = 'index.html';
+    return;
+  }
   if (data.provider === 'google') {
     const googleName = data.displayName;
     const googleID = data.id;
     const googleEmail = data.emails[0].value;
     updateFormForGoogleLogin(googleName, googleID, googleEmail);
+    form.style.display = 'flex';
+    h1El.style.display = 'block';
+    btnHome.style.display = 'inline-block';
+    logo.style.display = 'block';
     return;
   }
-  if (data.user_id) {
-    window.location.href = 'index.html';
-  }
+  form.style.display = 'flex';
+  h1El.style.display = 'block';
+  btnHome.style.display = 'inline-block';
+  logo.style.display = 'block';
   return;
 }
 

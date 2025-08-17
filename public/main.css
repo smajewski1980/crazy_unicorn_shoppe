@@ -1105,6 +1105,7 @@ p {
   max-width: 200px;
   margin-inline: auto;
   margin-block: 2rem 1rem;
+  display: none;
 }
 #sign-up-body h1 {
   text-align: center;
@@ -1117,6 +1118,7 @@ p {
   padding-block-end: 1.25rem;
   width: fit-content;
   margin-inline: auto;
+  display: none;
 }
 #sign-up-body #sign-up-form {
   display: flex;
@@ -1126,6 +1128,7 @@ p {
   column-gap: 2rem;
   flex-wrap: wrap;
   margin-block: -1rem 1.5rem;
+  display: none;
 }
 #sign-up-body #sign-up-form #sign-up-form-left-col,
 #sign-up-body #sign-up-form #sign-up-form-right-col {
@@ -1252,7 +1255,7 @@ p {
   backdrop-filter: blur(4px);
   border-radius: 15px 0px 15px;
   outline: 2px solid chartreuse;
-  display: inline-block;
+  display: none;
   margin-left: 50%;
   transform: translateX(-50%);
 }

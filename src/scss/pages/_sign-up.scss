@@ -8,12 +8,14 @@
     max-width: 200px;
     margin-inline: auto;
     margin-block: 2rem 1rem;
+    display: none;
   }
 
   h1 {
     @include m.h1Styles;
     width: fit-content;
     margin-inline: auto;
+    display: none;
   }
 
   #sign-up-form {
@@ -21,6 +23,7 @@
     column-gap: 2rem;
     flex-wrap: wrap;
     margin-block: -1rem 1.5rem;
+    display: none;
 
     #sign-up-form-left-col,
     #sign-up-form-right-col {
@@ -144,7 +147,7 @@
 
   #home-link {
     @include m.btn-home-link;
-    display: inline-block;
+    display: none;
     margin-left: 50%;
     transform: translateX(-50%);
     // margin-block-start: 1.5rem;
