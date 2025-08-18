@@ -1386,12 +1386,19 @@ header nav ul li:nth-child(3) a::after {
 }
 header nav #shop-heading-text {
   text-align: center;
+  margin-block-end: 0;
+  max-width: 75ch;
+  margin-inline: auto;
+}
+header nav #shop-heading-text a {
+  color: chartreuse;
 }
 header nav #orders-link {
   background-image: url("/assets/images/orders-link-bg.jpg");
   background-size: cover;
   width: 20rem;
   margin-inline: auto;
+  margin-block: -1.5rem 1rem;
   padding: 2rem;
   border-radius: 15px 0px 15px;
   outline-offset: 2px;
