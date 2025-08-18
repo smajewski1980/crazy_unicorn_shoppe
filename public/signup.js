@@ -17,14 +17,11 @@ const redirectImage = document.getElementById('redirect-image-wrapper');
 let isGoogleSignup = false;
 
 function updateFormForGoogleLogin(name, id, email) {
-  // need to make seperate classes for google or not forms and toggle here
   nameField.value = name;
   nameFieldLabel.textContent = 'google username';
   nameField.readOnly = true;
   pwField.value = id;
-  // pwField.closest('div').style.visibility = 'hidden';
   confPwField.value = id;
-  // confPwField.closest('div').style.visibility = 'hidden';
   emailField.value = email;
   emailField.readOnly = true;
   fieldset.classList.remove('unicorn-float');
@@ -49,16 +46,20 @@ async function getStatus() {
     const googleID = data.id;
     const googleEmail = data.emails[0].value;
     updateFormForGoogleLogin(googleName, googleID, googleEmail);
-    form.style.display = 'flex';
-    h1El.style.display = 'block';
-    btnHome.style.display = 'inline-block';
-    logo.style.display = 'block';
+    showSignUpPageElements();
     return;
   }
+  showSignUpPageElements();
+  return;
+}
+
+function showSignUpPageElements() {
   form.style.display = 'flex';
   h1El.style.display = 'block';
-  btnHome.style.display = 'inline-block';
   logo.style.display = 'block';
+  if (!isGoogleSignup) {
+    btnHome.style.display = 'inline-block';
+  }
   return;
 }
 
