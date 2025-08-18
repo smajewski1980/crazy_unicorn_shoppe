@@ -28,6 +28,7 @@ function updateFormForGoogleLogin(name, id, email) {
   formLeftCol.classList.add('google-signup');
   isGoogleSignup = true;
   btnHome.style.display = 'none';
+  showSignUpPageElements();
 }
 
 async function getStatus() {
@@ -46,7 +47,6 @@ async function getStatus() {
     const googleID = data.id;
     const googleEmail = data.emails[0].value;
     updateFormForGoogleLogin(googleName, googleID, googleEmail);
-    showSignUpPageElements();
     return;
   }
   showSignUpPageElements();
@@ -66,6 +66,9 @@ function showSignUpPageElements() {
 getStatus();
 
 async function sendFormData(data) {
+  const uniqueEmailErr =
+    'error: duplicate key value violates unique constraint "users_email_unique"';
+
   const options = {
     method: 'POST',
     headers: {
@@ -77,8 +80,20 @@ async function sendFormData(data) {
   const response = await fetch('/user/register', options);
 
   if (!response.ok) {
-    console.log(response);
+    const data = await response.json();
+    console.log(await data);
+    if (data.errors) {
+      data.errors.forEach((err) => {
+        console.log(err.msg);
+        alert(err.msg);
+      });
+      return;
+    }
+    if (data === uniqueEmailErr) {
+      alert('that email is already taken, please choose another');
+    }
   }
+
   // local signup, logs in and redirects home
   if (response.ok && !isGoogleSignup) {
     console.log(data);

@@ -63,7 +63,7 @@ app.use((err, req, res, _next) => {
   console.log(err);
   res
     .status(err.status || 500)
-    .send(err.message || 'Something went wrong on our end, please try again.');
+    .json(err.message || 'Something went wrong on our end, please try again.');
 });
 
 app.listen(process.env.PORT, () => {
