@@ -18,7 +18,7 @@
     display: grid;
     grid-template-columns: 75% 15%;
     justify-items: center;
-    cursor: url('./assets/icons/pointer.png'), auto;
+    cursor: url('./assets/icons/pointer.png') 10 0, auto;
 
     #dialog-img-wrapper {
       border-radius: 15px 0px 15px;
@@ -43,7 +43,7 @@
         border-radius: 15px 0px 15px;
         overflow: hidden;
         outline: 1px solid chartreuse;
-        cursor: url('./assets/icons/pointer.png'), auto;
+        cursor: url('./assets/icons/pointer.png') 10 0, auto;
       }
     }
   }

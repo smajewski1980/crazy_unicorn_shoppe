@@ -53,7 +53,7 @@
 
 @mixin btn-form {
   margin-block: 0.75rem;
-  cursor: url('./assets/icons/pointer.png'), auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   border-radius: 15px 0px 15px;
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
@@ -74,7 +74,7 @@
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: url('./assets/icons/pointer.png'), auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   outline: none;
   font-weight: 600;
 }
@@ -100,5 +100,5 @@
 }
 
 @mixin pointer {
-  cursor: url('./assets/icons/pointer.png'), auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
 }

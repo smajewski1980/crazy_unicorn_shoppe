@@ -70,7 +70,7 @@
           align-items: center;
 
           img {
-            cursor: url('./assets/icons/pointer.png'), auto;
+            cursor: url('./assets/icons/pointer.png') 10 0, auto;
             width: 1rem;
             height: 1rem;
           }
@@ -97,7 +97,7 @@
 
       .payment-img-wrapper {
         max-width: 250px;
-        cursor: url('./assets/icons/pointer.png'), auto;
+        cursor: url('./assets/icons/pointer.png') 10 0, auto;
       }
     }
   }

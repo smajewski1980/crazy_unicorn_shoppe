@@ -11,7 +11,7 @@ body {
 
 a {
   text-decoration: none;
-  cursor: url('./assets/icons/pointer.png'), auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
 }
 
 label,
@@ -19,7 +19,7 @@ input,
 select,
 option {
   font-family: $font-para;
-  cursor: url('./assets/icons/pointer.png'), auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
 }
 
 ::selection {

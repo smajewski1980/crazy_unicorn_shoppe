@@ -62,7 +62,7 @@
       }
 
       tr:not(:has(th)) {
-        cursor: url('./assets/icons/pointer.png'), auto;
+        cursor: url('./assets/icons/pointer.png') 10 0, auto;
       }
     }
   }
