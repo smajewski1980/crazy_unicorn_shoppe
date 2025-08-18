@@ -2,10 +2,14 @@
 @use '../abstracts/mixins' as m;
 
 #checkout-body {
+  .logo-wrapper {
+    max-width: 200px;
+    margin-inline: auto;
+    margin-block: 2rem 1.5rem;
+  }
   #checkout-h1 {
     text-align: center;
     font-size: clamp(2rem, 5.5vw, 5rem);
-    padding-block-start: 2rem;
   }
 
   nav {

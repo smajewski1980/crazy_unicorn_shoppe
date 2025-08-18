@@ -548,10 +548,14 @@ p {
     color: rgba(128, 255, 0, 0.75);
   }
 }
+#checkout-body .logo-wrapper {
+  max-width: 200px;
+  margin-inline: auto;
+  margin-block: 2rem 1.5rem;
+}
 #checkout-body #checkout-h1 {
   text-align: center;
   font-size: clamp(2rem, 5.5vw, 5rem);
-  padding-block-start: 2rem;
 }
 #checkout-body nav {
   width: 100%;
