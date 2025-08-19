@@ -147,11 +147,15 @@
       margin-block: 1rem;
     }
 
+    #disp-conf-info {
+      p {
+        margin: 0;
+        text-align: center;
+      }
+    }
+
     #shipping-confirm-info-wrapper {
       --input-display: none;
-      // .ship-conf-input-wrapper {
-      //   display: var(--input-display);
-      // }
       text-align: center;
       display: grid;
       grid-template-columns: 1fr 1fr;

@@ -696,6 +696,10 @@ p {
   text-align: center;
   margin-block: 1rem;
 }
+#checkout-body #shipping-section #disp-conf-info p {
+  margin: 0;
+  text-align: center;
+}
 #checkout-body #shipping-section #shipping-confirm-info-wrapper {
   --input-display: none;
   text-align: center;

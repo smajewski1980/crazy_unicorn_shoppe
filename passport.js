@@ -22,7 +22,7 @@ passport.deserializeUser((user_id, done) => {
     (err, result) => {
       const user = result.rows[0];
 
-      isGoogleLogin ? (user.isGoogle = true) : (user.isGoole = false);
+      isGoogleLogin ? (user.isGoogle = true) : (user.isGoogle = false);
 
       if (err) return done(err, null);
       done(null, user);
@@ -32,6 +32,7 @@ passport.deserializeUser((user_id, done) => {
 
 const local = passport.use(
   new LocalStrategy(function (username, password, done) {
+    isGoogleLogin = false;
     pool.query(
       'select * from users where name = $1',
       [username],

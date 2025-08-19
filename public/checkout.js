@@ -200,9 +200,8 @@ const dispConfPhone = document.getElementById('disp-conf-phone');
 const dispConfAddress1 = document.getElementById('disp-conf-address-1');
 const dispConfAddress2 = document.getElementById('disp-conf-address-2');
 const dispConfCityStateZip = document.getElementById('disp-conf-cty-st-zip');
-// const dispConfState = document.getElementById('disp-conf-state');
-// const dispConfZip = document.getElementById('disp-conf-zip');
 
+// this populates the confirmation info display
 async function populateDispConfInfo() {
   try {
     const response = await fetch('/user/status');
