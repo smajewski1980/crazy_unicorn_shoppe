@@ -697,6 +697,7 @@ p {
   margin-block: 1rem;
 }
 #checkout-body #shipping-section #shipping-confirm-info-wrapper {
+  --input-display: none;
   text-align: center;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -707,7 +708,7 @@ p {
 }
 #checkout-body #shipping-section #shipping-confirm-info-wrapper div {
   pointer-events: var(--pointer-ev);
-  display: grid;
+  display: var(--input-display);
   grid-template-columns: 80%;
   gap: 0.25rem;
   justify-content: center;
@@ -729,16 +730,17 @@ p {
   outline: 3px solid lime;
 }
 #checkout-body #shipping-section #shipping-confirm-info-wrapper:invalid #btn-edit-info {
-  margin-block: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.35);
+  border-color: chartreuse;
+  border-radius: 10px 0 10px 0;
+  border-width: 1px;
+  border-style: solid;
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
-  border-radius: 15px 0px 15px;
-  backdrop-filter: blur(4px);
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(0, 0, 0, 0.3);
+  outline: none;
   font-weight: 600;
-  pointer-events: none;
   margin-block-start: 1.5rem;
   margin-block-end: 0;
+  pointer-events: auto;
 }
 #checkout-body #shipping-section #shipping-confirm-info-wrapper button {
   background-color: rgba(255, 255, 255, 0.35);

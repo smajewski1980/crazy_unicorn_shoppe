@@ -4,6 +4,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const pool = require('./database/db_connect');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
+let isGoogleLogin = false;
 
 passport.serializeUser((user, done) => {
   done(null, user.user_id || user);
@@ -19,8 +20,12 @@ passport.deserializeUser((user_id, done) => {
     'select * from users as u join user_address as ua on u.user_id = ua.user_id where u.user_id = $1',
     [user_id],
     (err, result) => {
+      const user = result.rows[0];
+
+      isGoogleLogin ? (user.isGoogle = true) : (user.isGoole = false);
+
       if (err) return done(err, null);
-      done(null, result.rows[0]);
+      done(null, user);
     },
   );
 });
@@ -71,6 +76,7 @@ const google = passport.use(
           try {
             const matchedPw = await bcrypt.compare(pw, user.hashed_pw);
             if (!matchedPw) return done(null, false);
+            isGoogleLogin = true;
             return done(null, user);
           } catch (error) {
             return done(error);

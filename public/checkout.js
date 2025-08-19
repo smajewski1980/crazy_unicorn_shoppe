@@ -193,14 +193,43 @@ const confirmAddressTwo = document.getElementById('input-address-2');
 const confirmCity = document.getElementById('input-city');
 const confirmState = document.getElementById('input-state');
 const confirmZip = document.getElementById('input-zip');
+const confInfoDisplay = document.getElementById('disp-conf-info');
+const dispConfName = document.getElementById('disp-conf-name');
+const dispConfEmail = document.getElementById('disp-conf-email');
+const dispConfPhone = document.getElementById('disp-conf-phone');
+const dispConfAddress1 = document.getElementById('disp-conf-address-1');
+const dispConfAddress2 = document.getElementById('disp-conf-address-2');
+const dispConfCityStateZip = document.getElementById('disp-conf-cty-st-zip');
+// const dispConfState = document.getElementById('disp-conf-state');
+// const dispConfZip = document.getElementById('disp-conf-zip');
+
+async function populateDispConfInfo() {
+  try {
+    const response = await fetch('/user/status');
+    const data = await response.json();
+    dispConfName.textContent = data.name;
+    dispConfEmail.textContent = data.email;
+    dispConfPhone.textContent = data.phone;
+    dispConfAddress1.textContent = data.address_line_1;
+    dispConfAddress2.textContent = data.address_line_2;
+    dispConfCityStateZip.textContent = `${data.city}, ${data.state} ${data.zip_code}`;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 // populates the confirm info form
 async function populateShippingSection() {
   try {
     const response = await fetch('/user/status');
     const data = await response.json();
-    // console.log(data);
+    console.log(data);
+    shippingConfirmWrapper.style.setProperty('--input-display', 'grid');
+    confInfoDisplay.style.display = 'none';
     confirmName.value = data.name;
+    if (data.isGoogle) {
+      confirmEmail.closest('div').style.display = 'none';
+    }
     confirmEmail.value = data.email;
     confirmPhone.value = data.phone;
     confirmAddressOne.value = data.address_line_1;
@@ -225,7 +254,8 @@ async function handlePaymentModal() {
     if (response.status === 400) {
       alert('Your payment was denied, please try again.');
     } else if (response.status === 200) {
-      populateShippingSection();
+      // populateShippingSection();
+      populateDispConfInfo();
       shippingSectionEl.style.display = 'block';
       // make the payment buttons unclickable and grey out the non selected one
       paymentBtns.forEach((btn) => {
@@ -284,6 +314,9 @@ async function handleSaveChanges(e) {
       // swap the listeners back
       btnEditInfo.removeEventListener('click', handleSaveChanges);
       btnEditInfo.addEventListener('click', handleEditInfo);
+      shippingConfirmWrapper.style.setProperty('--input-display', 'none');
+      populateDispConfInfo();
+      confInfoDisplay.style.display = 'block';
     }
   } catch (error) {
     console.log(error);
@@ -302,6 +335,7 @@ function handleEditInfo(e) {
   // swap the listeners
   btnEditInfo.removeEventListener('click', handleEditInfo);
   btnEditInfo.addEventListener('click', handleSaveChanges);
+  populateShippingSection();
 }
 
 const orderCompleteModal = document.getElementById('order-complete-modal');
