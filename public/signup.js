@@ -1,3 +1,4 @@
+import { toasty } from './utils/toasty.js';
 const form = document.getElementById('sign-up-form');
 const btnSignup = document.getElementById('btn-signup');
 const pw = document.getElementById('input-password');
@@ -15,23 +16,6 @@ const logo = document.querySelector('.logo-wrapper');
 const redirectImage = document.getElementById('redirect-image-wrapper');
 
 let isGoogleSignup = false;
-
-function toasty(message) {
-  Toastify({
-    text: message,
-    duration: -1,
-    gravity: 'top',
-    position: 'left',
-    close: true,
-    style: {
-      background: 'linear-gradient(rgba(225, 0, 105, 0.5))',
-      fontFamily: 'systemUi, sans-serif',
-      fontSize: '1.25rem',
-      paddingBlock: '1.5rem',
-    },
-  }).showToast();
-  return;
-}
 
 function updateFormForGoogleLogin(name, id, email) {
   nameField.value = name;
