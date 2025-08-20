@@ -1,3 +1,4 @@
+import { toasty } from './utils/toasty.js';
 const btnLogout = document.querySelector('.icons-wrapper img:last-child');
 btnLogout.style.cursor = 'pointer';
 const navFirstItem = document.querySelector('nav ul li:first-child');
@@ -59,11 +60,10 @@ async function handleLogout() {
   const name = await user.name;
   fetch('/user/logout');
   if (user.msg) {
-    alert('There is no one logged in.');
+    toasty('There is no one logged in.');
     return;
   }
-  alert(`${name} is now logged out`);
-  window.location.reload();
+  toasty(`${name} is now logged out`, 'home');
 }
 
 btnLogout.addEventListener('click', handleLogout);

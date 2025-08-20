@@ -1,5 +1,5 @@
+import { toasty } from './utils/toasty.js';
 const productsDiv = document.getElementById('product-cards-wrapper');
-
 const productDialog = document.getElementById('product-dialog');
 const btnDialogClose = document.getElementById('btn-product-dialog-close');
 const prodDialogTitle = document.getElementById('product-dialog-h3');
@@ -261,8 +261,8 @@ async function handleAddItem(e) {
     // if not logged in, let user know
     const loginRes = await fetch('/user/status');
     if (!loginRes.ok) {
-      alert('please login to add an item to a cart');
       productDialog.close();
+      toasty('please login to add an item to a cart');
       return;
     }
 
@@ -286,9 +286,12 @@ async function handleAddItem(e) {
         productDialog.close();
       } catch (error) {
         console.log(error);
-        alert('You must be logged in to add items to your cart.');
+        toasty(error);
       }
-    } else alert('not enough in inventory to add that many');
+    } else {
+      toasty('not enough in inventory to add that many');
+      qtyToAdd.value = currentQty;
+    }
   } catch (error) {
     console.log(error);
   }
@@ -403,11 +406,10 @@ async function handleLogout() {
   const name = await user.name;
   fetch('/user/logout');
   if (user.msg) {
-    alert('There is no one logged in.');
+    toasty('There is no one logged in.');
     return;
   }
-  alert(`${name} is now logged out`);
-  window.location.reload();
+  toasty(`${name} is now logged out`, 'reload');
 }
 
 isLoggedIn();

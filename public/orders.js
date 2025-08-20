@@ -1,3 +1,4 @@
+import { toasty } from './utils/toasty.js';
 const ordersTableBody = document.querySelector('#orders-summary-main tbody');
 const orderReviewModal = document.getElementById('order-review-modal');
 const orderReviewH2 = document.getElementById('order-review-h2');
@@ -45,6 +46,10 @@ async function getUserOrders(userId) {
   try {
     const response = await fetch(`/order/${userId}/all`);
     const data = await response.json();
+    if (response.status === 401) {
+      toasty('something went wrong', 'home');
+      return;
+    }
     displayOrderData(data);
   } catch (error) {
     console.log(error);
@@ -127,14 +132,16 @@ async function handleOrderCancel(e) {
   try {
     const response = await fetch(`/order/${orderId}`, { method: 'DELETE' });
     if (response.ok) {
-      alert(`Order number ${orderId} has been succesfully canceled.`);
+      toasty(
+        `Order number ${orderId} has been succesfully canceled.`,
+        'reload',
+      );
       orderReviewModal.close();
-      window.location.reload();
       return;
     }
   } catch (error) {
     console.log(error);
-    alert('something went wrong, please try again');
+    toasty('something went wrong, please try again', 'home');
   }
 }
 

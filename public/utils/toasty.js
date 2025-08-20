@@ -18,6 +18,8 @@ export function toasty(message, redir) {
         window.location.href = '/shop.html';
       } else if (redir === 'home') {
         window.location.href = '/index.html';
+      } else if (redir === 'reload') {
+        window.location.reload();
       }
     },
   }).showToast();

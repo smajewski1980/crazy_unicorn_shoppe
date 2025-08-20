@@ -1,3 +1,4 @@
+import { toasty } from './utils/toasty.js';
 const form = document.getElementById('form-login');
 const btnLogin = document.getElementById('btn-login');
 
@@ -15,7 +16,7 @@ async function sendFormData(data) {
     window.location.href = response.url;
   } else {
     form.reset();
-    alert('Invalid credentials, please try again');
+    toasty('Invalid credentials, please try again');
   }
   console.log(response);
 }
@@ -26,7 +27,7 @@ function handleLogin(e) {
   const dataObject = Object.fromEntries(formData);
   if (form.checkValidity()) {
     sendFormData(dataObject);
-  } else alert('Please fill out the required fields');
+  } else toasty('Please fill out the required fields');
 }
 
 btnLogin.addEventListener('click', handleLogin);
