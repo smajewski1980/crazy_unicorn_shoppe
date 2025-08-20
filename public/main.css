@@ -761,6 +761,9 @@ p {
   justify-self: center;
   grid-column: 1/-1;
 }
+#checkout-body .toast-close {
+  padding-inline: 0 1rem;
+}
 
 #orders-body {
   align-content: center;

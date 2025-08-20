@@ -1,6 +1,32 @@
 const invoiceTableBody = document.getElementById('invoice-table-body');
 const invoiceTableFoot = document.getElementById('invoice-table-foot');
 const orderObject = {};
+const invoiceWrapper = document.getElementById('invoice-wrapper');
+
+function toasty(message, redir) {
+  Toastify({
+    text: message,
+    duration: 10000,
+    gravity: 'top',
+    position: 'left',
+    close: true,
+    style: {
+      background: 'linear-gradient(rgba(225, 0, 75, .4))',
+      fontFamily: 'systemUi, sans-serif',
+      paddingBlock: '1.5rem',
+    },
+    callback: () => {
+      if (!redir) {
+        return;
+      } else if (redir === 'shop') {
+        window.location.href = '/shop.html';
+      } else if (redir === 'home') {
+        window.location.href = '/index.html';
+      }
+    },
+  }).showToast();
+  return;
+}
 
 async function getCheckoutData() {
   try {
@@ -10,12 +36,9 @@ async function getCheckoutData() {
     // if this is running after the last cart item was removed
     // the endpoint returns a message for an empty cart
     if (data.msg) {
-      invoiceTableBody.style.display = 'none';
-      invoiceTableFoot.style.display = 'none';
-      setTimeout(() => {
-        alert('Your cart is now empty! What are you thinking?');
-        window.location.href = '/shop.html';
-      }, 100);
+      invoiceWrapper.style.display = 'none';
+      toasty('Your cart is now empty! What are you thinking?', 'shop');
+      return;
     }
 
     populateCheckoutData(data);
@@ -25,6 +48,10 @@ async function getCheckoutData() {
 }
 // this creates the html for the invoice data
 function populateCheckoutData(data) {
+  if (data === 'You must be logged in to perform this action.') {
+    toasty('something weird happened, try again', 'home');
+    return;
+  }
   console.log(data);
   let htmlString = '';
   let invoiceSubtotal = 0;
@@ -125,7 +152,7 @@ function populateCheckoutData(data) {
       const currQty = await itemQty.current_qty;
 
       if (newQty > currQty) {
-        alert("Sorry, there aren't enough in inventory to add any more");
+        toasty("Sorry, there aren't enough in inventory to add any more");
         return;
       }
 
@@ -251,7 +278,7 @@ async function handlePaymentModal() {
     const response = await fetch('/cart/checkout', { method: 'POST' });
     console.log(response.status);
     if (response.status === 400) {
-      alert('Your payment was denied, please try again.');
+      toasty('Your payment was denied, please try again.');
     } else if (response.status === 200) {
       // populateShippingSection();
       populateDispConfInfo();
@@ -264,7 +291,7 @@ async function handlePaymentModal() {
         }
       });
     } else {
-      alert('something weird happened, try again');
+      toasty('something weird happened, try again', 'home');
     }
   } catch (error) {
     console.log(error);
@@ -287,7 +314,7 @@ async function handleSaveChanges(e) {
   const form = new FormData(shippingConfirmWrapper);
 
   if (!shippingConfirmWrapper.checkValidity()) {
-    alert('Check your form fields');
+    toasty('Check your form fields');
     return;
   }
 
