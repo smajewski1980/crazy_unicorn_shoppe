@@ -16,6 +16,23 @@ const redirectImage = document.getElementById('redirect-image-wrapper');
 
 let isGoogleSignup = false;
 
+function toasty(message) {
+  Toastify({
+    text: message,
+    duration: -1,
+    gravity: 'top',
+    position: 'left',
+    close: true,
+    style: {
+      background: 'linear-gradient(rgba(225, 0, 105, 0.5))',
+      fontFamily: 'systemUi, sans-serif',
+      fontSize: '1.25rem',
+      paddingBlock: '1.5rem',
+    },
+  }).showToast();
+  return;
+}
+
 function updateFormForGoogleLogin(name, id, email) {
   nameField.value = name;
   nameFieldLabel.textContent = 'google username';
@@ -85,12 +102,12 @@ async function sendFormData(data) {
     if (data.errors) {
       data.errors.forEach((err) => {
         console.log(err.msg);
-        alert(err.msg);
+        toasty(err.msg);
       });
       return;
     }
     if (data === uniqueEmailErr) {
-      alert('that email is already taken, please choose another');
+      toasty('that email is already taken, please choose another');
     }
   }
 
