@@ -11,8 +11,9 @@ function toasty(message, redir) {
     position: 'left',
     close: true,
     style: {
-      background: 'linear-gradient(rgba(225, 0, 75, .4))',
+      background: 'linear-gradient(rgba(225, 0, 105, 0.5))',
       fontFamily: 'systemUi, sans-serif',
+      fontSize: '1.25rem',
       paddingBlock: '1.5rem',
     },
     callback: () => {
@@ -328,6 +329,16 @@ async function handleSaveChanges(e) {
   };
   try {
     const response = await fetch(`/user/${orderObject.user_id}`, options);
+
+    // toast any validation errors sent back from the server
+    if (response.status === 400) {
+      const data = await response.json();
+      data.errors.forEach((err) => {
+        console.log(err.msg);
+        toasty(err.msg);
+      });
+      return;
+    }
     if (response.status === 201) {
       // reverse all the stuff we changed to go from edit to save
       // lock out the fields again
