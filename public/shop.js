@@ -289,7 +289,11 @@ async function handleAddItem(e) {
         toasty(error);
       }
     } else {
-      toasty('not enough in inventory to add that many');
+      productDialog.style.setProperty(
+        '--clip-path-poly',
+        'polygon(29rem 6.5rem, 29rem 0, 100% 0, 100% 100%, 0% 100%, 0% 6.5rem)',
+      );
+      toasty('not enough in inventory to add that many', 'poly');
       qtyToAdd.value = currentQty;
     }
   } catch (error) {

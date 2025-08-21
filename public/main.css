@@ -51,6 +51,10 @@ body {
   min-height: 100vh;
   background-size: 100vw 100vh;
 }
+body .toast-close {
+  padding-inline: 0 1rem;
+  color: red;
+}
 
 html {
   cursor: url("./assets/icons/cursor.png"), auto;
@@ -650,11 +654,20 @@ p {
   outline: none;
   padding: 1rem 2rem 2rem;
   text-align: center;
+  --clip-path-poly: polygon(
+    0rem 0rem,
+    0rem 0,
+    0% 0,
+    0% 100%,
+    100% 100%,
+    100% 0rem
+  );
   max-width: 40%;
 }
 #checkout-body #payment-modal::backdrop,
 #checkout-body #order-complete-modal::backdrop {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6));
+  clip-path: var(--clip-path-poly);
 }
 #checkout-body #payment-modal h4,
 #checkout-body #order-complete-modal h4 {
@@ -760,9 +773,6 @@ p {
   margin-block-start: 1.5rem;
   justify-self: center;
   grid-column: 1/-1;
-}
-#checkout-body .toast-close {
-  padding-inline: 0 1rem;
 }
 
 #orders-body {
@@ -1557,9 +1567,18 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   outline: none;
   padding: 1rem 2rem 2rem;
   text-align: center;
+  --clip-path-poly: polygon(
+    0rem 0rem,
+    0rem 0,
+    0% 0,
+    0% 100%,
+    100% 100%,
+    100% 0rem
+  );
 }
 #product-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6));
+  clip-path: var(--clip-path-poly);
 }
 #product-dialog h3 {
   font-size: clamp(1.5rem, 2.75vw, 3rem);

@@ -94,8 +94,21 @@
   outline: none;
   padding: 1rem 2rem 2rem;
   text-align: center;
+
+  --clip-path-poly: polygon(
+    0rem 0rem,
+    0rem 0,
+    0% 0,
+    0% 100%,
+    100% 100%,
+    100% 0rem
+  );
+
   &::backdrop {
-    background-color: rgba(0, 0, 0, 0.6);
+    // background-color: rgba(0, 0, 0, 0.6);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6));
+
+    clip-path: var(--clip-path-poly);
   }
 }
 
