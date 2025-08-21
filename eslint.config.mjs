@@ -11,6 +11,7 @@ export default defineConfig([
       globals: {
         ...globals.browser,
         ...globals.node,
+        Toastify: 'readonly',
       },
     },
     rules: {
@@ -19,4 +20,5 @@ export default defineConfig([
     ignores: ['misc_dev_stuff/**'],
   },
   { files: ['**/*.js'], languageOptions: { sourceType: 'commonjs' } },
+  { files: ['public/**/*.js'], languageOptions: { sourceType: 'module' } },
 ]);

@@ -2,6 +2,7 @@
 @use '../abstracts/mixins' as m;
 
 #dev-info {
+  max-width: 40%;
   h1 {
     font-family: $font-para;
     margin-block: 1rem;
