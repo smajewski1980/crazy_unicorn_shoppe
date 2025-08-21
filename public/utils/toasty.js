@@ -1,7 +1,7 @@
 export function toasty(message, cb) {
   Toastify({
     text: message,
-    duration: 10000,
+    duration: 8000,
     gravity: 'top',
     position: 'left',
     close: true,
@@ -11,6 +11,7 @@ export function toasty(message, cb) {
       fontSize: '1.25rem',
       paddingBlock: '1.5rem',
       borderRadius: '15px 0px 15px',
+      color: 'black',
     },
     callback: () => {
       if (!cb) {
@@ -26,7 +27,7 @@ export function toasty(message, cb) {
           .getElementById('product-dialog')
           .style.setProperty(
             '--clip-path-poly',
-            'polygon(0 0, 0 0, 0 0, 0 100%, 100% 100%, 100% 0)',
+            'polygon(29rem 0rem, 29rem 0rem, 100% 0rem, 100% 100%, 0% 100%, 0% 0rem)',
           );
       }
     },

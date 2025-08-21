@@ -655,12 +655,12 @@ p {
   padding: 1rem 2rem 2rem;
   text-align: center;
   --clip-path-poly: polygon(
-    0rem 0rem,
-    0rem 0,
-    0% 0,
-    0% 100%,
+    29rem 0rem,
+    29rem 0,
+    100% 0,
     100% 100%,
-    100% 0rem
+    0% 100%,
+    0% 0rem
   );
   max-width: 40%;
 }
@@ -1568,12 +1568,12 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   padding: 1rem 2rem 2rem;
   text-align: center;
   --clip-path-poly: polygon(
-    0rem 0rem,
-    0rem 0,
-    0% 0,
-    0% 100%,
+    29rem 0rem,
+    29rem 0,
+    100% 0,
     100% 100%,
-    100% 0rem
+    0% 100%,
+    0% 0rem
   );
 }
 #product-dialog::backdrop {
