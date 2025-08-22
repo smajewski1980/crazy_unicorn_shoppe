@@ -311,6 +311,54 @@ VALUES
   );
 
 INSERT INTO
+  public.products
+VALUES
+  (
+    54,
+    'Unicorn Sneakers',
+    'Introducing the Unicorn Sneakers: not just shoes, but a whimsical journey for your feet. Imagine laces spun from moonlight and soles kissed by stardust, carrying you effortlessly through city streets or enchanted forests alike. These sneakers shimmer with iridescent hues, shifting with every step, conjuring the magic of mythical realms. Crafted with comfort that rivals a cloud’s embrace, they invite you to unleash your inner dreamer. Perfect for those who believe in a little sparkle and a lot of style.',
+    25,
+    './assets/products/unicorn_sneakers.jpg',
+    2
+  );
+
+INSERT INTO
+  public.products
+VALUES
+  (
+    55,
+    'Unicorn Shoes',
+    'Step into a world where whimsy meets sophistication. The Unicorn Dress Shoes are crafted from buttery-soft leather that shimmers like dawn’s first light, complete with a subtle iridescent horn embossed on each toe. Slip them on and feel the magic of a legendary creature glide beneath your feet—perfect for turning heads at the office, a gala, or anywhere your adventures take you. These shoes don’t just elevate your look; they transport you to a realm of elegance and enchantment.',
+    45,
+    './assets/products/unicorn_shoes.jpg',
+    2
+  );
+
+INSERT INTO
+  public.products
+VALUES
+  (
+    56,
+    'Unicorn Hat',
+    'Step into a world where mystique meets cozy charm with the Unicorn Hat — an enchanting blend of whimsy and warmth. Crafted from cloud-soft fibers, this hat sports a majestic spiral horn and a cascade of iridescent mane that dazzles with every tilt. Whether you’re braving winter streets or lighting up a festival, this hat transcends ordinary headgear. It’s not just a hat; it’s your passport to a realm where magic is real, and every glance sparks a secret smile.',
+    15,
+    './assets/products/unicorn_hat.jpg',
+    2
+  );
+
+INSERT INTO
+  public.products
+VALUES
+  (
+    57,
+    'Unicorn Hair Tie',
+    'Behold the Unicorn Hair Tie: a ribbon of legend, shimmering with pastel hues that whisper of enchanted forests and moonlit dreams. Crafted from the softest, stretchiest fibers, it clasps your hair with the gentle strength of a mythical steed. Whether taming unruly locks or adding a dash of whimsical charm to your wrist, this is more than an accessory—it''s a statement. For those who believe everyday magic begins with a simple twist of color, the Unicorn Hair Tie awaits your command.',
+    5,
+    './assets/products/unicorn_hair-tie.jpg',
+    2
+  );
+
+INSERT INTO
   inventory
 VALUES
   (2, 10, 3, 10);
@@ -439,3 +487,23 @@ INSERT INTO
   inventory
 VALUES
   (34, 20, 5, 20);
+
+INSERT INTO
+  inventory
+VALUES
+  (54, 10, 5, 10);
+
+INSERT INTO
+  inventory
+VALUES
+  (55, 10, 5, 10);
+
+INSERT INTO
+  inventory
+VALUES
+  (56, 10, 5, 10);
+
+INSERT INTO
+  inventory
+VALUES
+  (57, 10, 5, 10);
