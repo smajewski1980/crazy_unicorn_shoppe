@@ -73,6 +73,12 @@
 
     a {
       @include m.btn-link;
+
+      &:hover,
+      &:focus-visible {
+        outline: 2px solid white;
+        outline-offset: 5px;
+      }
     }
   }
 
@@ -83,10 +89,6 @@
     }
   }
   .gsi-material-button {
-    // -moz-user-select: none;
-    // -webkit-user-select: none;
-    // -ms-user-select: none;
-    // -webkit-appearance: none;
     background-color: WHITE;
     background-image: none;
     border: 1px solid #747775;
@@ -179,7 +181,8 @@
     opacity: 12%;
   }
 
-  .gsi-material-button:not(:disabled):hover {
+  .gsi-material-button:not(:disabled):hover,
+  .gsi-material-button:not(:disabled):focus-visible {
     -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
       0 1px 3px 1px rgba(60, 64, 67, 0.15);
     box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),

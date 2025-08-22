@@ -193,6 +193,10 @@ html {
   font-weight: 600;
   padding: 0.5rem 1.5rem 0.65rem;
 }
+#home-main .featured-card .featured-content-wrapper #featured-info-wrapper a:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 5px;
+}
 #home-main .home-text-wrapper {
   display: inline;
   padding-inline: 1rem;
@@ -1021,6 +1025,10 @@ p {
   display: inline-block;
   padding: 0.5rem 1rem;
 }
+#sign-in-page #home-link a:hover, #sign-in-page #home-link a:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 5px;
+}
 #sign-in-page #signup-link {
   margin-block-end: 1.25rem;
 }
@@ -1110,7 +1118,8 @@ p {
   background-color: #303030;
   opacity: 12%;
 }
-#sign-in-page .gsi-material-button:not(:disabled):hover {
+#sign-in-page .gsi-material-button:not(:disabled):hover,
+#sign-in-page .gsi-material-button:not(:disabled):focus-visible {
   -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
   outline-offset: 3px;

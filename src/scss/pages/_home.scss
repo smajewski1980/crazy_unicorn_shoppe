@@ -140,6 +140,10 @@
         a {
           @include m.regular-button;
           padding: 0.5rem 1.5rem 0.65rem;
+          &:focus-visible {
+            outline: 2px solid white;
+            outline-offset: 5px;
+          }
         }
       }
     }
