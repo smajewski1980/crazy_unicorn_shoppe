@@ -108,6 +108,11 @@ class Product {
       thumb.alt = this.productName;
       thumb.src = `./assets/products/${this.productId}/${i}.jpg`;
       thumb.addEventListener('click', this.handleDialogPicChange);
+      // for keyboard navigation
+      thumb.parentElement.addEventListener(
+        'keydown',
+        this.handleDialogPicChange,
+      );
     }
     prodDialogImg.addEventListener('click', this.handleMainImg);
   }
@@ -123,22 +128,25 @@ class Product {
   }
 
   handleDialogPicChange(e) {
-    removeActiveThumb();
-    const baseURL = './assets/products/';
-    const clickedThumb = e.target.closest('.thumb-wrapper').dataset.thumb;
-    const productId = e.target.closest('.thumb-wrapper').closest('dialog')
-      .dataset.prodId;
-    const newSrc = baseURL + productId + `/${clickedThumb}.jpg`;
-    prodDialogImg.src = newSrc;
-    prodDialogMainImgLink.href = newSrc;
-    // change the active thumb class
-    e.target.closest('.thumb-wrapper').classList.add('active-thumb');
+    // allows for clicking or keyboard navigation
+    if (e.type === 'click' || e.key === 'Enter' || e.key === ' ') {
+      if (e.key === ' ') {
+        e.preventDefault();
+      }
+      removeActiveThumb();
+      const baseURL = './assets/products/';
+      const clickedThumb = e.target.closest('.thumb-wrapper').dataset.thumb;
+      const productId = e.target.closest('.thumb-wrapper').closest('dialog')
+        .dataset.prodId;
+      const newSrc = baseURL + productId + `/${clickedThumb}.jpg`;
+      prodDialogImg.src = newSrc;
+      prodDialogMainImgLink.href = newSrc;
+      // change the active thumb class
+      e.target.closest('.thumb-wrapper').classList.add('active-thumb');
+    }
   }
 
   handleKeyboardInput(e) {
-    // if (e.key === ' ') {
-    //   e.preventDefault();
-    // }
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       const productId = e.target.closest('.product-card').dataset.prodId;

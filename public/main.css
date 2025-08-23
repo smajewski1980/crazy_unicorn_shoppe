@@ -1629,6 +1629,10 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   display: grid;
   align-items: center;
 }
+#product-dialog #dialog-outer-images-wrapper #dialog-thumbs-wrapper .thumb-wrapper:focus-visible {
+  outline: 2px solid chartreuse;
+  outline-offset: 5px;
+}
 #product-dialog #dialog-outer-images-wrapper #dialog-thumbs-wrapper .active-thumb {
   outline-offset: 5px;
   outline-width: 5px;

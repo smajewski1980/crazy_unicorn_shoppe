@@ -35,6 +35,11 @@
       display: grid;
       align-items: center;
 
+      .thumb-wrapper:focus-visible {
+        outline: 2px solid chartreuse;
+        outline-offset: 5px;
+      }
+
       .active-thumb {
         outline-offset: 5px;
         outline-width: 5px;
