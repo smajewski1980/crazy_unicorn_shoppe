@@ -73,12 +73,6 @@
 
     a {
       @include m.btn-link;
-
-      &:hover,
-      &:focus-visible {
-        outline: 2px solid white;
-        outline-offset: 5px;
-      }
     }
   }
 

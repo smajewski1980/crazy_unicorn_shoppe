@@ -25,6 +25,11 @@
       overflow: hidden;
       width: 75%;
       outline: 1px solid chartreuse;
+
+      &:has(> a:focus-visible) {
+        outline: 2px solid chartreuse;
+        outline-offset: 5px;
+      }
     }
     #dialog-thumbs-wrapper {
       display: grid;

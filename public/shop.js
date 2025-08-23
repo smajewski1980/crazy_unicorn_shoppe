@@ -6,6 +6,7 @@ const prodDialogTitle = document.getElementById('product-dialog-h3');
 const prodDialogImg = document.getElementById('dialog-img');
 const prodDialogDesc = document.getElementById('product-dialog-desc');
 const prodDialogInStock = document.getElementById('product-dialog-in-stock');
+const prodDialogMainImgLink = document.querySelector('#dialog-img-wrapper a');
 const btnAddToCart = document.getElementById('btn-product-dialog-add');
 const qtyToAdd = document.getElementById('product-add-qty');
 const categoryQtySpan = document.getElementById('qty-span');
@@ -89,9 +90,11 @@ class Product {
     removeActiveThumb();
     prodDialogTitle.innerText = '';
     prodDialogDesc.innerText = '';
+    prodDialogMainImgLink.href = '';
     qtyToAdd.value = 1;
     productDialog.dataset.prodId = this.productId;
     prodDialogTitle.innerHTML = `${this.productName}<span>&nbsp;&nbsp;&nbsp;$${this.productPrice}</span>`;
+    prodDialogMainImgLink.setAttribute('href', this.imageURL);
     prodDialogImg.src = this.imageURL;
     prodDialogDesc.innerText = this.productDescription;
     prodDialogInStock.innerText = `${this.currentQty} in stock`;
@@ -127,15 +130,17 @@ class Product {
       .dataset.prodId;
     const newSrc = baseURL + productId + `/${clickedThumb}.jpg`;
     prodDialogImg.src = newSrc;
+    prodDialogMainImgLink.href = newSrc;
     // change the active thumb class
     e.target.closest('.thumb-wrapper').classList.add('active-thumb');
   }
 
   handleKeyboardInput(e) {
-    if (e.key === ' ') {
-      e.preventDefault();
-    }
+    // if (e.key === ' ') {
+    //   e.preventDefault();
+    // }
     if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
       const productId = e.target.closest('.product-card').dataset.prodId;
       const clickedProduct = productObjects.filter(
         (p) => p.productId === parseInt(productId),
@@ -308,8 +313,6 @@ btnDialogClose.addEventListener('click', () => {
 document.addEventListener('click', (e) => {
   // get the product id if a card was clicked
   const productCard = e.target.closest('.product-card');
-  // if a select option is clicked
-  const option = e.target.closest('option');
 
   if (productCard) {
     const prodId = productCard.dataset.prodId;
@@ -319,17 +322,20 @@ document.addEventListener('click', (e) => {
     clickedProduct[0].populateModalContent();
     productDialog.showModal();
   }
-
-  // runs the h1 text animation
-  if (option) {
-    // get the category
-    const categoryId = option.value;
-    const category = getProdCategory(parseInt(categoryId));
-    runH1Animation();
-    updateCardsTitle(category);
-    filterProducts(categoryId);
-  }
 });
+
+// make the select category input run h1 animation and filter products
+const selectEl = document.getElementById('select-category');
+
+function handleSelectInput(e) {
+  const categoryId = e.target.value;
+  const category = getProdCategory(parseInt(categoryId));
+  runH1Animation();
+  updateCardsTitle(category);
+  filterProducts(categoryId);
+}
+
+selectEl.addEventListener('input', handleSelectInput);
 
 btnAddToCart.addEventListener('click', handleAddItem);
 
@@ -362,6 +368,7 @@ async function styleViewOrdersBtn(id) {
     return;
   }
 
+  btnViewOrders.inert = false;
   btnViewOrders.style.pointerEvents = 'auto';
   btnViewOrders.style.opacity = '1';
 }
