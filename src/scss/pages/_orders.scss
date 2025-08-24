@@ -81,7 +81,6 @@
         width: fit-content;
         font-family: $font-para;
         font-size: 1.125rem;
-        padding-block-end: 0.2rem;
 
         a {
           @include m.btn-link;
@@ -154,6 +153,11 @@
     height: 100%;
     padding: 0.25rem 1rem;
     margin-inline: auto;
+
+    &:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 5px;
+    }
   }
 
   #btn-close-order-review {
@@ -164,5 +168,10 @@
     transform: translateX(-50%);
     @include m.regular-button;
     box-shadow: 0px 0px 15px #7fff0082;
+
+    &:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 5px;
+    }
   }
 }

@@ -27,7 +27,7 @@
       outline: 1px solid chartreuse;
 
       &:has(> a:focus-visible) {
-        outline: 2px solid chartreuse;
+        outline: 2px solid white;
         outline-offset: 5px;
       }
     }
@@ -36,7 +36,7 @@
       align-items: center;
 
       .thumb-wrapper:focus-visible {
-        outline: 2px solid chartreuse;
+        outline: 2px solid white;
         outline-offset: 5px;
       }
 
@@ -87,7 +87,8 @@
         border-radius: 15px 0px 15px;
 
         &:focus-visible {
-          outline: 2px solid chartreuse;
+          outline: 2px solid white;
+          outline-offset: 5px;
         }
       }
     }
@@ -99,7 +100,8 @@
       border-radius: 15px 0px 15px;
 
       &:focus-visible {
-        outline: 2px solid chartreuse;
+        outline: 2px solid white;
+        outline-offset: 5px;
       }
     }
   }

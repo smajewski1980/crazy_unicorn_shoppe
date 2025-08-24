@@ -60,7 +60,9 @@ function displayOrderData(data) {
   let htmlStr = '';
   data.forEach((o) => {
     const tableRow = `
-      <tr data-order-id="${o.order_id}" data-status="${o.order_status}">
+      <tr tabindex="0" data-order-id="${o.order_id}" data-status="${
+      o.order_status
+    }">
         <td>${o.order_id}</td>
         <td>${formatDate(o.order_date)}</td>
         <td>${formatBucks(o.order_total)}</td>
@@ -75,6 +77,14 @@ function displayOrderData(data) {
   // add a listener to each row so when clicked, a modal with details opens
   tableRows.forEach((r) => {
     r.addEventListener('click', handleOrderClick);
+  });
+  tableRows.forEach((r) => {
+    r.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        handleOrderClick(e);
+      }
+      return;
+    });
   });
 }
 
