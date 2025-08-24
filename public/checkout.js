@@ -3,6 +3,10 @@ const invoiceTableBody = document.getElementById('invoice-table-body');
 const invoiceTableFoot = document.getElementById('invoice-table-foot');
 const orderObject = {};
 const invoiceWrapper = document.getElementById('invoice-wrapper');
+const btnEditInfo = document.getElementById('btn-edit-info');
+const btnPlaceOrder = document.getElementById('btn-place-order');
+let action = '';
+let productId = null;
 
 async function getCheckoutData() {
   try {
@@ -39,9 +43,9 @@ function populateCheckoutData(data) {
   // the html for the controls to be generated with every table row
   const itemControls = `
     <div class="invoice-item-controls-wrapper">
-      <img data-action="sub" src="./assets/icons/minus.png" alt="subtract from quantity"/>
-      <img data-action="add" src="./assets/icons/plus.png" alt="add to quantity"/>
-      <img data-action="rem" src="./assets/icons/remove.png" alt="remove item from cart"/>
+      <img tabindex="0" data-action="sub" src="./assets/icons/minus.png" alt="subtract from quantity"/>
+      <img tabindex="0" data-action="add" src="./assets/icons/plus.png" alt="add to quantity"/>
+      <img tabindex="0" data-action="rem" src="./assets/icons/remove.png" alt="remove item from cart"/>
     </div>
   `;
 
@@ -89,25 +93,31 @@ function populateCheckoutData(data) {
 
   // this will handle the updating of the cart/invoice on user input
   function handleInvoiceControlAction(e) {
-    const productId = e.target.closest('td').dataset.prodId;
-    const action = e.target.dataset.action;
-    const currentQty = parseInt(
-      e.target.closest('tr').querySelector('td').textContent,
-    );
-    switch (action) {
-      case 'add':
-        updateCartQty(productId, currentQty + 1);
-        break;
-      case 'sub':
-        updateCartQty(productId, currentQty - 1);
-        break;
-      case 'rem':
-        updateCartRem(productId);
-        break;
-      default:
-        console.log('somehow, you found a fourth option');
-        break;
+    if (e.type === 'click' || e.key === 'Enter' || e.key === ' ') {
+      if (e.key === ' ') {
+        e.preventDefault();
+      }
+      productId = e.target.closest('td').dataset.prodId;
+      action = e.target.dataset.action;
+      const currentQty = parseInt(
+        e.target.closest('tr').querySelector('td').textContent,
+      );
+      switch (action) {
+        case 'add':
+          updateCartQty(productId, currentQty + 1);
+          break;
+        case 'sub':
+          updateCartQty(productId, currentQty - 1);
+          break;
+        case 'rem':
+          updateCartRem(productId);
+          break;
+        default:
+          console.log('somehow, you found a fourth option');
+          break;
+      }
     }
+    return;
   }
 
   // the update cart functions
@@ -165,7 +175,14 @@ function populateCheckoutData(data) {
   );
 
   allControlBtns.forEach((btn) => {
+    if (
+      btn.closest('td').dataset.prodId == productId &&
+      btn.dataset.action === action
+    ) {
+      btn.focus({ focusVisible: true });
+    }
     btn.addEventListener('click', handleInvoiceControlAction);
+    btn.addEventListener('keydown', handleInvoiceControlAction);
   });
 }
 
@@ -178,11 +195,16 @@ const shippingSectionEl = document.getElementById('shipping-section');
 // this handles when the payment method is selected
 // opens a modal with a message to then continue to review the shipping info
 function handlePaymentBtn(e) {
-  const paymentMethod = e.target.closest('.payment-img-wrapper').dataset
-    .payType;
-  paymentH4.textContent = `Thank you for choosing to pay with: ${paymentMethod}`;
-  orderObject.payment_method = paymentMethod;
-  paymentModal.showModal();
+  if (e.type === 'click' || e.key === 'Enter' || e.key === ' ') {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+    }
+    const paymentMethod = e.target.closest('.payment-img-wrapper').dataset
+      .payType;
+    paymentH4.textContent = `Thank you for choosing to pay with: ${paymentMethod}`;
+    orderObject.payment_method = paymentMethod;
+    paymentModal.showModal();
+  }
 }
 
 const shippingConfirmWrapper = document.getElementById(
@@ -229,6 +251,7 @@ async function populateShippingSection() {
     shippingConfirmWrapper.style.setProperty('--input-display', 'grid');
     confInfoDisplay.style.display = 'none';
     confirmName.value = data.name;
+    confirmName.focus();
     if (data.isGoogle) {
       confirmEmail.closest('div').style.display = 'none';
     }
@@ -262,8 +285,13 @@ async function handlePaymentModal() {
       // make the payment buttons unclickable and grey out the non selected one
       paymentBtns.forEach((btn) => {
         btn.style.pointerEvents = 'none';
+        btn.inert = true;
+
         if (btn.dataset.payType !== orderObject.payment_method) {
           btn.style.opacity = '.35';
+        } else {
+          btn.style.outline = '1px solid chartreuse';
+          btnEditInfo.focus();
         }
       });
     } else {
@@ -278,12 +306,10 @@ btnPaymentModal.addEventListener('click', handlePaymentModal);
 
 paymentBtns.forEach((btn) => {
   btn.addEventListener('click', handlePaymentBtn);
+  btn.addEventListener('keydown', handlePaymentBtn);
 });
 
 getCheckoutData();
-
-const btnEditInfo = document.getElementById('btn-edit-info');
-const btnPlaceOrder = document.getElementById('btn-place-order');
 
 async function handleSaveChanges(e) {
   e.preventDefault();

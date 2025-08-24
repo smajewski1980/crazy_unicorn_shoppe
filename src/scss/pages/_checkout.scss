@@ -24,8 +24,13 @@
       @include m.regular-button;
       font-family: $font-para;
       padding: 0.5rem 1rem;
-      outline: 1px solid chartreuse;
+      border: 1px solid chartreuse;
       font-weight: 600;
+
+      &:focus-visible {
+        outline: 2px solid white;
+        outline-offset: 3px;
+      }
     }
   }
 
@@ -131,6 +136,11 @@
       font-family: $font-para;
       padding: 0.75rem 2.5rem;
       margin-block-start: 0.5rem;
+
+      &:focus-visible {
+        outline: 2px solid white;
+        outline-offset: 3px;
+      }
     }
   }
 
@@ -190,6 +200,10 @@
         margin-block-start: 1.5rem;
         margin-block-end: 0;
         pointer-events: auto;
+        &:focus-visible {
+          outline: 2px solid white;
+          outline-offset: 3px;
+        }
       }
 
       button {
@@ -199,6 +213,11 @@
         margin-block-start: 1.5rem;
         justify-self: center;
         grid-column: 1 / -1;
+
+        &:focus-visible {
+          outline: 2px solid white;
+          outline-offset: 3px;
+        }
       }
     }
   }
