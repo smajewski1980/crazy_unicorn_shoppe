@@ -383,7 +383,7 @@ const btnOrderModal = document.getElementById('btn-order-modal');
 
 function populateOrderCompleteModal(confNum) {
   orderModalConf.textContent = `Your order number is: ${confNum}`;
-  orderModalMsg.textContent = `Thank you for your order ${confirmName.value}! You will not receive an email shortly with your order details, but feel free to go to the orders page and see the order details there.`;
+  orderModalMsg.textContent = `Thank you for your order ${dispConfName.textContent}! You will not receive an email shortly with your order details, but feel free to go to the orders page and see the order details there.`;
 }
 
 async function handlePlaceOrder(e) {
