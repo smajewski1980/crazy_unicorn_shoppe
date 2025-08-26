@@ -99,15 +99,27 @@ ORDER BY
 -- ****************************************************************
 CREATE
 OR REPLACE VIEW get_user_info AS
-select
+SELECT
   u.*,
   ua.address_line_1,
   ua.address_line_2,
   ua.city,
   ua.state,
   ua.zip_code
-from
-  users as u
-  join user_address as ua on u.user_id = ua.user_id;
+FROM
+  users AS u
+  JOIN user_address AS ua ON u.user_id = ua.user_id;
 
 -- *****************************************************************
+CREATE
+OR REPLACE VIEW curr_site_hit_count AS
+SELECT
+  count
+FROM
+  site_counter
+ORDER BY
+  count DESC
+LIMIT
+  1;
+
+--******************************************************************

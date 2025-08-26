@@ -81,6 +81,18 @@ CREATE TABLE orders(
   free_shipping_elligible boolean GENERATED ALWAYS AS (order_total > 99) STORED NOT NULL
 );
 
+DROP TABLE IF EXISTS site_counter;
+
+CREATE TABLE site_counter(
+  count integer PRIMARY KEY,
+  new_session_timestamp TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+INSERT INTO
+  site_counter(count)
+VALUES
+  (0);
+
 insert into
   category(category_name)
 values

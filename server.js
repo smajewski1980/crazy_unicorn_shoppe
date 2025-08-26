@@ -15,11 +15,14 @@ const passport = require('passport');
 const helmet = require('helmet');
 const fs = require('fs');
 const morgan = require('morgan');
+const site_counter = require('./middleware/site_counter');
 
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {
   flags: 'a',
 });
-app.use(morgan('combined', { stream: accessLogStream }));
+// app.use(morgan('combined', { stream: accessLogStream }));
+// switch this back befolre deployment
+app.use(morgan('dev', { stream: accessLogStream }));
 
 liveReloadServer.watch(path.join(__dirname, '/public'));
 app.use(connectLiveReload());
@@ -32,10 +35,13 @@ app.use(
     cookie: {
       maxAge: 5e6,
     },
+    isNew: false,
   }),
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(site_counter);
 
 app.use(
   sassMiddleware({
