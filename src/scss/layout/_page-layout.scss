@@ -1,4 +1,14 @@
 body {
   width: 70%;
   margin-inline: auto;
+  background-image: url('./assets/images/site_bg.webp'),
+    radial-gradient(rgb(223, 68, 223), purple);
+  min-height: 100vh;
+  background-size: cover;
+  background-attachment: fixed;
+
+  .toast-close {
+    padding-inline: 0 1rem;
+    color: red;
+  }
 }

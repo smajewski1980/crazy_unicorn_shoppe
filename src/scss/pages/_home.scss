@@ -1,24 +1,6 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as m;
 
-#punctuation {
-  inset: 0;
-  position: absolute;
-  z-index: -99;
-  overflow: clip;
-  pointer-events: none;
-
-  p {
-    font-size: 50rem;
-    bottom: 7.5vw;
-    left: 0;
-    rotate: -25deg;
-    opacity: 0.1;
-    position: absolute;
-    padding-block-end: 1rem;
-  }
-}
-
 .testimonials-wrapper {
   grid-column: 1 / 4;
 
