@@ -570,6 +570,53 @@ paths:
                   value: Something went wrong on our end, please try again.
       tags:
         - user
+  /user/thought:
+    summary: Stores a thought.
+    description: >-
+      This takes a thought and a name from a user and inserts them into a
+      database.
+    post:
+      summary: Posts data to a database
+      description: This endpoint sends a users thought and name to a database.
+      operationId: ''
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              examples:
+                success:
+                  value: {"msg": "your thought has been saved"}
+        '400':
+          description: bad request
+          content:
+            application/json:
+              examples:
+                bad request:
+                  value: {"msg": "Please check your form fields and try again"}
+        '401':
+          description: not authorized
+          content:
+            application/json:
+              examples:
+                not logged in:
+                  value: {"msg": "You must be logged in to perform this action."}
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      requestBody:
+        description: A thought from the user.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/thought'
+      tags:
+        - user
   /user/{id}:
     summary: returns user data
     description: >-
@@ -799,7 +846,7 @@ paths:
             text/plain; charset=utf-8:
               examples:
                 empty cart:
-                  value: Thats one empty cart you got there!                    
+                  value: Thats one empty cart you got there!
         '401':
           description: not authorized
           content:
@@ -1433,3 +1480,12 @@ components:
         updatedOrderStatus:
           type: string
           example: complete
+    thought:
+      type: object
+      properties:
+        thought:
+          type: string
+          example: Unicorns are great!
+        name:
+          type: string
+          example: Homer Simpson
