@@ -10,6 +10,7 @@ const isAuth = require('../middleware/is_auth');
 
 const { checkSchema, validationResult } = require('express-validator');
 const { userValidationSchema } = require('../utils/user_validation_schema');
+const { thoughtSchema } = require('../utils/thought_schema');
 const {
   checkoutUpdateValidationSchema,
 } = require('../utils/checkout_update_schema');
@@ -249,27 +250,37 @@ router.delete('/:id', isAuth, (req, res, next) => {
 });
 
 // handles the user submitting a thought
-router.post('/thought', isAuth, async (req, res, next) => {
-  if (!req.body) {
-    return res.status(400).json({ msg: 'The fields can not be empty' });
-  }
-
-  const { name, thought } = req.body;
-  try {
-    if (!name || !thought) {
-      return res
-        .status(400)
-        .json({ msg: 'Please check your form fields and try again' });
+router.post(
+  '/thought',
+  isAuth,
+  checkSchema(thoughtSchema),
+  async (req, res, next) => {
+    if (!req.body) {
+      return res.status(400).json({ msg: 'The fields can not be empty' });
     }
-    const result = await pool.query(
-      'INSERT INTO thoughts(name, thought) VALUES($1, $2)',
-      [name, thought],
-    );
-    return res.status(200).json({ msg: 'your thought has been saved' });
-  } catch (error) {
-    const err = new Error(error);
-    return next(err);
-  }
-});
+
+    const validationErrors = validationResult(req);
+    if (!validationErrors.isEmpty()) {
+      return res.status(400).send(validationErrors);
+    }
+
+    const { name, thought } = req.body;
+    try {
+      if (!name || !thought) {
+        return res
+          .status(400)
+          .json({ msg: 'Please check your form fields and try again' });
+      }
+      const result = await pool.query(
+        'INSERT INTO thoughts(name, thought) VALUES($1, $2)',
+        [name, thought],
+      );
+      return res.status(200).json({ msg: 'your thought has been saved' });
+    } catch (error) {
+      const err = new Error(error);
+      return next(err);
+    }
+  },
+);
 
 module.exports = router;
