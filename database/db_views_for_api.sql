@@ -111,15 +111,3 @@ FROM
   JOIN user_address AS ua ON u.user_id = ua.user_id;
 
 -- *****************************************************************
-CREATE
-OR REPLACE VIEW curr_site_hit_count AS
-SELECT
-  count
-FROM
-  site_counter
-ORDER BY
-  count DESC
-LIMIT
-  1;
-
---******************************************************************

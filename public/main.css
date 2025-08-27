@@ -1382,10 +1382,19 @@ p {
   margin-inline: auto 1rem;
 }
 
+#thought-body {
+  padding-block-start: 2rem;
+}
+#thought-body .logo-wrapper {
+  max-width: 300px;
+  margin: 0 auto 2rem;
+}
 #thought-body ul {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-inline: 1rem;
+  max-width: 50%;
+  margin-inline: auto;
 }
 #thought-body ul li {
   list-style-type: none;
@@ -1394,6 +1403,19 @@ p {
 #thought-body ul li img {
   opacity: 0.6;
   width: clamp(5rem, 10vw, 10rem);
+}
+#thought-body h1 {
+  text-align: center;
+  margin-block: 2rem;
+}
+#thought-body p {
+  max-width: 45ch;
+  margin: 0;
+  padding: 1.5rem 2rem;
+  margin-inline: auto;
+  text-align: center;
+  outline: 1px solid chartreuse;
+  border-radius: 15px 0 15px;
 }
 
 body {

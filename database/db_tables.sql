@@ -84,14 +84,17 @@ CREATE TABLE orders(
 DROP TABLE IF EXISTS site_counter;
 
 CREATE TABLE site_counter(
-  count integer PRIMARY KEY,
+  id serial PRIMARY KEY,
   new_session_timestamp TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
-INSERT INTO
-  site_counter(count)
-VALUES
-  (0);
+DROP TABLE IF EXISTS thoughts;
+
+CREATE TABLE thoughts(
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  thought TEXT NOT NULL
+);
 
 insert into
   category(category_name)
