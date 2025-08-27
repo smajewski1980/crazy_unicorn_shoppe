@@ -112,7 +112,7 @@ router.post(
   },
 );
 
-// next two not added to swagger file yet
+// next two handle the google auth
 router.get(
   '/auth/google',
   passport.authenticate('google', { scope: ['email', 'profile'] }),
@@ -125,7 +125,9 @@ router.get(
     failureRedirect: '/signin.html',
   }),
   (req, res) => {
-    res.sendStatus(404);
+    return res
+      .status(500)
+      .send({ msg: 'Something went wrong, please try again.' });
   },
 );
 

@@ -586,21 +586,24 @@ paths:
             application/json:
               examples:
                 success:
-                  value: {"msg": "your thought has been saved"}
+                  value:
+                    msg: your thought has been saved
         '400':
           description: bad request
           content:
             application/json:
               examples:
                 bad request:
-                  value: {"msg": "Please check your form fields and try again"}
+                  value:
+                    msg: Please check your form fields and try again
         '401':
           description: not authorized
           content:
             application/json:
               examples:
                 not logged in:
-                  value: {"msg": "You must be logged in to perform this action."}
+                  value:
+                    msg: You must be logged in to perform this action.
         '500':
           description: internal server error
           content:
@@ -1304,6 +1307,41 @@ paths:
                   value: Something went wrong on our end, please try again.
       tags:
         - orders
+  /user/auth/google:
+    summary: begins the google auth process
+    description: >-
+      Using a passport google-oauth strategy, this sends a user to the google
+      login page.
+    get:
+      summary: starts the google oauth login process
+      description: >-
+        Using a Passport.js google-oauth strategy, this endpoint redirects the
+        user to the google sign in.
+      operationId: user_auth_get
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - user
+  /user/auth/google/callback:
+    summary: Redirect after google auth.
+    description: >-
+      This is the callback route after the Google Auth that handles the user
+      redirect.
+    get:
+      summary: handles redirect after Google auth
+      description: After the Google Auth, this endpoint handles the user redirect.
+      operationId: get_user_auth_google_callback
+      responses:
+        '500':
+          description: something went wrong
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                something went wrong:
+                  value: Something went wrong, please try again.
+      tags:
+        - user
 components:
   schemas:
     Product:

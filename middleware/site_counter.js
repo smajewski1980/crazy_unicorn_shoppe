@@ -8,9 +8,7 @@ module.exports = async function (req, res, next) {
     const result = await pool.query(
       `INSERT INTO site_counter DEFAULT VALUES returning id`,
     );
-
     console.log(result.rows[0].id);
-    // console.log(`current site hit count: ${result.rows[0]}`);
     return next();
   } else if (req.session.isNew === true) {
     // the second time we pass through here
