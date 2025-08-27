@@ -1,0 +1,19 @@
+#thought-body {
+  ul {
+    display: flex;
+
+    // justify-content: space-between;
+    align-items: center;
+    margin-inline: 1rem;
+
+    li {
+      list-style-type: none;
+      position: relative;
+
+      img {
+        opacity: 0.6;
+        width: clamp(5rem, 10vw, 10rem);
+      }
+    }
+  }
+}

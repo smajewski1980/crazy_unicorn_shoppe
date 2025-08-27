@@ -1,221 +1,246 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as m;
 
-.testimonials-wrapper {
-  grid-column: 1 / 4;
+#index-body {
+  .testimonials-wrapper {
+    grid-column: 1 / 4;
 
-  h2 {
-    font-family: $font-para;
-    font-weight: 500;
-    margin-block-end: 0.5rem;
-    margin-inline-start: 2rem;
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-    transform-origin: left bottom;
-    rotate: -4deg;
-
-    span {
+    h2 {
+      font-family: $font-para;
+      font-weight: 500;
+      margin-block-end: 0.5rem;
+      margin-inline-start: 2rem;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
       transform-origin: left bottom;
-      rotate: 12deg;
-      display: inline-block;
-      transform: translate(-5px, 3px);
+      rotate: -4deg;
+
+      span {
+        transform-origin: left bottom;
+        rotate: 12deg;
+        display: inline-block;
+        transform: translate(-5px, 3px);
+      }
+    }
+
+    .testimonials-inner-wrapper {
+      display: flex;
+
+      .testimonial {
+        flex: 1;
+        text-align: center;
+
+        .testimonial-content-top {
+          display: flex;
+          gap: 1rem;
+          align-items: center;
+          justify-content: center;
+
+          img:not(.stars-wrapper img) {
+            border-radius: 50%;
+            width: 65px;
+          }
+
+          .stars-wrapper {
+            display: flex;
+            gap: 0.25rem;
+            flex-basis: calc(100px + (0.25rem * 3));
+
+            img {
+              width: 25px;
+            }
+          }
+        }
+
+        p {
+          font-family: $font-para;
+          font-weight: 600;
+          margin-inline: auto;
+          margin-block-start: 0.5rem;
+          max-width: 25ch;
+        }
+      }
     }
   }
 
-  .testimonials-inner-wrapper {
-    display: flex;
+  #home-main {
+    display: grid;
+    grid-template-columns: 65% 35%;
 
-    .testimonial {
-      flex: 1;
-      text-align: center;
+    .featured-card {
+      font-family: $font-para;
+      outline: 2px solid chartreuse;
+      padding: 1rem 1rem 1.5rem;
+      border-radius: 50px 0 50px 0;
+      background: rgba(255, 255, 255, 0.25);
+      width: 90%;
+      margin-inline: auto;
+      position: relative;
+      align-self: start;
 
-      .testimonial-content-top {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        justify-content: center;
+      .featured-star {
+        position: absolute;
+        right: 2rem;
+        top: 1rem;
+        min-width: 1rem;
+        width: 3vw;
+        filter: drop-shadow(2px 2px 0px chartreuse);
+      }
 
-        img:not(.stars-wrapper img) {
-          border-radius: 50%;
-          width: 65px;
+      h2 {
+        font-family: 'Kbcurioussoul-m3W9';
+        margin-block-end: 0.5rem;
+        margin-inline-start: 1.125rem;
+        font-size: clamp(1rem, 2.25vw, 2.25rem);
+        color: chartreuse;
+      }
+
+      .featured-content-wrapper {
+        display: grid;
+        grid-template-columns: 35% 65%;
+        font-size: 1.125rem;
+        place-items: center;
+
+        img {
+          width: 85%;
+          border-radius: 15px 0px 15px;
         }
 
-        .stars-wrapper {
-          display: flex;
-          gap: 0.25rem;
-          flex-basis: calc(100px + (0.25rem * 3));
+        #featured-info-wrapper {
+          display: grid;
+          justify-items: start;
+          gap: 0.5rem;
 
-          img {
-            width: 25px;
+          h3 {
+            font-size: clamp(1rem, 1.35vw, 1.35rem);
+          }
+          p {
+            max-width: 35ch;
+            margin-block-end: 0.5rem;
+            font-size: clamp(0.75rem, 1vw, 1rem);
+          }
+
+          a {
+            @include m.regular-button;
+            padding: 0.5rem 1.5rem 0.65rem;
+            &:focus-visible {
+              outline: 2px solid white;
+              outline-offset: 5px;
+            }
           }
         }
       }
+    }
 
-      p {
-        font-family: $font-para;
-        font-weight: 600;
+    #home-main-left-col {
+      #message-link {
+        @include m.regular-button;
+        width: 30%;
         margin-inline: auto;
-        margin-block-start: 0.5rem;
-        max-width: 25ch;
+        text-align: center;
+        margin-block-start: 4rem;
+        padding-block: 0.75rem;
+
+        a:focus-visible {
+          outline: none;
+        }
+
+        &:has(a:focus-visible) {
+          outline: 2px solid white;
+          outline-offset: 5px;
+        }
       }
     }
-  }
-}
 
-#home-main {
-  display: grid;
-  grid-template-columns: 65% 35%;
+    .home-text-wrapper {
+      display: inline;
+      padding-inline: 1rem;
+      font-family: $font-para;
+      font-size: clamp(0.75rem, 1vw, 1rem);
 
-  .featured-card {
-    font-family: $font-para;
-    outline: 2px solid chartreuse;
-    padding: 1rem 1rem 1.5rem;
-    border-radius: 50px 0 50px 0;
-    background: rgba(255, 255, 255, 0.25);
-    width: 90%;
-    margin-inline: auto;
-    position: relative;
-    align-self: start;
-
-    .featured-star {
-      position: absolute;
-      right: 2rem;
-      top: 1rem;
-      min-width: 1rem;
-      width: 3vw;
-      filter: drop-shadow(2px 2px 0px chartreuse);
-    }
-
-    h2 {
-      font-family: 'Kbcurioussoul-m3W9';
-      margin-block-end: 0.5rem;
-      margin-inline-start: 1.125rem;
-      font-size: clamp(1rem, 2.25vw, 2.25rem);
-      color: chartreuse;
-    }
-
-    .featured-content-wrapper {
-      display: grid;
-      grid-template-columns: 35% 65%;
-      font-size: 1.125rem;
-      place-items: center;
-
-      img {
-        width: 85%;
-        border-radius: 15px 0px 15px;
-      }
-
-      #featured-info-wrapper {
-        display: grid;
-        justify-items: start;
-        gap: 0.5rem;
+      .give-away-wrapper {
+        align-self: center;
+        justify-self: center;
 
         h3 {
           font-size: clamp(1rem, 1.35vw, 1.35rem);
-        }
-        p {
-          max-width: 35ch;
-          margin-block-end: 0.5rem;
-          font-size: clamp(0.75rem, 1vw, 1rem);
+          color: chartreuse;
+          position: relative;
+          font-family: 'Kbcurioussoul-m3W9';
+          text-align: center;
+
+          &::after {
+            content: '*';
+            position: absolute;
+            margin-inline-start: 0.15rem;
+          }
+
+          span {
+            font-size: 2rem;
+            color: orange;
+            vertical-align: middle;
+          }
         }
 
-        a {
-          @include m.regular-button;
-          padding: 0.5rem 1.5rem 0.65rem;
-          &:focus-visible {
-            outline: 2px solid white;
-            outline-offset: 5px;
+        .give-away-img-wrapper {
+          position: relative;
+
+          #give-away-star-1 {
+            position: absolute;
+            left: 4rem;
+            top: 0.5rem;
+            width: 2vw;
+            filter: drop-shadow(2px 2px 0px chartreuse);
           }
+
+          #give-away-star-2 {
+            position: absolute;
+            right: 1rem;
+            bottom: -0.5rem;
+            width: 4vw;
+            rotate: 17deg;
+            filter: drop-shadow(2px 2px 0px chartreuse);
+          }
+
+          img:not(#give-away-star-1):not(#give-away-star-2) {
+            width: 250px;
+            margin-inline: auto;
+            border-radius: 50px 0 50px 0;
+            outline: 2px solid chartreuse;
+          }
+        }
+
+        input {
+          display: block;
+          width: 85%;
+          margin-inline: auto;
+          font-size: 1.25rem;
+          padding: 0.15rem;
+          border-radius: 5px;
+          margin-block: 0.5rem 1.5rem;
+          font-family: $font-para;
+          border: none;
+          outline: 2px solid chartreuse;
+
+          &::placeholder {
+            font-family: 'Kbcurioussoul-m3W9';
+            opacity: 0.65;
+          }
+        }
+
+        .give-away-disclaimer {
+          text-align: center;
+          font-family: $font-para;
+          font-size: 0.85rem;
+          max-width: 30ch;
+          margin: 0.5rem auto;
+          line-height: 1.3;
+          color: chartreuse;
         }
       }
     }
   }
-
-  .home-text-wrapper {
-    display: inline;
-    padding-inline: 1rem;
-    font-family: $font-para;
-    font-size: clamp(0.75rem, 1vw, 1rem);
-
-    .give-away-wrapper {
-      align-self: center;
-      justify-self: center;
-
-      h3 {
-        font-size: clamp(1rem, 1.35vw, 1.35rem);
-        color: chartreuse;
-        position: relative;
-        font-family: 'Kbcurioussoul-m3W9';
-        text-align: center;
-
-        &::after {
-          content: '*';
-          position: absolute;
-          margin-inline-start: 0.15rem;
-        }
-
-        span {
-          font-size: 2rem;
-          color: orange;
-          vertical-align: middle;
-        }
-      }
-
-      .give-away-img-wrapper {
-        position: relative;
-
-        #give-away-star-1 {
-          position: absolute;
-          left: 4rem;
-          top: 0.5rem;
-          width: 2vw;
-          filter: drop-shadow(2px 2px 0px chartreuse);
-        }
-
-        #give-away-star-2 {
-          position: absolute;
-          right: 1rem;
-          bottom: -0.5rem;
-          width: 4vw;
-          rotate: 17deg;
-          filter: drop-shadow(2px 2px 0px chartreuse);
-        }
-
-        img:not(#give-away-star-1):not(#give-away-star-2) {
-          width: 250px;
-          margin-inline: auto;
-          border-radius: 50px 0 50px 0;
-          outline: 2px solid chartreuse;
-        }
-      }
-
-      input {
-        display: block;
-        width: 85%;
-        margin-inline: auto;
-        font-size: 1.25rem;
-        padding: 0.15rem;
-        border-radius: 5px;
-        margin-block: 0.5rem 1.5rem;
-        font-family: $font-para;
-        border: none;
-        outline: 2px solid chartreuse;
-
-        &::placeholder {
-          font-family: 'Kbcurioussoul-m3W9';
-          opacity: 0.65;
-        }
-      }
-
-      .give-away-disclaimer {
-        text-align: center;
-        font-family: $font-para;
-        font-size: 0.85rem;
-        max-width: 30ch;
-        margin: 0.5rem auto;
-        line-height: 1.3;
-        color: chartreuse;
-      }
-    }
+  footer {
+    text-align: center;
   }
 }

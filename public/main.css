@@ -50,10 +50,10 @@ html {
   cursor: url("./assets/icons/cursor.png"), auto;
 }
 
-.testimonials-wrapper {
+#index-body .testimonials-wrapper {
   grid-column: 1/4;
 }
-.testimonials-wrapper h2 {
+#index-body .testimonials-wrapper h2 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 500;
   margin-block-end: 0.5rem;
@@ -63,50 +63,49 @@ html {
   transform-origin: left bottom;
   rotate: -4deg;
 }
-.testimonials-wrapper h2 span {
+#index-body .testimonials-wrapper h2 span {
   transform-origin: left bottom;
   rotate: 12deg;
   display: inline-block;
   transform: translate(-5px, 3px);
 }
-.testimonials-wrapper .testimonials-inner-wrapper {
+#index-body .testimonials-wrapper .testimonials-inner-wrapper {
   display: flex;
 }
-.testimonials-wrapper .testimonials-inner-wrapper .testimonial {
+#index-body .testimonials-wrapper .testimonials-inner-wrapper .testimonial {
   flex: 1;
   text-align: center;
 }
-.testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top {
+#index-body .testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top {
   display: flex;
   gap: 1rem;
   align-items: center;
   justify-content: center;
 }
-.testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top img:not(.stars-wrapper img) {
+#index-body .testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top img:not(.stars-wrapper img) {
   border-radius: 50%;
   width: 65px;
 }
-.testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top .stars-wrapper {
+#index-body .testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top .stars-wrapper {
   display: flex;
   gap: 0.25rem;
   flex-basis: calc(100px + 0.75rem);
 }
-.testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top .stars-wrapper img {
+#index-body .testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top .stars-wrapper img {
   width: 25px;
 }
-.testimonials-wrapper .testimonials-inner-wrapper .testimonial p {
+#index-body .testimonials-wrapper .testimonials-inner-wrapper .testimonial p {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 600;
   margin-inline: auto;
   margin-block-start: 0.5rem;
   max-width: 25ch;
 }
-
-#home-main {
+#index-body #home-main {
   display: grid;
   grid-template-columns: 65% 35%;
 }
-#home-main .featured-card {
+#index-body #home-main .featured-card {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   outline: 2px solid chartreuse;
   padding: 1rem 1rem 1.5rem;
@@ -117,7 +116,7 @@ html {
   position: relative;
   align-self: start;
 }
-#home-main .featured-card .featured-star {
+#index-body #home-main .featured-card .featured-star {
   position: absolute;
   right: 2rem;
   top: 1rem;
@@ -125,37 +124,37 @@ html {
   width: 3vw;
   filter: drop-shadow(2px 2px 0px chartreuse);
 }
-#home-main .featured-card h2 {
+#index-body #home-main .featured-card h2 {
   font-family: "Kbcurioussoul-m3W9";
   margin-block-end: 0.5rem;
   margin-inline-start: 1.125rem;
   font-size: clamp(1rem, 2.25vw, 2.25rem);
   color: chartreuse;
 }
-#home-main .featured-card .featured-content-wrapper {
+#index-body #home-main .featured-card .featured-content-wrapper {
   display: grid;
   grid-template-columns: 35% 65%;
   font-size: 1.125rem;
   place-items: center;
 }
-#home-main .featured-card .featured-content-wrapper img {
+#index-body #home-main .featured-card .featured-content-wrapper img {
   width: 85%;
   border-radius: 15px 0px 15px;
 }
-#home-main .featured-card .featured-content-wrapper #featured-info-wrapper {
+#index-body #home-main .featured-card .featured-content-wrapper #featured-info-wrapper {
   display: grid;
   justify-items: start;
   gap: 0.5rem;
 }
-#home-main .featured-card .featured-content-wrapper #featured-info-wrapper h3 {
+#index-body #home-main .featured-card .featured-content-wrapper #featured-info-wrapper h3 {
   font-size: clamp(1rem, 1.35vw, 1.35rem);
 }
-#home-main .featured-card .featured-content-wrapper #featured-info-wrapper p {
+#index-body #home-main .featured-card .featured-content-wrapper #featured-info-wrapper p {
   max-width: 35ch;
   margin-block-end: 0.5rem;
   font-size: clamp(0.75rem, 1vw, 1rem);
 }
-#home-main .featured-card .featured-content-wrapper #featured-info-wrapper a {
+#index-body #home-main .featured-card .featured-content-wrapper #featured-info-wrapper a {
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
@@ -166,48 +165,70 @@ html {
   font-weight: 600;
   padding: 0.5rem 1.5rem 0.65rem;
 }
-#home-main .featured-card .featured-content-wrapper #featured-info-wrapper a:focus-visible {
+#index-body #home-main .featured-card .featured-content-wrapper #featured-info-wrapper a:focus-visible {
   outline: 2px solid white;
   outline-offset: 5px;
 }
-#home-main .home-text-wrapper {
+#index-body #home-main #home-main-left-col #message-link {
+  background-color: rgba(255, 255, 255, 0.35);
+  border-color: chartreuse;
+  border-radius: 10px 0 10px 0;
+  border-width: 1px;
+  border-style: solid;
+  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  outline: none;
+  font-weight: 600;
+  width: 30%;
+  margin-inline: auto;
+  text-align: center;
+  margin-block-start: 4rem;
+  padding-block: 0.75rem;
+}
+#index-body #home-main #home-main-left-col #message-link a:focus-visible {
+  outline: none;
+}
+#index-body #home-main #home-main-left-col #message-link:has(a:focus-visible) {
+  outline: 2px solid white;
+  outline-offset: 5px;
+}
+#index-body #home-main .home-text-wrapper {
   display: inline;
   padding-inline: 1rem;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: clamp(0.75rem, 1vw, 1rem);
 }
-#home-main .home-text-wrapper .give-away-wrapper {
+#index-body #home-main .home-text-wrapper .give-away-wrapper {
   align-self: center;
   justify-self: center;
 }
-#home-main .home-text-wrapper .give-away-wrapper h3 {
+#index-body #home-main .home-text-wrapper .give-away-wrapper h3 {
   font-size: clamp(1rem, 1.35vw, 1.35rem);
   color: chartreuse;
   position: relative;
   font-family: "Kbcurioussoul-m3W9";
   text-align: center;
 }
-#home-main .home-text-wrapper .give-away-wrapper h3::after {
+#index-body #home-main .home-text-wrapper .give-away-wrapper h3::after {
   content: "*";
   position: absolute;
   margin-inline-start: 0.15rem;
 }
-#home-main .home-text-wrapper .give-away-wrapper h3 span {
+#index-body #home-main .home-text-wrapper .give-away-wrapper h3 span {
   font-size: 2rem;
   color: orange;
   vertical-align: middle;
 }
-#home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper {
+#index-body #home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper {
   position: relative;
 }
-#home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper #give-away-star-1 {
+#index-body #home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper #give-away-star-1 {
   position: absolute;
   left: 4rem;
   top: 0.5rem;
   width: 2vw;
   filter: drop-shadow(2px 2px 0px chartreuse);
 }
-#home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper #give-away-star-2 {
+#index-body #home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper #give-away-star-2 {
   position: absolute;
   right: 1rem;
   bottom: -0.5rem;
@@ -215,13 +236,13 @@ html {
   rotate: 17deg;
   filter: drop-shadow(2px 2px 0px chartreuse);
 }
-#home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper img:not(#give-away-star-1):not(#give-away-star-2) {
+#index-body #home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper img:not(#give-away-star-1):not(#give-away-star-2) {
   width: 250px;
   margin-inline: auto;
   border-radius: 50px 0 50px 0;
   outline: 2px solid chartreuse;
 }
-#home-main .home-text-wrapper .give-away-wrapper input {
+#index-body #home-main .home-text-wrapper .give-away-wrapper input {
   display: block;
   width: 85%;
   margin-inline: auto;
@@ -233,11 +254,11 @@ html {
   border: none;
   outline: 2px solid chartreuse;
 }
-#home-main .home-text-wrapper .give-away-wrapper input::placeholder {
+#index-body #home-main .home-text-wrapper .give-away-wrapper input::placeholder {
   font-family: "Kbcurioussoul-m3W9";
   opacity: 0.65;
 }
-#home-main .home-text-wrapper .give-away-wrapper .give-away-disclaimer {
+#index-body #home-main .home-text-wrapper .give-away-wrapper .give-away-disclaimer {
   text-align: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 0.85rem;
@@ -245,6 +266,9 @@ html {
   margin: 0.5rem auto;
   line-height: 1.3;
   color: chartreuse;
+}
+#index-body footer {
+  text-align: center;
 }
 
 #add-new-product-body {
@@ -1356,6 +1380,20 @@ p {
 #dev-info #img-unicorn-chew {
   max-width: 50%;
   margin-inline: auto 1rem;
+}
+
+#thought-body ul {
+  display: flex;
+  align-items: center;
+  margin-inline: 1rem;
+}
+#thought-body ul li {
+  list-style-type: none;
+  position: relative;
+}
+#thought-body ul li img {
+  opacity: 0.6;
+  width: clamp(5rem, 10vw, 10rem);
 }
 
 body {
