@@ -2,6 +2,7 @@ import { toasty } from './utils/toasty.js';
 const nameInput = document.getElementById('name');
 const thoughtInput = document.getElementById('thought');
 const btnThought = document.getElementById('btn-thought');
+const form = document.getElementById('form-thought');
 
 async function handleThought(e) {
   e.preventDefault();
@@ -24,6 +25,9 @@ async function handleThought(e) {
   const response = await fetch('./user/thought', options);
 
   if (response.ok) {
+    nameInput.value = '';
+    thoughtInput.value = '';
+    form.inert = true;
     toasty('Your thought has been submitted.', 'home');
     return;
   } else if (response.status === '500') {
@@ -36,3 +40,7 @@ async function handleThought(e) {
 }
 
 btnThought.addEventListener('click', handleThought);
+
+// form.addEventListener('submit', (e) => {
+//   e.preventDefault();
+// });
