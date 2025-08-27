@@ -147,6 +147,7 @@ async function handleOrderCancel(e) {
         'reload',
       );
       orderReviewModal.close();
+      ordersTableBody.inert = true;
       return;
     }
   } catch (error) {

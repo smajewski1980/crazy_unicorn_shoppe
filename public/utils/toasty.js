@@ -1,7 +1,7 @@
 export function toasty(message, cb) {
   Toastify({
     text: message,
-    duration: 8000,
+    duration: 5000,
     gravity: 'top',
     position: 'left',
     close: true,
