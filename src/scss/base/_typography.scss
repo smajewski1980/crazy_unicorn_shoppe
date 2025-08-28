@@ -19,6 +19,11 @@ input,
 select,
 option {
   font-family: $font-para;
+}
+
+label,
+select,
+option {
   cursor: url('./assets/icons/pointer.png') 10 0, auto;
 }
 

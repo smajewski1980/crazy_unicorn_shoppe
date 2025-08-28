@@ -116,7 +116,3 @@
     clip-path: var(--clip-path-poly);
   }
 }
-
-@mixin pointer {
-  cursor: url('./assets/icons/pointer.png') 10 0, auto;
-}
