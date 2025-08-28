@@ -133,21 +133,37 @@
     }
 
     #home-main-left-col {
-      #message-link {
-        @include m.regular-button;
-        width: 30%;
-        margin-inline: auto;
-        text-align: center;
-        margin-block-start: 4rem;
-        padding-block: 0.75rem;
+      #link-img-wrapper {
+        margin-block-start: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
 
-        a:focus-visible {
-          outline: none;
+        img:first-child {
+          transform: scaleX(-1);
         }
 
-        &:has(a:focus-visible) {
-          outline: 2px solid white;
-          outline-offset: 5px;
+        img {
+          max-width: 200px;
+          border-radius: 0px 15px 0px 15px;
+          border: 2px solid chartreuse;
+        }
+
+        #thought-link {
+          @include m.regular-button;
+          width: 30%;
+          text-align: center;
+          padding-block: 0.75rem;
+
+          a:focus-visible {
+            outline: none;
+          }
+
+          &:has(a:focus-visible) {
+            outline: 2px solid white;
+            outline-offset: 5px;
+          }
         }
       }
     }
