@@ -1,12 +1,13 @@
 export function toasty(message, cb) {
   Toastify({
     text: message,
-    duration: 5000,
+    duration: 3500,
     gravity: 'top',
     position: 'left',
     close: true,
     style: {
       background: 'linear-gradient(rgba(255, 188, 220, 0.5))',
+      backdropFilter: 'blur(3px)',
       fontFamily: 'systemUi, sans-serif',
       fontSize: '1.25rem',
       paddingBlock: '1.5rem',

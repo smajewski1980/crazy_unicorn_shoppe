@@ -141,7 +141,8 @@
       }
     }
     .unicorn-float {
-      ::before {
+      ::before,
+      ::after {
         content: '';
         width: 125px;
         height: 150px;
@@ -155,6 +156,13 @@
         transform: skewX(0deg) skewY(0deg) translateX(-55%) scale(1) rotate(0);
         filter: brightness(1.25);
         animation: unicorn-dance 15s linear infinite;
+      }
+
+      ::after {
+        left: initial;
+        right: -15rem;
+        animation-delay: 1.5s;
+        background-image: url('./assets/images/unicorn_stuffed_2.png');
       }
     }
 

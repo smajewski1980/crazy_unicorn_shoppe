@@ -1317,7 +1317,8 @@ p {
 #sign-up-body #sign-up-form fieldset .sign-up-input-wrapper input {
   accent-color: chartreuse;
 }
-#sign-up-body #sign-up-form .unicorn-float ::before {
+#sign-up-body #sign-up-form .unicorn-float ::before,
+#sign-up-body #sign-up-form .unicorn-float ::after {
   content: "";
   width: 125px;
   height: 150px;
@@ -1331,6 +1332,12 @@ p {
   transform: skewX(0deg) skewY(0deg) translateX(-55%) scale(1) rotate(0);
   filter: brightness(1.25);
   animation: unicorn-dance 15s linear infinite;
+}
+#sign-up-body #sign-up-form .unicorn-float ::after {
+  left: initial;
+  right: -15rem;
+  animation-delay: 1.5s;
+  background-image: url("./assets/images/unicorn_stuffed_2.png");
 }
 #sign-up-body #sign-up-form #btn-signup {
   margin-block: 0.75rem;
