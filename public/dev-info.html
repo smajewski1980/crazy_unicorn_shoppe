@@ -21,6 +21,12 @@
     href="./prism.css"
     rel="stylesheet"
   />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="swagger-ui-5.28.0/dist/swagger-ui.css"
+  />
+
   <body id="dev-info">
     <h1>Developer Information</h1>
 
@@ -194,7 +200,6 @@
       to be able to auto refresh the browser after a nodemon restart when a file
       changes.
     </p>
-    <!-- <pre><code class="language-css">p { color: red }</code></pre> -->
     <p>
       This app uses bcrypt for hashing passwords. When I set up the database, I
       hadn't considered just how long the hashed passwords would be and I had to
@@ -205,7 +210,11 @@
       express-validator. I used multiple validation schemas in seperate files to
       keep them organized.
     </p>
-    <p>**************this is where the api docs can go**************</p>
+    <p>
+      Creating the swagger docs first made setting up the endpoints so much
+      easier.
+    </p>
+    <div id="swagger-ui"></div>
     <p>
       Let's talk database. I use Postgres, both locally and through Heroku which
       is who is hosting this site. Here is my entity relationship diagram:
@@ -334,6 +343,10 @@
         ('Gifts and Gadgets of Crazy');
     </code></pre>
 
+    <script src="swagger-ui-5.28.0/dist/swagger-ui-bundle.js"></script>
+    <script src="swagger-ui-5.28.0/dist/swagger-ui-standalone-preset.js"></script>
+    <script src="swagger-ui-5.28.0/dist/swagger-initializer.js"></script>
+
     <script src="./prism.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/components/prism-sql.min.js"
@@ -341,5 +354,11 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <!-- <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/components/prism-yaml.min.js"
+      integrity="sha512-epBuSQcDNi/0lmCXr7cGjqWcfnzXe4m/GdIFFNDcQ7v/JF4H8I+l4wmVQiYO6NkLGSDo3LR7HaUfUL/5sjWtXg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script> -->
   </body>
 </html>

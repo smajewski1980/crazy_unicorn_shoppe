@@ -1,0 +1,1529 @@
+openapi: 3.0.4
+info:
+  title: The Crazy Unicorn Shoppe
+  version: 1.0.0
+  description: >-
+    This is an e-commerce full-stack app made by Steve Majewski for practice,
+    the content is intended to be silly and far from serious, but it will be
+    fully functional as far as creating accounts and logging in with hashed
+    passwords. The data will be stored in a Postgres Database.
+servers:
+  - url: www.localhost:4700
+    variables: {}
+tags:
+  - name: products
+    description: everything about products
+  - name: user
+    description: everything about users
+  - name: cart
+    description: everything to do with the current signed in user's cart
+  - name: orders
+    description: endpoints relating to orders
+paths:
+  /products:
+    get:
+      summary: gets all products
+      description: Returns all products in JSON form
+      operationId: get_products
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              examples:
+                all products:
+                  value: |
+                    [
+                      {
+                        "product_id": 1,
+                        "product_name": "Unicorn Shirt",
+                        "product_desription": "Imagine slipping into the legendary allure of our Unicorn Shirt, a whimsical tapestry...",
+                        "product_price": 15,
+                        "image_url": "./assets/images/unicorn_t-shirt.webp",
+                        "category_id": 1,
+                        "current_qty": 10,
+                        "min_qty": 3,
+                        "max_qty": 10
+                      },
+                      {
+                        "product_id": 2,
+                        "product_name": "Unicorn Pants",
+                        "product_desription": "Imagine slipping into the elusive allure of our Unicorn Pants, where whimsy meets sophistication...",
+                        "product_price": 25,
+                        "image_url": "./assets/images/unicorn_pants.webp",
+                        "category_id": 1,
+                        "current_qty": 10,
+                        "min_qty": 3,
+                        "max_qty": 10
+                      },
+                      {
+                        "product_id": 3,
+                        "product_name": "Unicorn Cookies",
+                        "product_desription": "Elevate your snack game with our whimsical Unicorn Cookies—portals to a fairy-tale realm...",
+                        "product_price": 5,
+                        "image_url": "./assets/images/unicorn_cookies.webp",
+                        "category_id": 2,
+                        "current_qty": 30,
+                        "min_qty": 10,
+                        "max_qty": 30
+                      }
+                    ]
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                internal server error:
+                  value: Something went wrong retrieving the data, please try again.
+      tags:
+        - products
+    post:
+      summary: creates a new product
+      description: Creates a new product and adds it to the database.
+      operationId: post_products
+      requestBody:
+        description: create a new product
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: content created
+        '400':
+          description: bad request
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                bad request:
+                  value: Please check your form fields and try again.
+        '401':
+          description: not authenticated
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authenticated:
+                  value: You must be logged in to perform this action.
+        '403':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must have admin access to perform this action.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                internal server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - products
+  /products/{id}:
+    summary: handles operations on a single product
+    get:
+      summary: gets a product
+      description: >-
+        This returns a product from a product id that was given as a url
+        parameter.
+      operationId: get_product_id
+      parameters:
+        - name: id
+          in: path
+          description: The id of the product that we seek.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              examples:
+                get product success:
+                  value: |
+                    {
+                      "product_id": 47,
+                      "product_name": "Unicorn Couch",
+                      "product_description": "Once you sit in our cozy Unicorn couch you will never want to .....",
+                      "product_price": 300,
+                      "image_url": "./assets/images/unicorn_couch.webp",
+                      "category_id": 4,
+                      "current_qty": 10,
+                      "min_qty": 3,
+                      "max_qty": 10
+                    }
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a product with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                internal server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - products
+    put:
+      summary: updates a products info
+      description: Updates the product info by sending an updated product object.
+      operationId: put_products
+      parameters:
+        - name: id
+          in: path
+          description: The id of the product that will be updated.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: The updated product.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product_update'
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              examples:
+                update product success:
+                  value: |-
+                    {
+                      "msg": "successful update",
+                      "product_id": 47
+                    }
+        '400':
+          description: bad request
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                bad request:
+                  value: Please check your form fields and try again.
+        '401':
+          description: not authenticated
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authenticated:
+                  value: You must be logged in to perform this action.
+        '403':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must have admin access to perform this action.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                internal server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - products
+    delete:
+      summary: deletes a product
+      description: Deletes a product given a product_id as a url parameter.
+      operationId: delete_product_id
+      parameters:
+        - name: id
+          in: path
+          description: The id of the product that will be updated.
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: no content
+        '401':
+          description: not authenticated
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authenticated:
+                  value: You must be logged in to perform this action.
+        '403':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must have admin access to perform this action.
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a product with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                internal server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - products
+  /products/{id}/inventory:
+    summary: returns product inventory
+    description: This returns a products inventory when given a parameter of a product_id.
+    get:
+      summary: returns product inventory
+      description: >-
+        This returns a proucts inventory when given a product_id as a url
+        parameter.
+      operationId: get_product_inventory
+      parameters:
+        - name: id
+          in: path
+          description: The id of the product whose inventory we seek.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              examples:
+                product inventory:
+                  value: |-
+                    {
+                      "current_qty": 5,
+                      "min_qty": 2,
+                      "max_qty": 7
+                    }
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a product with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - products
+    put:
+      summary: updates product inventory
+      description: >-
+        This will take a product id as a url parameter and update the inventory
+        of that product.
+      operationId: put_product_inventory
+      parameters:
+        - name: id
+          in: path
+          description: The id of the product whose inventory we seek to change.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: inventory info
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product_inventory_update'
+      responses:
+        '200':
+          description: ok
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: |-
+                    {
+                      "msg": "inventory successfully updated",
+                      "product_id": 47
+                    }
+        '401':
+          description: not authenticated
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authenticated:
+                  value: You must be logged in to perform this action.
+        '403':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must have admin access to perform this action.
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a product with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - products
+  /products/category/{id}:
+    summary: get products by category
+    get:
+      summary: get products by category id
+      description: >-
+        This will return JSON of all products from a url parameter supplied
+        category id.
+      operationId: get_products_category
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The category id of the products we seek.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                get products by category success:
+                  value: |-
+                    [
+                      {
+                        "product_id": 1,
+                        "product_name": "Unicorn Shirt",
+                        "product_desription": "Imagine slipping into the legendary allure of our Unicorn Shirt, a whimsical tapestry...",
+                        "product_price": 15,
+                        "image_url": "./assets/images/unicorn_t-shirt.webp",
+                        "category_id": 3,
+                        "current_qty": 10,
+                        "min_qty": 3,
+                        "max_qty": 10
+                      },
+                      {
+                        "product_id": 2,
+                        "product_name": "Unicorn Pants",
+                        "product_desription": "Imagine slipping into the elusive allure of our Unicorn Pants, where whimsy meets sophistication...",
+                        "product_price": 25,
+                        "image_url": "./assets/images/unicorn_pants.webp",
+                        "category_id": 3,
+                        "current_qty": 10,
+                        "min_qty": 3,
+                        "max_qty": 10
+                      }
+                    ]
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a category with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - products
+  /user/register:
+    summary: for posting a new user
+    description: This will be for the POST endpoint to create a new user.
+    post:
+      summary: creates a user account
+      description: >-
+        This request will have JSON user data in the body that will be sent off
+        to the database to create a new user account.
+      operationId: post_user
+      requestBody:
+        description: A new user object.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/New_user'
+      responses:
+        '201':
+          description: created
+        '400':
+          description: bad request
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                bad request:
+                  value: Please check your form fields and try again.
+                passwords do not match:
+                  value: Passwords don't match.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - user
+  /user/status:
+    summary: checks login status
+    get:
+      summary: checks login status
+      description: This returns the user object if there is a currently logged in user.
+      operationId: get_user_status
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                get user login status:
+                  value: |-
+                    {
+                      "user_id": 21,
+                      "name": "Fred Flintstone",
+                      "hashed_pw": "$2b$10$CxacDKqOspwZbqs5R6jWCeZncCD7hg5tX1aiNYzxDSR4nXfp2pxXm",
+                      "email": "fred@stoneage.com",
+                      "phone": "555-555-5555",
+                      "is_admin": false,
+                      "address_line_1": "123 Rock Blvd",
+                      "address_line_2": "Boulder 1",
+                      "city": "Bedrock",
+                      "state": "NY",
+                      "zip_code": "98765"
+                    }
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - user
+  /user/login:
+    summary: logs in a user
+    post:
+      summary: logs in a user
+      description: >-
+        Takes user credentials as JSON data in the request body and attempts to
+        log in the user.
+      operationId: post_user_login
+      requestBody:
+        description: User login credentials.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login_credentials'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: not found
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - user
+  /user/logout:
+    summary: logs out a user
+    get:
+      summary: logs out a user
+      description: Logs out the current user.
+      operationId: get_user_logout
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                logout success:
+                  value: The user is now logged out.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - user
+  /user/thought:
+    summary: Stores a thought.
+    description: >-
+      This takes a thought and a name from a user and inserts them into a
+      database.
+    post:
+      summary: Posts data to a database
+      description: This endpoint sends a users thought and name to a database.
+      operationId: ''
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    msg: your thought has been saved
+        '400':
+          description: bad request
+          content:
+            application/json:
+              examples:
+                bad request:
+                  value:
+                    msg: Please check your form fields and try again
+        '401':
+          description: not authorized
+          content:
+            application/json:
+              examples:
+                not logged in:
+                  value:
+                    msg: You must be logged in to perform this action.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      requestBody:
+        description: A thought from the user.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/thought'
+      tags:
+        - user
+  /user/{id}:
+    summary: returns user data
+    description: >-
+      Given a user id through a url paramater, this returns the users account
+      data
+    get:
+      summary: gets user data
+      description: This returns user data when given a user id as a url parameter.
+      operationId: get_users_id
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user whose data we seek.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                get user success:
+                  value: |-
+                    {
+                      "user_id": "47",
+                      "name": "Fred Flintstone",
+                      "hashed_pw": "$2a$05$LhayLxezLhK1LhWvKxCyLOj0j1u.Kj0jZ0pEmm134uzrQlFvQJLF6",
+                      "email": "fred@stoneage.com",
+                      "phone": "555-555-5555",
+                      "is_admin": false,
+                      "address_line_1": "123 Rock Blvd",
+                      "address_line_2": "Boulder 1",
+                      "city": "Bedrock",
+                      "state": "NY",
+                      "zip_code": "98765"
+                    }
+        '401':
+          description: not authenticated
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authenticated:
+                  value: You must be logged in to perform this action.
+        '403':
+          description: wrong user
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                wrong user:
+                  value: That isnt the current users id.
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a user with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - user
+    put:
+      summary: updates user account
+      description: >-
+        This endpoint takes updated user data as JSON in the request body and
+        updates the user account with the id that was supplied in the url
+        parameter.  
+      operationId: put_users_id
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user whose data we seek to update.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: An updated user object.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Updated_user'
+      responses:
+        '201':
+          description: created
+        '400':
+          description: bad request
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                bad request:
+                  value: Please check your form fields and try again.
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a user with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - user
+    delete:
+      summary: deletes a user account
+      description: >-
+        Deletes the users account whose user id is supplied in the url
+        parameter.
+      operationId: delete_user
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user whose account we seek to delete.
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: no content
+        '401':
+          description: not authenticated
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authenticated:
+                  value: You must be logged in to perform this action.
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a user with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - user
+  /cart:
+    summary: This path will add an item to the cart.
+    post:
+      summary: add cart item
+      description: >-
+        This operation will take a product and a quantity and add the item to
+        the users active cart.
+      operationId: post_cart
+      requestBody:
+        description: An item to add to the users cart.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart_item'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                post cart item success:
+                  value: |-
+                    {
+                      "cart_id": 38,
+                      "product_id": 4,
+                      "item_qty": 3
+                    }
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - cart
+    get:
+      summary: get the cart items
+      description: This endpoint will return all of the cart items for the current user.
+      operationId: get_cart
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                get cart items success:
+                  value: |-
+                    [
+                      {
+                        "product_name": "Unicorn Pants",
+                        "item_qty": 3
+                      },
+                      {
+                        "product_name": "Unicorn Shirt",
+                        "item_qty": 1
+                      },
+                      {
+                        "product_name": "Unicorn Vest",
+                        "item_qty": 2
+                      }
+                    ]
+        '400':
+          description: empty cart
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                empty cart:
+                  value: Thats one empty cart you got there!
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - cart
+    put:
+      summary: change cart item quantity
+      description: This operation will change the quantity of a cart item.
+      operationId: put_cart
+      requestBody:
+        description: Updates a cart item quantity.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Update_cart_item_qty'
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - cart
+  /cart/checkout:
+    summary: will handle the checkout tasks
+    get:
+      summary: get data to checkout
+      description: >-
+        This operation will return the data needed to assemble and submit an
+        order.
+      operationId: get_cart_checkout
+      responses:
+        '200':
+          description: Default error sample response
+          content:
+            application/json:
+              examples:
+                get checkout data success:
+                  value: |-
+                    [{
+                      "cart_id": 477,
+                      "user_id": 47,
+                      "product_name": "Unicorn Slippers",
+                      "item_qty": 2,
+                      "product_price": 20,
+                      "product_id": 47
+                    },
+                    {
+                      "cart_id": 477,
+                      "user_id": 47,
+                      "product_name": "Unicorn Car",
+                      "item_qty": 1,
+                      "product_price": 2000,
+                      "product_id": 47
+                    },
+                    {
+                      "cart_id": 477,
+                      "user_id": 47,
+                      "product_name": "Unicorn Shirt",
+                      "item_qty": 1,
+                      "product_price": 20,
+                      "product_id": 47
+                    }]
+            text/plain; charset=utf-8:
+              examples:
+                empty cart:
+                  value: Thats one empty cart you got there!
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - cart
+    post:
+      summary: accepts and runs payment
+      description: >-
+        This operation will pretend to run the users payment method and return
+        ok on success, it is setup in code to return a failed payment at
+        random(roughly 1 in 25 is the chance of a failed payment). This will
+        also be the operation that will handle adjusting the product inventory
+        in the database.
+      operationId: post_cart_checkout
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: payment rejected
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: The payment was rejected, please try another method.
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - cart
+  /cart/{id}:
+    summary: update quantity for a cart item
+    delete:
+      summary: remove a cart item
+      description: >-
+        This operation will take a product id as a url parameter and remove the
+        item from the users cart.
+      operationId: delete_cart_item
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the product we seek to remove.
+          schema:
+            type: string
+      responses:
+        '204':
+          description: no content
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - cart
+  /order:
+    summary: handles order related operations
+    post:
+      summary: creates an order and takes the cart items out of inventory
+      description: >-
+        This operation takes in JSON data in the request body and returns a new
+        order id.
+      operationId: post_order
+      requestBody:
+        description: Info to create a new order.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/New_order'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                create order success:
+                  value: |-
+                    {
+                      "order_id": 47,
+                      "msg": "order created"
+                    }
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - orders
+  /order/{id}:
+    summary: handles operations for a specific order
+    get:
+      summary: get order info
+      description: >-
+        This will return info in JSON form about the order id that was included
+        as a url parameter.
+      operationId: get_order
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the order whose info we seek.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                get order info success:
+                  value: |-
+                    {
+                      "order_id": 47,
+                      "user_id": 9,
+                      "cart_id": 3,
+                      "order_date": "2025-06-13 11:10:17.046068-04",
+                      "order_total": 75,
+                      "order_status": "pending",
+                      "payment_method": "credit card",
+                      "free_shipping_elligible": false,
+                      "order_items": [
+                        {
+                          "cart_id": 3,
+                          "product_name": "Unicorn Painting",
+                          "product_price": "75",
+                          "item_qty": 1,
+                          "item_subtotal": "75"
+                        },
+                        {
+                          "cart_id": 3,
+                          "product_name": "Unicorn Cupcake",
+                          "product_price": "4",
+                          "item_qty": 2,
+                          "item_subtotal": "8"
+                        }                        
+                      ]
+                    }
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a order with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - orders
+    put:
+      summary: updates order status
+      description: >-
+        This operation will take in a new status in the request body and update
+        the database. Choices are pending, complete, canceled
+      operationId: put_order
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the order whose status we seek to change.
+          schema:
+            type: string
+      requestBody:
+        description: Updates an order status.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Update_order_status'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                order status update success:
+                  value: |-
+                    {
+                      "msg": "Order status has been updated",
+                      "order_status": "complete" 
+                    }
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a order with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - orders
+    delete:
+      summary: cancel an order
+      description: This operation will cancel an order.
+      operationId: delete_order
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the order we seek to cancel.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                order canceled success:
+                  value: |-
+                    {
+                      "msg": "The order has been successfully canceled.",
+                      "order_status": "canceled" 
+                    }
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: You must be logged in to perform this action.
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find a order with that id.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - orders
+  /order/{id}/all:
+    summary: get all orders for a user
+    get:
+      summary: get a summerized list of all orders for a user
+      description: >-
+        This operation will take a user id as a url parameter and return a
+        summerized list of orders for that user.
+      operationId: get_orders_all
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the user whose orders we seek.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                get all orders success:
+                  value: |-
+                    [{
+                      "order_id": 47,
+                      "user_id": 2,
+                      "order_date": "2025-07-16 12:24:32.309714-04",
+                      "order_total": 470,
+                      "payment_method": "credit card",
+                      "cart_id": 47,
+                      "order_status": "pending"
+                      },
+                      {
+                      "order_id": 52,
+                      "user_id": 2,
+                      "order_date": "2025-07-26 12:24:32.309714-04",
+                      "order_total": 300,
+                      "payment_method": "credit card",
+                      "cart_id": 70,         
+                      "order_status": "canceled"
+                    }]
+        '401':
+          description: not authorized
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not authorized:
+                  value: Mind your business, that's not your order!
+                not logged in:
+                  value: You must be logged in to perform this action.
+        '404':
+          description: not found
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                not found:
+                  value: We could not find any orders for that user.
+        '500':
+          description: internal server error
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                server error:
+                  value: Something went wrong on our end, please try again.
+      tags:
+        - orders
+  /user/auth/google:
+    summary: begins the google auth process
+    description: >-
+      Using a passport google-oauth strategy, this sends a user to the google
+      login page.
+    get:
+      summary: starts the google oauth login process
+      description: >-
+        Using a Passport.js google-oauth strategy, this endpoint redirects the
+        user to the google sign in.
+      operationId: user_auth_get
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - user
+  /user/auth/google/callback:
+    summary: Redirect after google auth.
+    description: >-
+      This is the callback route after the Google Auth that handles the user
+      redirect.
+    get:
+      summary: handles redirect after Google auth
+      description: After the Google Auth, this endpoint handles the user redirect.
+      operationId: get_user_auth_google_callback
+      responses:
+        '500':
+          description: something went wrong
+          content:
+            text/plain; charset=utf-8:
+              examples:
+                something went wrong:
+                  value: Something went wrong, please try again.
+      tags:
+        - user
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        product_name:
+          type: string
+          example: Unicorn Couch
+        product_description:
+          type: string
+          example: Once you sit in our cozy Unicorn couch you will never want to .....
+        product_price:
+          type: integer
+          format: int32
+          example: 300
+        image_url:
+          type: string
+          example: ./assets/images/unicorn_couch.webp
+        category_id:
+          type: integer
+          format: int32
+          example: 4
+        current_qty:
+          type: integer
+          format: int32
+          example: 5
+        min_qty:
+          type: integer
+          format: int32
+          example: 2
+        max_qty:
+          type: integer
+          format: int32
+          example: 7
+    Product_inventory_update:
+      type: object
+      properties:
+        current_qty:
+          type: integer
+          format: int32
+          example: 7
+    Product_update:
+      type: object
+      properties:
+        product_name:
+          type: string
+          example: updated Unicorn Couch
+        product_description:
+          type: string
+          example: Once you sit in our cozy Unicorn couch you will never want to .....
+        product_price:
+          type: integer
+          format: int32
+          example: 300
+        image_url:
+          type: string
+          example: ./assets/images/unicorn_couch.webp
+        category_id:
+          type: integer
+          format: int32
+          example: 4
+    New_user:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Fred Flintstone
+        password:
+          type: string
+          example: bedrock_47
+        conf_password:
+          type: string
+          example: bedrock_47
+        email:
+          type: string
+          example: fred@stoneage.com
+        phone:
+          type: string
+          example: 555-555-5555
+        address_line_1:
+          type: string
+          example: 123 Rock Blvd
+        address_line_2:
+          type: string
+          example: Boulder 1
+        city:
+          type: string
+          example: Bedrock
+        state:
+          type: string
+          example: NY
+        zip_code:
+          type: string
+          example: 98765
+    Updated_user:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Freddy Flintstone
+        email:
+          type: string
+          example: updated_fred@stoneage.com
+        phone:
+          type: string
+          example: 111-555-5555
+        address_line_1:
+          type: string
+          example: 321 Rock Blvd
+        address_line_2:
+          type: string
+          example: Boulder 5
+        city:
+          type: string
+          example: Bedrock
+        state:
+          type: string
+          example: NY
+        zip_code:
+          type: string
+          example: 98765
+    Login_credentials:
+      type: object
+      properties:
+        username:
+          type: string
+          example: Fred Flintstone
+        password:
+          type: string
+          example: bedrock_47
+    Cart_item:
+      type: object
+      properties:
+        product_id:
+          type: integer
+          format: int32
+          example: 2
+        item_qty:
+          type: integer
+          format: int32
+          example: 5
+    Update_cart_item_qty:
+      type: object
+      properties:
+        product_id:
+          type: integer
+          format: int32
+          example: 3
+        item_qty:
+          type: integer
+          format: int32
+          example: 2
+    New_order:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int32
+          example: 47
+        cart_id:
+          type: integer
+          format: int32
+          example: 225
+        order_total:
+          type: integer
+          format: int32
+          example: 500
+        payment_method:
+          type: string
+          example: paypal
+    Update_order_status:
+      type: object
+      properties:
+        updatedOrderStatus:
+          type: string
+          example: complete
+    thought:
+      type: object
+      properties:
+        thought:
+          type: string
+          example: Unicorns are great!
+        name:
+          type: string
+          example: Homer Simpson
