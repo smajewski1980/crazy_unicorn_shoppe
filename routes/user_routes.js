@@ -271,10 +271,10 @@ router.post(
           .status(400)
           .json({ msg: 'Please check your form fields and try again' });
       }
-      const result = await pool.query(
-        'INSERT INTO thoughts(name, thought) VALUES($1, $2)',
-        [name, thought],
-      );
+      await pool.query('INSERT INTO thoughts(name, thought) VALUES($1, $2)', [
+        name,
+        thought,
+      ]);
       return res.status(200).json({ msg: 'your thought has been saved' });
     } catch (error) {
       const err = new Error(error);

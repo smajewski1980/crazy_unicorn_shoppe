@@ -17,6 +17,10 @@
       type="image/x-icon"
     />
   </head>
+  <link
+    href="./prism.css"
+    rel="stylesheet"
+  />
   <body id="dev-info">
     <h1>Developer Information</h1>
 
@@ -117,12 +121,23 @@
       src="./assets/images/dev_page/dev_page_checkout.png"
       alt="checkout page"
     />
+    <p>The user also has the ability to edit their info during checkout.</p>
+    <img
+      src="./assets/images/dev_page/dev_page_edit_info.png"
+      alt="edit info form"
+    />
     <p>
-      The user also has the ability to edit their info during checkout. When a
-      user is logged in, they have access to their orders page, which offers a
-      list of all the users orders and allows the user to click on one for more
-      detail or to cancel the order if it is pending. --*There is also the
-      ability for an admin user to have access to an add product page.*--
+      When a user is logged in, they have access to their orders page, which
+      offers a list of all the users orders and allows the user to click on one
+      for more detail or to cancel the order if it is pending.
+    </p>
+    <img
+      src="./assets/images/dev_page/dev_page_orders.png"
+      alt="orders page"
+    />
+    <p>
+      --*There is also the ability for an admin user to have access to an add
+      product page.*--
     </p>
     <h2>frontend</h2>
     <p>
@@ -146,27 +161,185 @@
       placing an order.
     </p>
     <h2>backend</h2>
+    <p>This is an express.js app which utilizes a few npm packages.</p>
+    <pre><code class="language-js">
+      "dependencies": {
+        "bcrypt": "^6.0.0",
+        "cors": "^2.8.5",
+        "express": "^5.1.0",
+        "express-session": "^1.18.1",
+        "express-validator": "^7.2.1",
+        "fs": "^0.0.1-security",
+        "helmet": "^8.1.0",
+        "morgan": "^1.10.1",
+        "passport": "^0.7.0",
+        "passport-google-oauth20": "^2.0.0",
+        "passport-local": "^1.0.0",
+        "pg": "^8.16.0",
+        "toastify-js": "^1.12.0"
+      },
+      "devDependencies": {
+        "@eslint/js": "^9.32.0",
+        "connect-livereload": "^0.6.1",
+        "dotenv": "^16.5.0",
+        "eslint": "^9.32.0",
+        "express-dart-sass": "^1.0.4",
+        "globals": "^16.3.0",
+        "livereload": "^0.9.3",
+        "nodemon": "^3.1.10"
+      }
+    </code></pre>
     <p>
-      This is an express.js app which utilizes a few packages. I was able to in
-      conjunction with nodemon, use a package called livereload to be able to
-      auto refresh the browser after a nodemon restart when a file changes.
-      While we are talking about the dev environment, I use VS Code for my code
-      editor and have eslint set up in the project and use dotenv to handle
-      environment variables. To compile and serve Sass files, I used
-      express-dart-sass.
+      I was able to in conjunction with nodemon, use a package called livereload
+      to be able to auto refresh the browser after a nodemon restart when a file
+      changes.
     </p>
+    <!-- <pre><code class="language-css">p { color: red }</code></pre> -->
     <p>
       This app uses bcrypt for hashing passwords. When I set up the database, I
       hadn't considered just how long the hashed passwords would be and I had to
-      alter the table column's data type after the fact, no biggie. I use
-      Passport.js to handle user auth, using a local strategy and the
-      google-oauth20 strategy. I also used Helmet for some automated beefing up
-      of my response headers.
+      alter the table column's data type after the fact, no biggie.
     </p>
     <p>
       Session management is handled with express-session and validation with
-      express-validator. Also, I used Morgan for some logging and node-postgres
-      to talk to the database.
+      express-validator. I used multiple validation schemas in seperate files to
+      keep them organized.
     </p>
+    <p>**************this is where the api docs can go**************</p>
+    <p>
+      Let's talk database. I use Postgres, both locally and through Heroku which
+      is who is hosting this site. Here is my entity relationship diagram:
+    </p>
+    <a
+      href="./assets/images/dev_page/dev_page_erd_full.png"
+      target="_blank"
+    >
+      <img
+        src="./assets/images/dev_page/dev_page_erd_sm.png"
+        alt="database erd"
+      />
+    </a>
+    <p>
+      The SQL was written and ran locally in pieces, but I kept adding it to a
+      file, placing it in the correct order as I added it. It set up a test
+      database successfully when I tested it. To set up the Heroku database, I
+      just ran that file from the Heroku CLI. Here it is:
+    </p>
+    <pre><code class="language-sql">
+      DROP TABLE IF EXISTS category CASCADE;
+
+      CREATE TABLE category(
+        category_id serial PRIMARY KEY,
+        category_name varchar(100) NOT NULL
+      );
+
+      DROP TABLE IF EXISTS users CASCADE;
+
+      CREATE TABLE users(
+        user_id serial PRIMARY KEY,
+        name varchar(100) NOT NULL,
+        hashed_pw varchar(255) NOT NULL,
+        email varchar(100) UNIQUE NOT NULL,
+        phone varchar(14),
+        is_admin boolean DEFAULT false
+      );
+
+      DROP TABLE IF EXISTS user_address CASCADE;
+
+      CREATE TABLE user_address(
+        user_id int,
+        address_line_1 varchar(50) NOT NULL,
+        address_line_2 varchar(50),
+        city varchar(50) NOT NULL,
+        state varchar(50) NOT NULL,
+        zip_code varchar(10) NOT NULL,
+        PRIMARY KEY (user_id),
+        FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+      );
+
+      DROP TABLE IF EXISTS products CASCADE;
+
+      CREATE TABLE products(
+        product_id serial PRIMARY KEY,
+        product_name varchar(100) NOT NULL,
+        product_description TEXT NOT NULL,
+        product_price NUMERIC NOT NULL,
+        image_url varchar(255),
+        category_id integer REFERENCES category(category_id) NOT NULL
+      );
+
+      DROP TABLE IF EXISTS inventory CASCADE;
+
+      CREATE TABLE inventory(
+        product_id integer,
+        current_qty integer NOT NULL,
+        min_qty integer NOT NULL,
+        max_qty integer NOT NULL,
+        PRIMARY KEY (product_id),
+        FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
+      );
+
+      DROP TABLE IF EXISTS carts CASCADE;
+
+      CREATE TABLE carts(
+        cart_id serial PRIMARY KEY,
+        user_id integer REFERENCES users(user_id) NOT NULL,
+        is_active boolean DEFAULT true
+      );
+
+      DROP TABLE IF EXISTS cart_items CASCADE;
+
+      CREATE TABLE cart_items(
+        cart_id integer REFERENCES carts(cart_id) ON DELETE CASCADE,
+        product_id integer REFERENCES products(product_id),
+        PRIMARY KEY(cart_id, product_id),
+        item_qty integer NOT NULL
+      );
+
+      DROP TABLE IF EXISTS orders CASCADE;
+
+      CREATE TABLE orders(
+        order_id serial PRIMARY KEY,
+        user_id integer REFERENCES users(user_id) NOT NULL,
+        cart_id integer REFERENCES carts(cart_id) NOT NULL,
+        order_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL,
+        order_total NUMERIC NOT NULL,
+        order_status varchar(50) DEFAULT 'pending' NOT NULL,
+        payment_method varchar(50) NOT NULL,
+        free_shipping_elligible boolean GENERATED ALWAYS AS (order_total > 99) STORED NOT NULL
+      );
+
+      DROP TABLE IF EXISTS site_counter;
+
+      CREATE TABLE site_counter(
+        id serial PRIMARY KEY,
+        new_session_timestamp TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL
+      );
+
+      DROP TABLE IF EXISTS thoughts;
+
+      CREATE TABLE thoughts(
+        id SERIAL PRIMARY KEY,
+        name TEXT NOT NULL,
+        thought TEXT NOT NULL
+      );
+
+      insert into
+        category(category_name)
+      values
+        ('Food & Beverage'),
+        ('Fashion and Accessories'),
+        ('Electronics'),
+        ('Home Decor'),
+        ('Gifts and Gadgets of Crazy');
+    </code></pre>
+
+    <script src="./prism.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/components/prism-sql.min.js"
+      integrity="sha512-fmx2W52F+6sZ8IYcsuKsFV0PjADeu32K3PdJGhxCKB+5VRVXpmuKgkfzTsW/B8cy/FPnEOlZX4fP/ZQk057tPQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </body>
 </html>

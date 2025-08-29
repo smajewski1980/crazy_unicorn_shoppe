@@ -20,9 +20,7 @@ const site_counter = require('./middleware/site_counter');
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {
   flags: 'a',
 });
-// app.use(morgan('combined', { stream: accessLogStream }));
-// switch this back befolre deployment
-app.use(morgan('dev', { stream: accessLogStream }));
+app.use(morgan('combined', { stream: accessLogStream }));
 
 liveReloadServer.watch(path.join(__dirname, '/public'));
 app.use(connectLiveReload());

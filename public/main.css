@@ -1406,6 +1406,9 @@ p {
   max-width: 50%;
   margin-inline: auto 1rem;
 }
+#dev-info .language-sql {
+  max-height: 650px;
+}
 
 #thought-body {
   padding-block-start: 1rem;
