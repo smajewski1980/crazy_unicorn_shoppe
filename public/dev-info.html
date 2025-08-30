@@ -21,6 +21,7 @@
     href="./prism.css"
     rel="stylesheet"
   />
+  <!-- i copied their css to a sass file so i could get prettier to format it so i could read it -->
   <!-- <link
     rel="stylesheet"
     type="text/css"
@@ -33,57 +34,28 @@
     <nav>
       <ul>
         <li>
-          <a href="./index.html">Home</a>
+          <a href="./index.html"
+            ><img
+              src="./assets/images/home_btn.png"
+              alt="home"
+          /></a>
         </li>
         <li>
-          <a href="./shop.html">Shop</a>
-        </li>
-        <li>
-          <a href="./signin.html">Sign In</a>
+          <a href="./shop.html">
+            <img
+              src="./assets/images/button.webp"
+              alt=""
+            />
+          </a>
         </li>
       </ul>
+
+      <img
+        src="./assets/images/unicorn_chew.webp"
+        alt=""
+        id="img-unicorn-chew"
+      />
     </nav>
-
-    <img
-      src="./assets/images/unicorn_chew.webp"
-      alt=""
-      id="img-unicorn-chew"
-    />
-
-    <p>
-      This page is going to start as a to-do list. Down the road, this page will
-      have all the developer info such as info on code, database, rest api docs,
-      sql.
-    </p>
-
-    <h2>To-dos:</h2>
-
-    <ul id="to-dos">
-      <li>actually do THIS page</li>
-      <li>
-        take a few screen shots and break up the summary paragraph below a
-        little bit
-      </li>
-      <li>figure best way to show the swagger api docs</li>
-      <li>address responsiveness</li>
-      <li>more silly stuff for homepage?</li>
-      <li>more unicorn decorations throughout</li>
-      <li>copy on the home page</li>
-      <li>
-        replace thought button with a unicorn with a thought bubble saying click
-        me
-      </li>
-
-      <li>test the add products page again and have an admin link for it</li>
-
-      <br />
-      <br />
-      <li>write some tests</li>
-      <li>optimize the images</li>
-    </ul>
-
-    <br />
-    <br />
 
     <p>
       Welcome to my first full-stack app! As you can probably tell, I am
@@ -229,10 +201,12 @@
       />
     </a>
     <p>
-      The SQL was written and ran locally in pieces, but I kept adding it to a
-      file, placing it in the correct order as I added it. It set up a test
-      database successfully when I tested it. To set up the Heroku database, I
-      just ran that file from the Heroku CLI. Here it is:
+      The database itself was created locally with pgadmin, and in the cloud
+      with Heroku. The SQL for the tables, was written and ran locally in
+      pieces, but I kept adding it to a file, placing it in the correct order as
+      I added it. It set up a test database successfully when I tested it as a
+      whole file. To set up the tables in the Heroku database, I just ran that
+      file from the Heroku CLI. Here it is:
     </p>
     <pre><code class="language-sql">
       DROP TABLE IF EXISTS category CASCADE;
@@ -342,6 +316,27 @@
         ('Home Decor'),
         ('Gifts and Gadgets of Crazy');
     </code></pre>
+
+    <h2>To-dos:</h2>
+
+    <ul id="to-dos">
+      <li>actually do THIS page</li>
+      <li>address responsiveness</li>
+      <li>more silly stuff for homepage?</li>
+      <li>more unicorn decorations throughout</li>
+      <li>copy on the home page</li>
+      <li>
+        replace thought button with a unicorn with a thought bubble saying click
+        me
+      </li>
+
+      <li>test the add products page again and have an admin link for it</li>
+
+      <br />
+      <br />
+      <li>write some tests</li>
+      <li>optimize the images</li>
+    </ul>
 
     <script src="swagger-ui-5.28.0/dist/swagger-ui-bundle.js"></script>
     <script src="swagger-ui-5.28.0/dist/swagger-ui-standalone-preset.js"></script>

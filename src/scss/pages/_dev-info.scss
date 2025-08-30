@@ -3,17 +3,53 @@
 
 #dev-info {
   max-width: 40%;
+
   h1 {
-    font-family: $font-para;
+    font-size: clamp(1.5rem, 2.75vw, 3rem);
+    text-align: center;
     margin-block: 1rem;
   }
 
   nav {
+    display: flex;
+    align-items: center;
     margin-block-end: 1rem;
+
     ul {
+      flex: 1;
       display: flex;
+      justify-content: center;
+      align-items: center;
       list-style-type: none;
       gap: 2rem;
+
+      li {
+        position: relative;
+      }
+
+      li:nth-child(1) {
+        flex-basis: 25%;
+        ::after {
+          font-family: 'Kbcurioussoul-m3W9';
+          content: 'HOME';
+          position: absolute;
+          color: chartreuse;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+      li:nth-child(2) {
+        flex-basis: 35%;
+
+        ::after {
+          font-family: 'Kbcurioussoul-m3W9';
+          content: 'Shop';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
     }
   }
   li {
@@ -23,7 +59,7 @@
 
   #img-unicorn-chew {
     max-width: 50%;
-    margin-inline: auto 1rem;
+    // margin-inline: auto 1rem;
   }
 
   .language-sql {
