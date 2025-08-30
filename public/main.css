@@ -1465,10 +1465,7 @@ p {
 #dev-info p:nth-of-type(1) {
   margin-block: 1rem;
 }
-#dev-info p:nth-of-type(9), #dev-info p:nth-of-type(10) {
-  margin-block-end: 1rem;
-}
-#dev-info p:nth-of-type(13), #dev-info p:nth-of-type(14), #dev-info p:nth-of-type(15) {
+#dev-info p:nth-of-type(9), #dev-info p:nth-of-type(10), #dev-info p:nth-of-type(1), #dev-info p:nth-of-type(13), #dev-info p:nth-of-type(14), #dev-info p:nth-of-type(15) {
   margin-block-end: 1rem;
 }
 #dev-info p:nth-of-type(17) {
