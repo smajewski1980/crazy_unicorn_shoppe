@@ -64,66 +64,86 @@
       masterpiece, from creating a frontend to creating a full rest API to
       setting up a databse.
     </p>
+
     <p>
       In summary, this app has the ability for a user to create an account
       initiated either locally or through a Google Oauth signin.
     </p>
+
     <img
       src="./assets/images/dev_page/dev_page_login.png"
       alt="login and sign up image"
+      id="img-login-signup"
     />
+
     <p>
       Then the user can "shop"! The products have their inventory displayed with
       the product info, which is updated when an order is submitted, and
       subsequently updated again if an order is canceled.
     </p>
+
     <img
       src="./assets/images/dev_page/dev_page_prod_modal.png"
       alt="product details"
+      id="img-prod-details"
     />
+
     <p>
       The user will be notified with a toast notification if they exceed the
       inventory when they add the item to the cart. The users active shopping
       cart data persists after logout and is reloaded on login.
     </p>
+
     <img
       src="./assets/images/dev_page/dev_page_toast_cart.png"
       alt="toast warning and cart icon"
+      id="img-toast-cart"
     />
+
     <p>
       On the checkout page, the user may change an item's qty or remove an item
       from the cart, again with a toast notifaction if the inventory is
       exceeded.
     </p>
+
     <img
       src="./assets/images/dev_page/dev_page_checkout.png"
       alt="checkout page"
     />
+
     <p>The user also has the ability to edit their info during checkout.</p>
+
     <img
       src="./assets/images/dev_page/dev_page_edit_info.png"
       alt="edit info form"
     />
+
     <p>
       When a user is logged in, they have access to their orders page, which
       offers a list of all the users orders and allows the user to click on one
       for more detail or to cancel the order if it is pending.
     </p>
+
     <img
       src="./assets/images/dev_page/dev_page_orders.png"
       alt="orders page"
+      id="img-orders"
     />
+
     <p>
       --*There is also the ability for an admin user to have access to an add
       product page.*--
     </p>
+
     <h2>frontend</h2>
+
     <p>
       The frontend portion of this site was made using HTML, CSS, and Vanilla
       Javascript. I have nothing against frontend frameworks, I have played with
       a little react.js, but I feel at this point in my coding journey it is
       very powerful to understand and practice the fundamentals.
     </p>
+
     <p>
       The only js library I used in the frontend was toastify-js for toasting
       some errors, I know, I have a rye sense of humor... I am using SASS as a
@@ -132,14 +152,18 @@
       using AI. I use GIMP 3.0 as my image editor which is what I created the
       main logo and a few of the buttons with.
     </p>
+
     <p>
       At the time of this writing, I still have not written any media queries. I
       have tried to code everything to be as implicitly responsive as I can. The
       site is also keyboard navigable all the way from signing in or up to
       placing an order.
     </p>
+
     <h2>backend</h2>
+
     <p>This is an express.js app which utilizes a few npm packages.</p>
+
     <pre><code class="language-js">
       "dependencies": {
         "bcrypt": "^6.0.0",
@@ -167,30 +191,38 @@
         "nodemon": "^3.1.10"
       }
     </code></pre>
+
     <p>
       I was able to in conjunction with nodemon, use a package called livereload
       to be able to auto refresh the browser after a nodemon restart when a file
       changes.
     </p>
+
     <p>
       This app uses bcrypt for hashing passwords. When I set up the database, I
       hadn't considered just how long the hashed passwords would be and I had to
       alter the table column's data type after the fact, no biggie.
     </p>
+
     <p>
       Session management is handled with express-session and validation with
       express-validator. I used multiple validation schemas in seperate files to
       keep them organized.
     </p>
+
     <p>
       Creating the swagger docs first made setting up the endpoints so much
       easier.
     </p>
+
     <div id="swagger-ui"></div>
+
     <p>
       Let's talk database. I use Postgres, both locally and through Heroku which
-      is who is hosting this site. Here is my entity relationship diagram:
+      is who is hosting this site. Here is my entity relationship diagram, you
+      can click on it for a larger more readable version.
     </p>
+
     <a
       href="./assets/images/dev_page/dev_page_erd_full.png"
       target="_blank"
@@ -198,8 +230,10 @@
       <img
         src="./assets/images/dev_page/dev_page_erd_sm.png"
         alt="database erd"
+        id="img-erd"
       />
     </a>
+
     <p>
       The database itself was created locally with pgadmin, and in the cloud
       with Heroku. The SQL for the tables, was written and ran locally in
@@ -208,6 +242,7 @@
       whole file. To set up the tables in the Heroku database, I just ran that
       file from the Heroku CLI. Here it is:
     </p>
+
     <pre><code class="language-sql">
       DROP TABLE IF EXISTS category CASCADE;
 
@@ -322,17 +357,7 @@
     <ul id="to-dos">
       <li>actually do THIS page</li>
       <li>address responsiveness</li>
-      <li>more silly stuff for homepage?</li>
-      <li>more unicorn decorations throughout</li>
-      <li>copy on the home page</li>
-      <li>
-        replace thought button with a unicorn with a thought bubble saying click
-        me
-      </li>
-
       <li>test the add products page again and have an admin link for it</li>
-
-      <br />
       <br />
       <li>write some tests</li>
       <li>optimize the images</li>
