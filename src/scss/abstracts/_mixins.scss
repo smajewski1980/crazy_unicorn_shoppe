@@ -117,12 +117,12 @@
   }
 }
 
-@mixin standing-by($top) {
-  // transform-origin: right bottom;
+@mixin standing-by($top, $left) {
   position: absolute;
   font-size: 1.5rem;
   color: chartreuse;
   top: $top;
   text-wrap: nowrap;
   rotate: -4deg;
+  left: $left;
 }

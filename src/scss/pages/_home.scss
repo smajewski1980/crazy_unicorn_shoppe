@@ -159,14 +159,11 @@
 
           ::after {
             content: 'Our operators';
-            left: -7%;
-            @include m.standing-by(-1.5rem);
+            @include m.standing-by(-1.5rem, -7%);
           }
           ::before {
             content: 'are standing by.';
-            left: 30%;
-
-            @include m.standing-by(2.25rem);
+            @include m.standing-by(2.25rem, 30%);
           }
 
           a:focus-visible {

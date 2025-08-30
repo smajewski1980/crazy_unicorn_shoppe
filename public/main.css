@@ -206,23 +206,23 @@ html {
 }
 #index-body #home-main #home-main-left-col #link-img-wrapper #thought-link ::after {
   content: "Our operators";
-  left: -7%;
   position: absolute;
   font-size: 1.5rem;
   color: chartreuse;
   top: -1.5rem;
   text-wrap: nowrap;
   rotate: -4deg;
+  left: -7%;
 }
 #index-body #home-main #home-main-left-col #link-img-wrapper #thought-link ::before {
   content: "are standing by.";
-  left: 30%;
   position: absolute;
   font-size: 1.5rem;
   color: chartreuse;
   top: 2.25rem;
   text-wrap: nowrap;
   rotate: -4deg;
+  left: 30%;
 }
 #index-body #home-main #home-main-left-col #link-img-wrapper #thought-link a:focus-visible {
   outline: none;
