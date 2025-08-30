@@ -119,6 +119,9 @@
         border-radius: 15px 0px 15px;
         border: 2px solid chartreuse;
       }
+      ::placeholder {
+        opacity: 0.5;
+      }
     }
 
     #btn-thought {

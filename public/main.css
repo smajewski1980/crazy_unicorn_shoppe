@@ -1568,6 +1568,9 @@ p {
   border-radius: 15px 0px 15px;
   border: 2px solid chartreuse;
 }
+#thought-body form .thought-form-input-wrapper ::placeholder {
+  opacity: 0.5;
+}
 #thought-body form #btn-thought {
   padding: 0.75rem 1.5rem;
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
@@ -4832,11 +4835,6 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
     font-weight: 900;
   }
 }
-.swagger-ui .input-reset {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
 .swagger-ui .button-reset::-moz-focus-inner,
 .swagger-ui .input-reset::-moz-focus-inner {
   border: 0;
