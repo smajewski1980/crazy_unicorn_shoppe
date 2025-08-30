@@ -180,13 +180,13 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 4rem;
 }
 #index-body #home-main #home-main-left-col #link-img-wrapper img:first-child {
   transform: scaleX(-1);
 }
 #index-body #home-main #home-main-left-col #link-img-wrapper img {
-  max-width: 200px;
+  max-width: 150px;
   border-radius: 0px 15px 0px 15px;
   border: 2px solid chartreuse;
 }
@@ -202,6 +202,27 @@ html {
   width: 30%;
   text-align: center;
   padding-block: 0.75rem;
+  position: relative;
+}
+#index-body #home-main #home-main-left-col #link-img-wrapper #thought-link ::after {
+  content: "Our operators";
+  left: -7%;
+  position: absolute;
+  font-size: 1.5rem;
+  color: chartreuse;
+  top: -1.5rem;
+  text-wrap: nowrap;
+  rotate: -4deg;
+}
+#index-body #home-main #home-main-left-col #link-img-wrapper #thought-link ::before {
+  content: "are standing by.";
+  left: 30%;
+  position: absolute;
+  font-size: 1.5rem;
+  color: chartreuse;
+  top: 2.25rem;
+  text-wrap: nowrap;
+  rotate: -4deg;
 }
 #index-body #home-main #home-main-left-col #link-img-wrapper #thought-link a:focus-visible {
   outline: none;
@@ -288,6 +309,7 @@ html {
 }
 #index-body footer {
   text-align: center;
+  margin-block: 3rem;
 }
 
 #add-new-product-body {

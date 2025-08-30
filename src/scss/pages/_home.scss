@@ -138,14 +138,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 2rem;
+        gap: 4rem;
 
         img:first-child {
           transform: scaleX(-1);
         }
 
         img {
-          max-width: 200px;
+          max-width: 150px;
           border-radius: 0px 15px 0px 15px;
           border: 2px solid chartreuse;
         }
@@ -155,6 +155,19 @@
           width: 30%;
           text-align: center;
           padding-block: 0.75rem;
+          position: relative;
+
+          ::after {
+            content: 'Our operators';
+            left: -7%;
+            @include m.standing-by(-1.5rem);
+          }
+          ::before {
+            content: 'are standing by.';
+            left: 30%;
+
+            @include m.standing-by(2.25rem);
+          }
 
           a:focus-visible {
             outline: none;
@@ -258,5 +271,6 @@
   }
   footer {
     text-align: center;
+    margin-block: 3rem;
   }
 }

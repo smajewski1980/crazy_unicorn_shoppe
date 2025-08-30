@@ -116,3 +116,13 @@
     clip-path: var(--clip-path-poly);
   }
 }
+
+@mixin standing-by($top) {
+  // transform-origin: right bottom;
+  position: absolute;
+  font-size: 1.5rem;
+  color: chartreuse;
+  top: $top;
+  text-wrap: nowrap;
+  rotate: -4deg;
+}
