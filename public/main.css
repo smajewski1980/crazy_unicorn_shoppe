@@ -446,32 +446,6 @@ p {
   rotate: 15deg;
 }
 
-.back-to-top {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
-}
-.back-to-top svg {
-  background-color: rgba(255, 255, 255, 0.25);
-  border-radius: 10px 0px 10px;
-  bottom: 0.5rem;
-  right: 10vw;
-  padding: 0.6rem;
-  position: fixed;
-  transition: background-color 0.3s;
-  outline: 1px solid chartreuse;
-  outline-offset: 2px;
-}
-.back-to-top svg path {
-  transition: fill 0.3s ease;
-}
-.back-to-top:hover svg, .back-to-top:focus-visible svg {
-  background-color: rgba(127, 255, 0, 0.4);
-}
-.back-to-top:hover svg path, .back-to-top:focus-visible svg path {
-  fill: chartreuse;
-}
-
 #shopping-sub-head .h1-animation span:nth-child(1) {
   animation: h1-color-animation 0.15s forwards;
   animation-delay: 0.0375s;
@@ -1494,6 +1468,7 @@ p {
 }
 #dev-info #img-erd {
   margin-block: 1.25rem 1rem;
+  transform: translateX(1.5rem);
 }
 #dev-info .language-sql {
   max-height: 650px;
@@ -12587,3 +12562,29 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   width: calc(100% - 40px);
 }
 
+
+.back-to-top {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.back-to-top svg {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 10px 0px 10px;
+  bottom: 0.5rem;
+  right: 10vw;
+  padding: 0.6rem;
+  position: fixed;
+  transition: background-color 0.3s;
+  outline: 1px solid chartreuse;
+  outline-offset: 2px;
+}
+.back-to-top svg path {
+  transition: fill 0.3s ease;
+}
+.back-to-top:hover svg, .back-to-top:focus-visible svg {
+  background-color: rgba(127, 255, 0, 0.4);
+}
+.back-to-top:hover svg path, .back-to-top:focus-visible svg path {
+  fill: chartreuse;
+}

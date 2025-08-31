@@ -21,6 +21,10 @@
     href="./prism.css"
     rel="stylesheet"
   />
+  <script
+    src="./dev-info.js"
+    defer
+  ></script>
   <!-- i copied their css to a sass file so i could get prettier to format it so i could read it -->
   <!-- <link
     rel="stylesheet"
@@ -355,6 +359,7 @@
     <h2>To-dos:</h2>
 
     <ul id="to-dos">
+      <li>back to top link on this page</li>
       <li>actually do THIS page</li>
       <li>address responsiveness</li>
       <li>test the add products page again and have an admin link for it</li>
@@ -362,6 +367,26 @@
       <li>write some tests</li>
       <li>optimize the images</li>
     </ul>
+
+    <a
+      href="#"
+      class="back-to-top"
+      title="Back To Top"
+      tabindex="0"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 384 512"
+        height="55px"
+        width="60px"
+        fill="rgba(255,255,255,.5)"
+      >
+        <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+        <path
+          d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+        />
+      </svg>
+    </a>
 
     <script src="swagger-ui-5.28.0/dist/swagger-ui-bundle.js"></script>
     <script src="swagger-ui-5.28.0/dist/swagger-ui-standalone-preset.js"></script>
