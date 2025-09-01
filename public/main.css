@@ -361,9 +361,10 @@ p {
   border-bottom: 1px solid rgba(128, 255, 0, 0.5);
   border-radius: 15px 0px 15px;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-around;
   align-items: center;
-  padding: 1.5rem;
+  padding-block: 1.5rem;
   margin-top: 2rem;
 }
 #shopping-sub-head h1 {
@@ -375,7 +376,10 @@ p {
   font-size: clamp(1.5rem, 2.75vw, 3rem);
 }
 #shopping-sub-head #input-wrapper {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 0.97rem + 0.129vw, 1.125rem);
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 #shopping-sub-head #input-wrapper label {
   font-weight: 600;
@@ -1622,25 +1626,24 @@ body .toast-close {
 
 header {
   margin-block-start: 2rem;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-areas: "logo nav nav" "logo head head" "logo head head";
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 header .logo-wrapper {
   height: 300px;
   display: grid;
   place-content: center;
   min-width: 150px;
-  grid-area: logo;
 }
 header nav {
-  grid-area: nav;
   margin-block-start: 1rem;
+  flex-basis: 66%;
 }
 header nav ul {
   display: flex;
   justify-content: space-between;
-  margin-inline: 1rem;
+  align-items: center;
 }
 header nav ul li {
   list-style-type: none;
@@ -1648,10 +1651,14 @@ header nav ul li {
 }
 header nav ul li img {
   opacity: 0.6;
-  width: clamp(5rem, 10vw, 10rem);
+  width: clamp(110px, 10vw, 175px);
 }
 header nav ul li:nth-child(1) {
   rotate: 15deg;
+}
+header nav ul li:nth-child(1) p {
+  text-align: center;
+  padding-block-end: 0.5rem;
 }
 header nav ul li:nth-child(1) button {
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
@@ -1670,7 +1677,7 @@ header nav ul li a::after {
   left: 50%;
   transform: translate(-50%, -50%);
   text-wrap: nowrap;
-  font-size: 1.5rem;
+  font-size: clamp(0.75rem, 0.777vw + 0.568rem, 1.5rem);
 }
 header nav ul li:nth-child(1):not(:has(#logout-cart-wrapper)) a::after {
   content: "Sign In";
@@ -1680,8 +1687,8 @@ header nav ul li:nth-child(2) a::after {
   top: 53%;
 }
 header nav ul li:nth-child(3) a::after {
-  content: "Dev Stuff";
-  font-size: 1.125rem;
+  content: "Dev Info";
+  font-size: clamp(1rem, 0.97rem + 0.129vw, 1.125rem);
 }
 header nav #shop-heading-text {
   text-align: center;
@@ -1793,7 +1800,6 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   align-self: start;
 }
 #shop-page-header nav {
-  padding-inline-start: 2.25rem;
   display: flex;
   flex-direction: column;
   gap: 5rem;
@@ -1810,6 +1816,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 
 #logout-cart-wrapper {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   width: 100%;
   justify-content: space-around;

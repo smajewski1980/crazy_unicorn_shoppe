@@ -12,9 +12,10 @@
   // border-radius: 0.5rem;
   border-radius: 15px 0px 15px;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-around;
   align-items: center;
-  padding: 1.5rem;
+  padding-block: 1.5rem;
   margin-top: 2rem;
 
   h1 {
@@ -29,7 +30,10 @@
   }
 
   #input-wrapper {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 0.97rem + 0.129vw, 1.125rem);
+    align-items: center;
+    justify-content: center;
+    display: flex;
 
     label {
       font-weight: 600;
