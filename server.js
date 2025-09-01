@@ -27,7 +27,7 @@ app.use(connectLiveReload());
 
 app.use(
   session({
-    secret: 'unicorns_aint_crazy',
+    secret: process.env.EX_SESSION_SECRET,
     saveUninitialized: false,
     resave: false,
     cookie: {

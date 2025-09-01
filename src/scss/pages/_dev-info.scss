@@ -2,7 +2,8 @@
 @use '../abstracts/mixins' as m;
 
 #dev-info {
-  max-width: 40%;
+  max-width: 750px;
+  width: 100%;
 
   h1 {
     font-size: clamp(1.5rem, 2.75vw, 3rem);
@@ -12,8 +13,12 @@
 
   nav {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     margin-block-end: 1rem;
+    justify-content: center;
+    max-width: 75%;
+    margin-inline: auto;
 
     ul {
       flex: 1;
@@ -28,6 +33,7 @@
       }
 
       li:nth-child(1) {
+        min-width: 50px;
         flex-basis: 25%;
         ::after {
           font-family: 'Kbcurioussoul-m3W9';
@@ -39,6 +45,7 @@
         }
       }
       li:nth-child(2) {
+        min-width: 70px;
         flex-basis: 35%;
 
         ::after {
@@ -58,8 +65,9 @@
   }
 
   p {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 0.97rem + 0.129vw, 1.125rem);
     max-width: 60ch;
+    width: 100%;
     margin: 0;
     margin-inline: auto;
     text-align: center;
@@ -110,7 +118,6 @@
 
   #img-erd {
     margin-block: 1.25rem 1rem;
-    transform: translateX(1.5rem);
   }
 
   .language-sql {
@@ -120,7 +127,13 @@
   }
 
   li {
-    font-size: 1.5rem;
+    font-size: clamp(0.75rem, 0.777vw + 0.568rem, 1.5rem);
     font-family: $font-para;
+  }
+
+  #to-dos {
+    li:last-child {
+      margin-block-end: 2rem;
+    }
   }
 }
