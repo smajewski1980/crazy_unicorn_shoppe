@@ -54,11 +54,13 @@ function populateCheckoutData(data) {
   data.forEach((item) => {
     invoiceSubtotal += item.item_qty * item.product_price;
     htmlString += `
-      <tr><td>${item.item_qty}<td data-prod-id=${
-      item.product_id
-    }>${itemControls}</td><td>${item.product_name}</td><td>$${
-      item.product_price
-    }</td><td>$${item.item_qty * item.product_price}</td></tr>
+      <tr>
+        <td data-prod-id=${item.product_id}>${itemControls}</td>
+        <td>${item.item_qty}</td>
+        <td>${item.product_name}</td>
+        <td>$${item.product_price}</td>
+        <td>$${item.item_qty * item.product_price}</td>
+      </tr>
     `;
   });
 
@@ -100,7 +102,7 @@ function populateCheckoutData(data) {
       productId = e.target.closest('td').dataset.prodId;
       action = e.target.dataset.action;
       const currentQty = parseInt(
-        e.target.closest('tr').querySelector('td').textContent,
+        e.target.closest('tr').querySelector('td:nth-of-type(2)').textContent,
       );
       switch (action) {
         case 'add':

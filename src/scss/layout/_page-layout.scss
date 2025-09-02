@@ -1,11 +1,13 @@
 body {
-  width: 70%;
+  max-width: 1300px;
   margin-inline: auto;
+  padding: 0 1rem;
   background-image: url('./assets/images/site_bg.webp'),
     radial-gradient(rgb(223, 68, 223), purple);
   min-height: 100vh;
-  background-size: contain;
+  background-size: cover;
   background-attachment: fixed;
+  background-position: center center;
 
   .toast-close {
     padding-inline: 0 1rem;

@@ -44,8 +44,7 @@
       border-spacing: 0;
       border: 1px solid chartreuse;
       border-radius: 15px 0px 15px 0px;
-      // clamp later
-      font-size: 1.25rem;
+      font-size: clamp(1rem, 0.939rem + 0.259vw, 1.25rem);
 
       tr:first-child th {
         padding-block-start: 1rem;

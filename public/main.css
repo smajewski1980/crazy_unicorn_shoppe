@@ -615,7 +615,7 @@ p {
   border-spacing: 0;
   border: 1px solid chartreuse;
   border-radius: 15px 0px 15px 0px;
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 0.939rem + 0.259vw, 1.25rem);
 }
 #checkout-body #invoice-wrapper table tr:first-child th {
   padding-block-start: 1rem;
@@ -1614,12 +1614,14 @@ p {
 }
 
 body {
-  width: 70%;
+  max-width: 1300px;
   margin-inline: auto;
+  padding: 0 1rem;
   background-image: url("./assets/images/site_bg.webp"), radial-gradient(rgb(223, 68, 223), purple);
   min-height: 100vh;
-  background-size: contain;
+  background-size: cover;
   background-attachment: fixed;
+  background-position: center center;
 }
 body .toast-close {
   padding-inline: 0 1rem;
