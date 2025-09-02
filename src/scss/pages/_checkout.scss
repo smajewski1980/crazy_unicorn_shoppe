@@ -113,7 +113,7 @@
   #payment-modal,
   #order-complete-modal {
     @include m.modal-styles;
-    max-width: 40%;
+    max-width: min(800px, calc(100% - 1.5rem));
 
     h4 {
       font-size: clamp(1rem, 0.815rem + 0.988vw, 2rem);
@@ -167,9 +167,9 @@
       --input-display: none;
       text-align: center;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(min(325px, 100%), 1fr));
       --pointer-ev: none;
-      max-width: 50%;
+      max-width: min(100%, 750px);
       margin-inline: auto;
       margin-block-end: 2rem;
 
@@ -184,6 +184,7 @@
           margin-block-end: 0.35rem;
           text-align: center;
           @include m.formInput;
+          min-width: 275px;
 
           &:focus-within:invalid {
             outline: 3px solid red;

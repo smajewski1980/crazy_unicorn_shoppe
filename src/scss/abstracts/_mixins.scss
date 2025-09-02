@@ -95,10 +95,12 @@
   );
   border: 2px solid chartreuse;
   border-radius: 15px 0px 15px;
-  margin: auto;
-  max-width: 50%;
+  margin-block: auto;
+  margin-inline: auto;
+
+  // max-width: 50%;
   outline: none;
-  padding: 1rem 2rem 2rem;
+  padding: 1rem 1rem 2rem;
   text-align: center;
 
   --clip-path-poly: polygon(

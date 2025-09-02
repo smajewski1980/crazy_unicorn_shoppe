@@ -674,10 +674,10 @@ p {
   background-image: radial-gradient(rgba(241, 137, 241, 0.75) 40%, rgba(241, 137, 241, 0.75) 40%, rgba(156, 0, 156, 0.25));
   border: 2px solid chartreuse;
   border-radius: 15px 0px 15px;
-  margin: auto;
-  max-width: 50%;
+  margin-block: auto;
+  margin-inline: auto;
   outline: none;
-  padding: 1rem 2rem 2rem;
+  padding: 1rem 1rem 2rem;
   text-align: center;
   --clip-path-poly: polygon(
     29rem 0rem,
@@ -687,7 +687,7 @@ p {
     0% 100%,
     0% 0rem
   );
-  max-width: 40%;
+  max-width: min(800px, 100% - 1.5rem);
 }
 #checkout-body #payment-modal::backdrop,
 #checkout-body #order-complete-modal::backdrop {
@@ -747,9 +747,9 @@ p {
   --input-display: none;
   text-align: center;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(325px, 100%), 1fr));
   --pointer-ev: none;
-  max-width: 50%;
+  max-width: min(100%, 750px);
   margin-inline: auto;
   margin-block-end: 2rem;
 }
@@ -769,6 +769,7 @@ p {
   border-radius: 15px 0px 15px;
   outline-offset: 3px;
   box-shadow: 1px 1px 2px chartreuse;
+  min-width: 275px;
 }
 #checkout-body #shipping-section #shipping-confirm-info-wrapper div input:focus-within:invalid {
   outline: 3px solid red;
@@ -1853,10 +1854,10 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   background-image: radial-gradient(rgba(241, 137, 241, 0.75) 40%, rgba(241, 137, 241, 0.75) 40%, rgba(156, 0, 156, 0.25));
   border: 2px solid chartreuse;
   border-radius: 15px 0px 15px;
-  margin: auto;
-  max-width: 50%;
+  margin-block: auto;
+  margin-inline: auto;
   outline: none;
-  padding: 1rem 2rem 2rem;
+  padding: 1rem 1rem 2rem;
   text-align: center;
   --clip-path-poly: polygon(
     29rem 0rem,
@@ -1866,6 +1867,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
     0% 100%,
     0% 0rem
   );
+  max-width: min(1000px, 100% - 1.5rem);
 }
 #product-dialog::backdrop {
   background-image: linear-gradient(rgba(0, 0, 0, 0.6));
