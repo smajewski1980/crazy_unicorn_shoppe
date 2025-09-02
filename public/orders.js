@@ -13,6 +13,7 @@ const btnOrderCancel = document.getElementById('btn-cancel-order');
 
 // this function will reformat the db timestamp
 function formatDate(date) {
+  console.log(date);
   const newDate = date.split('T')[0];
   const dateParts = newDate.split('-');
   const year = dateParts[0];

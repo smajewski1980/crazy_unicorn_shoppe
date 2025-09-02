@@ -49,7 +49,7 @@ option {
 }
 
 ::selection {
-  background-color: salmon;
+  background-color: chartreuse;
 }
 
 html {
@@ -843,7 +843,7 @@ p {
   columns: 20%;
   width: 100%;
   border-collapse: collapse;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 0.879rem + 0.518vw, 1.5rem);
 }
 #orders-body #orders-summary-main table caption {
   border-bottom: 2px solid;
@@ -909,7 +909,8 @@ p {
   box-shadow: 0px 0px 25px rgba(127, 255, 0, 0.5098039216);
   outline: 1px solid chartreuse;
   outline-offset: -1rem;
-  padding: 3rem 5rem;
+  padding-block: 3rem;
+  padding-inline: clamp(0.5rem, -0.592rem + 4.66vw, 5rem);
 }
 #order-review-modal::backdrop {
   background-color: rgba(0, 0, 0, 0.6);
@@ -925,7 +926,7 @@ p {
 #order-review-modal #order-review-info table {
   text-align: center;
   columns: 25%;
-  width: 1000px;
+  width: clamp(23.438rem, 13.956rem + 40.453vw, 62.5rem);
   border-collapse: collapse;
 }
 #order-review-modal #order-review-info table caption {
@@ -1197,7 +1198,7 @@ p {
   padding: 2rem;
 }
 #sign-up-body #redirect-image-wrapper p {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 1.257rem + 1.036vw, 2.5rem);
   color: chartreuse;
   text-align: center;
   font-weight: 600;
@@ -1618,6 +1619,7 @@ body {
   background-image: url("./assets/images/site_bg.webp"), radial-gradient(rgb(223, 68, 223), purple);
   min-height: 100vh;
   background-size: contain;
+  background-attachment: fixed;
 }
 body .toast-close {
   padding-inline: 0 1rem;

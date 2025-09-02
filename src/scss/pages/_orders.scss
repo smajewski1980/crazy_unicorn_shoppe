@@ -27,7 +27,7 @@
       width: 100%;
       border-collapse: collapse;
       // clamp this later
-      font-size: 1.5rem;
+      font-size: clamp(1rem, 0.879rem + 0.518vw, 1.5rem);
 
       caption {
         border-bottom: 2px solid;
@@ -99,7 +99,8 @@
   box-shadow: 0px 0px 25px #7fff0082;
   outline: 1px solid chartreuse;
   outline-offset: -1rem;
-  padding: 3rem 5rem;
+  padding-block: 3rem;
+  padding-inline: clamp(0.5rem, -0.592rem + 4.66vw, 5rem);
 
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.6);
@@ -117,7 +118,8 @@
     table {
       text-align: center;
       columns: 25%;
-      width: 1000px;
+      // width: 1000px;
+      width: clamp(23.438rem, 13.956rem + 40.453vw, 62.5rem);
       border-collapse: collapse;
 
       caption {

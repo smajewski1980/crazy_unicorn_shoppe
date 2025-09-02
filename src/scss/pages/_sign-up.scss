@@ -22,7 +22,7 @@
     padding: 2rem;
 
     p {
-      font-size: 2.5rem;
+      font-size: clamp(1.5rem, 1.257rem + 1.036vw, 2.5rem);
       color: chartreuse;
       text-align: center;
       font-weight: 600;
