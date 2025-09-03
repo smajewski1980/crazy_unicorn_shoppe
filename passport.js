@@ -63,7 +63,9 @@ const google = passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: 'http://localhost:4700/user/auth/google/callback',
+      // callbackURL: 'http://localhost:4700/user/auth/google/callback',
+      callbackURL:
+        'https://crazy-unicorn-shoppe-f53987c7fce3.herokuapp.com/user/auth/google/callback',
     },
     function (accessToken, refreshToken, profile, done) {
       const email = profile.emails[0].value;
