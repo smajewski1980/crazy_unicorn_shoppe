@@ -22,8 +22,8 @@ var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {
 });
 app.use(morgan('combined', { stream: accessLogStream }));
 
-liveReloadServer.watch(path.join(__dirname, '/public'));
-app.use(connectLiveReload());
+// liveReloadServer.watch(path.join(__dirname, '/public'));
+// app.use(connectLiveReload());
 
 app.use(
   session({
@@ -48,11 +48,11 @@ app.use(
   }),
 );
 
-liveReloadServer.server.once('connection', () => {
-  setTimeout(() => {
-    liveReloadServer.refresh('/');
-  }, 100);
-});
+// liveReloadServer.server.once('connection', () => {
+//   setTimeout(() => {
+//     liveReloadServer.refresh('/');
+//   }, 100);
+// });
 
 app.use(express.json());
 app.use(express.static('public'));
