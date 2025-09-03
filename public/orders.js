@@ -13,18 +13,18 @@ const btnOrderCancel = document.getElementById('btn-cancel-order');
 
 // this function will reformat the db timestamp
 function formatDate(date) {
-  console.log(date);
-  const newDate = date.split('T')[0];
-  const dateParts = newDate.split('-');
-  const year = dateParts[0];
-  const month = dateParts[1];
-  const day = dateParts[2];
+  const dateObj = new Date(date);
+
+  const month = dateObj.getUTCMonth() + 1;
+  const day = dateObj.getUTCDate();
+  const year = dateObj.getUTCFullYear();
+
   return `${month}-${day}-${year}`;
 }
 
 // format the price field
 function formatBucks(price) {
-  // if theres free shipping, show it
+  // if theres free shipping, eventually show it
   if (price === 0) return 'FREE';
 
   const num = parseFloat(price);
