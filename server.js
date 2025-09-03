@@ -1,11 +1,11 @@
 // require('dotenv').config();
 const express = require('express');
-const sassMiddleware = require('express-dart-sass');
+// const sassMiddleware = require('express-dart-sass');
 const path = require('path');
-const connectLiveReload = require('connect-livereload');
-const livereload = require('livereload');
+// const connectLiveReload = require('connect-livereload');
+// const livereload = require('livereload');
 const app = express();
-const liveReloadServer = livereload.createServer();
+// const liveReloadServer = livereload.createServer();
 const userRoutes = require('./routes/user_routes');
 const productRoutes = require('./routes/product_routes');
 const cartRoutes = require('./routes/cart_routes');
