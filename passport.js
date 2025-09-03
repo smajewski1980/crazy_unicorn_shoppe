@@ -3,7 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const pool = require('./database/db_connect');
 const bcrypt = require('bcrypt');
-require('dotenv').config();
+// require('dotenv').config();
 let isGoogleLogin = false;
 
 passport.serializeUser((user, done) => {
