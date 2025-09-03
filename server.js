@@ -41,12 +41,12 @@ app.use(passport.session());
 
 app.use(site_counter);
 
-app.use(
-  sassMiddleware({
-    src: path.join(__dirname, 'src/scss'),
-    dest: path.join(__dirname, 'public'),
-  }),
-);
+// app.use(
+//   sassMiddleware({
+//     src: path.join(__dirname, 'src/scss'),
+//     dest: path.join(__dirname, 'public'),
+//   }),
+// );
 
 // liveReloadServer.server.once('connection', () => {
 //   setTimeout(() => {
