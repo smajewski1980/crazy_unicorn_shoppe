@@ -3,8 +3,6 @@
 
 #index-body {
   .testimonials-wrapper {
-    grid-column: 1 / 4;
-
     h2 {
       font-family: $font-para;
       font-weight: 500;
@@ -25,9 +23,11 @@
 
     .testimonials-inner-wrapper {
       display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
 
       .testimonial {
-        flex: 1;
+        flex-basis: 315px;
         text-align: center;
 
         .testimonial-content-top {
@@ -64,75 +64,84 @@
   }
 
   #home-main {
-    display: grid;
-    grid-template-columns: 65% 35%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
-    .featured-card {
-      font-family: $font-para;
-      outline: 2px solid chartreuse;
-      padding: 1rem 1rem 1.5rem;
-      border-radius: 50px 0 50px 0;
-      background: rgba(255, 255, 255, 0.25);
-      width: 90%;
-      margin-inline: auto;
-      position: relative;
-      align-self: start;
+    #home-main-left-col {
+      flex-basis: min(875px, 100%);
 
-      .featured-star {
-        position: absolute;
-        right: 2rem;
-        top: 1rem;
-        min-width: 1rem;
-        width: 3vw;
-        filter: drop-shadow(2px 2px 0px chartreuse);
-      }
+      .featured-card {
+        font-family: $font-para;
+        outline: 2px solid chartreuse;
+        padding: 1rem 1rem 1.5rem;
+        border-radius: 50px 0 50px 0;
+        background: rgba(255, 255, 255, 0.25);
+        width: max(370px, 80%); // <--------------here, try a clamp...
+        margin-inline: auto;
+        position: relative;
+        align-self: start;
 
-      h2 {
-        font-family: 'Kbcurioussoul-m3W9';
-        margin-block-end: 0.5rem;
-        margin-inline-start: 1.125rem;
-        font-size: clamp(1rem, 2.25vw, 2.25rem);
-        color: chartreuse;
-      }
-
-      .featured-content-wrapper {
-        display: grid;
-        grid-template-columns: 35% 65%;
-        font-size: 1.125rem;
-        place-items: center;
-
-        img {
-          width: 85%;
-          border-radius: 15px 0px 15px;
+        .featured-star {
+          position: absolute;
+          right: 2rem;
+          top: 1rem;
+          min-width: 1rem;
+          width: 3vw;
+          filter: drop-shadow(2px 2px 0px chartreuse);
         }
 
-        #featured-info-wrapper {
-          display: grid;
-          justify-items: start;
-          gap: 0.5rem;
+        h2 {
+          font-family: 'Kbcurioussoul-m3W9';
+          margin-block-end: 0.5rem;
+          margin-inline-start: 1.125rem;
+          font-size: clamp(1rem, 2.25vw, 2.25rem);
+          color: chartreuse;
+        }
 
-          h3 {
-            font-size: clamp(1rem, 1.35vw, 1.35rem);
-          }
-          p {
-            max-width: 35ch;
-            margin-block-end: 0.5rem;
-            font-size: clamp(0.75rem, 1vw, 1rem);
+        .featured-content-wrapper {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          font-size: 1.125rem;
+          place-items: center;
+          gap: 1rem;
+
+          img {
+            max-width: 250px;
+            border-radius: 15px 0px 15px;
+            margin-inline-start: 1.125rem;
           }
 
-          a {
-            @include m.regular-button;
-            padding: 0.5rem 1.5rem 0.65rem;
-            &:focus-visible {
-              outline: 2px solid white;
-              outline-offset: 5px;
+          #featured-info-wrapper {
+            flex: 1;
+            min-width: 250px;
+            display: grid;
+            justify-items: start;
+            justify-content: center;
+            gap: 0.5rem;
+
+            h3 {
+              font-size: clamp(1rem, 1.35vw, 1.35rem);
+            }
+            p {
+              max-width: 35ch;
+              margin-block-end: 0.5rem;
+              font-size: clamp(0.75rem, 1vw, 1rem);
+            }
+
+            a {
+              @include m.regular-button;
+              padding: 0.5rem 1.5rem 0.65rem;
+              &:focus-visible {
+                outline: 2px solid white;
+                outline-offset: 5px;
+              }
             }
           }
         }
       }
-    }
 
-    #home-main-left-col {
       #link-img-wrapper {
         margin-block-start: 2rem;
         display: flex;
@@ -146,7 +155,7 @@
         }
 
         img {
-          max-width: 150px;
+          width: clamp(3.125rem, 1.608rem + 6.472vw, 9.375rem);
           border-radius: 15px 0px 15px;
           border: 2px solid chartreuse;
         }
@@ -180,10 +189,19 @@
     }
 
     .home-text-wrapper {
+      text-align: center;
       display: inline;
-      padding-inline: 1rem;
+      padding-inline-end: 2rem;
       font-family: $font-para;
       font-size: clamp(0.75rem, 1vw, 1rem);
+      flex: 1;
+      min-width: 350px;
+
+      p {
+        margin-block: 1rem 0.5rem;
+        max-width: 65ch;
+        margin-inline: auto;
+      }
 
       .give-away-wrapper {
         align-self: center;
@@ -211,20 +229,22 @@
 
         .give-away-img-wrapper {
           position: relative;
+          width: fit-content;
+          margin-inline: auto;
 
           #give-away-star-1 {
             position: absolute;
-            left: 4rem;
+            left: -0.5rem;
             top: 0.5rem;
-            width: 2vw;
+            width: clamp(1rem, 0.757rem + 1.036vw, 2rem);
             filter: drop-shadow(2px 2px 0px chartreuse);
           }
 
           #give-away-star-2 {
             position: absolute;
-            right: 1rem;
+            right: 0;
             bottom: -0.5rem;
-            width: 4vw;
+            width: clamp(2rem, 1.515rem + 2.071vw, 4rem);
             rotate: 17deg;
             filter: drop-shadow(2px 2px 0px chartreuse);
           }
@@ -239,6 +259,7 @@
 
         input {
           display: block;
+          max-width: 20rem;
           width: 85%;
           margin-inline: auto;
           font-size: 1.25rem;

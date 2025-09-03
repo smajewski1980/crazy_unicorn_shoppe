@@ -79,7 +79,8 @@
   #signup-link {
     margin-block-end: 1.25rem;
     a {
-      font-size: clamp(1rem, 3.5vw, 2rem);
+      font-size: clamp(1.25rem, 1.129rem + 0.518vw, 1.75rem);
+      font-weight: 600;
     }
   }
   .gsi-material-button {
