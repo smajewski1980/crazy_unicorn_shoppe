@@ -2,10 +2,14 @@
 @use '../abstracts/mixins' as m;
 
 #product-dialog {
+  // * {
+  //   outline: 2px solid lime;
+  // }
   @include m.modal-styles;
   max-width: min(1000px, calc(100% - 1.5rem));
+
   h3 {
-    font-size: clamp(1.5rem, 2.75vw, 3rem);
+    font-size: clamp(1.5rem, 0.429rem + 2.857vw, 3rem);
     margin-block-end: 1rem;
     color: chartreuse;
 
@@ -15,15 +19,20 @@
   }
 
   #dialog-outer-images-wrapper {
-    display: grid;
-    grid-template-columns: 75% 15%;
-    justify-items: center;
+    max-width: 90%;
+    margin-inline: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
     cursor: url('./assets/icons/pointer.png') 10 0, auto;
 
     #dialog-img-wrapper {
       border-radius: 15px 0px 15px;
       overflow: hidden;
-      width: 75%;
+      max-width: 55%;
+      min-width: 350px;
+
       outline: 1px solid chartreuse;
 
       &:has(> a:focus-visible) {
@@ -32,8 +41,22 @@
       }
     }
     #dialog-thumbs-wrapper {
-      display: grid;
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+      gap: 0.5rem;
+      width: clamp(21.875rem, 31.071rem + -24.524vw, 9rem);
+      padding-inline: clamp(0.25rem, -1.714rem + 6.238vw, 3rem);
+
+      .thumb-wrapper {
+        width: clamp(4.313rem, 2.679rem + 10.024vw, 9rem);
+        border-radius: 15px 0px 15px;
+        overflow: hidden;
+        outline: 1px solid chartreuse;
+        cursor: url('./assets/icons/pointer.png') 10 0, auto;
+      }
 
       .thumb-wrapper:focus-visible {
         outline: 2px solid white;
@@ -48,19 +71,14 @@
           opacity: 0.35;
         }
       }
-
-      .thumb-wrapper {
-        border-radius: 15px 0px 15px;
-        overflow: hidden;
-        outline: 1px solid chartreuse;
-        cursor: url('./assets/icons/pointer.png') 10 0, auto;
-      }
     }
   }
   #product-dialog-desc {
-    margin-inline: 5rem;
+    // margin-inline: 5rem;
+    max-width: 65ch;
+    margin-inline: auto;
     margin-block: 1rem;
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 0.911rem + 0.238vw, 1.125rem);
   }
 
   #product-dialog-footer {
