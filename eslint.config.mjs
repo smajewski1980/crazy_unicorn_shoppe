@@ -17,7 +17,11 @@ export default defineConfig([
     rules: {
       'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
-    ignores: ['misc_dev_stuff/**', 'public/prism.js'],
+    ignores: [
+      'misc_dev_stuff/**',
+      'public/prism.js',
+      'public/swagger-ui-5.28.0/**',
+    ],
   },
   { files: ['**/*.js'], languageOptions: { sourceType: 'commonjs' } },
   { files: ['public/**/*.js'], languageOptions: { sourceType: 'module' } },

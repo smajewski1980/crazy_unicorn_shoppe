@@ -344,7 +344,6 @@ export const sampleFromSchemaGeneric = (
       }
 
       if (Array.isArray(contains.anyOf)) {
-        // eslint-disable-next-line no-unused-vars
         const { anyOf, ...containsWithoutAnyOf } = items
 
         sampleArray.push(
@@ -358,7 +357,6 @@ export const sampleFromSchemaGeneric = (
           )
         )
       } else if (Array.isArray(contains.oneOf)) {
-        // eslint-disable-next-line no-unused-vars
         const { oneOf, ...containsWithoutOneOf } = items
 
         sampleArray.push(
@@ -387,7 +385,6 @@ export const sampleFromSchemaGeneric = (
       }
 
       if (Array.isArray(items.anyOf)) {
-        // eslint-disable-next-line no-unused-vars
         const { anyOf, ...itemsWithoutAnyOf } = items
 
         sampleArray.push(
@@ -401,7 +398,6 @@ export const sampleFromSchemaGeneric = (
           )
         )
       } else if (Array.isArray(items.oneOf)) {
-        // eslint-disable-next-line no-unused-vars
         const { oneOf, ...itemsWithoutOneOf } = items
 
         sampleArray.push(

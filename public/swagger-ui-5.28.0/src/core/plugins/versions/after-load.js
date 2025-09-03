@@ -4,7 +4,6 @@
 import win from "core/window"
 
 const afterLoad = () => {
-  // eslint-disable-next-line no-undef
   const { GIT_DIRTY, GIT_COMMIT, PACKAGE_VERSION, BUILD_TIME } = buildInfo
 
   win.versions = win.versions || {}

@@ -110,7 +110,6 @@ function SwaggerUI(userOptions) {
     return system
   }
 
-  // eslint-disable-next-line no-extra-semi
   ;(async () => {
     const { configUrl: url } = mergedOptions
     const urlOptions = await optionsFromURL({ url, system })(mergedOptions)

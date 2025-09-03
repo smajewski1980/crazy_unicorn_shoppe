@@ -20,7 +20,6 @@ const escapeShell = (str) => {
   if (str === "-d ") {
     return str
   }
-  // eslint-disable-next-line no-useless-escape
   if (!/^[_\/-]/g.test(str))
     return ("'" + str
       .replace(/'/g, "'\\''") + "'")
@@ -38,7 +37,6 @@ const escapeCMD = (str) => {
     return str
       .replace(/-d /g, "-d ^\n")
   }
-  // eslint-disable-next-line no-useless-escape
   if (!/^[_\/-]/g.test(str))
     return "\"" + str + "\""
   else
@@ -53,7 +51,7 @@ const escapePowershell = (str) => {
     const escaped = str.replace(/`/g, "``").replace(/\$/g, "`$")
     return `@"\n${escaped}\n"@`
   }
-  if (!/^[_\/-]/.test(str)) { // eslint-disable-line no-useless-escape
+  if (!/^[_\/-]/.test(str)) {
     const escaped = str.replace(/'/g, "''")
     return `'${escaped}'`
   }

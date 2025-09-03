@@ -4,7 +4,6 @@ import { fromJS } from "immutable"
 export function transform(errors, { jsSpec }) {
   // LOOK HERE THIS TRANSFORMER IS CURRENTLY DISABLED 😃
   // TODO: finish implementing, fix flattening problem
-  /* eslint-disable no-unreachable */
   return errors
 
 

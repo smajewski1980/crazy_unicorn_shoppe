@@ -40,7 +40,7 @@ export const show = (ori, { getConfigs, layoutSelectors }) => (...args) => {
   } catch (e) {
     // This functionality is not mission critical, so if something goes wrong
     // we'll just move on
-    console.error(e) // eslint-disable-line no-console
+    console.error(e)
   }
 }
 
@@ -123,7 +123,7 @@ export const scrollToElement = (ref, container) => (system) => {
     let myScroller = zenscroll.createScroller(container)
     myScroller.to(ref)
   } catch(e) {
-    console.error(e) // eslint-disable-line no-console
+    console.error(e)
   }
 }
 

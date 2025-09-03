@@ -16,7 +16,6 @@ const makeGetXmlSampleSchema =
           schema.properties ||
           schema.additionalProperties)
       ) {
-        // eslint-disable-next-line quotes
         return '<?xml version="1.0" encoding="UTF-8"?>\n<!-- XML example cannot be generated; root element name is undefined -->'
       }
       if (schema.$$ref) {

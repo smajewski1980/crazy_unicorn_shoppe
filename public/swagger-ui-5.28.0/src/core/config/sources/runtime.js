@@ -4,7 +4,6 @@
  * Receives options at runtime.
  */
 
-/* eslint-disable no-undef */
 const optionsFromRuntime = () => () => {
   const options = {}
 

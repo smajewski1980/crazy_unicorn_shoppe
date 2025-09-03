@@ -168,7 +168,7 @@ export function objReduce(obj, fn) {
 
 // Redux middleware that exposes the system to async actions (like redux-thunk, but with out system instead of (dispatch, getState)
 export function systemThunkMiddleware(getSystem) {
-  return ({ dispatch, getState }) => { // eslint-disable-line no-unused-vars
+  return ({ dispatch, getState }) => {
     return next => action => {
       if (typeof action === "function") {
         return action(getSystem())

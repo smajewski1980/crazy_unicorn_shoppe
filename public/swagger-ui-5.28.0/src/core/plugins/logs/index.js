@@ -15,7 +15,6 @@ export default function ({configs}) {
 
   function log(level, ...args) {
     if(getLevel(level) >= logLevelInt)
-    // eslint-disable-next-line no-console
       console[level](...args)
   }
 
