@@ -716,7 +716,7 @@ p {
 }
 #checkout-body #payment-modal h4,
 #checkout-body #order-complete-modal h4 {
-  font-size: clamp(1rem, 0.815rem + 0.988vw, 2rem);
+  font-size: 2rem;
   margin-block: 1rem 2rem;
   color: chartreuse;
 }

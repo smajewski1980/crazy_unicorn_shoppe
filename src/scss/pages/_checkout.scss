@@ -116,7 +116,8 @@
     max-width: min(800px, calc(100% - 1.5rem));
 
     h4 {
-      font-size: clamp(1rem, 0.815rem + 0.988vw, 2rem);
+      // font-size: clamp(1rem, 0.815rem + 0.988vw, 2rem);
+      font-size: 2rem;
       margin-block: 1rem 2rem;
       color: chartreuse;
     }
