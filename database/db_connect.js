@@ -9,10 +9,10 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   // the following few lines stops local db from working,
   // they are for the production heroku db
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  // connectionString: process.env.DATABASE_URL,
+  // ssl: {
+  //   rejectUnauthorized: false,
+  // },
 });
 
 module.exports = pool;

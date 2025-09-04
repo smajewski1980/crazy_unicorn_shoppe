@@ -1,11 +1,13 @@
-// require('dotenv').config();
+// dev stuff
+require('dotenv').config();
+const sassMiddleware = require('express-dart-sass');
+const connectLiveReload = require('connect-livereload');
+const livereload = require('livereload');
+const liveReloadServer = livereload.createServer();
+// end dev stuff
 const express = require('express');
-// const sassMiddleware = require('express-dart-sass');
 const path = require('path');
-// const connectLiveReload = require('connect-livereload');
-// const livereload = require('livereload');
 const app = express();
-// const liveReloadServer = livereload.createServer();
 const userRoutes = require('./routes/user_routes');
 const productRoutes = require('./routes/product_routes');
 const cartRoutes = require('./routes/cart_routes');
@@ -22,8 +24,8 @@ var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {
 });
 app.use(morgan('combined', { stream: accessLogStream }));
 
-// liveReloadServer.watch(path.join(__dirname, '/public'));
-// app.use(connectLiveReload());
+liveReloadServer.watch(path.join(__dirname, '/public'));
+app.use(connectLiveReload());
 
 app.use(
   session({
@@ -41,18 +43,18 @@ app.use(passport.session());
 
 app.use(site_counter);
 
-// app.use(
-//   sassMiddleware({
-//     src: path.join(__dirname, 'src/scss'),
-//     dest: path.join(__dirname, 'public'),
-//   }),
-// );
+app.use(
+  sassMiddleware({
+    src: path.join(__dirname, 'src/scss'),
+    dest: path.join(__dirname, 'public'),
+  }),
+);
 
-// liveReloadServer.server.once('connection', () => {
-//   setTimeout(() => {
-//     liveReloadServer.refresh('/');
-//   }, 100);
-// });
+liveReloadServer.server.once('connection', () => {
+  setTimeout(() => {
+    liveReloadServer.refresh('/');
+  }, 100);
+});
 
 app.use(express.json());
 app.use(express.static('public'));
