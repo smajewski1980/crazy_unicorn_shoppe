@@ -416,6 +416,9 @@ p {
   text-align-last: center;
 }
 
+.products-display-wrapper {
+  margin-block-end: 5rem;
+}
 .products-display-wrapper h2 {
   margin-block: 1.5rem;
   margin-inline-start: 1.5rem;
