@@ -23,29 +23,30 @@ a:link {
 }
 
 @font-face {
-  font-family: "Kbcurioussoul-m3W9";
-  src: url("./assets/fonts/Kbcurioussoul-m3W9.ttf"), format("truetype");
+  font-family: 'Kbcurioussoul-m3W9';
+  src: url('./assets/fonts/Kbcurioussoul-m3W9.ttf'), format('truetype');
 }
 body {
-  font-family: "Kbcurioussoul-m3W9";
+  font-family: 'Kbcurioussoul-m3W9';
 }
 
 a {
   text-decoration: none;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
 }
 
 label,
 input,
 select,
 option {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 label,
 select,
 option {
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
 }
 
 ::selection {
@@ -53,11 +54,12 @@ option {
 }
 
 html {
-  cursor: url("./assets/icons/cursor.png"), auto;
+  cursor: url('./assets/icons/cursor.png'), auto;
 }
 
 #index-body .testimonials-wrapper h2 {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 500;
   margin-block-end: 0.5rem;
   margin-inline-start: 2rem;
@@ -81,26 +83,47 @@ html {
   flex-basis: 315px;
   text-align: center;
 }
-#index-body .testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top {
+#index-body
+  .testimonials-wrapper
+  .testimonials-inner-wrapper
+  .testimonial
+  .testimonial-content-top {
   display: flex;
   gap: 1rem;
   align-items: center;
   justify-content: center;
 }
-#index-body .testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top img:not(.stars-wrapper img) {
+#index-body
+  .testimonials-wrapper
+  .testimonials-inner-wrapper
+  .testimonial
+  .testimonial-content-top
+  img:not(.stars-wrapper img) {
   border-radius: 50%;
   width: 65px;
 }
-#index-body .testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top .stars-wrapper {
+#index-body
+  .testimonials-wrapper
+  .testimonials-inner-wrapper
+  .testimonial
+  .testimonial-content-top
+  .stars-wrapper {
   display: flex;
   gap: 0.25rem;
   flex-basis: calc(100px + 0.75rem);
 }
-#index-body .testimonials-wrapper .testimonials-inner-wrapper .testimonial .testimonial-content-top .stars-wrapper img {
+#index-body
+  .testimonials-wrapper
+  .testimonials-inner-wrapper
+  .testimonial
+  .testimonial-content-top
+  .stars-wrapper
+  img {
   width: 25px;
 }
 #index-body .testimonials-wrapper .testimonials-inner-wrapper .testimonial p {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 600;
   margin-inline: auto;
   margin-block-start: 0.5rem;
@@ -115,7 +138,8 @@ html {
   flex-basis: min(875px, 100%);
 }
 #index-body #home-main #home-main-left-col .featured-card {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   outline: 2px solid chartreuse;
   padding: 1rem 1rem 1.5rem;
   border-radius: 50px 0 50px 0;
@@ -134,13 +158,17 @@ html {
   filter: drop-shadow(2px 2px 0px chartreuse);
 }
 #index-body #home-main #home-main-left-col .featured-card h2 {
-  font-family: "Kbcurioussoul-m3W9";
+  font-family: 'Kbcurioussoul-m3W9';
   margin-block-end: 0.5rem;
   margin-inline-start: 1.125rem;
   font-size: clamp(1rem, 2.25vw, 2.25rem);
   color: chartreuse;
 }
-#index-body #home-main #home-main-left-col .featured-card .featured-content-wrapper {
+#index-body
+  #home-main
+  #home-main-left-col
+  .featured-card
+  .featured-content-wrapper {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -148,12 +176,22 @@ html {
   place-items: center;
   gap: 1rem;
 }
-#index-body #home-main #home-main-left-col .featured-card .featured-content-wrapper img {
+#index-body
+  #home-main
+  #home-main-left-col
+  .featured-card
+  .featured-content-wrapper
+  img {
   max-width: 250px;
   border-radius: 15px 0px 15px;
   margin-inline-start: 1.125rem;
 }
-#index-body #home-main #home-main-left-col .featured-card .featured-content-wrapper #featured-info-wrapper {
+#index-body
+  #home-main
+  #home-main-left-col
+  .featured-card
+  .featured-content-wrapper
+  #featured-info-wrapper {
   flex: 1;
   min-width: 250px;
   display: grid;
@@ -161,26 +199,50 @@ html {
   justify-content: center;
   gap: 0.5rem;
 }
-#index-body #home-main #home-main-left-col .featured-card .featured-content-wrapper #featured-info-wrapper h3 {
+#index-body
+  #home-main
+  #home-main-left-col
+  .featured-card
+  .featured-content-wrapper
+  #featured-info-wrapper
+  h3 {
   font-size: clamp(1rem, 1.35vw, 1.35rem);
 }
-#index-body #home-main #home-main-left-col .featured-card .featured-content-wrapper #featured-info-wrapper p {
+#index-body
+  #home-main
+  #home-main-left-col
+  .featured-card
+  .featured-content-wrapper
+  #featured-info-wrapper
+  p {
   max-width: 35ch;
   margin-block-end: 0.5rem;
   font-size: clamp(0.75rem, 1vw, 1rem);
 }
-#index-body #home-main #home-main-left-col .featured-card .featured-content-wrapper #featured-info-wrapper a {
+#index-body
+  #home-main
+  #home-main-left-col
+  .featured-card
+  .featured-content-wrapper
+  #featured-info-wrapper
+  a {
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   outline: none;
   font-weight: 600;
   padding: 0.5rem 1.5rem 0.65rem;
 }
-#index-body #home-main #home-main-left-col .featured-card .featured-content-wrapper #featured-info-wrapper a:focus-visible {
+#index-body
+  #home-main
+  #home-main-left-col
+  .featured-card
+  .featured-content-wrapper
+  #featured-info-wrapper
+  a:focus-visible {
   outline: 2px solid white;
   outline-offset: 5px;
 }
@@ -206,7 +268,7 @@ html {
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   outline: none;
   font-weight: 600;
   width: 30%;
@@ -214,8 +276,13 @@ html {
   padding-block: 0.75rem;
   position: relative;
 }
-#index-body #home-main #home-main-left-col #link-img-wrapper #thought-link ::after {
-  content: "Our operators";
+#index-body
+  #home-main
+  #home-main-left-col
+  #link-img-wrapper
+  #thought-link
+  ::after {
+  content: 'Our operators';
   position: absolute;
   font-size: clamp(1rem, 0.879rem + 0.518vw, 1.5rem);
   color: chartreuse;
@@ -224,8 +291,13 @@ html {
   rotate: -4deg;
   left: -7%;
 }
-#index-body #home-main #home-main-left-col #link-img-wrapper #thought-link ::before {
-  content: "are standing by.";
+#index-body
+  #home-main
+  #home-main-left-col
+  #link-img-wrapper
+  #thought-link
+  ::before {
+  content: 'are standing by.';
   position: absolute;
   font-size: clamp(1rem, 0.879rem + 0.518vw, 1.5rem);
   color: chartreuse;
@@ -234,10 +306,19 @@ html {
   rotate: -4deg;
   left: 30%;
 }
-#index-body #home-main #home-main-left-col #link-img-wrapper #thought-link a:focus-visible {
+#index-body
+  #home-main
+  #home-main-left-col
+  #link-img-wrapper
+  #thought-link
+  a:focus-visible {
   outline: none;
 }
-#index-body #home-main #home-main-left-col #link-img-wrapper #thought-link:has(a:focus-visible) {
+#index-body
+  #home-main
+  #home-main-left-col
+  #link-img-wrapper
+  #thought-link:has(a:focus-visible) {
   outline: 2px solid white;
   outline-offset: 5px;
 }
@@ -245,7 +326,8 @@ html {
   text-align: center;
   display: inline;
   padding-inline-end: 2rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: clamp(0.75rem, 1vw, 1rem);
   flex: 1;
   min-width: 350px;
@@ -263,11 +345,11 @@ html {
   font-size: clamp(1rem, 1.35vw, 1.35rem);
   color: chartreuse;
   position: relative;
-  font-family: "Kbcurioussoul-m3W9";
+  font-family: 'Kbcurioussoul-m3W9';
   text-align: center;
 }
 #index-body #home-main .home-text-wrapper .give-away-wrapper h3::after {
-  content: "*";
+  content: '*';
   position: absolute;
   margin-inline-start: 0.15rem;
 }
@@ -276,19 +358,33 @@ html {
   color: orange;
   vertical-align: middle;
 }
-#index-body #home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper {
+#index-body
+  #home-main
+  .home-text-wrapper
+  .give-away-wrapper
+  .give-away-img-wrapper {
   position: relative;
   width: fit-content;
   margin-inline: auto;
 }
-#index-body #home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper #give-away-star-1 {
+#index-body
+  #home-main
+  .home-text-wrapper
+  .give-away-wrapper
+  .give-away-img-wrapper
+  #give-away-star-1 {
   position: absolute;
   left: -0.5rem;
   top: 0.5rem;
   width: clamp(1rem, 0.757rem + 1.036vw, 2rem);
   filter: drop-shadow(2px 2px 0px chartreuse);
 }
-#index-body #home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper #give-away-star-2 {
+#index-body
+  #home-main
+  .home-text-wrapper
+  .give-away-wrapper
+  .give-away-img-wrapper
+  #give-away-star-2 {
   position: absolute;
   right: 0;
   bottom: -0.5rem;
@@ -296,7 +392,12 @@ html {
   rotate: 17deg;
   filter: drop-shadow(2px 2px 0px chartreuse);
 }
-#index-body #home-main .home-text-wrapper .give-away-wrapper .give-away-img-wrapper img:not(#give-away-star-1):not(#give-away-star-2) {
+#index-body
+  #home-main
+  .home-text-wrapper
+  .give-away-wrapper
+  .give-away-img-wrapper
+  img:not(#give-away-star-1):not(#give-away-star-2) {
   width: 250px;
   margin-inline: auto;
   border-radius: 50px 0 50px 0;
@@ -311,17 +412,27 @@ html {
   padding: 0.15rem;
   border-radius: 5px;
   margin-block: 0.5rem 1.5rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   border: none;
   outline: 2px solid chartreuse;
 }
-#index-body #home-main .home-text-wrapper .give-away-wrapper input::placeholder {
-  font-family: "Kbcurioussoul-m3W9";
+#index-body
+  #home-main
+  .home-text-wrapper
+  .give-away-wrapper
+  input::placeholder {
+  font-family: 'Kbcurioussoul-m3W9';
   opacity: 0.65;
 }
-#index-body #home-main .home-text-wrapper .give-away-wrapper .give-away-disclaimer {
+#index-body
+  #home-main
+  .home-text-wrapper
+  .give-away-wrapper
+  .give-away-disclaimer {
   text-align: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 0.85rem;
   max-width: 30ch;
   margin: 0.5rem auto;
@@ -338,7 +449,8 @@ html {
 }
 
 p {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 600;
   margin-block-end: 2rem;
 }
@@ -368,7 +480,8 @@ p {
   margin-block-end: 1rem;
 }
 #add-product-form button {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   padding: 0.25rem 1rem;
 }
 
@@ -416,15 +529,21 @@ p {
   text-align-last: center;
 }
 
+.products-display-wrapper {
+  margin-block-end: 5rem;
+}
+
 .products-display-wrapper h2 {
   margin-block: 1.5rem;
   margin-inline-start: 1.5rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   letter-spacing: 1px;
   color: rgba(128, 255, 0, 0.75);
 }
 .products-display-wrapper #product-cards-wrapper {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
   gap: 1rem;
@@ -435,7 +554,7 @@ p {
   backdrop-filter: blur(10px);
   padding: 1.5rem 2rem;
   border-radius: 15px 0px 15px;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   text-align: center;
 }
 .products-display-wrapper #product-cards-wrapper .product-card:focus-visible {
@@ -445,18 +564,30 @@ p {
 .products-display-wrapper #product-cards-wrapper .product-card h3 {
   font-size: clamp(1.25rem, 1.111rem + 0.741vw, 2rem);
 }
-.products-display-wrapper #product-cards-wrapper .product-card .card-img-wrapper {
+.products-display-wrapper
+  #product-cards-wrapper
+  .product-card
+  .card-img-wrapper {
   max-width: 75%;
   margin-inline: auto;
   margin-block-end: 1.5rem;
   border-radius: 15px 0px 15px;
   overflow: hidden;
 }
-.products-display-wrapper #product-cards-wrapper .product-card .product-info-content .card-prod-price {
+.products-display-wrapper
+  #product-cards-wrapper
+  .product-card
+  .product-info-content
+  .card-prod-price {
   font-size: clamp(1.25rem, 1.111rem + 0.741vw, 2rem);
   font-weight: 700;
 }
-.products-display-wrapper #product-cards-wrapper .product-card .product-info-content .card-prod-price span {
+.products-display-wrapper
+  #product-cards-wrapper
+  .product-card
+  .product-info-content
+  .card-prod-price
+  span {
   font-size: clamp(1.5rem, 1.083rem + 2.222vw, 3.75rem);
   color: rgba(128, 255, 0, 0.75);
   display: inline-block;
@@ -464,10 +595,20 @@ p {
   font-weight: 900;
   transform: translateY(12.5%);
 }
-.products-display-wrapper #product-cards-wrapper .product-card .product-info-content .card-prod-price span:first-child {
+.products-display-wrapper
+  #product-cards-wrapper
+  .product-card
+  .product-info-content
+  .card-prod-price
+  span:first-child {
   rotate: -15deg;
 }
-.products-display-wrapper #product-cards-wrapper .product-card .product-info-content .card-prod-price span:last-child {
+.products-display-wrapper
+  #product-cards-wrapper
+  .product-card
+  .product-info-content
+  .card-prod-price
+  span:last-child {
   rotate: 15deg;
 }
 
@@ -616,10 +757,11 @@ p {
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   outline: none;
   font-weight: 600;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   padding: 0.5rem 1rem;
   border: 1px solid chartreuse;
   font-weight: 600;
@@ -631,7 +773,8 @@ p {
 #checkout-body #invoice-wrapper table {
   width: 100%;
   margin-inline: auto;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   border-spacing: 0;
   border: 1px solid chartreuse;
   border-radius: 15px 0px 15px 0px;
@@ -665,16 +808,22 @@ p {
   align-items: center;
 }
 #checkout-body #invoice-wrapper table tr .invoice-item-controls-wrapper img {
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   width: 1rem;
   height: 1rem;
 }
-#checkout-body #invoice-wrapper table tr .invoice-item-controls-wrapper img:last-child {
+#checkout-body
+  #invoice-wrapper
+  table
+  tr
+  .invoice-item-controls-wrapper
+  img:last-child {
   width: 1.5rem;
   height: 1.5rem;
 }
 #checkout-body #payment-method-section h2 {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-align: center;
   margin-block-start: 1rem;
 }
@@ -683,15 +832,22 @@ p {
   justify-content: space-around;
   align-items: center;
 }
-#checkout-body #payment-method-section #payment-choice-wrapper .payment-img-wrapper {
+#checkout-body
+  #payment-method-section
+  #payment-choice-wrapper
+  .payment-img-wrapper {
   max-width: 250px;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
 }
 #checkout-body #payment-modal,
 #checkout-body #order-complete-modal {
   backdrop-filter: blur(4px);
   background-color: transparent;
-  background-image: radial-gradient(rgba(241, 137, 241, 0.75) 40%, rgba(241, 137, 241, 0.75) 40%, rgba(156, 0, 156, 0.25));
+  background-image: radial-gradient(
+    rgba(241, 137, 241, 0.75) 40%,
+    rgba(241, 137, 241, 0.75) 40%,
+    rgba(156, 0, 156, 0.25)
+  );
   border: 2px solid chartreuse;
   border-radius: 15px 0px 15px;
   margin-block: auto;
@@ -736,10 +892,11 @@ p {
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   outline: none;
   font-weight: 600;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   padding: 0.75rem 2.5rem;
   margin-block-start: 0.5rem;
 }
@@ -752,7 +909,8 @@ p {
   padding-block: 1rem 2rem;
 }
 #checkout-body #shipping-section {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   display: none;
 }
 #checkout-body #shipping-section h3 {
@@ -791,26 +949,40 @@ p {
   box-shadow: 1px 1px 2px chartreuse;
   min-width: 275px;
 }
-#checkout-body #shipping-section #shipping-confirm-info-wrapper div input:focus-within:invalid {
+#checkout-body
+  #shipping-section
+  #shipping-confirm-info-wrapper
+  div
+  input:focus-within:invalid {
   outline: 3px solid red;
 }
-#checkout-body #shipping-section #shipping-confirm-info-wrapper div input:focus-within:valid {
+#checkout-body
+  #shipping-section
+  #shipping-confirm-info-wrapper
+  div
+  input:focus-within:valid {
   outline: 3px solid lime;
 }
-#checkout-body #shipping-section #shipping-confirm-info-wrapper:invalid #btn-edit-info {
+#checkout-body
+  #shipping-section
+  #shipping-confirm-info-wrapper:invalid
+  #btn-edit-info {
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   outline: none;
   font-weight: 600;
   margin-block-start: 1.5rem;
   margin-block-end: 0;
   pointer-events: auto;
 }
-#checkout-body #shipping-section #shipping-confirm-info-wrapper:invalid #btn-edit-info:focus-visible {
+#checkout-body
+  #shipping-section
+  #shipping-confirm-info-wrapper:invalid
+  #btn-edit-info:focus-visible {
   outline: 2px solid white;
   outline-offset: 3px;
 }
@@ -820,7 +992,7 @@ p {
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   outline: none;
   font-weight: 600;
   pointer-events: auto;
@@ -829,7 +1001,10 @@ p {
   justify-self: center;
   grid-column: 1/-1;
 }
-#checkout-body #shipping-section #shipping-confirm-info-wrapper button:focus-visible {
+#checkout-body
+  #shipping-section
+  #shipping-confirm-info-wrapper
+  button:focus-visible {
   outline: 2px solid white;
   outline-offset: 3px;
 }
@@ -848,7 +1023,12 @@ p {
   text-wrap: balance;
   margin-block-end: 2rem;
   border-bottom: 2px solid;
-  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
+  border-image: linear-gradient(
+    to right,
+    transparent 30%,
+    rgba(128, 255, 0, 0.65) 50%,
+    transparent 70%
+  );
   border-image-slice: 1;
   padding-block-end: 1.25rem;
   padding-block-start: 2rem;
@@ -859,7 +1039,8 @@ p {
   margin-inline: auto;
 }
 #orders-body #orders-summary-main table {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-align: center;
   columns: 20%;
   width: 100%;
@@ -868,7 +1049,12 @@ p {
 }
 #orders-body #orders-summary-main table caption {
   border-bottom: 2px solid;
-  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
+  border-image: linear-gradient(
+    to right,
+    transparent 30%,
+    rgba(128, 255, 0, 0.65) 50%,
+    transparent 70%
+  );
   border-image-slice: 1;
   padding-block-end: 1rem;
 }
@@ -888,7 +1074,7 @@ p {
   border-bottom: 1px dotted chartreuse;
 }
 #orders-body #orders-summary-main table tr:not(:has(th)) {
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
 }
 #orders-body nav {
   margin-block: 2rem 3rem;
@@ -906,7 +1092,8 @@ p {
   outline: 2px solid chartreuse;
   list-style-type: none;
   width: fit-content;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 1.125rem;
 }
 #orders-body nav ul #home-link a,
@@ -914,7 +1101,8 @@ p {
   display: inline-block;
   padding: 0.5rem 1rem;
 }
-#orders-body nav ul #home-link a:hover, #orders-body nav ul #home-link a:focus-visible,
+#orders-body nav ul #home-link a:hover,
+#orders-body nav ul #home-link a:focus-visible,
 #orders-body nav ul #shop-link a:hover,
 #orders-body nav ul #shop-link a:focus-visible {
   outline: 2px solid white;
@@ -922,7 +1110,8 @@ p {
 }
 
 #order-review-modal {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: auto;
   background-image: radial-gradient(rgb(243, 160, 243), rgb(192, 84, 192));
   border: 3px solid chartreuse;
@@ -970,7 +1159,7 @@ p {
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   outline: none;
   font-weight: 600;
   font-size: 1rem;
@@ -995,7 +1184,7 @@ p {
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   outline: none;
   font-weight: 600;
   box-shadow: 0px 0px 15px rgba(127, 255, 0, 0.5098039216);
@@ -1021,7 +1210,12 @@ p {
   text-wrap: balance;
   margin-block-end: 2rem;
   border-bottom: 2px solid;
-  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
+  border-image: linear-gradient(
+    to right,
+    transparent 30%,
+    rgba(128, 255, 0, 0.65) 50%,
+    transparent 70%
+  );
   border-image-slice: 1;
   padding-block-end: 1.25rem;
 }
@@ -1029,27 +1223,31 @@ p {
   display: grid;
   justify-content: center;
   gap: 0.5rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 #sign-in-page form .login-form-group {
   width: clamp(18.75rem, 17.593rem + 6.173vw, 25rem);
   display: grid;
   text-align: center;
 }
-#sign-in-page form .login-form-group:first-child, #sign-in-page form .login-form-group:nth-child(2) {
+#sign-in-page form .login-form-group:first-child,
+#sign-in-page form .login-form-group:nth-child(2) {
   position: relative;
 }
-#sign-in-page form .login-form-group:first-child ::before, #sign-in-page form .login-form-group:nth-child(2) ::before {
-  content: "";
+#sign-in-page form .login-form-group:first-child ::before,
+#sign-in-page form .login-form-group:nth-child(2) ::before {
+  content: '';
   display: block;
-  background-image: url("./assets/images/testimonial-star.webp");
+  background-image: url('./assets/images/testimonial-star.webp');
   background-size: contain;
   position: absolute;
   width: 50px;
   height: 50px;
   left: -5rem;
 }
-#sign-in-page form .login-form-group:first-child:nth-child(2) ::before, #sign-in-page form .login-form-group:nth-child(2):nth-child(2) ::before {
+#sign-in-page form .login-form-group:first-child:nth-child(2) ::before,
+#sign-in-page form .login-form-group:nth-child(2):nth-child(2) ::before {
   left: initial;
   right: -5rem;
   top: 4rem;
@@ -1076,7 +1274,7 @@ p {
 #sign-in-page form #btn-login {
   padding-block: 0.5rem;
   margin-block: 0.75rem;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   border-radius: 15px 0px 15px;
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
@@ -1094,7 +1292,8 @@ p {
   display: inline-block;
   padding: 0.5rem 1rem;
 }
-#sign-in-page #home-link a:hover, #sign-in-page #home-link a:focus-visible {
+#sign-in-page #home-link a:hover,
+#sign-in-page #home-link a:focus-visible {
   outline: 2px solid white;
   outline-offset: 5px;
 }
@@ -1114,8 +1313,8 @@ p {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: #1f1f1f;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
-  font-family: "Roboto", arial, sans-serif;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
+  font-family: 'Roboto', arial, sans-serif;
   font-size: 14px;
   height: 40px;
   letter-spacing: 0.25px;
@@ -1125,7 +1324,8 @@ p {
   padding: 0 12px;
   position: relative;
   text-align: center;
-  -webkit-transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
+  -webkit-transition: background-color 0.218s, border-color 0.218s,
+    box-shadow 0.218s;
   transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
   vertical-align: middle;
   white-space: nowrap;
@@ -1156,7 +1356,7 @@ p {
 #sign-in-page .gsi-material-button .gsi-material-button-contents {
   -webkit-flex-grow: 1;
   flex-grow: 1;
-  font-family: "Roboto", arial, sans-serif;
+  font-family: 'Roboto', arial, sans-serif;
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1183,19 +1383,27 @@ p {
 #sign-in-page .gsi-material-button:disabled .gsi-material-button-icon {
   opacity: 38%;
 }
-#sign-in-page .gsi-material-button:not(:disabled):active .gsi-material-button-state,
-#sign-in-page .gsi-material-button:not(:disabled):focus .gsi-material-button-state {
+#sign-in-page
+  .gsi-material-button:not(:disabled):active
+  .gsi-material-button-state,
+#sign-in-page
+  .gsi-material-button:not(:disabled):focus
+  .gsi-material-button-state {
   background-color: #303030;
   opacity: 12%;
 }
 #sign-in-page .gsi-material-button:not(:disabled):hover,
 #sign-in-page .gsi-material-button:not(:disabled):focus-visible {
-  -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 1px 3px 1px rgba(60, 64, 67, 0.15);
   outline: 2px solid white;
   outline-offset: 3px;
 }
-#sign-in-page .gsi-material-button:not(:disabled):hover .gsi-material-button-state {
+#sign-in-page
+  .gsi-material-button:not(:disabled):hover
+  .gsi-material-button-state {
   background-color: #303030;
   opacity: 8%;
 }
@@ -1235,7 +1443,12 @@ p {
   text-wrap: balance;
   margin-block-end: 2rem;
   border-bottom: 2px solid;
-  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
+  border-image: linear-gradient(
+    to right,
+    transparent 30%,
+    rgba(128, 255, 0, 0.65) 50%,
+    transparent 70%
+  );
   border-image-slice: 1;
   padding-block-end: 1.25rem;
   width: fit-content;
@@ -1246,7 +1459,8 @@ p {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   column-gap: 2rem;
   flex-wrap: wrap;
   margin-block: -1rem 1.5rem;
@@ -1257,24 +1471,35 @@ p {
   display: grid;
   gap: 0.5rem;
 }
-#sign-up-body #sign-up-form #sign-up-form-left-col.google-signup .sign-up-input-wrapper:nth-child(1) {
+#sign-up-body
+  #sign-up-form
+  #sign-up-form-left-col.google-signup
+  .sign-up-input-wrapper:nth-child(1) {
   position: relative;
   visibility: hidden;
   pointer-events: none;
 }
-#sign-up-body #sign-up-form #sign-up-form-left-col.google-signup .sign-up-input-wrapper:nth-child(1) ::after {
-  content: "You have chosen to sign up with google, there is one more step to finish the sign up process.";
+#sign-up-body
+  #sign-up-form
+  #sign-up-form-left-col.google-signup
+  .sign-up-input-wrapper:nth-child(1)
+  ::after {
+  content: 'You have chosen to sign up with google, there is one more step to finish the sign up process.';
   position: absolute;
   top: 0rem;
   left: 0;
   visibility: visible;
 }
-#sign-up-body #sign-up-form #sign-up-form-left-col.google-signup .sign-up-input-wrapper:nth-child(1) ::before {
-  content: "";
+#sign-up-body
+  #sign-up-form
+  #sign-up-form-left-col.google-signup
+  .sign-up-input-wrapper:nth-child(1)
+  ::before {
+  content: '';
   width: 125px;
   height: 150px;
   display: block;
-  background-image: url("./assets/images/unicorn_stuffed.png");
+  background-image: url('./assets/images/unicorn_stuffed.png');
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
@@ -1285,10 +1510,16 @@ p {
   visibility: visible;
   animation: unicorn-dance 15s linear infinite;
 }
-#sign-up-body #sign-up-form #sign-up-form-left-col.google-signup .sign-up-input-wrapper:nth-child(2) {
+#sign-up-body
+  #sign-up-form
+  #sign-up-form-left-col.google-signup
+  .sign-up-input-wrapper:nth-child(2) {
   visibility: hidden;
 }
-#sign-up-body #sign-up-form #sign-up-form-left-col.google-signup .sign-up-input-wrapper:nth-child(3) {
+#sign-up-body
+  #sign-up-form
+  #sign-up-form-left-col.google-signup
+  .sign-up-input-wrapper:nth-child(3) {
   visibility: hidden;
 }
 #sign-up-body #sign-up-form .sign-up-input-wrapper {
@@ -1307,7 +1538,10 @@ p {
 #sign-up-body #sign-up-form .sign-up-input-wrapper input:focus-within:invalid {
   outline: 3px solid red;
 }
-#sign-up-body #sign-up-form .sign-up-input-wrapper input.validity-style:focus-within:valid {
+#sign-up-body
+  #sign-up-form
+  .sign-up-input-wrapper
+  input.validity-style:focus-within:valid {
   outline: 3px solid lime;
 }
 #sign-up-body #sign-up-form:valid #btn-signup {
@@ -1324,7 +1558,8 @@ p {
   position: relative;
 }
 #sign-up-body #sign-up-form fieldset legend {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   padding-inline: 0.25rem;
@@ -1344,11 +1579,11 @@ p {
 }
 #sign-up-body #sign-up-form .unicorn-float ::before,
 #sign-up-body #sign-up-form .unicorn-float ::after {
-  content: "";
+  content: '';
   width: 125px;
   height: 150px;
   display: block;
-  background-image: url("./assets/images/unicorn_stuffed.png");
+  background-image: url('./assets/images/unicorn_stuffed.png');
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
@@ -1362,11 +1597,11 @@ p {
   left: initial;
   right: -15rem;
   animation-delay: 1.5s;
-  background-image: url("./assets/images/unicorn_stuffed_2.png");
+  background-image: url('./assets/images/unicorn_stuffed_2.png');
 }
 #sign-up-body #sign-up-form #btn-signup {
   margin-block: 0.75rem;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   border-radius: 15px 0px 15px;
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
@@ -1392,17 +1627,20 @@ p {
   display: inline-block;
   padding: 0.5rem 1rem;
 }
-#sign-up-body #home-link a:hover, #sign-up-body #home-link a:focus-visible {
+#sign-up-body #home-link a:hover,
+#sign-up-body #home-link a:focus-visible {
   outline: 2px solid white;
   outline-offset: 5px;
 }
 
 @keyframes unicorn-dance {
-  0%, 100% {
+  0%,
+  100% {
     transform: skewX(0deg) skewY(0deg) translateX(-55%) scale(1) rotate(0);
   }
   33% {
-    transform: skewX(0deg) skewY(1deg) translateX(-57%) scale(0.97) rotate(-2deg);
+    transform: skewX(0deg) skewY(1deg) translateX(-57%) scale(0.97)
+      rotate(-2deg);
   }
   66% {
     transform: skewX(1deg) skewY(0deg) translateX(-53%) scale(0.97) rotate(1deg);
@@ -1442,8 +1680,8 @@ p {
   flex-basis: 25%;
 }
 #dev-info nav ul li:nth-child(1) ::after {
-  font-family: "Kbcurioussoul-m3W9";
-  content: "HOME";
+  font-family: 'Kbcurioussoul-m3W9';
+  content: 'HOME';
   position: absolute;
   color: chartreuse;
   left: 50%;
@@ -1454,8 +1692,8 @@ p {
   flex-basis: 35%;
 }
 #dev-info nav ul li:nth-child(2) ::after {
-  font-family: "Kbcurioussoul-m3W9";
-  content: "Shop";
+  font-family: 'Kbcurioussoul-m3W9';
+  content: 'Shop';
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1475,7 +1713,15 @@ p {
 #dev-info p:nth-of-type(1) {
   margin-block: 1rem;
 }
-#dev-info p:nth-of-type(8), #dev-info p:nth-of-type(9), #dev-info p:nth-of-type(10), #dev-info p:nth-of-type(1), #dev-info p:nth-of-type(11), #dev-info p:nth-of-type(12), #dev-info p:nth-of-type(13), #dev-info p:nth-of-type(14), #dev-info p:nth-of-type(15) {
+#dev-info p:nth-of-type(8),
+#dev-info p:nth-of-type(9),
+#dev-info p:nth-of-type(10),
+#dev-info p:nth-of-type(1),
+#dev-info p:nth-of-type(11),
+#dev-info p:nth-of-type(12),
+#dev-info p:nth-of-type(13),
+#dev-info p:nth-of-type(14),
+#dev-info p:nth-of-type(15) {
   margin-block-end: 1rem;
 }
 #dev-info p:nth-of-type(17) {
@@ -1512,7 +1758,8 @@ p {
 }
 #dev-info li {
   font-size: clamp(0.75rem, 0.777vw + 0.568rem, 1.5rem);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 #dev-info #to-dos li:last-child {
   margin-block-end: 2rem;
@@ -1551,20 +1798,20 @@ p {
   flex: 1;
 }
 #thought-body ul li:nth-child(1)::after {
-  content: "Shop";
+  content: 'Shop';
   position: absolute;
   pointer-events: none;
   font-size: 1.25rem;
   rotate: 5deg;
 }
 #thought-body ul li:nth-child(2)::after {
-  content: "Home";
+  content: 'Home';
   position: absolute;
   bottom: -1.25rem;
   pointer-events: none;
 }
 #thought-body ul li:nth-child(3)::after {
-  content: "Dev Info";
+  content: 'Dev Info';
   position: absolute;
   pointer-events: none;
   rotate: -7deg;
@@ -1628,18 +1875,20 @@ p {
 }
 #thought-body form #btn-thought {
   padding: 0.75rem 1.5rem;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   border-radius: 15px 0px 15px;
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
   max-width: 1300px;
   margin-inline: auto;
   padding: 0 1rem;
-  background-image: url("./assets/images/site_bg.webp"), radial-gradient(rgb(223, 68, 223), purple);
+  background-image: url('./assets/images/site_bg.webp'),
+    radial-gradient(rgb(223, 68, 223), purple);
   min-height: 100vh;
   background-size: cover;
   background-attachment: fixed;
@@ -1687,11 +1936,17 @@ header nav ul li:nth-child(1) p {
   padding-block-end: 0.5rem;
 }
 header nav ul li:nth-child(1) button {
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   padding: 0.5rem 1rem 0.25rem;
   border-radius: 15px 0px 15px 0px;
   border: 1px solid chartreuse;
-  background: radial-gradient(rgb(249, 239, 255), rgb(241, 205, 241), rgb(235, 172, 235), rgb(238, 149, 238), violet);
+  background: radial-gradient(
+    rgb(249, 239, 255),
+    rgb(241, 205, 241),
+    rgb(235, 172, 235),
+    rgb(238, 149, 238),
+    violet
+  );
   box-shadow: 2px 2px 0px black;
 }
 header nav ul li:nth-child(3) {
@@ -1706,14 +1961,14 @@ header nav ul li a::after {
   font-size: clamp(0.75rem, 0.777vw + 0.568rem, 1.5rem);
 }
 header nav ul li:nth-child(1):not(:has(#logout-cart-wrapper)) a::after {
-  content: "Sign In";
+  content: 'Sign In';
 }
 header nav ul li:nth-child(2) a::after {
-  content: "Shop";
+  content: 'Shop';
   top: 53%;
 }
 header nav ul li:nth-child(3) a::after {
-  content: "Dev Info";
+  content: 'Dev Info';
   font-size: clamp(1rem, 0.97rem + 0.129vw, 1.125rem);
 }
 header nav #shop-heading-text {
@@ -1726,7 +1981,7 @@ header nav #shop-heading-text a {
   color: chartreuse;
 }
 header nav #orders-link {
-  background-image: url("/assets/images/orders-link-bg.jpg");
+  background-image: url('/assets/images/orders-link-bg.jpg');
   background-size: cover;
   width: 20rem;
   margin-inline: auto;
@@ -1743,7 +1998,7 @@ header nav #orders-link {
   opacity: 0;
 }
 header nav #orders-link::after {
-  content: "View Orders";
+  content: 'View Orders';
   position: absolute;
   text-wrap: nowrap;
   top: 0.85rem;
@@ -1828,7 +2083,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 }
 
 #shop-page-header ul li:nth-child(2) a::after {
-  content: "Home";
+  content: 'Home';
   top: 6.25rem;
   color: chartreuse;
 }
@@ -1852,7 +2107,8 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 }
 #logout-cart-wrapper #cart-icon-wrapper span {
   pointer-events: none;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   display: grid;
   place-content: center;
   width: 1.5rem;
@@ -1861,14 +2117,24 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   bottom: 0;
   left: 0;
   border-radius: 50%;
-  background: radial-gradient(rgb(249, 239, 255), rgb(241, 205, 241), rgb(235, 172, 235), rgb(238, 149, 238), violet);
+  background: radial-gradient(
+    rgb(249, 239, 255),
+    rgb(241, 205, 241),
+    rgb(235, 172, 235),
+    rgb(238, 149, 238),
+    violet
+  );
   outline: 2px solid chartreuse;
 }
 
 #product-dialog {
   backdrop-filter: blur(4px);
   background-color: transparent;
-  background-image: radial-gradient(rgba(241, 137, 241, 0.75) 40%, rgba(241, 137, 241, 0.75) 40%, rgba(156, 0, 156, 0.25));
+  background-image: radial-gradient(
+    rgba(241, 137, 241, 0.75) 40%,
+    rgba(241, 137, 241, 0.75) 40%,
+    rgba(156, 0, 156, 0.25)
+  );
   border: 2px solid chartreuse;
   border-radius: 15px 0px 15px;
   margin-block: auto;
@@ -1896,7 +2162,8 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   color: chartreuse;
 }
 #product-dialog h3 span {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 #product-dialog #dialog-outer-images-wrapper {
   max-width: 90%;
@@ -1905,7 +2172,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
 }
 #product-dialog #dialog-outer-images-wrapper #dialog-img-wrapper {
   border-radius: 15px 0px 15px;
@@ -1914,7 +2181,9 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   min-width: 350px;
   outline: 1px solid chartreuse;
 }
-#product-dialog #dialog-outer-images-wrapper #dialog-img-wrapper:has(> a:focus-visible) {
+#product-dialog
+  #dialog-outer-images-wrapper
+  #dialog-img-wrapper:has(> a:focus-visible) {
   outline: 2px solid white;
   outline-offset: 5px;
 }
@@ -1928,22 +2197,35 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   width: clamp(21.875rem, 31.071rem - 24.524vw, 9rem);
   padding-inline: clamp(0.25rem, -1.714rem + 6.238vw, 3rem);
 }
-#product-dialog #dialog-outer-images-wrapper #dialog-thumbs-wrapper .thumb-wrapper {
+#product-dialog
+  #dialog-outer-images-wrapper
+  #dialog-thumbs-wrapper
+  .thumb-wrapper {
   width: clamp(4.313rem, 2.679rem + 10.024vw, 9rem);
   border-radius: 15px 0px 15px;
   overflow: hidden;
   outline: 1px solid chartreuse;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
 }
-#product-dialog #dialog-outer-images-wrapper #dialog-thumbs-wrapper .thumb-wrapper:focus-visible {
+#product-dialog
+  #dialog-outer-images-wrapper
+  #dialog-thumbs-wrapper
+  .thumb-wrapper:focus-visible {
   outline: 2px solid white;
   outline-offset: 5px;
 }
-#product-dialog #dialog-outer-images-wrapper #dialog-thumbs-wrapper .active-thumb {
+#product-dialog
+  #dialog-outer-images-wrapper
+  #dialog-thumbs-wrapper
+  .active-thumb {
   outline-offset: 5px;
   outline-width: 5px;
 }
-#product-dialog #dialog-outer-images-wrapper #dialog-thumbs-wrapper .active-thumb img {
+#product-dialog
+  #dialog-outer-images-wrapper
+  #dialog-thumbs-wrapper
+  .active-thumb
+  img {
   opacity: 0.35;
 }
 #product-dialog #product-dialog-desc {
@@ -1972,7 +2254,10 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   padding: 0.25rem;
   border-radius: 15px 0px 15px;
 }
-#product-dialog #product-dialog-footer #dialog-qty-input-wrapper input:focus-visible {
+#product-dialog
+  #product-dialog-footer
+  #dialog-qty-input-wrapper
+  input:focus-visible {
   outline: 2px solid white;
   outline-offset: 5px;
 }
@@ -1982,10 +2267,11 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   border-radius: 10px 0 10px 0;
   border-width: 1px;
   border-style: solid;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  cursor: url('./assets/icons/pointer.png') 10 0, auto;
   outline: none;
   font-weight: 600;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   padding: 0.5rem 1rem;
   border-radius: 15px 0px 15px;
 }
@@ -2144,20 +2430,20 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   text-transform: none;
 }
 
-.swagger-ui [type=reset],
-.swagger-ui [type=submit],
+.swagger-ui [type='reset'],
+.swagger-ui [type='submit'],
 .swagger-ui button,
-.swagger-ui [type=button]::-moz-focus-inner,
-.swagger-ui [type=reset]::-moz-focus-inner,
-.swagger-ui [type=submit]::-moz-focus-inner,
+.swagger-ui [type='button']::-moz-focus-inner,
+.swagger-ui [type='reset']::-moz-focus-inner,
+.swagger-ui [type='submit']::-moz-focus-inner,
 .swagger-ui button::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
 
-.swagger-ui [type=button]:-moz-focusring,
-.swagger-ui [type=reset]:-moz-focusring,
-.swagger-ui [type=submit]:-moz-focusring,
+.swagger-ui [type='button']:-moz-focusring,
+.swagger-ui [type='reset']:-moz-focusring,
+.swagger-ui [type='submit']:-moz-focusring,
 .swagger-ui button:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
@@ -2184,23 +2470,23 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   overflow: auto;
 }
 
-.swagger-ui [type=checkbox],
-.swagger-ui [type=radio] {
+.swagger-ui [type='checkbox'],
+.swagger-ui [type='radio'] {
   box-sizing: border-box;
   padding: 0;
 }
 
-.swagger-ui [type=number]::-webkit-inner-spin-button,
-.swagger-ui [type=number]::-webkit-outer-spin-button {
+.swagger-ui [type='number']::-webkit-inner-spin-button,
+.swagger-ui [type='number']::-webkit-outer-spin-button {
   height: auto;
 }
 
-.swagger-ui [type=search] {
+.swagger-ui [type='search'] {
   outline-offset: -2px;
 }
 
-.swagger-ui [type=search]::-webkit-search-cancel-button,
-.swagger-ui [type=search]::-webkit-search-decoration {
+.swagger-ui [type='search']::-webkit-search-cancel-button,
+.swagger-ui [type='search']::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -2240,19 +2526,27 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 }
 
 .swagger-ui .debug-grid {
-  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTRDOTY4N0U2N0VFMTFFNjg2MzZDQjkwNkQ4MjgwMEIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTRDOTY4N0Q2N0VFMTFFNjg2MzZDQjkwNkQ4MjgwMEIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3NjcyQkQ3NjY3QzUxMUU2QjJCQ0UyNDA4MTAwMjE3MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3NjcyQkQ3NzY3QzUxMUU2QjJCQ0UyNDA4MTAwMjE3MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsBS+GMAAAAjSURBVHjaYvz//z8DLsD4gcGXiYEAGBIKGBne//fFpwAgwAB98AaF2pjlUQAAAABJRU5ErkJggg==) repeat 0 0;
+  background: transparent
+    url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTRDOTY4N0U2N0VFMTFFNjg2MzZDQjkwNkQ4MjgwMEIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTRDOTY4N0Q2N0VFMTFFNjg2MzZDQjkwNkQ4MjgwMEIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3NjcyQkQ3NjY3QzUxMUU2QjJCQ0UyNDA4MTAwMjE3MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3NjcyQkQ3NzY3QzUxMUU2QjJCQ0UyNDA4MTAwMjE3MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsBS+GMAAAAjSURBVHjaYvz//z8DLsD4gcGXiYEAGBIKGBne//fFpwAgwAB98AaF2pjlUQAAAABJRU5ErkJggg==)
+    repeat 0 0;
 }
 
 .swagger-ui .debug-grid-16 {
-  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODYyRjhERDU2N0YyMTFFNjg2MzZDQjkwNkQ4MjgwMEIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODYyRjhERDQ2N0YyMTFFNjg2MzZDQjkwNkQ4MjgwMEIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3NjcyQkQ3QTY3QzUxMUU2QjJCQ0UyNDA4MTAwMjE3MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3NjcyQkQ3QjY3QzUxMUU2QjJCQ0UyNDA4MTAwMjE3MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PvCS01IAAABMSURBVHjaYmR4/5+BFPBfAMFm/MBgx8RAGWCn1AAmSg34Q6kBDKMGMDCwICeMIemF/5QawEipAWwUhwEjMDvbAWlWkvVBwu8vQIABAEwBCph8U6c0AAAAAElFTkSuQmCC) repeat 0 0;
+  background: transparent
+    url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODYyRjhERDU2N0YyMTFFNjg2MzZDQjkwNkQ4MjgwMEIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODYyRjhERDQ2N0YyMTFFNjg2MzZDQjkwNkQ4MjgwMEIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3NjcyQkQ3QTY3QzUxMUU2QjJCQ0UyNDA4MTAwMjE3MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3NjcyQkQ3QjY3QzUxMUU2QjJCQ0UyNDA4MTAwMjE3MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PvCS01IAAABMSURBVHjaYmR4/5+BFPBfAMFm/MBgx8RAGWCn1AAmSg34Q6kBDKMGMDCwICeMIemF/5QawEipAWwUhwEjMDvbAWlWkvVBwu8vQIABAEwBCph8U6c0AAAAAElFTkSuQmCC)
+    repeat 0 0;
 }
 
 .swagger-ui .debug-grid-8-solid {
-  background: #fff url(data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAAAAD/4QMxaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzExMSA3OS4xNTgzMjUsIDIwMTUvMDkvMTAtMDE6MTA6MjAgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE1IChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkIxMjI0OTczNjdCMzExRTZCMkJDRTI0MDgxMDAyMTcxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkIxMjI0OTc0NjdCMzExRTZCMkJDRTI0MDgxMDAyMTcxIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QjEyMjQ5NzE2N0IzMTFFNkIyQkNFMjQwODEwMDIxNzEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QjEyMjQ5NzI2N0IzMTFFNkIyQkNFMjQwODEwMDIxNzEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/7gAOQWRvYmUAZMAAAAAB/9sAhAAbGhopHSlBJiZBQi8vL0JHPz4+P0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHAR0pKTQmND8oKD9HPzU/R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0f/wAARCAAIAAgDASIAAhEBAxEB/8QAWQABAQAAAAAAAAAAAAAAAAAAAAYBAQEAAAAAAAAAAAAAAAAAAAIEEAEBAAMBAAAAAAAAAAAAAAABADECA0ERAAEDBQAAAAAAAAAAAAAAAAARITFBUWESIv/aAAwDAQACEQMRAD8AoOnTV1QTD7JJshP3vSM3P//Z) repeat 0 0;
+  background: #fff
+    url(data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAAAAD/4QMxaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzExMSA3OS4xNTgzMjUsIDIwMTUvMDkvMTAtMDE6MTA6MjAgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE1IChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkIxMjI0OTczNjdCMzExRTZCMkJDRTI0MDgxMDAyMTcxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkIxMjI0OTc0NjdCMzExRTZCMkJDRTI0MDgxMDAyMTcxIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QjEyMjQ5NzE2N0IzMTFFNkIyQkNFMjQwODEwMDIxNzEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QjEyMjQ5NzI2N0IzMTFFNkIyQkNFMjQwODEwMDIxNzEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/7gAOQWRvYmUAZMAAAAAB/9sAhAAbGhopHSlBJiZBQi8vL0JHPz4+P0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHAR0pKTQmND8oKD9HPzU/R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0f/wAARCAAIAAgDASIAAhEBAxEB/8QAWQABAQAAAAAAAAAAAAAAAAAAAAYBAQEAAAAAAAAAAAAAAAAAAAIEEAEBAAMBAAAAAAAAAAAAAAABADECA0ERAAEDBQAAAAAAAAAAAAAAAAARITFBUWESIv/aAAwDAQACEQMRAD8AoOnTV1QTD7JJshP3vSM3P//Z)
+    repeat 0 0;
 }
 
 .swagger-ui .debug-grid-16-solid {
-  background: #fff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NzY3MkJEN0U2N0M1MTFFNkIyQkNFMjQwODEwMDIxNzEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NzY3MkJEN0Y2N0M1MTFFNkIyQkNFMjQwODEwMDIxNzEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3NjcyQkQ3QzY3QzUxMUU2QjJCQ0UyNDA4MTAwMjE3MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3NjcyQkQ3RDY3QzUxMUU2QjJCQ0UyNDA4MTAwMjE3MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pve6J3kAAAAzSURBVHjaYvz//z8D0UDsMwMjSRoYP5Gq4SPNbRjVMEQ1fCRDg+in/6+J1AJUxsgAEGAA31BAJMS0GYEAAAAASUVORK5CYII=) repeat 0 0;
+  background: #fff
+    url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NzY3MkJEN0U2N0M1MTFFNkIyQkNFMjQwODEwMDIxNzEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NzY3MkJEN0Y2N0M1MTFFNkIyQkNFMjQwODEwMDIxNzEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3NjcyQkQ3QzY3QzUxMUU2QjJCQ0UyNDA4MTAwMjE3MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3NjcyQkQ3RDY3QzUxMUU2QjJCQ0UyNDA4MTAwMjE3MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pve6J3kAAAAzSURBVHjaYvz//z8D0UDsMwMjSRoYP5Gq4SPNbRjVMEQ1fCRDg+in/6+J1AJUxsgAEGAA31BAJMS0GYEAAAAASUVORK5CYII=)
+    repeat 0 0;
 }
 
 .swagger-ui .border-box,
@@ -2275,12 +2569,12 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 .swagger-ui h6,
 .swagger-ui header,
 .swagger-ui html,
-.swagger-ui input[type=email],
-.swagger-ui input[type=number],
-.swagger-ui input[type=password],
-.swagger-ui input[type=tel],
-.swagger-ui input[type=text],
-.swagger-ui input[type=url],
+.swagger-ui input[type='email'],
+.swagger-ui input[type='number'],
+.swagger-ui input[type='password'],
+.swagger-ui input[type='tel'],
+.swagger-ui input[type='text'],
+.swagger-ui input[type='url'],
 .swagger-ui legend,
 .swagger-ui li,
 .swagger-ui main,
@@ -3761,7 +4055,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 }
 .swagger-ui .cf:after,
 .swagger-ui .cf:before {
-  content: " ";
+  content: ' ';
   display: table;
 }
 
@@ -4663,7 +4957,8 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   }
 }
 .swagger-ui .sans-serif {
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica, helvetica neue, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica,
+    helvetica neue, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
 }
 
 .swagger-ui .serif {
@@ -9470,7 +9765,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 }
 
 .swagger-ui .small-caps {
-  font-feature-settings: "smcp";
+  font-feature-settings: 'smcp';
   font-variant: small-caps;
 }
 
@@ -9496,7 +9791,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
     text-indent: 1em;
   }
   .swagger-ui .small-caps-ns {
-    font-feature-settings: "smcp";
+    font-feature-settings: 'smcp';
     font-variant: small-caps;
   }
   .swagger-ui .truncate-ns {
@@ -9521,7 +9816,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
     text-indent: 1em;
   }
   .swagger-ui .small-caps-m {
-    font-feature-settings: "smcp";
+    font-feature-settings: 'smcp';
     font-variant: small-caps;
   }
   .swagger-ui .truncate-m {
@@ -9546,7 +9841,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
     text-indent: 1em;
   }
   .swagger-ui .small-caps-l {
-    font-feature-settings: "smcp";
+    font-feature-settings: 'smcp';
     font-variant: small-caps;
   }
   .swagger-ui .truncate-l {
@@ -9831,7 +10126,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 .swagger-ui .shadow-hover:after {
   border-radius: inherit;
   box-shadow: 0 0 16px 2px rgba(0, 0, 0, 0.2);
-  content: "";
+  content: '';
   height: 100%;
   left: 0;
   opacity: 0;
@@ -10116,7 +10411,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 .swagger-ui .opblock .tab-header .tab-item.active h4 span:after {
   background: grey;
   bottom: -15px;
-  content: "";
+  content: '';
   height: 4px;
   left: 50%;
   position: absolute;
@@ -10377,7 +10672,12 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   border-color: #0d5aa7;
 }
 
-.swagger-ui .opblock.opblock-options .tab-header .tab-item.active h4 span:after {
+.swagger-ui
+  .opblock.opblock-options
+  .tab-header
+  .tab-item.active
+  h4
+  span:after {
   background: #0d5aa7;
 }
 
@@ -10395,7 +10695,12 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   border-color: #ebebeb;
 }
 
-.swagger-ui .opblock.opblock-deprecated .tab-header .tab-item.active h4 span:after {
+.swagger-ui
+  .opblock.opblock-deprecated
+  .tab-header
+  .tab-item.active
+  h4
+  span:after {
   background: #ebebeb;
 }
 
@@ -10433,7 +10738,10 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   width: 100%;
 }
 
-.swagger-ui .model-example .model-container .model-hint:not(.model-hint--embedded) {
+.swagger-ui
+  .model-example
+  .model-container
+  .model-hint:not(.model-hint--embedded) {
   top: -1.15em;
 }
 
@@ -10460,7 +10768,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 
 .swagger-ui .tab li:first-of-type:after {
   background: rgba(0, 0, 0, 0.2);
-  content: "";
+  content: '';
   height: 100%;
   position: absolute;
   right: 6px;
@@ -10688,7 +10996,12 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   margin: -20px 15px 0 0;
 }
 
-.swagger-ui .scheme-container .schemes > .schemes-server-container > label select {
+.swagger-ui
+  .scheme-container
+  .schemes
+  > .schemes-server-container
+  > label
+  select {
   min-width: 130px;
   text-transform: uppercase;
 }
@@ -10725,7 +11038,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 
 .swagger-ui .loading-container .loading:after {
   color: #3b4151;
-  content: "loading";
+  content: 'loading';
   font-family: sans-serif;
   font-size: 10px;
   font-weight: 700;
@@ -10742,7 +11055,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   border: 2px solid rgba(85, 85, 85, 0.1);
   border-radius: 100%;
   border-top-color: rgba(0, 0, 0, 0.6);
-  content: "";
+  content: '';
   display: block;
   height: 60px;
   left: 50%;
@@ -11027,7 +11340,8 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 }
 
 .swagger-ui .copy-to-clipboard button {
-  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" aria-hidden="true"><path fill="%23fff" fill-rule="evenodd" d="M4 12h4v1H4zm5-6H4v1h5zm2 3V7l-3 3 3 3v-2h5V9zM6.5 8H4v1h2.5zM4 11h2.5v-1H4zm9 1h1v2c-.02.28-.11.52-.3.7s-.42.28-.7.3H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h3c0-1.11.89-2 2-2s2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V5H3v9h10zM4 4h8c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H5c-.55 0-1 .45-1 1"/></svg>') 50% no-repeat;
+  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" aria-hidden="true"><path fill="%23fff" fill-rule="evenodd" d="M4 12h4v1H4zm5-6H4v1h5zm2 3V7l-3 3 3 3v-2h5V9zM6.5 8H4v1h2.5zM4 11h2.5v-1H4zm9 1h1v2c-.02.28-.11.52-.3.7s-.42.28-.7.3H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h3c0-1.11.89-2 2-2s2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V5H3v9h10zM4 4h8c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H5c-.55 0-1 .45-1 1"/></svg>')
+    50% no-repeat;
   border: none;
   flex-grow: 1;
   flex-shrink: 1;
@@ -11064,7 +11378,9 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: #f7f7f7 url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13.418 7.859a.695.695 0 0 1 .978 0 .68.68 0 0 1 0 .969l-3.908 3.83a.697.697 0 0 1-.979 0l-3.908-3.83a.68.68 0 0 1 0-.969.695.695 0 0 1 .978 0L10 11z"/></svg>') right 10px center no-repeat;
+  background: #f7f7f7
+    url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13.418 7.859a.695.695 0 0 1 .978 0 .68.68 0 0 1 0 .969l-3.908 3.83a.697.697 0 0 1-.979 0l-3.908-3.83a.68.68 0 0 1 0-.969.695.695 0 0 1 .978 0L10 11z"/></svg>')
+    right 10px center no-repeat;
   background-size: 20px;
   border: 2px solid #41444e;
   border-radius: 4px;
@@ -11111,28 +11427,28 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   margin: 0 0 5px;
 }
 
-.swagger-ui input[type=email],
-.swagger-ui input[type=file],
-.swagger-ui input[type=password],
-.swagger-ui input[type=search],
-.swagger-ui input[type=text] {
+.swagger-ui input[type='email'],
+.swagger-ui input[type='file'],
+.swagger-ui input[type='password'],
+.swagger-ui input[type='search'],
+.swagger-ui input[type='text'] {
   line-height: 1;
 }
 
 @media (max-width: 768px) {
-  .swagger-ui input[type=email],
-  .swagger-ui input[type=file],
-  .swagger-ui input[type=password],
-  .swagger-ui input[type=search],
-  .swagger-ui input[type=text] {
+  .swagger-ui input[type='email'],
+  .swagger-ui input[type='file'],
+  .swagger-ui input[type='password'],
+  .swagger-ui input[type='search'],
+  .swagger-ui input[type='text'] {
     max-width: 175px;
   }
 }
-.swagger-ui input[type=email],
-.swagger-ui input[type=file],
-.swagger-ui input[type=password],
-.swagger-ui input[type=search],
-.swagger-ui input[type=text],
+.swagger-ui input[type='email'],
+.swagger-ui input[type='file'],
+.swagger-ui input[type='password'],
+.swagger-ui input[type='search'],
+.swagger-ui input[type='text'],
 .swagger-ui textarea {
   background: #fff;
   border: 1px solid #d9d9d9;
@@ -11142,11 +11458,11 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   padding: 8px 10px;
 }
 
-.swagger-ui input[type=email].invalid,
-.swagger-ui input[type=file].invalid,
-.swagger-ui input[type=password].invalid,
-.swagger-ui input[type=search].invalid,
-.swagger-ui input[type=text].invalid,
+.swagger-ui input[type='email'].invalid,
+.swagger-ui input[type='file'].invalid,
+.swagger-ui input[type='password'].invalid,
+.swagger-ui input[type='search'].invalid,
+.swagger-ui input[type='text'].invalid,
 .swagger-ui textarea.invalid {
   animation: shake 0.4s 1;
   background: #feebeb;
@@ -11171,16 +11487,21 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 }
 
 @keyframes shake {
-  10%, 90% {
+  10%,
+  90% {
     transform: translate3d(-1px, 0, 0);
   }
-  20%, 80% {
+  20%,
+  80% {
     transform: translate3d(2px, 0, 0);
   }
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     transform: translate3d(-4px, 0, 0);
   }
-  40%, 60% {
+  40%,
+  60% {
     transform: translate3d(4px, 0, 0);
   }
 }
@@ -11234,11 +11555,11 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   margin: 0 !important;
 }
 
-.swagger-ui .checkbox input[type=checkbox] {
+.swagger-ui .checkbox input[type='checkbox'] {
   display: none;
 }
 
-.swagger-ui .checkbox input[type=checkbox] + label > .item {
+.swagger-ui .checkbox input[type='checkbox'] + label > .item {
   background: #e8e8e8;
   border-radius: 1px;
   box-shadow: 0 0 0 2px #e8e8e8;
@@ -11253,12 +11574,14 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   width: 16px;
 }
 
-.swagger-ui .checkbox input[type=checkbox] + label > .item:active {
+.swagger-ui .checkbox input[type='checkbox'] + label > .item:active {
   transform: scale(0.9);
 }
 
-.swagger-ui .checkbox input[type=checkbox]:checked + label > .item {
-  background: #e8e8e8 url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="8" viewBox="3 7 10 8"><path fill="%2341474E" fill-rule="evenodd" d="M6.333 15 3 11.667l1.333-1.334 2 2L11.667 7 13 8.333z"/></svg>') 50% no-repeat;
+.swagger-ui .checkbox input[type='checkbox']:checked + label > .item {
+  background: #e8e8e8
+    url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="8" viewBox="3 7 10 8"><path fill="%2341474E" fill-rule="evenodd" d="M6.333 15 3 11.667l1.333-1.334 2 2L11.667 7 13 8.333z"/></svg>')
+    50% no-repeat;
 }
 
 .swagger-ui .dialog-ux {
@@ -11377,9 +11700,10 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 }
 
 .swagger-ui .model-toggle:after {
-  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>') 50% no-repeat;
+  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>')
+    50% no-repeat;
   background-size: 100%;
-  content: "";
+  content: '';
   display: block;
   height: 20px;
   width: 20px;
@@ -11439,7 +11763,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 }
 
 .swagger-ui .model .property.primitive.extension > td:first-child:after {
-  content: ": ";
+  content: ': ';
 }
 
 .swagger-ui .model .external-docs,
@@ -11779,7 +12103,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 
 .swagger-ui .parameter__name.required:after {
   color: rgba(255, 0, 0, 0.6);
-  content: "required";
+  content: 'required';
   font-size: 10px;
   padding: 5px;
   position: relative;
@@ -11886,7 +12210,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   justify-content: flex-end;
 }
 
-.swagger-ui .topbar .download-url-wrapper input[type=text] {
+.swagger-ui .topbar .download-url-wrapper input[type='text'] {
   border: 2px solid #62a03f;
   border-radius: 4px 0 0 4px;
   margin: 0;
@@ -12070,8 +12394,8 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   padding: 0;
 }
 
-.swagger-ui .auth-container input[type=password],
-.swagger-ui .auth-container input[type=text] {
+.swagger-ui .auth-container input[type='password'],
+.swagger-ui .auth-container input[type='text'] {
   min-width: 230px;
 }
 
@@ -12225,8 +12549,12 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   text-decoration: line-through;
 }
 
-.swagger-ui .json-schema-2020-12-keyword--const .json-schema-2020-12-json-viewer__name,
-.swagger-ui .json-schema-2020-12-keyword--const .json-schema-2020-12-json-viewer__value {
+.swagger-ui
+  .json-schema-2020-12-keyword--const
+  .json-schema-2020-12-json-viewer__name,
+.swagger-ui
+  .json-schema-2020-12-keyword--const
+  .json-schema-2020-12-json-viewer__value {
   color: #3b4151;
   font-style: normal;
 }
@@ -12248,8 +12576,12 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   color: #fff;
 }
 
-.swagger-ui .json-schema-2020-12-keyword--default .json-schema-2020-12-json-viewer__name,
-.swagger-ui .json-schema-2020-12-keyword--default .json-schema-2020-12-json-viewer__value {
+.swagger-ui
+  .json-schema-2020-12-keyword--default
+  .json-schema-2020-12-json-viewer__name,
+.swagger-ui
+  .json-schema-2020-12-keyword--default
+  .json-schema-2020-12-json-viewer__value {
   color: #3b4151;
   font-style: normal;
 }
@@ -12275,16 +12607,28 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   margin: 0;
 }
 
-.swagger-ui .json-schema-2020-12-keyword--enum .json-schema-2020-12-json-viewer__name,
-.swagger-ui .json-schema-2020-12-keyword--enum .json-schema-2020-12-json-viewer__value,
-.swagger-ui .json-schema-2020-12-keyword--examples .json-schema-2020-12-json-viewer__name,
-.swagger-ui .json-schema-2020-12-keyword--examples .json-schema-2020-12-json-viewer__value {
+.swagger-ui
+  .json-schema-2020-12-keyword--enum
+  .json-schema-2020-12-json-viewer__name,
+.swagger-ui
+  .json-schema-2020-12-keyword--enum
+  .json-schema-2020-12-json-viewer__value,
+.swagger-ui
+  .json-schema-2020-12-keyword--examples
+  .json-schema-2020-12-json-viewer__name,
+.swagger-ui
+  .json-schema-2020-12-keyword--examples
+  .json-schema-2020-12-json-viewer__value {
   color: #3b4151;
   font-style: normal;
 }
 
-.swagger-ui .json-schema-2020-12-json-viewer-extension-keyword .json-schema-2020-12-json-viewer__name,
-.swagger-ui .json-schema-2020-12-json-viewer-extension-keyword .json-schema-2020-12-json-viewer__value {
+.swagger-ui
+  .json-schema-2020-12-json-viewer-extension-keyword
+  .json-schema-2020-12-json-viewer__name,
+.swagger-ui
+  .json-schema-2020-12-json-viewer-extension-keyword
+  .json-schema-2020-12-json-viewer__value {
   color: #929292;
   font-style: italic;
 }
@@ -12295,10 +12639,14 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   padding: 0;
 }
 
-.swagger-ui .json-schema-2020-12-keyword--patternProperties .json-schema-2020-12__title:first-of-type:after,
-.swagger-ui .json-schema-2020-12-keyword--patternProperties .json-schema-2020-12__title:first-of-type:before {
+.swagger-ui
+  .json-schema-2020-12-keyword--patternProperties
+  .json-schema-2020-12__title:first-of-type:after,
+.swagger-ui
+  .json-schema-2020-12-keyword--patternProperties
+  .json-schema-2020-12__title:first-of-type:before {
   color: #55a;
-  content: "/";
+  content: '/';
 }
 
 .swagger-ui .json-schema-2020-12-keyword--properties > ul {
@@ -12311,9 +12659,13 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   list-style-type: none;
 }
 
-.swagger-ui .json-schema-2020-12-property--required > .json-schema-2020-12:first-of-type > .json-schema-2020-12-head .json-schema-2020-12__title:after {
+.swagger-ui
+  .json-schema-2020-12-property--required
+  > .json-schema-2020-12:first-of-type
+  > .json-schema-2020-12-head
+  .json-schema-2020-12__title:after {
   color: red;
-  content: "*";
+  content: '*';
   font-weight: 700;
 }
 
@@ -12413,8 +12765,10 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   padding: 1px 4px;
 }
 
-.swagger-ui .json-schema-2020-12-keyword__name--secondary + .json-schema-2020-12-keyword__value--secondary:before {
-  content: "=";
+.swagger-ui
+  .json-schema-2020-12-keyword__name--secondary
+  + .json-schema-2020-12-keyword__value--secondary:before {
+  content: '=';
 }
 
 .swagger-ui .json-schema-2020-12__attribute {
@@ -12508,8 +12862,10 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   padding: 1px 4px;
 }
 
-.swagger-ui .json-schema-2020-12-json-viewer__name--secondary + .json-schema-2020-12-json-viewer__value--secondary:before {
-  content: "=";
+.swagger-ui
+  .json-schema-2020-12-json-viewer__name--secondary
+  + .json-schema-2020-12-json-viewer__value--secondary:before {
+  content: '=';
 }
 
 .swagger-ui .json-schema-2020-12 {
@@ -12587,7 +12943,11 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   padding-right: 0;
 }
 
-.swagger-ui .model-box .json-schema-2020-12:not(.json-schema-2020-12--embedded) > .json-schema-2020-12-head .json-schema-2020-12__title:first-of-type {
+.swagger-ui
+  .model-box
+  .json-schema-2020-12:not(.json-schema-2020-12--embedded)
+  > .json-schema-2020-12-head
+  .json-schema-2020-12__title:first-of-type {
   font-size: 16px;
 }
 
@@ -12605,7 +12965,11 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   background-color: transparent;
 }
 
-.swagger-ui .models .json-schema-2020-12:not(.json-schema-2020-12--embedded) > .json-schema-2020-12-head .json-schema-2020-12__title:first-of-type {
+.swagger-ui
+  .models
+  .json-schema-2020-12:not(.json-schema-2020-12--embedded)
+  > .json-schema-2020-12-head
+  .json-schema-2020-12__title:first-of-type {
   font-size: 16px;
 }
 
@@ -12613,7 +12977,6 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   overflow-x: auto;
   width: calc(100% - 40px);
 }
-
 
 .back-to-top {
   opacity: 0;
@@ -12634,9 +12997,11 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 .back-to-top svg path {
   transition: fill 0.3s ease;
 }
-.back-to-top:hover svg, .back-to-top:focus-visible svg {
+.back-to-top:hover svg,
+.back-to-top:focus-visible svg {
   background-color: rgba(127, 255, 0, 0.4);
 }
-.back-to-top:hover svg path, .back-to-top:focus-visible svg path {
+.back-to-top:hover svg path,
+.back-to-top:focus-visible svg path {
   fill: chartreuse;
 }
