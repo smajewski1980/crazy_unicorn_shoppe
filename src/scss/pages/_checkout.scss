@@ -3,48 +3,40 @@
 
 #checkout-body {
   .logo-wrapper {
-    max-width: 200px;
-    margin-inline: auto;
     margin-block: 2rem 1.5rem;
+    margin-inline: auto;
+    max-width: 200px;
   }
   #checkout-h1 {
-    text-align: center;
     font-size: clamp(2rem, 5.5vw, 5rem);
+    text-align: center;
   }
-
   nav {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
+    @include m.display(flex, center, center, 2rem);
     margin-block: 1rem 2rem;
+    width: 100%;
 
     a {
       @include m.regular-button;
-      font-family: $font-para;
-      padding: 0.5rem 1rem;
       border: 1px solid chartreuse;
+      font-family: $font-para;
       font-weight: 600;
+      padding: 0.5rem 1rem;
 
       &:focus-visible {
-        outline: 2px solid white;
-        outline-offset: 3px;
+        @include m.focus-visible;
       }
     }
   }
-
   #invoice-wrapper {
-    // grid-template-columns: 1fr;
-
     table {
-      width: 100%;
-      margin-inline: auto;
-      font-family: $font-para;
-      border-spacing: 0;
       border: 1px solid chartreuse;
       border-radius: 15px 0px 15px 0px;
+      border-spacing: 0;
+      font-family: $font-para;
       font-size: clamp(1rem, 0.939rem + 0.259vw, 1.25rem);
+      margin-inline: auto;
+      width: 100%;
 
       tr:first-child th {
         padding-block-start: 1rem;
@@ -69,123 +61,105 @@
           padding-block-end: 1rem;
         }
       }
-
       tr {
         .invoice-item-controls-wrapper {
-          gap: 1rem;
-          display: inline-flex;
-          justify-content: space-around;
-          align-items: center;
+          @include m.display(inline-flex, center, flex-start, 1rem);
 
           img {
             cursor: url('./assets/icons/pointer.png') 10 0, auto;
-            width: 1rem;
             height: 1rem;
+            width: 1rem;
           }
-
           img:last-child {
-            width: 1.5rem;
             height: 1.5rem;
+            width: 1.5rem;
           }
         }
       }
     }
   }
-
   #payment-method-section {
     h2 {
       font-family: $font-para;
-      text-align: center;
       margin-block-start: 1rem;
+      text-align: center;
     }
     #payment-choice-wrapper {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
+      @include m.display(flex, center, space-around);
 
       .payment-img-wrapper {
-        max-width: 250px;
         cursor: url('./assets/icons/pointer.png') 10 0, auto;
+        max-width: 250px;
       }
     }
   }
-
   #payment-modal,
   #order-complete-modal {
     @include m.modal-styles;
     max-width: min(800px, calc(100% - 1.5rem));
 
     h4 {
-      // font-size: clamp(1rem, 0.815rem + 0.988vw, 2rem);
+      color: chartreuse;
       font-size: 2rem;
       margin-block: 1rem 2rem;
-      color: chartreuse;
     }
-
     p {
-      max-width: 75%;
       margin-inline: auto;
+      max-width: 75%;
     }
-
     #order-conf-num {
       font-size: clamp(1rem, 0.815rem + 0.988vw, 2rem);
     }
-
     button {
       @include m.regular-button;
       font-family: $font-para;
-      padding: 0.75rem 2.5rem;
       margin-block-start: 0.5rem;
+      padding: 0.75rem 2.5rem;
 
       &:focus-visible {
-        outline: 2px solid white;
-        outline-offset: 3px;
+        @include m.focus-visible;
       }
     }
   }
-
   #order-complete-modal {
     padding-block: 1rem 2rem;
   }
-
   #shipping-section {
-    font-family: $font-para;
     display: none;
+    font-family: $font-para;
 
     h3 {
-      text-align: center;
       margin-block: 1rem;
+      text-align: center;
     }
-
     #disp-conf-info {
       p {
         margin: 0;
         text-align: center;
       }
     }
-
     #shipping-confirm-info-wrapper {
       --input-display: none;
-      text-align: center;
+      --pointer-ev: none;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(325px, 100%), 1fr));
-      --pointer-ev: none;
-      max-width: min(100%, 750px);
-      margin-inline: auto;
       margin-block-end: 2rem;
+      margin-inline: auto;
+      max-width: min(100%, 750px);
+      text-align: center;
 
       div {
-        pointer-events: var(--pointer-ev);
         display: var(--input-display);
-        grid-template-columns: 80%;
         gap: 0.25rem;
+        grid-template-columns: 80%;
         justify-content: center;
+        pointer-events: var(--pointer-ev);
 
         input {
-          margin-block-end: 0.35rem;
-          text-align: center;
           @include m.formInput;
+          margin-block-end: 0.35rem;
           min-width: 275px;
+          text-align: center;
 
           &:focus-within:invalid {
             outline: 3px solid red;
@@ -195,29 +169,26 @@
           }
         }
       }
-
       &:invalid #btn-edit-info {
         @include m.regular-button;
-        margin-block-start: 1.5rem;
         margin-block-end: 0;
+        margin-block-start: 1.5rem;
         pointer-events: auto;
+
         &:focus-visible {
-          outline: 2px solid white;
-          outline-offset: 3px;
+          @include m.focus-visible;
         }
       }
-
       button {
         @include m.regular-button;
-        pointer-events: auto;
-        padding: 0.5rem 2.5rem;
-        margin-block-start: 1.5rem;
-        justify-self: center;
         grid-column: 1 / -1;
+        justify-self: center;
+        margin-block-start: 1.5rem;
+        padding: 0.5rem 2.5rem;
+        pointer-events: auto;
 
         &:focus-visible {
-          outline: 2px solid white;
-          outline-offset: 3px;
+          @include m.focus-visible;
         }
       }
     }

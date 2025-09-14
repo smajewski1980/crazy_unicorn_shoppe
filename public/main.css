@@ -173,11 +173,11 @@ html {
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
-  border-width: 1px;
   border-style: solid;
+  border-width: 1px;
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
-  outline: none;
   font-weight: 600;
+  outline: none;
   padding: 0.5rem 1.5rem 0.65rem;
 }
 #index-body #home-main #home-main-left-col .featured-card .featured-content-wrapper #featured-info-wrapper a:focus-visible {
@@ -204,11 +204,11 @@ html {
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
-  border-width: 1px;
   border-style: solid;
+  border-width: 1px;
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
-  outline: none;
   font-weight: 600;
+  outline: none;
   width: 30%;
   text-align: center;
   padding-block: 0.75rem;
@@ -216,23 +216,23 @@ html {
 }
 #index-body #home-main #home-main-left-col #link-img-wrapper #thought-link ::after {
   content: "Our operators";
-  position: absolute;
-  font-size: clamp(1rem, 0.879rem + 0.518vw, 1.5rem);
   color: chartreuse;
-  top: -1.5rem;
-  text-wrap: nowrap;
-  rotate: -4deg;
+  font-size: clamp(1rem, 0.879rem + 0.518vw, 1.5rem);
   left: -7%;
+  position: absolute;
+  rotate: -4deg;
+  text-wrap: nowrap;
+  top: -1.5rem;
 }
 #index-body #home-main #home-main-left-col #link-img-wrapper #thought-link ::before {
   content: "are standing by.";
-  position: absolute;
-  font-size: clamp(1rem, 0.879rem + 0.518vw, 1.5rem);
   color: chartreuse;
-  top: 2.25rem;
-  text-wrap: nowrap;
-  rotate: -4deg;
+  font-size: clamp(1rem, 0.879rem + 0.518vw, 1.5rem);
   left: 30%;
+  position: absolute;
+  rotate: -4deg;
+  text-wrap: nowrap;
+  top: 2.25rem;
 }
 #index-body #home-main #home-main-left-col #link-img-wrapper #thought-link a:focus-visible {
   outline: none;
@@ -597,48 +597,48 @@ p {
   }
 }
 #checkout-body .logo-wrapper {
-  max-width: 200px;
-  margin-inline: auto;
   margin-block: 2rem 1.5rem;
+  margin-inline: auto;
+  max-width: 200px;
 }
 #checkout-body #checkout-h1 {
-  text-align: center;
   font-size: clamp(2rem, 5.5vw, 5rem);
+  text-align: center;
 }
 #checkout-body nav {
-  width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   gap: 2rem;
   margin-block: 1rem 2rem;
+  width: 100%;
 }
 #checkout-body nav a {
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
-  border-width: 1px;
   border-style: solid;
+  border-width: 1px;
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  font-weight: 600;
   outline: none;
-  font-weight: 600;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  padding: 0.5rem 1rem;
   border: 1px solid chartreuse;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 600;
+  padding: 0.5rem 1rem;
 }
 #checkout-body nav a:focus-visible {
   outline: 2px solid white;
   outline-offset: 3px;
 }
 #checkout-body #invoice-wrapper table {
-  width: 100%;
-  margin-inline: auto;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  border-spacing: 0;
   border: 1px solid chartreuse;
   border-radius: 15px 0px 15px 0px;
+  border-spacing: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: clamp(1rem, 0.939rem + 0.259vw, 1.25rem);
+  margin-inline: auto;
+  width: 100%;
 }
 #checkout-body #invoice-wrapper table tr:first-child th {
   padding-block-start: 1rem;
@@ -662,39 +662,39 @@ p {
   padding-block-end: 1rem;
 }
 #checkout-body #invoice-wrapper table tr .invoice-item-controls-wrapper {
-  gap: 1rem;
   display: inline-flex;
-  justify-content: space-around;
   align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
 }
 #checkout-body #invoice-wrapper table tr .invoice-item-controls-wrapper img {
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
-  width: 1rem;
   height: 1rem;
+  width: 1rem;
 }
 #checkout-body #invoice-wrapper table tr .invoice-item-controls-wrapper img:last-child {
-  width: 1.5rem;
   height: 1.5rem;
+  width: 1.5rem;
 }
 #checkout-body #payment-method-section h2 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  text-align: center;
   margin-block-start: 1rem;
+  text-align: center;
 }
 #checkout-body #payment-method-section #payment-choice-wrapper {
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  justify-content: space-around;
+  gap: 0;
 }
 #checkout-body #payment-method-section #payment-choice-wrapper .payment-img-wrapper {
-  max-width: 250px;
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
+  max-width: 250px;
 }
 #checkout-body #payment-modal,
 #checkout-body #order-complete-modal {
   backdrop-filter: blur(4px);
   background-color: transparent;
-  background-image: radial-gradient(rgba(241, 137, 241, 0.75) 40%, rgba(241, 137, 241, 0.75) 40%, rgba(156, 0, 156, 0.25));
   border: 2px solid chartreuse;
   border-radius: 15px 0px 15px;
   margin-block: auto;
@@ -702,6 +702,7 @@ p {
   outline: none;
   padding: 1rem 1rem 2rem;
   text-align: center;
+  background-image: radial-gradient(rgba(241, 137, 241, 0.75) 40%, rgba(241, 137, 241, 0.75) 40%, rgba(156, 0, 156, 0.25));
   --clip-path-poly: polygon(
     29rem 0rem,
     29rem 0,
@@ -719,14 +720,14 @@ p {
 }
 #checkout-body #payment-modal h4,
 #checkout-body #order-complete-modal h4 {
+  color: chartreuse;
   font-size: 2rem;
   margin-block: 1rem 2rem;
-  color: chartreuse;
 }
 #checkout-body #payment-modal p,
 #checkout-body #order-complete-modal p {
-  max-width: 75%;
   margin-inline: auto;
+  max-width: 75%;
 }
 #checkout-body #payment-modal #order-conf-num,
 #checkout-body #order-complete-modal #order-conf-num {
@@ -737,14 +738,14 @@ p {
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
-  border-width: 1px;
   border-style: solid;
+  border-width: 1px;
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
-  outline: none;
   font-weight: 600;
+  outline: none;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  padding: 0.75rem 2.5rem;
   margin-block-start: 0.5rem;
+  padding: 0.75rem 2.5rem;
 }
 #checkout-body #payment-modal button:focus-visible,
 #checkout-body #order-complete-modal button:focus-visible {
@@ -755,12 +756,12 @@ p {
   padding-block: 1rem 2rem;
 }
 #checkout-body #shipping-section {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   display: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 #checkout-body #shipping-section h3 {
-  text-align: center;
   margin-block: 1rem;
+  text-align: center;
 }
 #checkout-body #shipping-section #disp-conf-info p {
   margin: 0;
@@ -768,31 +769,31 @@ p {
 }
 #checkout-body #shipping-section #shipping-confirm-info-wrapper {
   --input-display: none;
-  text-align: center;
+  --pointer-ev: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(325px, 100%), 1fr));
-  --pointer-ev: none;
-  max-width: min(100%, 750px);
-  margin-inline: auto;
   margin-block-end: 2rem;
+  margin-inline: auto;
+  max-width: min(100%, 750px);
+  text-align: center;
 }
 #checkout-body #shipping-section #shipping-confirm-info-wrapper div {
-  pointer-events: var(--pointer-ev);
   display: var(--input-display);
-  grid-template-columns: 80%;
   gap: 0.25rem;
+  grid-template-columns: 80%;
   justify-content: center;
+  pointer-events: var(--pointer-ev);
 }
 #checkout-body #shipping-section #shipping-confirm-info-wrapper div input {
-  margin-block-end: 0.35rem;
-  text-align: center;
-  text-align: inherit;
-  padding-block: 0.5rem;
-  margin-block-start: 0.25rem;
   border-radius: 15px 0px 15px;
-  outline-offset: 3px;
   box-shadow: 1px 1px 2px chartreuse;
+  margin-block-start: 0.25rem;
+  outline-offset: 3px;
+  padding-block: 0.5rem;
+  text-align: inherit;
+  margin-block-end: 0.35rem;
   min-width: 275px;
+  text-align: center;
 }
 #checkout-body #shipping-section #shipping-confirm-info-wrapper div input:focus-within:invalid {
   outline: 3px solid red;
@@ -804,13 +805,13 @@ p {
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
-  border-width: 1px;
   border-style: solid;
+  border-width: 1px;
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
-  outline: none;
   font-weight: 600;
-  margin-block-start: 1.5rem;
+  outline: none;
   margin-block-end: 0;
+  margin-block-start: 1.5rem;
   pointer-events: auto;
 }
 #checkout-body #shipping-section #shipping-confirm-info-wrapper:invalid #btn-edit-info:focus-visible {
@@ -821,16 +822,16 @@ p {
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
-  border-width: 1px;
   border-style: solid;
+  border-width: 1px;
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
-  outline: none;
   font-weight: 600;
-  pointer-events: auto;
-  padding: 0.5rem 2.5rem;
-  margin-block-start: 1.5rem;
-  justify-self: center;
+  outline: none;
   grid-column: 1/-1;
+  justify-self: center;
+  margin-block-start: 1.5rem;
+  padding: 0.5rem 2.5rem;
+  pointer-events: auto;
 }
 #checkout-body #shipping-section #shipping-confirm-info-wrapper button:focus-visible {
   outline: 2px solid white;
@@ -846,14 +847,14 @@ p {
   margin-block-start: 2rem;
 }
 #orders-body h1 {
-  text-align: center;
-  font-size: clamp(2rem, 0.852rem + 3.457vw, 3.5rem);
-  text-wrap: balance;
-  margin-block-end: 2rem;
   border-bottom: 2px solid;
-  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
   border-image-slice: 1;
+  font-size: clamp(2rem, 0.852rem + 3.457vw, 3.5rem);
+  margin-block-end: 2rem;
   padding-block-end: 1.25rem;
+  text-align: center;
+  text-wrap: balance;
+  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
   padding-block-start: 2rem;
   margin-block-end: 1rem;
 }
@@ -903,8 +904,8 @@ p {
 }
 #orders-body nav ul #home-link,
 #orders-body nav ul #shop-link {
-  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 15px 0px 15px;
   outline: 2px solid chartreuse;
   list-style-type: none;
@@ -971,11 +972,11 @@ p {
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
-  border-width: 1px;
   border-style: solid;
+  border-width: 1px;
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
-  outline: none;
   font-weight: 600;
+  outline: none;
   font-size: 1rem;
   color: red;
   justify-self: center;
@@ -996,11 +997,11 @@ p {
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
-  border-width: 1px;
   border-style: solid;
+  border-width: 1px;
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
-  outline: none;
   font-weight: 600;
+  outline: none;
   box-shadow: 0px 0px 15px rgba(127, 255, 0, 0.5098039216);
 }
 #order-review-modal #btn-close-order-review:focus-visible {
@@ -1019,25 +1020,25 @@ p {
   margin-block-end: 0.5rem;
 }
 #sign-in-page h1 {
-  text-align: center;
-  font-size: clamp(2rem, 0.852rem + 3.457vw, 3.5rem);
-  text-wrap: balance;
-  margin-block-end: 2rem;
   border-bottom: 2px solid;
-  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
   border-image-slice: 1;
+  font-size: clamp(2rem, 0.852rem + 3.457vw, 3.5rem);
+  margin-block-end: 2rem;
   padding-block-end: 1.25rem;
+  text-align: center;
+  text-wrap: balance;
+  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
 }
 #sign-in-page form {
   display: grid;
-  justify-content: center;
-  gap: 0.5rem;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  gap: 0.5rem;
+  justify-content: center;
 }
 #sign-in-page form .login-form-group {
-  width: clamp(18.75rem, 17.593rem + 6.173vw, 25rem);
   display: grid;
   text-align: center;
+  width: clamp(18.75rem, 17.593rem + 6.173vw, 25rem);
 }
 #sign-in-page form .login-form-group:first-child, #sign-in-page form .login-form-group:nth-child(2) {
   position: relative;
@@ -1058,12 +1059,12 @@ p {
   top: 4rem;
 }
 #sign-in-page form .login-form-group input {
-  text-align: inherit;
-  padding-block: 0.5rem;
-  margin-block-start: 0.25rem;
   border-radius: 15px 0px 15px;
-  outline-offset: 3px;
   box-shadow: 1px 1px 2px chartreuse;
+  margin-block-start: 0.25rem;
+  outline-offset: 3px;
+  padding-block: 0.5rem;
+  text-align: inherit;
 }
 #sign-in-page form .login-form-group input:focus-within:invalid {
   outline: 3px solid red;
@@ -1073,23 +1074,23 @@ p {
 }
 #sign-in-page form:valid #btn-login {
   border: 2px solid chartreuse;
-  pointer-events: auto;
   color: rgb(0, 0, 0);
+  pointer-events: auto;
 }
 #sign-in-page form #btn-login {
   padding-block: 0.5rem;
-  margin-block: 0.75rem;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
-  border-radius: 15px 0px 15px;
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px 0px 15px;
   color: rgba(0, 0, 0, 0.3);
+  cursor: url("./assets/icons/pointer.png") 10 0, auto;
   font-weight: 600;
+  margin-block: 0.75rem;
   pointer-events: none;
 }
 #sign-in-page #home-link {
-  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 15px 0px 15px;
   outline: 2px solid chartreuse;
 }
@@ -1233,23 +1234,23 @@ p {
   border-radius: 15px 0px 15px;
 }
 #sign-up-body h1 {
-  text-align: center;
-  font-size: clamp(2rem, 0.852rem + 3.457vw, 3.5rem);
-  text-wrap: balance;
-  margin-block-end: 2rem;
   border-bottom: 2px solid;
-  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
   border-image-slice: 1;
+  font-size: clamp(2rem, 0.852rem + 3.457vw, 3.5rem);
+  margin-block-end: 2rem;
   padding-block-end: 1.25rem;
+  text-align: center;
+  text-wrap: balance;
+  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
   width: fit-content;
   margin-inline: auto;
   display: none;
 }
 #sign-up-body #sign-up-form {
   display: flex;
-  justify-content: center;
-  gap: 0.5rem;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  gap: 0.5rem;
+  justify-content: center;
   column-gap: 2rem;
   flex-wrap: wrap;
   margin-block: -1rem 1.5rem;
@@ -1295,17 +1296,17 @@ p {
   visibility: hidden;
 }
 #sign-up-body #sign-up-form .sign-up-input-wrapper {
-  width: clamp(18.75rem, 17.593rem + 6.173vw, 25rem);
   display: grid;
   text-align: center;
+  width: clamp(18.75rem, 17.593rem + 6.173vw, 25rem);
 }
 #sign-up-body #sign-up-form .sign-up-input-wrapper input {
-  text-align: inherit;
-  padding-block: 0.5rem;
-  margin-block-start: 0.25rem;
   border-radius: 15px 0px 15px;
-  outline-offset: 3px;
   box-shadow: 1px 1px 2px chartreuse;
+  margin-block-start: 0.25rem;
+  outline-offset: 3px;
+  padding-block: 0.5rem;
+  text-align: inherit;
 }
 #sign-up-body #sign-up-form .sign-up-input-wrapper input:focus-within:invalid {
   outline: 3px solid red;
@@ -1315,8 +1316,8 @@ p {
 }
 #sign-up-body #sign-up-form:valid #btn-signup {
   border: 2px solid chartreuse;
-  pointer-events: auto;
   color: rgb(0, 0, 0);
+  pointer-events: auto;
 }
 #sign-up-body #sign-up-form fieldset {
   border-color: chartreuse;
@@ -1334,9 +1335,9 @@ p {
   padding-block-end: 0.25rem;
 }
 #sign-up-body #sign-up-form fieldset .sign-up-input-wrapper {
-  width: clamp(18.75rem, 17.593rem + 6.173vw, 25rem);
   display: flex;
   text-align: center;
+  width: clamp(18.75rem, 17.593rem + 6.173vw, 25rem);
   font-size: 1rem;
   gap: 0.5rem;
   justify-content: start;
@@ -1368,13 +1369,13 @@ p {
   background-image: url("./assets/images/unicorn_stuffed_2.png");
 }
 #sign-up-body #sign-up-form #btn-signup {
-  margin-block: 0.75rem;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
-  border-radius: 15px 0px 15px;
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px 0px 15px;
   color: rgba(0, 0, 0, 0.3);
+  cursor: url("./assets/icons/pointer.png") 10 0, auto;
   font-weight: 600;
+  margin-block: 0.75rem;
   pointer-events: none;
   margin-inline: auto;
   width: 200px;
@@ -1383,8 +1384,8 @@ p {
   margin-block-end: 0rem;
 }
 #sign-up-body #home-link {
-  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 15px 0px 15px;
   outline: 2px solid chartreuse;
   display: none;
@@ -1871,7 +1872,6 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 #product-dialog {
   backdrop-filter: blur(4px);
   background-color: transparent;
-  background-image: radial-gradient(rgba(241, 137, 241, 0.75) 40%, rgba(241, 137, 241, 0.75) 40%, rgba(156, 0, 156, 0.25));
   border: 2px solid chartreuse;
   border-radius: 15px 0px 15px;
   margin-block: auto;
@@ -1879,6 +1879,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   outline: none;
   padding: 1rem 1rem 2rem;
   text-align: center;
+  background-image: radial-gradient(rgba(241, 137, 241, 0.75) 40%, rgba(241, 137, 241, 0.75) 40%, rgba(156, 0, 156, 0.25));
   --clip-path-poly: polygon(
     29rem 0rem,
     29rem 0,
@@ -1983,11 +1984,11 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
-  border-width: 1px;
   border-style: solid;
+  border-width: 1px;
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
-  outline: none;
   font-weight: 600;
+  outline: none;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   padding: 0.5rem 1rem;
   border-radius: 15px 0px 15px;
