@@ -31,7 +31,7 @@
   #invoice-wrapper {
     table {
       border: 1px solid chartreuse;
-      border-radius: 15px 0px 15px 0px;
+      border-radius: $b-rad;
       border-spacing: 0;
       font-family: $font-para;
       font-size: clamp(1rem, 0.939rem + 0.259vw, 1.25rem);
