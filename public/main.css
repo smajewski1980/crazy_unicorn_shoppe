@@ -696,7 +696,7 @@ p {
   backdrop-filter: blur(4px);
   background-color: transparent;
   border: 2px solid chartreuse;
-  border-radius: 15px 0px 15px;
+  border-radius: 15px 0px 15px 0px;
   margin-block: auto;
   margin-inline: auto;
   outline: none;
@@ -785,7 +785,7 @@ p {
   pointer-events: var(--pointer-ev);
 }
 #checkout-body #shipping-section #shipping-confirm-info-wrapper div input {
-  border-radius: 15px 0px 15px;
+  border-radius: 15px 0px 15px 0px;
   box-shadow: 1px 1px 2px chartreuse;
   margin-block-start: 0.25rem;
   outline-offset: 3px;
@@ -906,7 +906,7 @@ p {
 #orders-body nav ul #shop-link {
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px 0px 15px;
+  border-radius: 15px 0px 15px 0px;
   outline: 2px solid chartreuse;
   list-style-type: none;
   width: fit-content;
@@ -1059,7 +1059,7 @@ p {
   top: 4rem;
 }
 #sign-in-page form .login-form-group input {
-  border-radius: 15px 0px 15px;
+  border-radius: 15px 0px 15px 0px;
   box-shadow: 1px 1px 2px chartreuse;
   margin-block-start: 0.25rem;
   outline-offset: 3px;
@@ -1081,7 +1081,7 @@ p {
   padding-block: 0.5rem;
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px 0px 15px;
+  border-radius: 15px 0px 15px 0px;
   color: rgba(0, 0, 0, 0.3);
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
   font-weight: 600;
@@ -1091,7 +1091,7 @@ p {
 #sign-in-page #home-link {
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px 0px 15px;
+  border-radius: 15px 0px 15px 0px;
   outline: 2px solid chartreuse;
 }
 #sign-in-page #home-link a {
@@ -1301,7 +1301,7 @@ p {
   width: clamp(18.75rem, 17.593rem + 6.173vw, 25rem);
 }
 #sign-up-body #sign-up-form .sign-up-input-wrapper input {
-  border-radius: 15px 0px 15px;
+  border-radius: 15px 0px 15px 0px;
   box-shadow: 1px 1px 2px chartreuse;
   margin-block-start: 0.25rem;
   outline-offset: 3px;
@@ -1371,7 +1371,7 @@ p {
 #sign-up-body #sign-up-form #btn-signup {
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px 0px 15px;
+  border-radius: 15px 0px 15px 0px;
   color: rgba(0, 0, 0, 0.3);
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
   font-weight: 600;
@@ -1386,7 +1386,7 @@ p {
 #sign-up-body #home-link {
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px 0px 15px;
+  border-radius: 15px 0px 15px 0px;
   outline: 2px solid chartreuse;
   display: none;
   margin-left: 50%;
@@ -1873,7 +1873,7 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   backdrop-filter: blur(4px);
   background-color: transparent;
   border: 2px solid chartreuse;
-  border-radius: 15px 0px 15px;
+  border-radius: 15px 0px 15px 0px;
   margin-block: auto;
   margin-inline: auto;
   outline: none;
