@@ -7,53 +7,50 @@
 
   h1 {
     font-size: clamp(1.5rem, 2.75vw, 3rem);
-    text-align: center;
     margin-block: 1rem;
+    text-align: center;
   }
 
   nav {
-    display: flex;
+    @include m.display(flex, center, center);
     flex-wrap: wrap;
-    align-items: center;
     margin-block-end: 1rem;
-    justify-content: center;
-    max-width: 75%;
     margin-inline: auto;
+    max-width: 75%;
 
     ul {
+      @include m.display(flex, center, center, 2rem);
       flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       list-style-type: none;
-      gap: 2rem;
 
       li {
         position: relative;
       }
 
       li:nth-child(1) {
-        min-width: 50px;
         flex-basis: 25%;
+        min-width: 50px;
+
         ::after {
-          font-family: 'Kbcurioussoul-m3W9';
-          content: 'HOME';
-          position: absolute;
           color: chartreuse;
+          content: 'HOME';
+          font-family: 'Kbcurioussoul-m3W9';
           left: 50%;
+          position: absolute;
           transform: translateX(-50%);
         }
       }
+
       li:nth-child(2) {
-        min-width: 70px;
         flex-basis: 35%;
+        min-width: 70px;
 
         ::after {
-          font-family: 'Kbcurioussoul-m3W9';
           content: 'Shop';
+          font-family: 'Kbcurioussoul-m3W9';
+          left: 50%;
           position: absolute;
           top: 50%;
-          left: 50%;
           transform: translate(-50%, -50%);
         }
       }
@@ -66,16 +63,15 @@
 
   p {
     font-size: clamp(1rem, 0.97rem + 0.129vw, 1.125rem);
-    max-width: 60ch;
-    width: 100%;
     margin: 0;
     margin-inline: auto;
+    max-width: 60ch;
     text-align: center;
+    width: 100%;
 
     &:nth-of-type(1) {
       margin-block: 1rem;
     }
-
     &:nth-of-type(8),
     &:nth-of-type(9),
     &:nth-of-type(10),
@@ -108,15 +104,14 @@
     margin-block: 2rem 1.75rem;
     text-align: center;
   }
-
   .language-js {
+    border-radius: $b-rad;
     margin-block: 2rem;
-    border-radius: 15px 0px 15px;
   }
 
   #swagger-ui {
+    border-radius: $b-rad;
     margin-block: 2rem;
-    border-radius: 15px 0px 15px;
   }
 
   #img-erd {
@@ -124,14 +119,14 @@
   }
 
   .language-sql {
-    max-height: 650px;
+    border-radius: $b-rad;
     margin-block-start: 2rem;
-    border-radius: 15px 0px 15px;
+    max-height: 650px;
   }
 
   li {
-    font-size: clamp(0.75rem, 0.777vw + 0.568rem, 1.5rem);
     font-family: $font-para;
+    font-size: clamp(0.75rem, 0.777vw + 0.568rem, 1.5rem);
   }
 
   #to-dos {
