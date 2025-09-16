@@ -1,5 +1,6 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as m;
+
 #index-body {
   .testimonials-wrapper {
     h2 {
@@ -19,6 +20,7 @@
         transform-origin: left bottom;
       }
     }
+
     .testimonials-inner-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -45,6 +47,7 @@
             }
           }
         }
+
         p {
           font-family: $font-para;
           font-weight: 600;
@@ -55,6 +58,7 @@
       }
     }
   }
+
   #home-main {
     @include m.display(flex, stretch, center);
     flex-wrap: wrap;
@@ -81,6 +85,7 @@
           top: 1rem;
           width: 3vw;
         }
+
         h2 {
           color: chartreuse;
           font-family: 'Kbcurioussoul-m3W9';
@@ -88,6 +93,7 @@
           margin-block-end: 0.5rem;
           margin-inline-start: 1.125rem;
         }
+
         .featured-content-wrapper {
           @include m.display(flex, center, center, 1rem);
           flex-wrap: wrap;
@@ -98,6 +104,7 @@
             margin-inline-start: 1.125rem;
             max-width: 250px;
           }
+
           #featured-info-wrapper {
             @include m.display(grid, stretch, center, 0.5rem);
             flex: 1;
@@ -106,11 +113,13 @@
             h3 {
               font-size: clamp(1rem, 1.35vw, 1.35rem);
             }
+
             p {
               font-size: clamp(0.75rem, 1vw, 1rem);
               margin-block-end: 0.5rem;
               max-width: 35ch;
             }
+
             a {
               @include m.regular-button;
               padding: 0.5rem 1.5rem 0.65rem;
@@ -123,6 +132,7 @@
           }
         }
       }
+
       #link-img-wrapper {
         @include m.display(flex, center, center, 4rem);
         margin-block-start: 2rem;
@@ -131,11 +141,13 @@
           border-radius: 0px 15px 0px 15px;
           transform: scaleX(-1);
         }
+
         img {
           border: 2px solid chartreuse;
           border-radius: $b-rad;
           width: clamp(3.125rem, 1.608rem + 6.472vw, 9.375rem);
         }
+
         #thought-link {
           @include m.regular-button;
           padding-block: 0.75rem;
@@ -147,19 +159,23 @@
             @include m.standing-by(-1.5rem, -7%);
             content: 'Our operators';
           }
+
           ::before {
             @include m.standing-by(2.25rem, 30%);
             content: 'are standing by.';
           }
+
           a:focus-visible {
             outline: none;
           }
+
           &:has(a:focus-visible) {
             @include m.focus-visible();
           }
         }
       }
     }
+
     .home-text-wrapper {
       display: inline;
       flex: 1;
@@ -196,6 +212,7 @@
             vertical-align: middle;
           }
         }
+
         .give-away-img-wrapper {
           margin-inline: auto;
           position: relative;
@@ -208,6 +225,7 @@
             top: 0.5rem;
             width: clamp(1rem, 0.757rem + 1.036vw, 2rem);
           }
+
           #give-away-star-2 {
             bottom: -0.5rem;
             filter: drop-shadow(2px 2px 0px chartreuse);
@@ -216,6 +234,7 @@
             rotate: 17deg;
             width: clamp(2rem, 1.515rem + 2.071vw, 4rem);
           }
+
           img:not(#give-away-star-1):not(#give-away-star-2) {
             border-radius: 30px 0 30px 0;
             margin-inline: auto;
@@ -223,6 +242,7 @@
             width: 250px;
           }
         }
+
         input {
           border: none;
           border-radius: $b-rad;
@@ -241,6 +261,7 @@
             opacity: 0.65;
           }
         }
+
         .give-away-disclaimer {
           color: chartreuse;
           font-family: $font-para;
@@ -253,6 +274,7 @@
       }
     }
   }
+
   footer {
     margin-block: 3rem;
     text-align: center;
