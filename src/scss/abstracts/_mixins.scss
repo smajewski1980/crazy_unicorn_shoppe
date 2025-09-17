@@ -1,5 +1,4 @@
 @use './variables' as *;
-
 @mixin h1Styles {
   border-bottom: 2px solid;
   border-image-slice: 1;
@@ -16,20 +15,17 @@
     transparent 70%
   );
 }
-
 @mixin formStyles($display) {
   display: $display;
   font-family: $font-para;
   gap: 0.5rem;
   justify-content: center;
 }
-
 @mixin formGroup($display) {
   display: $display;
   text-align: center;
   width: clamp(18.75rem, 17.593rem + 6.173vw, 25rem);
 }
-
 @mixin formInput {
   border-radius: $b-rad;
   box-shadow: 1px 1px 2px chartreuse;
@@ -38,14 +34,12 @@
   padding-block: 0.5rem;
   text-align: inherit;
 }
-
 @mixin btn-home-link {
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
   border-radius: $b-rad;
   outline: 2px solid chartreuse;
 }
-
 @mixin btn-link {
   display: inline-block;
   padding: 0.5rem 1rem;
@@ -56,7 +50,6 @@
     outline-offset: 5px;
   }
 }
-
 @mixin btn-form {
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
@@ -67,13 +60,11 @@
   margin-block: 0.75rem;
   pointer-events: none;
 }
-
 @mixin btn-submit-form-valid {
   border: 2px solid chartreuse;
   color: rgba(0, 0, 0);
   pointer-events: auto;
 }
-
 @mixin regular-button {
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
@@ -84,7 +75,6 @@
   font-weight: 600;
   outline: none;
 }
-
 @mixin modal-styles {
   backdrop-filter: blur(4px);
   background-color: transparent;
@@ -95,6 +85,7 @@
   outline: none;
   padding: 1rem 1rem 2rem;
   text-align: center;
+
   background-image: radial-gradient(
     rgba(241, 137, 241, 0.75) 40%,
     rgba(241, 137, 241, 0.75) 40%,
@@ -122,15 +113,26 @@
   text-wrap: nowrap;
   top: $top;
 }
-
 @mixin display($d, $a, $j, $g: 0) {
-  display: $d;
   align-items: $a;
-  justify-content: $j;
+  display: $d;
   gap: $g;
+  justify-content: $j;
 }
-
 @mixin focus-visible() {
   outline: 2px solid white;
   outline-offset: 3px;
+}
+@mixin unicorn-float() {
+  animation: unicorn-dance 15s linear infinite;
+  background-image: url('./assets/images/unicorn_stuffed.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  content: '';
+  display: block;
+  filter: brightness(1.25);
+  height: 150px;
+  position: absolute;
+  transform: skewX(0deg) skewY(0deg) translateX(-55%) scale(1) rotate(0);
+  width: 125px;
 }
