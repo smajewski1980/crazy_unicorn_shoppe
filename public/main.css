@@ -845,9 +845,9 @@ p {
   align-content: center;
 }
 #orders-body .logo-wrapper {
-  max-width: 300px;
-  margin-inline: auto;
   margin-block-start: 2rem;
+  margin-inline: auto;
+  max-width: 300px;
 }
 #orders-body h1 {
   border-bottom: 2px solid;
@@ -858,26 +858,26 @@ p {
   text-align: center;
   text-wrap: balance;
   border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
-  padding-block-start: 2rem;
   margin-block-end: 1rem;
+  padding-block-start: 2rem;
 }
 #orders-body #orders-summary-main {
-  width: 100%;
   margin-inline: auto;
+  width: 100%;
 }
 #orders-body #orders-summary-main table {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  text-align: center;
-  columns: 20%;
-  width: 100%;
   border-collapse: collapse;
+  columns: 20%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: clamp(1rem, 0.879rem + 0.518vw, 1.5rem);
+  text-align: center;
+  width: 100%;
 }
 #orders-body #orders-summary-main table caption {
   border-bottom: 2px solid;
-  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
   border-image-slice: 1;
   padding-block-end: 1rem;
+  border-image: linear-gradient(to right, transparent 30%, rgba(128, 255, 0, 0.65) 50%, transparent 70%);
 }
 #orders-body #orders-summary-main table thead tr th {
   border-bottom: 1px solid chartreuse;
@@ -891,8 +891,8 @@ p {
   padding-block-end: 0.75rem;
 }
 #orders-body #orders-summary-main table tbody tr td {
-  padding-block: 0.5rem;
   border-bottom: 1px dotted chartreuse;
+  padding-block: 0.5rem;
 }
 #orders-body #orders-summary-main table tr:not(:has(th)) {
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
@@ -902,6 +902,7 @@ p {
 }
 #orders-body nav ul {
   display: flex;
+  align-items: stretch;
   justify-content: center;
   gap: 2rem;
 }
@@ -911,10 +912,10 @@ p {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px 0px 15px 0px;
   outline: 2px solid chartreuse;
-  list-style-type: none;
-  width: fit-content;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1.125rem;
+  list-style-type: none;
+  width: fit-content;
 }
 #orders-body nav ul #home-link a,
 #orders-body nav ul #shop-link a {
@@ -929,12 +930,12 @@ p {
 }
 
 #order-review-modal {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  margin: auto;
   background-image: radial-gradient(rgb(243, 160, 243), rgb(192, 84, 192));
   border: 3px solid chartreuse;
   border-radius: 30px 0px 30px;
   box-shadow: 0px 0px 25px rgba(127, 255, 0, 0.5098039216);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: auto;
   outline: 1px solid chartreuse;
   outline-offset: -1rem;
   padding-block: 3rem;
@@ -944,18 +945,18 @@ p {
   background-color: rgba(0, 0, 0, 0.6);
 }
 #order-review-modal h2 {
-  text-align: center;
   font-size: clamp(1.5rem, 2.75vw, 3rem);
   margin-block-end: 0.5rem;
+  text-align: center;
 }
 #order-review-modal #order-review-info {
   font-size: clamp(1rem, 2.5vw, 1.5rem);
 }
 #order-review-modal #order-review-info table {
-  text-align: center;
-  columns: 25%;
-  width: clamp(23.438rem, 13.956rem + 40.453vw, 62.5rem);
   border-collapse: collapse;
+  columns: 25%;
+  text-align: center;
+  width: clamp(23.438rem, 13.956rem + 40.453vw, 62.5rem);
 }
 #order-review-modal #order-review-info table caption {
   padding-block-end: 1rem;
@@ -971,7 +972,6 @@ p {
   padding-block-start: 0.75rem;
 }
 #order-review-modal #btn-cancel-order {
-  display: none;
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
@@ -980,23 +980,19 @@ p {
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
   font-weight: 600;
   outline: none;
-  font-size: 1rem;
   color: red;
-  justify-self: center;
+  display: none;
+  font-size: 1rem;
   height: 100%;
-  padding: 0.25rem 1rem;
+  justify-self: center;
   margin-inline: auto;
+  padding: 0.25rem 1rem;
 }
 #order-review-modal #btn-cancel-order:focus-visible {
   outline: 2px solid white;
-  outline-offset: 5px;
+  outline-offset: 3px;
 }
 #order-review-modal #btn-close-order-review {
-  width: 50%;
-  padding-block: 1rem;
-  margin-block-start: 2rem;
-  margin-left: 50%;
-  transform: translateX(-50%);
   background-color: rgba(255, 255, 255, 0.35);
   border-color: chartreuse;
   border-radius: 10px 0 10px 0;
@@ -1006,10 +1002,15 @@ p {
   font-weight: 600;
   outline: none;
   box-shadow: 0px 0px 15px rgba(127, 255, 0, 0.5098039216);
+  margin-block-start: 2rem;
+  margin-left: 50%;
+  padding-block: 1rem;
+  transform: translateX(-50%);
+  width: 50%;
 }
 #order-review-modal #btn-close-order-review:focus-visible {
   outline: 2px solid white;
-  outline-offset: 5px;
+  outline-offset: 3px;
 }
 
 #sign-in-page {

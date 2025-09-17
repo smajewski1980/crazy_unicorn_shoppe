@@ -5,47 +5,43 @@
   align-content: center;
 
   .logo-wrapper {
-    max-width: 300px;
-    margin-inline: auto;
     margin-block-start: 2rem;
+    margin-inline: auto;
+    max-width: 300px;
   }
-
   h1 {
     @include m.h1Styles;
-    padding-block-start: 2rem;
     margin-block-end: 1rem;
+    padding-block-start: 2rem;
   }
-
   #orders-summary-main {
-    width: 100%;
     margin-inline: auto;
+    width: 100%;
 
     table {
-      font-family: $font-para;
-      text-align: center;
-      columns: 20%;
-      width: 100%;
       border-collapse: collapse;
-      // clamp this later
+      columns: 20%;
+      font-family: $font-para;
       font-size: clamp(1rem, 0.879rem + 0.518vw, 1.5rem);
+      text-align: center;
+      width: 100%;
 
       caption {
         border-bottom: 2px solid;
+        border-image-slice: 1;
+        padding-block-end: 1rem;
+
         border-image: linear-gradient(
           to right,
           transparent 30%,
           rgba(128, 255, 0, 0.65) 50%,
           transparent 70%
         );
-        border-image-slice: 1;
-        padding-block-end: 1rem;
       }
-
       thead tr th {
         border-bottom: 1px solid chartreuse;
         padding-block: 1rem;
       }
-
       tbody {
         tr:first-child td {
           padding-block-start: 0.75rem;
@@ -54,33 +50,29 @@
           border-bottom: 1px solid chartreuse;
           padding-block-end: 0.75rem;
         }
-
         tr td {
-          padding-block: 0.5rem;
           border-bottom: 1px dotted chartreuse;
+          padding-block: 0.5rem;
         }
       }
-
       tr:not(:has(th)) {
         cursor: url('./assets/icons/pointer.png') 10 0, auto;
       }
     }
   }
-
   nav {
     margin-block: 2rem 3rem;
+
     ul {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
+      @include m.display(flex, stretch, center, 2rem);
 
       #home-link,
       #shop-link {
         @include m.btn-home-link;
-        list-style-type: none;
-        width: fit-content;
         font-family: $font-para;
         font-size: 1.125rem;
+        list-style-type: none;
+        width: fit-content;
 
         a {
           @include m.btn-link;
@@ -89,14 +81,13 @@
     }
   }
 }
-
 #order-review-modal {
-  font-family: $font-para;
-  margin: auto;
   background-image: radial-gradient(rgb(243, 160, 243), rgb(192, 84, 192));
   border: 3px solid chartreuse;
   border-radius: 30px 0px 30px;
   box-shadow: 0px 0px 25px #7fff0082;
+  font-family: $font-para;
+  margin: auto;
   outline: 1px solid chartreuse;
   outline-offset: -1rem;
   padding-block: 3rem;
@@ -105,39 +96,32 @@
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.6);
   }
-
   h2 {
-    text-align: center;
     font-size: clamp(1.5rem, 2.75vw, 3rem);
     margin-block-end: 0.5rem;
+    text-align: center;
   }
-
   #order-review-info {
     font-size: clamp(1rem, 2.5vw, 1.5rem);
 
     table {
-      text-align: center;
-      columns: 25%;
-      // width: 1000px;
-      width: clamp(23.438rem, 13.956rem + 40.453vw, 62.5rem);
       border-collapse: collapse;
+      columns: 25%;
+      text-align: center;
+      width: clamp(23.438rem, 13.956rem + 40.453vw, 62.5rem);
 
       caption {
         padding-block-end: 1rem;
       }
-
       tr td {
         padding-block: 0.25rem;
-        // height: 3rem;
       }
-
       tbody {
         tr:last-child td {
           border-bottom: 1px solid chartreuse;
           padding-block-end: 0.75rem;
         }
       }
-
       tfoot {
         tr:first-child td {
           padding-block-start: 0.75rem;
@@ -145,35 +129,31 @@
       }
     }
   }
-
   #btn-cancel-order {
-    display: none;
     @include m.regular-button;
-    font-size: 1rem;
     color: red;
-    justify-self: center;
+    display: none;
+    font-size: 1rem;
     height: 100%;
-    padding: 0.25rem 1rem;
+    justify-self: center;
     margin-inline: auto;
+    padding: 0.25rem 1rem;
 
     &:focus-visible {
-      outline: 2px solid white;
-      outline-offset: 5px;
+      @include m.focus-visible();
     }
   }
-
   #btn-close-order-review {
-    width: 50%;
-    padding-block: 1rem;
-    margin-block-start: 2rem;
-    margin-left: 50%;
-    transform: translateX(-50%);
     @include m.regular-button;
     box-shadow: 0px 0px 15px #7fff0082;
+    margin-block-start: 2rem;
+    margin-left: 50%;
+    padding-block: 1rem;
+    transform: translateX(-50%);
+    width: 50%;
 
     &:focus-visible {
-      outline: 2px solid white;
-      outline-offset: 5px;
+      @include m.focus-visible();
     }
   }
 }
