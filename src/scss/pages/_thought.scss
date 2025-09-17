@@ -1,70 +1,71 @@
 @use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as m;
 
 #thought-body {
   padding-block-start: 1rem;
+
   .logo-wrapper {
-    max-width: 300px;
     margin: 0 auto 0.5rem;
+    max-width: 300px;
   }
 
   nav {
-    max-width: 950px;
     margin-inline: auto;
+    max-width: 950px;
   }
 
   ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 50%;
+    @include m.display(flex, center, center);
     margin-inline: auto;
+    max-width: 50%;
 
     li:nth-child(1) {
-      rotate: 17deg;
       flex: 1;
+      rotate: 17deg;
     }
 
     li:nth-child(2) {
       flex: 1;
+
       img {
         max-width: 100px;
       }
     }
 
     li:nth-child(3) {
-      rotate: -7deg;
       flex: 1;
+      rotate: -7deg;
     }
 
     li:nth-child(1)::after {
       content: 'Shop';
-      position: absolute;
-      pointer-events: none;
       font-size: 1.25rem;
+      pointer-events: none;
+      position: absolute;
       rotate: 5deg;
     }
 
     li:nth-child(2)::after {
-      content: 'Home';
-      position: absolute;
       bottom: -1.25rem;
+      content: 'Home';
       pointer-events: none;
+      position: absolute;
     }
 
     li:nth-child(3)::after {
       content: 'Dev Info';
-      position: absolute;
       pointer-events: none;
+      position: absolute;
       rotate: -7deg;
     }
 
     li {
-      list-style-type: none;
-      position: relative;
       display: grid;
-      place-items: center;
-      min-width: 125px;
       font-size: 1.125rem;
+      list-style-type: none;
+      min-width: 125px;
+      place-items: center;
+      position: relative;
 
       img {
         opacity: 0.6;
@@ -74,21 +75,21 @@
   }
 
   h1 {
-    text-align: center;
     margin-block: 2rem 1rem;
+    text-align: center;
   }
 
   p {
-    max-width: 47ch;
-    margin: 0;
-    padding: 1.5rem 2rem;
-    margin-inline: auto;
-    margin-block-end: 1rem;
-    text-align: center;
     border: 1px solid chartreuse;
+    border-radius: 15px 0 15px;
+    margin: 0;
+    margin-block-end: 1rem;
+    margin-inline: auto;
+    max-width: 47ch;
     outline: 1px solid chartreuse;
     outline-offset: 5px;
-    border-radius: 15px 0 15px;
+    padding: 1.5rem 2rem;
+    text-align: center;
   }
 
   form {
@@ -101,36 +102,37 @@
       gap: 0.5rem;
 
       label {
-        visibility: hidden;
         height: 0;
+        visibility: hidden;
       }
 
       textarea {
-        resize: none;
+        border: 2px solid chartreuse;
+        border-radius: 15px 0px 15px;
         margin-block-end: 0.5rem;
         padding: 0.5rem;
-        border-radius: 15px 0px 15px;
-        border: 2px solid chartreuse;
+        resize: none;
       }
 
       input {
+        border: 2px solid chartreuse;
+        border-radius: 15px 0px 15px;
         margin-block-end: 1rem;
         padding: 0.25rem;
-        border-radius: 15px 0px 15px;
-        border: 2px solid chartreuse;
       }
+
       ::placeholder {
         opacity: 0.5;
       }
     }
 
     #btn-thought {
-      padding: 0.75rem 1.5rem;
-      cursor: url('./assets/icons/pointer.png') 10 0, auto;
-      border-radius: 15px 0px 15px;
       backdrop-filter: blur(4px);
       background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px 0px 15px;
+      cursor: url('./assets/icons/pointer.png') 10 0, auto;
       font-family: $font-para;
+      padding: 0.75rem 1.5rem;
     }
   }
 }

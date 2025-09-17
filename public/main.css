@@ -1439,23 +1439,24 @@ p {
   padding-block-start: 1rem;
 }
 #thought-body .logo-wrapper {
-  max-width: 300px;
   margin: 0 auto 0.5rem;
+  max-width: 300px;
 }
 #thought-body nav {
-  max-width: 950px;
   margin-inline: auto;
+  max-width: 950px;
 }
 #thought-body ul {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  max-width: 50%;
+  display: flex;
+  gap: 0;
+  justify-content: center;
   margin-inline: auto;
+  max-width: 50%;
 }
 #thought-body ul li:nth-child(1) {
-  rotate: 17deg;
   flex: 1;
+  rotate: 17deg;
 }
 #thought-body ul li:nth-child(2) {
   flex: 1;
@@ -1464,55 +1465,55 @@ p {
   max-width: 100px;
 }
 #thought-body ul li:nth-child(3) {
-  rotate: -7deg;
   flex: 1;
+  rotate: -7deg;
 }
 #thought-body ul li:nth-child(1)::after {
   content: "Shop";
-  position: absolute;
-  pointer-events: none;
   font-size: 1.25rem;
+  pointer-events: none;
+  position: absolute;
   rotate: 5deg;
 }
 #thought-body ul li:nth-child(2)::after {
-  content: "Home";
-  position: absolute;
   bottom: -1.25rem;
+  content: "Home";
   pointer-events: none;
+  position: absolute;
 }
 #thought-body ul li:nth-child(3)::after {
   content: "Dev Info";
-  position: absolute;
   pointer-events: none;
+  position: absolute;
   rotate: -7deg;
 }
 #thought-body ul li {
-  list-style-type: none;
-  position: relative;
   display: grid;
-  place-items: center;
-  min-width: 125px;
   font-size: 1.125rem;
+  list-style-type: none;
+  min-width: 125px;
+  place-items: center;
+  position: relative;
 }
 #thought-body ul li img {
   opacity: 0.6;
   width: clamp(5rem, 10vw, 10rem);
 }
 #thought-body h1 {
-  text-align: center;
   margin-block: 2rem 1rem;
+  text-align: center;
 }
 #thought-body p {
-  max-width: 47ch;
-  margin: 0;
-  padding: 1.5rem 2rem;
-  margin-inline: auto;
-  margin-block-end: 1rem;
-  text-align: center;
   border: 1px solid chartreuse;
+  border-radius: 15px 0 15px;
+  margin: 0;
+  margin-block-end: 1rem;
+  margin-inline: auto;
+  max-width: 47ch;
   outline: 1px solid chartreuse;
   outline-offset: 5px;
-  border-radius: 15px 0 15px;
+  padding: 1.5rem 2rem;
+  text-align: center;
 }
 #thought-body form {
   margin-inline: auto;
@@ -1524,32 +1525,32 @@ p {
   gap: 0.5rem;
 }
 #thought-body form .thought-form-input-wrapper label {
-  visibility: hidden;
   height: 0;
+  visibility: hidden;
 }
 #thought-body form .thought-form-input-wrapper textarea {
-  resize: none;
+  border: 2px solid chartreuse;
+  border-radius: 15px 0px 15px;
   margin-block-end: 0.5rem;
   padding: 0.5rem;
-  border-radius: 15px 0px 15px;
-  border: 2px solid chartreuse;
+  resize: none;
 }
 #thought-body form .thought-form-input-wrapper input {
+  border: 2px solid chartreuse;
+  border-radius: 15px 0px 15px;
   margin-block-end: 1rem;
   padding: 0.25rem;
-  border-radius: 15px 0px 15px;
-  border: 2px solid chartreuse;
 }
 #thought-body form .thought-form-input-wrapper ::placeholder {
   opacity: 0.5;
 }
 #thought-body form #btn-thought {
-  padding: 0.75rem 1.5rem;
-  cursor: url("./assets/icons/pointer.png") 10 0, auto;
-  border-radius: 15px 0px 15px;
   backdrop-filter: blur(4px);
   background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px 0px 15px;
+  cursor: url("./assets/icons/pointer.png") 10 0, auto;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  padding: 0.75rem 1.5rem;
 }
 
 body {
