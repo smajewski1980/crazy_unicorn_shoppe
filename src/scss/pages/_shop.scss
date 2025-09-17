@@ -1,4 +1,5 @@
 @use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as m;
 
 #shop-page-header {
   .logo-wrapper {
@@ -9,17 +10,13 @@
 #shopping-sub-head {
   border-top: 1px solid rgba(128, 255, 0, 0.5);
   border-bottom: 1px solid rgba(128, 255, 0, 0.5);
-  // border-radius: 0.5rem;
   border-radius: 15px 0px 15px;
-  display: flex;
+  @include m.display(flex, center, space-around);
   flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
   padding-block: 1.5rem;
   margin-top: 2rem;
 
   h1 {
-    // font-size: 3rem;
     line-height: 1.5;
     color: rgba(128, 255, 0, 0.75);
     text-wrap: balance;
@@ -31,9 +28,7 @@
 
   #input-wrapper {
     font-size: clamp(1rem, 0.97rem + 0.129vw, 1.125rem);
-    align-items: center;
-    justify-content: center;
-    display: flex;
+    @include m.display(flex, center, center);
 
     label {
       font-weight: 600;
@@ -64,6 +59,7 @@
     letter-spacing: 1px;
     color: rgba(128, 255, 0, 0.75);
   }
+
   #product-cards-wrapper {
     font-family: $font-para;
     display: grid;
@@ -80,15 +76,13 @@
       text-align: center;
 
       &:focus-visible {
-        outline: 5px solid white;
-        outline-offset: 5px;
+        @include m.focus-visible();
       }
 
       h3 {
         font-size: clamp(1.25rem, 1.111rem + 0.741vw, 2rem);
       }
-      // .card-category-title {
-      // }
+
       .card-img-wrapper {
         max-width: 75%;
         margin-inline: auto;
@@ -97,10 +91,10 @@
         overflow: hidden;
       }
       .product-info-content {
-        //  .product-desc {}
         .card-prod-price {
           font-size: clamp(1.25rem, 1.111rem + 0.741vw, 2rem);
           font-weight: 700;
+
           span {
             font-size: clamp(1.5rem, 1.083rem + 2.222vw, 3.75rem);
             color: rgba(128, 255, 0, 0.75);
@@ -112,6 +106,7 @@
             &:first-child {
               rotate: -15deg;
             }
+
             &:last-child {
               rotate: 15deg;
             }

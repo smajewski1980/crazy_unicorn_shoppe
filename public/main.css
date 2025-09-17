@@ -384,9 +384,10 @@ p {
   border-bottom: 1px solid rgba(128, 255, 0, 0.5);
   border-radius: 15px 0px 15px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
   align-items: center;
+  justify-content: space-around;
+  gap: 0;
+  flex-wrap: wrap;
   padding-block: 1.5rem;
   margin-top: 2rem;
 }
@@ -400,9 +401,10 @@ p {
 }
 #shopping-sub-head #input-wrapper {
   font-size: clamp(1rem, 0.97rem + 0.129vw, 1.125rem);
+  display: flex;
   align-items: center;
   justify-content: center;
-  display: flex;
+  gap: 0;
 }
 #shopping-sub-head #input-wrapper label {
   font-weight: 600;
@@ -445,8 +447,8 @@ p {
   text-align: center;
 }
 .products-display-wrapper #product-cards-wrapper .product-card:focus-visible {
-  outline: 5px solid white;
-  outline-offset: 5px;
+  outline: 2px solid white;
+  outline-offset: 3px;
 }
 .products-display-wrapper #product-cards-wrapper .product-card h3 {
   font-size: clamp(1.25rem, 1.111rem + 0.741vw, 2rem);
