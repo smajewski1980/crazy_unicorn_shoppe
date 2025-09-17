@@ -1,34 +1,32 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as m;
-
 #sign-up-body {
   align-content: center;
 
   .logo-wrapper {
-    max-width: 200px;
-    margin-inline: auto;
-    margin-block: 2rem 1rem;
     display: none;
+    margin-block: 2rem 1rem;
+    margin-inline: auto;
+    max-width: 200px;
   }
 
   #redirect-image-wrapper {
-    max-width: 500px;
-    margin-inline: auto;
-    display: none;
-    border-radius: 15px 0px 15px;
     border: 2px solid chartreuse;
+    border-radius: 15px 0px 15px;
+    display: none;
+    margin-inline: auto;
+    max-width: 500px;
     outline: 2px solid chartreuse;
     outline-offset: 3px;
     padding: 2rem;
 
     p {
-      font-size: clamp(1.5rem, 1.257rem + 1.036vw, 2.5rem);
       color: chartreuse;
-      text-align: center;
-      font-weight: 600;
       font-family: revert;
+      font-size: clamp(1.5rem, 1.257rem + 1.036vw, 2.5rem);
+      font-weight: 600;
+      text-align: center;
     }
-
     img {
       border-radius: 15px 0px 15px;
     }
@@ -36,17 +34,17 @@
 
   h1 {
     @include m.h1Styles;
-    width: fit-content;
-    margin-inline: auto;
     display: none;
+    margin-inline: auto;
+    width: fit-content;
   }
 
   #sign-up-form {
     @include m.formStyles(flex);
     column-gap: 2rem;
+    display: none;
     flex-wrap: wrap;
     margin-block: -1rem 1.5rem;
-    display: none;
 
     #sign-up-form-left-col,
     #sign-up-form-right-col {
@@ -56,38 +54,30 @@
 
     #sign-up-form-left-col.google-signup {
       .sign-up-input-wrapper:nth-child(1) {
+        pointer-events: none;
         position: relative;
         visibility: hidden;
-        pointer-events: none;
 
         ::after {
           content: 'You have chosen to sign up with google, there is one more step to finish the sign up process.';
+          left: 0;
           position: absolute;
           top: 0rem;
-          left: 0;
           visibility: visible;
         }
 
         ::before {
-          content: '';
-          width: 125px;
-          height: 150px;
-          display: block;
-          background-image: url('./assets/images/unicorn_stuffed.png');
-          background-size: contain;
-          background-repeat: no-repeat;
-          position: absolute;
+          @include m.unicorn-float();
           bottom: -9rem;
           left: 50%;
-          transform: skewX(0deg) skewY(0deg) translateX(-55%) scale(1) rotate(0);
-          filter: brightness(1.25);
           visibility: visible;
-          animation: unicorn-dance 15s linear infinite;
         }
       }
+
       .sign-up-input-wrapper:nth-child(2) {
         visibility: hidden;
       }
+
       .sign-up-input-wrapper:nth-child(3) {
         visibility: hidden;
       }
@@ -107,27 +97,26 @@
         }
       }
     }
+
     &:valid #btn-signup {
       @include m.btn-submit-form-valid;
     }
 
     fieldset {
       border-color: chartreuse;
-      padding-inline: 1rem;
-      padding-block-end: 0.5rem;
-      // width: fit-content;
-      margin-inline: 15rem;
       margin-block: 1.5rem;
+      margin-inline: 15rem;
+      padding-block-end: 0.5rem;
+      padding-inline: 1rem;
       position: relative;
 
       legend {
         font-family: $font-para;
-        font-weight: 600;
         font-size: 1rem;
-        padding-inline: 0.25rem;
+        font-weight: 600;
         padding-block-end: 0.25rem;
+        padding-inline: 0.25rem;
       }
-
       .sign-up-input-wrapper {
         @include m.formGroup(flex);
         font-size: 1rem;
@@ -140,39 +129,29 @@
         }
       }
     }
+
     .unicorn-float {
       ::before,
       ::after {
-        content: '';
-        width: 125px;
-        height: 150px;
-        display: block;
-        background-image: url('./assets/images/unicorn_stuffed.png');
-        background-size: contain;
-        background-repeat: no-repeat;
-        position: absolute;
+        @include m.unicorn-float();
         bottom: -5rem;
         left: -6rem;
-        transform: skewX(0deg) skewY(0deg) translateX(-55%) scale(1) rotate(0);
-        filter: brightness(1.25);
-        animation: unicorn-dance 15s linear infinite;
       }
-
       ::after {
-        left: initial;
-        right: -15rem;
         animation-delay: 1.5s;
         background-image: url('./assets/images/unicorn_stuffed_2.png');
+        left: initial;
+        right: -15rem;
       }
     }
 
     #btn-signup {
       @include m.btn-form;
-      margin-inline: auto;
-      width: 200px;
-      padding: 0.75rem 1.5rem;
       display: block;
       margin-block-end: 0rem;
+      margin-inline: auto;
+      padding: 0.75rem 1.5rem;
+      width: 200px;
     }
   }
 
@@ -181,7 +160,6 @@
     display: none;
     margin-left: 50%;
     transform: translateX(-50%);
-    // margin-block-start: 1.5rem;
 
     a {
       @include m.btn-link;
@@ -194,7 +172,6 @@
   100% {
     transform: skewX(0deg) skewY(0deg) translateX(-55%) scale(1) rotate(0);
   }
-
   33% {
     transform: skewX(0deg) skewY(1deg) translateX(-57%) scale(0.97)
       rotate(-2deg);
