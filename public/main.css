@@ -1569,25 +1569,28 @@ body .toast-close {
 }
 
 header {
-  margin-block-start: 2rem;
+  align-items: stretch;
   display: flex;
-  flex-wrap: wrap;
+  gap: 0;
   justify-content: space-around;
+  flex-wrap: wrap;
+  margin-block-start: 2rem;
 }
 header .logo-wrapper {
-  height: 300px;
   display: grid;
-  place-content: center;
+  height: 300px;
   min-width: 150px;
+  place-content: center;
 }
 header nav {
-  margin-block-start: 1rem;
   flex-basis: 66%;
+  margin-block-start: 1rem;
 }
 header nav ul {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  display: flex;
+  gap: 0;
+  justify-content: space-between;
 }
 header nav ul li {
   list-style-type: none;
@@ -1601,27 +1604,27 @@ header nav ul li:nth-child(1) {
   rotate: 15deg;
 }
 header nav ul li:nth-child(1) p {
-  text-align: center;
   padding-block-end: 0.5rem;
+  text-align: center;
 }
 header nav ul li:nth-child(1) button {
+  border: 1px solid chartreuse;
+  border-radius: 15px 0px 15px 0px;
+  box-shadow: 2px 2px 0px black;
   cursor: url("./assets/icons/pointer.png") 10 0, auto;
   padding: 0.5rem 1rem 0.25rem;
-  border-radius: 15px 0px 15px 0px;
-  border: 1px solid chartreuse;
   background: radial-gradient(rgb(249, 239, 255), rgb(241, 205, 241), rgb(235, 172, 235), rgb(238, 149, 238), violet);
-  box-shadow: 2px 2px 0px black;
 }
 header nav ul li:nth-child(3) {
   rotate: -10deg;
 }
 header nav ul li a::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-wrap: nowrap;
   font-size: clamp(0.75rem, 0.777vw + 0.568rem, 1.5rem);
+  left: 50%;
+  position: absolute;
+  text-wrap: nowrap;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 header nav ul li:nth-child(1):not(:has(#logout-cart-wrapper)) a::after {
   content: "Sign In";
@@ -1635,62 +1638,64 @@ header nav ul li:nth-child(3) a::after {
   font-size: clamp(1rem, 0.97rem + 0.129vw, 1.125rem);
 }
 header nav #shop-heading-text {
-  text-align: center;
   margin-block-end: 0;
-  max-width: 75ch;
   margin-inline: auto;
+  max-width: 75ch;
+  text-align: center;
 }
 header nav #shop-heading-text a {
   color: chartreuse;
 }
 header nav #orders-link {
-  background-image: url("/assets/images/orders-link-bg.jpg");
-  background-size: cover;
-  width: 20rem;
-  margin-inline: auto;
-  margin-block: -1.5rem 1rem;
-  padding: 2rem;
-  border-radius: 15px 0px 15px;
-  outline-offset: 2px;
   background-blend-mode: darken;
   background-color: rgba(231, 39, 231, 0.75);
-  position: relative;
+  background-image: url("/assets/images/orders-link-bg.jpg");
+  background-size: cover;
+  border-radius: 15px 0px 15px;
   box-shadow: 0px 1px 5px chartreuse;
   font-size: clamp(1rem, 3.5vw, 2rem);
-  pointer-events: none;
+  margin-block: -1.5rem 1rem;
+  margin-inline: auto;
   opacity: 0;
+  outline-offset: 2px;
+  padding: 2rem;
+  pointer-events: none;
+  position: relative;
+  width: 20rem;
 }
 header nav #orders-link::after {
+  color: chartreuse;
   content: "View Orders";
+  left: 50%;
   position: absolute;
   text-wrap: nowrap;
   top: 0.85rem;
-  left: 50%;
   transform: translateX(-50%);
-  color: chartreuse;
 }
 header .heading-social-wrapper {
-  display: flex;
   align-items: center;
-  position: relative;
+  display: flex;
+  gap: 0;
+  justify-content: flex-start;
   margin-block-start: 2rem;
+  position: relative;
 }
 header .heading-social-wrapper .heading-social-star {
   position: absolute;
-  width: clamp(1rem, 0.636rem + 1.553vw, 2.5rem);
   rotate: -7deg;
+  width: clamp(1rem, 0.636rem + 1.553vw, 2.5rem);
 }
 header .heading-social-wrapper h1 {
   font-size: clamp(1.5rem, 1.136rem + 1.553vw, 3rem);
-  text-align: center;
   margin-inline: auto;
+  text-align: center;
   text-wrap: nowrap;
 }
 header .heading-social-wrapper h1 span {
-  font-size: clamp(1.5rem, 0.165rem + 5.696vw, 7rem);
   display: inline-block;
-  transform: translateY(0.5rem);
+  font-size: clamp(1.5rem, 0.165rem + 5.696vw, 7rem);
   margin-block: 0.5rem 0.25rem;
+  transform: translateY(0.5rem);
 }
 header .heading-social-wrapper h1 span:nth-of-type(1) {
   color: indigo;
@@ -1713,27 +1718,27 @@ header .heading-social-wrapper h1 span:nth-of-type(4) {
 }
 header .heading-social-wrapper h1 :nth-of-type(5) {
   color: orangered;
-  transform: translateY(1rem);
   rotate: 10deg;
+  transform: translateY(1rem);
 }
 header .heading-social-wrapper h1 :nth-of-type(6) {
-  rotate: 15deg;
-  font-size: clamp(1.5rem, 0.893rem + 2.589vw, 4rem);
   color: chartreuse;
+  font-size: clamp(1.5rem, 0.893rem + 2.589vw, 4rem);
   margin-inline-start: 0.25rem;
+  rotate: 15deg;
 }
 header .heading-social-wrapper .social-wrapper {
   padding-inline-end: 2.5rem;
 }
 header .heading-social-wrapper .social-wrapper .icons-wrapper {
-  min-width: 1.5rem;
-  margin-block-start: 0.5rem;
   display: grid;
   gap: 0.75rem;
+  margin-block-start: 0.5rem;
+  min-width: 1.5rem;
 }
 header .heading-social-wrapper .social-wrapper .icons-wrapper img {
-  width: 35px;
   margin-inline: auto;
+  width: 35px;
 }
 
 #shop-page-header .logo-wrapper {
@@ -1746,21 +1751,22 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
 }
 
 #shop-page-header ul li:nth-child(2) a::after {
+  color: chartreuse;
   content: "Home";
   top: 6.25rem;
-  color: chartreuse;
 }
 #shop-page-header nav li:nth-child(2) img {
   max-width: 90px;
 }
 
 #logout-cart-wrapper {
-  display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  width: 100%;
+  display: flex;
+  gap: 0;
   justify-content: space-around;
+  flex-wrap: wrap;
   gap: 1rem;
+  width: 100%;
 }
 #logout-cart-wrapper #cart-icon-wrapper {
   position: relative;
@@ -1769,18 +1775,18 @@ header .heading-social-wrapper .social-wrapper .icons-wrapper img {
   max-width: 60px;
 }
 #logout-cart-wrapper #cart-icon-wrapper span {
-  pointer-events: none;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  display: grid;
-  place-content: center;
-  width: 1.5rem;
   aspect-ratio: 1;
-  position: absolute;
-  bottom: 0;
-  left: 0;
   border-radius: 50%;
-  background: radial-gradient(rgb(249, 239, 255), rgb(241, 205, 241), rgb(235, 172, 235), rgb(238, 149, 238), violet);
+  bottom: 0;
+  display: grid;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  left: 0;
   outline: 2px solid chartreuse;
+  place-content: center;
+  pointer-events: none;
+  position: absolute;
+  width: 1.5rem;
+  background: radial-gradient(rgb(249, 239, 255), rgb(241, 205, 241), rgb(235, 172, 235), rgb(238, 149, 238), violet);
 }
 
 #product-dialog {
