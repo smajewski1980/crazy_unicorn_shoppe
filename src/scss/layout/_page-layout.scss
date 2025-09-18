@@ -1,16 +1,16 @@
 body {
-  max-width: 1300px;
-  margin-inline: auto;
-  padding: 0 1rem;
+  background-attachment: fixed;
   background-image: url('./assets/images/site_bg.webp'),
     radial-gradient(rgb(223, 68, 223), purple);
-  min-height: 100vh;
-  background-size: cover;
-  background-attachment: fixed;
   background-position: center center;
+  background-size: cover;
+  margin-inline: auto;
+  max-width: 1300px;
+  min-height: 100vh;
+  padding: 0 1rem;
 
   .toast-close {
-    padding-inline: 0 1rem;
     color: red;
+    padding-inline: 0 1rem;
   }
 }

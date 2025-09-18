@@ -2,16 +2,13 @@
 @use '../abstracts/mixins' as m;
 
 #product-dialog {
-  // * {
-  //   outline: 2px solid lime;
-  // }
   @include m.modal-styles;
   max-width: min(1000px, calc(100% - 1.5rem));
 
   h3 {
+    color: chartreuse;
     font-size: clamp(1.5rem, 0.429rem + 2.857vw, 3rem);
     margin-block-end: 1rem;
-    color: chartreuse;
 
     span {
       font-family: $font-para;
@@ -19,72 +16,60 @@
   }
 
   #dialog-outer-images-wrapper {
-    max-width: 90%;
-    margin-inline: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
+    @include m.display(flex, stretch, center, 2rem);
     cursor: url('./assets/icons/pointer.png') 10 0, auto;
+    flex-wrap: wrap;
+    margin-inline: auto;
+    max-width: 90%;
 
     #dialog-img-wrapper {
-      border-radius: 15px 0px 15px;
-      overflow: hidden;
+      border-radius: $b-rad;
       max-width: 55%;
       min-width: 350px;
-
       outline: 1px solid chartreuse;
+      overflow: hidden;
 
       &:has(> a:focus-visible) {
-        outline: 2px solid white;
-        outline-offset: 5px;
+        @include m.focus-visible();
       }
     }
+
     #dialog-thumbs-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
+      @include m.display(flex, center, center, 0.5rem);
       flex-grow: 1;
-      gap: 0.5rem;
-      width: clamp(21.875rem, 31.071rem + -24.524vw, 9rem);
+      flex-wrap: wrap;
       padding-inline: clamp(0.25rem, -1.714rem + 6.238vw, 3rem);
+      width: clamp(21.875rem, 31.071rem + -24.524vw, 9rem);
 
       .thumb-wrapper {
-        width: clamp(4.313rem, 2.679rem + 10.024vw, 9rem);
-        border-radius: 15px 0px 15px;
-        overflow: hidden;
-        outline: 1px solid chartreuse;
+        border-radius: $b-rad;
         cursor: url('./assets/icons/pointer.png') 10 0, auto;
+        outline: 1px solid chartreuse;
+        overflow: hidden;
+        width: clamp(4.313rem, 2.679rem + 10.024vw, 9rem);
       }
 
       .thumb-wrapper:focus-visible {
-        outline: 2px solid white;
-        outline-offset: 5px;
+        @include m.focus-visible();
       }
 
       .active-thumb {
-        outline-offset: 5px;
-        outline-width: 5px;
-
         img {
           opacity: 0.35;
         }
       }
     }
   }
+
   #product-dialog-desc {
-    // margin-inline: 5rem;
-    max-width: 65ch;
-    margin-inline: auto;
-    margin-block: 1rem;
     font-size: clamp(1rem, 0.911rem + 0.238vw, 1.125rem);
+    margin-block: 1rem;
+    margin-inline: auto;
+    max-width: 65ch;
   }
 
   #product-dialog-footer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    @include m.display(flex, center, space-around);
 
     #product-dialog-in-stock {
       color: chartreuse;
@@ -99,27 +84,25 @@
       }
 
       input {
-        width: 4.5rem;
-        text-align: center;
+        border-radius: $b-rad;
         padding: 0.25rem;
-        border-radius: 15px 0px 15px;
+        text-align: center;
+        width: 4.5rem;
 
         &:focus-visible {
-          outline: 2px solid white;
-          outline-offset: 5px;
+          @include m.focus-visible();
         }
       }
     }
 
     button {
       @include m.regular-button;
+      border-radius: $b-rad;
       font-family: $font-para;
       padding: 0.5rem 1rem;
-      border-radius: 15px 0px 15px;
 
       &:focus-visible {
-        outline: 2px solid white;
-        outline-offset: 5px;
+        @include m.focus-visible();
       }
     }
   }
