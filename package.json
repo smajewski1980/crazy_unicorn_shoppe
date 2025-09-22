@@ -4,7 +4,7 @@
   "description": "A fun full stack app for my portfolio.",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watchAll",
     "dev": "nodemon --ext * --ignore public server.js",
     "start": "node server.js"
   },
