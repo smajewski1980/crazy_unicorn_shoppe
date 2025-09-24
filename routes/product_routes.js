@@ -69,7 +69,7 @@ router.post(
           [newProductId, current_qty, min_qty, max_qty],
         );
         await client.query('COMMIT');
-        res.sendStatus(201);
+        res.status(201).json({ id: newProductId });
       } catch (error) {
         await client.query('ROLLBACK');
         next(error);

@@ -67,7 +67,7 @@ test('return an error if given a bad category id', async () => {
 describe('add product endpoint', () => {
   let agent;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     agent = superagent.agent();
     await agent.post('http://localhost:4700/user/login').send(testLogin);
   });
@@ -80,5 +80,28 @@ describe('add product endpoint', () => {
       .end((err, res) => {
         expect(res.statusCode).toBe(400);
       });
+  });
+
+  test('adds a product to the products table in the db', async () => {
+    const input = {
+      product_name: 'test_product_47',
+      product_description: 'blah blah heres some text',
+      product_price: 47,
+      image_url: './assets/path_to_file.webp',
+      category_id: 3,
+      current_qty: 5,
+      min_qty: 6,
+      max_qty: 7,
+    };
+    const res = await agent.post('http://localhost:4700/products').send(input);
+    const newId = res.body.id;
+    expect(res.statusCode).toBe(201);
+
+    // the above added the test product to the database
+    // the below removes it
+    const delRes = await agent.delete(
+      `http://localhost:4700/products/${newId}`,
+    );
+    expect(delRes.statusCode).toBe(204);
   });
 });
