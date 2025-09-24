@@ -6,6 +6,17 @@ const testLogin = {
   password: 'doh_nuts',
 };
 
+const productInput = {
+  product_name: 'test_product_47',
+  product_description: 'blah blah heres some text',
+  product_price: 47,
+  image_url: './assets/path_to_file.webp',
+  category_id: 3,
+  current_qty: 5,
+  min_qty: 6,
+  max_qty: 7,
+};
+
 // walk before we run
 // the 'GET' tests
 
@@ -64,13 +75,30 @@ test('return an error if given a bad category id', async () => {
   expect(res.body).toBe('We could not find a category with that id.');
 });
 
+// the tests that require being logged in
 describe('add product endpoint', () => {
   let agent;
 
+  //  login, the agent hold my session data
   beforeAll(async () => {
     agent = superagent.agent();
     await agent.post('http://localhost:4700/user/login').send(testLogin);
   });
+
+  // some helper functions
+  async function addProduct() {
+    const res = await agent
+      .post('http://localhost:4700/products')
+      .send(productInput);
+    const newId = res.body.id;
+    expect(res.statusCode).toBe(201);
+    return newId;
+  }
+
+  async function deleteProduct(id) {
+    const delRes = await agent.delete(`http://localhost:4700/products/${id}`);
+    expect(delRes.statusCode).toBe(204);
+  }
 
   test('returns a 400 if given bad product data', () => {
     const data = { wrongField: 'wrong data' };
@@ -83,25 +111,33 @@ describe('add product endpoint', () => {
   });
 
   test('adds a product to the products table in the db', async () => {
-    const input = {
-      product_name: 'test_product_47',
-      product_description: 'blah blah heres some text',
-      product_price: 47,
-      image_url: './assets/path_to_file.webp',
-      category_id: 3,
-      current_qty: 5,
-      min_qty: 6,
-      max_qty: 7,
-    };
-    const res = await agent.post('http://localhost:4700/products').send(input);
-    const newId = res.body.id;
-    expect(res.statusCode).toBe(201);
+    const newId = await addProduct();
 
-    // the above added the test product to the database
-    // the below removes it
-    const delRes = await agent.delete(
-      `http://localhost:4700/products/${newId}`,
-    );
-    expect(delRes.statusCode).toBe(204);
+    deleteProduct(newId);
+  });
+
+  test('updates product info ', async () => {
+    // add a product and get it's id to work with
+    const newId = await addProduct();
+
+    // duplicate the product input and make a change to it
+    const updatedProductInput = { ...productInput };
+    updatedProductInput.product_name = 'updated name 47';
+
+    // update the product we added
+    const res = await agent
+      .put(`http://localhost:4700/products/${newId}`)
+      .send(updatedProductInput);
+
+    // expect the update was successful
+    expect(res.statusCode).toBe(200);
+    expect(res.body.product_id).toBe(newId);
+
+    // get the updated product and check the updated field
+    const res2 = await agent.get(`http://localhost:4700/products/${newId}`);
+    expect(res2.body.product_name).toBe(updatedProductInput.product_name);
+
+    // clean up
+    deleteProduct(newId);
   });
 });
