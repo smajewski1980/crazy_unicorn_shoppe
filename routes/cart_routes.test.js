@@ -18,8 +18,6 @@ describe('cart_routes', () => {
   describe('endpoints that need auth', () => {
     describe('the GET endpoints', () => {
       test('returns 401 if not logged in', async () => {
-        const agent = superagent.agent();
-        await agent.post('http://localhost:4700/user/login').send(testLogin);
         await request('localhost:4700').get('/cart').expect(401);
       });
 
