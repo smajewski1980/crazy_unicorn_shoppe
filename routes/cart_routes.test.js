@@ -13,6 +13,7 @@ const fullCartUser = {
   username: 'Full Cart User',
   password: 'Full Cart User',
 };
+const product = { product_id: 2, item_qty: 1 };
 
 describe('cart_routes', () => {
   describe('the GET endpoints', () => {
@@ -55,6 +56,28 @@ describe('cart_routes', () => {
       expect(res.headers['content-type']).toBe(
         'application/json; charset=utf-8',
       );
+    });
+  });
+
+  describe('the post endpoints', () => {
+    test('adds a product to the cart', async () => {
+      // in the cleanup, this test also tests the DELETE /cart endpoint
+      const agent = superagent.agent();
+      await agent.post('http://localhost:4700/user/login').send(fullCartUser);
+
+      // add a product to the cart
+      const res = await agent.post('http://localhost:4700/cart').send(product);
+
+      expect(res.statusCode).toBe(200);
+      expect(res.body.product_name).toBe(product.productName);
+      expect(res.body.item_qty).toBe(product.item_qty);
+
+      // remove the added item from the cart
+      const cleanupRes = await agent.delete(
+        `http://localhost:4700/cart/${product.product_id}`,
+      );
+
+      expect(cleanupRes.statusCode).toBe(204);
     });
   });
 });
