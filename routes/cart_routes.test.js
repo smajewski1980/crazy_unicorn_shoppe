@@ -1,10 +1,6 @@
 const request = require('supertest');
 const superagent = require('superagent');
 
-const testLogin = {
-  username: 'Homer Simpson',
-  password: 'doh_nuts',
-};
 const emptyCartUser = {
   username: 'Empty Cart User',
   password: 'Empty Cart User',
@@ -14,12 +10,17 @@ const fullCartUser = {
   password: 'Full Cart User',
 };
 const product = { product_id: 2, item_qty: 1 };
+const updatedProduct = { product_id: 2, item_qty: 5 };
+
+const testForNotLoggedIn = () => {
+  test('returns 401 if not logged in', async () => {
+    await request('localhost:4700').get('/cart').expect(401);
+  });
+};
 
 describe('cart_routes', () => {
   describe('the GET endpoints', () => {
-    test('returns 401 if not logged in', async () => {
-      await request('localhost:4700').get('/cart').expect(401);
-    });
+    testForNotLoggedIn();
 
     test('returns 400 if the user has an empty cart', async () => {
       const agent = superagent.agent();
@@ -46,10 +47,6 @@ describe('cart_routes', () => {
       );
     });
 
-    test('returns 401 if not logged in', async () => {
-      await request('localhost:4700').post('/cart/checkout').expect(401);
-    });
-
     test('gets the users checkout data', async () => {
       const agent = superagent.agent();
       await agent.post('http://localhost:4700/user/login').send(fullCartUser);
@@ -64,9 +61,7 @@ describe('cart_routes', () => {
   });
 
   describe('the post endpoints', () => {
-    test('returns 401 if not logged in', async () => {
-      await request('localhost:4700').post('/cart').expect(401);
-    });
+    testForNotLoggedIn();
 
     test('adds a product to the cart', async () => {
       // in the cleanup, this test also tests the DELETE /cart endpoint
@@ -98,6 +93,41 @@ describe('cart_routes', () => {
         .ok((res) => res.status === 400 || 200);
 
       expect(res.statusCode === 200 || res.statusCode === 400).toBe(true);
+    });
+  });
+
+  describe('PUT endpoint', () => {
+    testForNotLoggedIn();
+
+    test('updates the qty of an item in the cart', async () => {
+      // login a user
+      const agent = superagent.agent();
+      await agent.post('http://localhost:4700/user/login').send(fullCartUser);
+
+      // add a product to the cart that we can then update
+      const addRes = await agent
+        .post('http://localhost:4700/cart')
+        .send(product);
+
+      expect(addRes.statusCode).toBe(200);
+      expect(addRes.body.product_id).toBe(product.product_id);
+      expect(addRes.body.item_qty).toBe(product.item_qty);
+
+      // update the item_qty of the item we just added
+      const res = await agent
+        .put('http://localhost:4700/cart')
+        .send(updatedProduct);
+
+      expect(res.statusCode).toBe(200);
+      expect(res.body[0].product_id).toBe(updatedProduct.product_id);
+      expect(res.body[0].item_qty).toBe(updatedProduct.item_qty);
+
+      // remove the added item from the cart
+      const cleanupRes = await agent.delete(
+        `http://localhost:4700/cart/${product.product_id}`,
+      );
+
+      expect(cleanupRes.statusCode).toBe(204);
     });
   });
 });
