@@ -46,6 +46,10 @@ describe('cart_routes', () => {
       );
     });
 
+    test('returns 401 if not logged in', async () => {
+      await request('localhost:4700').post('/cart/checkout').expect(401);
+    });
+
     test('gets the users checkout data', async () => {
       const agent = superagent.agent();
       await agent.post('http://localhost:4700/user/login').send(fullCartUser);
@@ -60,6 +64,10 @@ describe('cart_routes', () => {
   });
 
   describe('the post endpoints', () => {
+    test('returns 401 if not logged in', async () => {
+      await request('localhost:4700').post('/cart').expect(401);
+    });
+
     test('adds a product to the cart', async () => {
       // in the cleanup, this test also tests the DELETE /cart endpoint
       const agent = superagent.agent();
@@ -78,6 +86,18 @@ describe('cart_routes', () => {
       );
 
       expect(cleanupRes.statusCode).toBe(204);
+    });
+
+    test('returns 200 or 400 when "payment" is submitted', async () => {
+      // for fun, i have the payment occasionally get rejected, thats why the test is for 400 or 200
+      const agent = superagent.agent();
+      await agent.post('http://localhost:4700/user/login').send(fullCartUser);
+
+      const res = await agent
+        .post('http://localhost:4700/cart/checkout')
+        .ok((res) => res.status === 400 || 200);
+
+      expect(res.statusCode === 200 || res.statusCode === 400).toBe(true);
     });
   });
 });
