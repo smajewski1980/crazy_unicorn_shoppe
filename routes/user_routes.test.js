@@ -1,5 +1,6 @@
 const request = require('supertest');
 const superagent = require('superagent');
+const { body } = require('express-validator');
 
 const newUser = {
   name: 'Test Run User',
@@ -14,10 +15,33 @@ const newUser = {
   zip_code: '99999',
 };
 
+const user = {
+  username: 'Homer Simpson',
+  password: 'doh_nuts',
+};
+
 const BASE_URL = 'http://localhost:4700';
 
+const getAgent = () => superagent.agent();
+
 describe('user routes', () => {
-  test.todo('GET routes');
+  describe('GET routes', () => {
+    test('user/status returns 401 if not logged in', async () => {
+      await request(BASE_URL).get('/user/status').expect(401);
+    });
+    test('user/status returns the user obj when logged in', async () => {
+      const agent = getAgent();
+      await agent.post(BASE_URL + '/user/login').send(user);
+
+      const res = await agent.get(BASE_URL + '/user/status');
+
+      expect(res.statusCode).toBe(200);
+      expect(res.headers['content-type']).toBe(
+        'application/json; charset=utf-8',
+      );
+      expect(res.body.name).toBe(user.username);
+    });
+  });
 
   describe('POST routes', () => {
     test('/user/register returns 400 if password and conf password do not match', async () => {
@@ -39,7 +63,7 @@ describe('user routes', () => {
       const newUserId = res.body.user_id;
 
       // login the new user
-      const agent = superagent.agent();
+      const agent = getAgent();
       await agent
         .post(BASE_URL + '/user/login')
         .send({ username: newUser.name, password: newUser.password });
