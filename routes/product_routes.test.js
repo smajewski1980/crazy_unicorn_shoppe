@@ -16,12 +16,13 @@ const productInput = {
   min_qty: 6,
   max_qty: 7,
 };
+
+const BASE_URL = 'http://localhost:4700';
+
 describe('product_routes', () => {
-  // walk before we run
-  // the 'GET' tests
   describe('test the get endpoints', () => {
     test('get all products', async () => {
-      const res = await request('localhost:4700')
+      const res = await request(BASE_URL)
         .get('/products')
         .expect(200)
         .expect('Content-Type', 'application/json; charset=utf-8');
@@ -30,7 +31,7 @@ describe('product_routes', () => {
     });
 
     test('get a product by id', async () => {
-      const res = await request('localhost:4700')
+      const res = await request(BASE_URL)
         .get('/products/1')
         .expect(200)
         .expect('Content-Type', 'application/json; charset=utf-8');
@@ -39,7 +40,7 @@ describe('product_routes', () => {
     });
 
     test('get a products inventory by its id', async () => {
-      const res = await request('localhost:4700')
+      const res = await request(BASE_URL)
         .get('/products/1/inventory')
         .expect(200)
         .expect('Content-Type', 'application/json; charset=utf-8');
@@ -47,9 +48,8 @@ describe('product_routes', () => {
       expect(Object.keys(res.body).length).toBe(3);
     });
 
-    // test a non happy path
     test('returns 404 when provided a bad product id', async () => {
-      const res = await request('localhost:4700')
+      const res = await request(BASE_URL)
         .get('/products/999/inventory')
         .expect(404)
         .expect('Content-Type', 'application/json; charset=utf-8');
@@ -58,7 +58,7 @@ describe('product_routes', () => {
     });
 
     test('get products by category', async () => {
-      const res = await request('localhost:4700')
+      const res = await request(BASE_URL)
         .get('/products/category/1')
         .expect(200)
         .expect('Content-Type', 'application/json; charset=utf-8');
@@ -66,9 +66,8 @@ describe('product_routes', () => {
       expect(Object.keys(res.body).length).toBeGreaterThan(0);
     });
 
-    // another non happy path
     test('return an error if given a bad category id', async () => {
-      const res = await request('localhost:4700')
+      const res = await request(BASE_URL)
         .get('/products/category/9')
         .expect(404);
 
@@ -83,28 +82,26 @@ describe('product_routes', () => {
     //  login, the agent hold my session data
     beforeAll(async () => {
       agent = superagent.agent();
-      await agent.post('http://localhost:4700/user/login').send(testLogin);
+      await agent.post(BASE_URL + '/user/login').send(testLogin);
     });
 
     // some helper functions
     async function addProduct() {
-      const res = await agent
-        .post('http://localhost:4700/products')
-        .send(productInput);
+      const res = await agent.post(BASE_URL + '/products').send(productInput);
       const newId = res.body.id;
       expect(res.statusCode).toBe(201);
       return newId;
     }
     // this helper function is also a test for the DELETE /products/:id endpoint
     async function deleteProduct(id) {
-      const delRes = await agent.delete(`http://localhost:4700/products/${id}`);
+      const delRes = await agent.delete(BASE_URL + `/products/${id}`);
       expect(delRes.statusCode).toBe(204);
     }
 
     test('add products returns a 400 if given bad product data', () => {
       const data = { wrongField: 'wrong data' };
       agent
-        .post('http://localhost:4700/products')
+        .post(BASE_URL + '/products')
         .send(data)
         .end((err, res) => {
           expect(res.statusCode).toBe(400);
@@ -113,7 +110,6 @@ describe('product_routes', () => {
 
     test('adds a product to the products table in the db', async () => {
       const newId = await addProduct();
-
       deleteProduct(newId);
     });
 
@@ -127,7 +123,7 @@ describe('product_routes', () => {
 
       // update the product we added
       const res = await agent
-        .put(`http://localhost:4700/products/${newId}`)
+        .put(BASE_URL + `/products/${newId}`)
         .send(updatedProductInput);
 
       // expect the update was successful
@@ -135,7 +131,7 @@ describe('product_routes', () => {
       expect(res.body.product_id).toBe(newId);
 
       // get the updated product and check the updated field
-      const res2 = await agent.get(`http://localhost:4700/products/${newId}`);
+      const res2 = await agent.get(BASE_URL + `/products/${newId}`);
       expect(res2.body.product_name).toBe(updatedProductInput.product_name);
 
       // clean up
@@ -149,7 +145,7 @@ describe('product_routes', () => {
 
       // update the products qty
       const res = await agent
-        .put(`http://localhost:4700/products/${newId}/inventory`)
+        .put(BASE_URL + `/products/${newId}/inventory`)
         .send(updatedQty);
 
       expect(res.statusCode).toBe(200);
@@ -157,7 +153,7 @@ describe('product_routes', () => {
 
       // get the products inventory to test it was updated
       const getInvRes = await agent.get(
-        `http://localhost:4700/products/${newId}/inventory`,
+        BASE_URL + `/products/${newId}/inventory`,
       );
 
       expect(getInvRes.statusCode).toBe(200);
