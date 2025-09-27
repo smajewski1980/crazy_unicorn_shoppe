@@ -15,6 +15,19 @@ const newUser = {
   zip_code: '99999',
 };
 
+const badUserInput = {
+  name: '',
+  password: '',
+  conf_password: '',
+  email: '',
+  phone: '',
+  address_line_1: '',
+  address_line_2: '',
+  city: '',
+  state: '',
+  zip_code: '',
+};
+
 const user = {
   username: 'Homer Simpson',
   password: 'doh_nuts',
@@ -29,6 +42,7 @@ describe('user routes', () => {
     test('user/status returns 401 if not logged in', async () => {
       await request(BASE_URL).get('/user/status').expect(401);
     });
+
     test('user/status returns the user obj when logged in', async () => {
       const agent = getAgent();
       await agent.post(BASE_URL + '/user/login').send(user);
@@ -47,10 +61,20 @@ describe('user routes', () => {
     test('/user/register returns 400 if password and conf password do not match', async () => {
       const pwNoMatchUser = { ...newUser };
       pwNoMatchUser.conf_password = 'something else';
-      await request(BASE_URL)
+      const res = await request(BASE_URL)
         .post('/user/register')
         .send(pwNoMatchUser)
         .expect(400);
+
+      expect(res.body.msg).toBe("passwords don't match");
+    });
+
+    test('/user/register returns 400 if given invalid data', async () => {
+      const res = await request(BASE_URL)
+        .post('/user/register')
+        .send(badUserInput)
+        .expect(400);
+      expect(res.body.errors.length).toBeGreaterThan(0);
     });
 
     test('/user/register returns 201 when given valid data', async () => {
