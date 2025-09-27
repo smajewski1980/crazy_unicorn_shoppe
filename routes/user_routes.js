@@ -60,7 +60,7 @@ router.post(
             }
             const newUserId = result.rows[0].user_id;
             client.query(
-              'insert into user_address(user_id, address_line_1, address_line_2, city, state, zip_code) values($1, $2, $3, $4, $5, $6)',
+              'insert into user_address(user_id, address_line_1, address_line_2, city, state, zip_code) values($1, $2, $3, $4, $5, $6) RETURNING user_id',
               [
                 newUserId,
                 address_line_1,
@@ -77,7 +77,7 @@ router.post(
                   return;
                 }
                 await client.query('COMMIT');
-                res.status(201).send();
+                res.status(201).send(result.rows[0]);
               },
             );
           },
