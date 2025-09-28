@@ -59,6 +59,23 @@ describe('user routes', () => {
       );
       expect(res.body.name).toBe(user.username);
     });
+
+    test('/user/logout logs out a user', async () => {
+      // logs in user
+      const agent = getAgent();
+      const loginRes = await agent.post(BASE_URL + '/user/login').send(user);
+      expect(loginRes.statusCode).toBe(200);
+
+      // logs out user
+      const res = await agent.get(BASE_URL + '/user/logout');
+      expect(res.statusCode).toBe(200);
+
+      // checks user is logged out
+      const checkRes = await agent
+        .get(BASE_URL + '/user/status')
+        .ok((res) => res.status === 401);
+      expect(checkRes.statusCode).toBe(401);
+    });
   });
 
   describe('POST routes', () => {
