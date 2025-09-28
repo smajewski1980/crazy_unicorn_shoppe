@@ -32,6 +32,10 @@ const user = {
   username: 'Homer Simpson',
   password: 'doh_nuts',
 };
+const badUser = {
+  username: 'Homer Simpson',
+  password: 'doh_nutsss',
+};
 
 const BASE_URL = 'http://localhost:4700';
 
@@ -95,6 +99,23 @@ describe('user routes', () => {
       // delete the new user
       const cleanupRes = await agent.delete(`${BASE_URL}/user/${newUserId}`);
       expect(cleanupRes.statusCode).toBe(204);
+    });
+
+    test('/user/login logs in a user', async () => {
+      const agent = getAgent();
+      const res = await agent.post(BASE_URL + '/user/login').send(user);
+
+      expect(res.statusCode).toBe(200);
+    });
+
+    test('/user/login return 400 if provided incorrect login credentials', async () => {
+      const agent = getAgent();
+      const res = await agent
+        .post(BASE_URL + '/user/login')
+        .send(badUser)
+        .ok((res) => res.status === 401);
+
+      expect(res.statusCode).toBe(401);
     });
   });
 });
