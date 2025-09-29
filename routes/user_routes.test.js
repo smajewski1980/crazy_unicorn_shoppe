@@ -76,6 +76,32 @@ describe('user routes', () => {
         .ok((res) => res.status === 401);
       expect(checkRes.statusCode).toBe(401);
     });
+
+    test('/user/:id returns 403 if the id requested is not the current user', async () => {
+      const agent = getAgent();
+      const loginRes = await agent.post(BASE_URL + '/user/login').send(user);
+      expect(loginRes.statusCode).toBe(200);
+
+      const res = await agent
+        .get(BASE_URL + '/user/47')
+        .ok((res) => res.status === 403);
+
+      expect(res.statusCode).toBe(403);
+    });
+
+    test('/user/:id returns user data', async () => {
+      const agent = getAgent();
+      const loginRes = await agent.post(BASE_URL + '/user/login').send(user);
+      expect(loginRes.statusCode).toBe(200);
+
+      const res = await agent.get(BASE_URL + '/user/1');
+
+      expect(res.statusCode).toBe(200);
+      expect(res.headers['content-type']).toBe(
+        'application/json; charset=utf-8',
+      );
+      expect(res.body.user_id).toBe(1);
+    });
   });
 
   describe('POST routes', () => {
