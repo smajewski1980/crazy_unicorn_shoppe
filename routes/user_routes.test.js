@@ -32,9 +32,37 @@ const user = {
   username: 'Homer Simpson',
   password: 'doh_nuts',
 };
+
 const badUser = {
   username: 'Homer Simpson',
   password: 'doh_nutsss',
+};
+
+const fullCartUser = {
+  username: 'Full Cart User',
+  password: 'Full Cart User',
+};
+
+const originalUser = {
+  name: 'Full Cart User',
+  email: 'fullcartuser@email.com',
+  phone: '1-555-555-1212',
+  address_line_1: '123 Main St',
+  address_line_2: '',
+  city: 'full cart springs',
+  state: 'fu',
+  zip_code: '99999',
+};
+
+const updatedUser = {
+  name: 'Full Carts User',
+  email: 'fullcartsuser@email.com',
+  phone: '1-556-555-1212',
+  address_line_1: '1234 Main St',
+  address_line_2: '',
+  city: 'full carts springs',
+  state: 'FU',
+  zip_code: '99991',
 };
 
 const BASE_URL = 'http://localhost:4700';
@@ -151,7 +179,7 @@ describe('user routes', () => {
       expect(res.statusCode).toBe(200);
     });
 
-    test('/user/login return 400 if provided incorrect login credentials', async () => {
+    test('/user/login return 401 if provided incorrect login credentials', async () => {
       const agent = getAgent();
       const res = await agent
         .post(BASE_URL + '/user/login')
@@ -159,6 +187,53 @@ describe('user routes', () => {
         .ok((res) => res.status === 401);
 
       expect(res.statusCode).toBe(401);
+    });
+  });
+
+  describe('put routes', () => {
+    test('/user/:id returns 401 if user is not logged in', async () => {
+      await request(BASE_URL).put('/user/82').send(updatedUser).expect(401);
+    });
+
+    test('/user/:id returns 400 when given bad data', async () => {
+      const agent = getAgent();
+      const loginRes = await agent
+        .post(BASE_URL + '/user/login')
+        .send(fullCartUser);
+      expect(loginRes.statusCode).toBe(200);
+
+      const res = await agent
+        .put(BASE_URL + '/user/82')
+        .send(badUserInput)
+        .ok((res) => res.status === 400);
+      expect(res.statusCode).toBe(400);
+    });
+
+    test('/user/:id returns 201 and updates user data', async () => {
+      // login the user
+      const agent = getAgent();
+      const loginRes = await agent
+        .post(BASE_URL + '/user/login')
+        .send(fullCartUser);
+      expect(loginRes.statusCode).toBe(200);
+
+      // update the user info
+      const updateRes = await agent
+        .put(BASE_URL + '/user/82')
+        .send(updatedUser);
+      expect(updateRes.statusCode).toBe(201);
+
+      // confirm it was updated
+      const checkRes = await agent.get(BASE_URL + '/user/82');
+      expect(checkRes.body.name).toBe(updatedUser.name);
+      expect(checkRes.body.email).toBe(updatedUser.email);
+      expect(checkRes.body.phone).toBe(updatedUser.phone);
+
+      // revert the user info back
+      const cleanupRes = await agent
+        .put(BASE_URL + '/user/82')
+        .send(originalUser);
+      expect(cleanupRes.statusCode).toBe(201);
     });
   });
 });
