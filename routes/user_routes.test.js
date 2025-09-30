@@ -64,6 +64,8 @@ const updatedUser = {
   zip_code: '99991',
 };
 
+const badThought = { name: '', thought: '' };
+
 const BASE_URL = 'http://localhost:4700';
 
 const getAgent = () => superagent.agent();
@@ -186,6 +188,27 @@ describe('user routes', () => {
         .ok((res) => res.status === 401);
 
       expect(res.statusCode).toBe(401);
+    });
+
+    test('/user/thought returns 401 if not logged in', async () => {
+      const res = await request(BASE_URL)
+        .post('/user/thought')
+        .send(badThought);
+      expect(res.statusCode).toBe(401);
+    });
+
+    test('/user/thought returns a 400 when given bad input', async () => {
+      const agent = getAgent();
+      const loginRes = await agent.post(BASE_URL + '/user/login').send(user);
+
+      expect(loginRes.statusCode).toBe(200);
+
+      const res = await agent
+        .post(BASE_URL + '/user/thought')
+        .send(badThought)
+        .ok((res) => res.statusCode === 400);
+      expect(res.statusCode).toBe(400);
+      expect(res.body.errors.length).toBeGreaterThan(0);
     });
   });
 
