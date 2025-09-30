@@ -1,6 +1,5 @@
 const request = require('supertest');
 const superagent = require('superagent');
-const { body } = require('express-validator');
 
 const newUser = {
   name: 'Test Run User',
