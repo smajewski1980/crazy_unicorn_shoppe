@@ -15,6 +15,26 @@ async function logIn(agent) {
   return loginRes.statusCode;
 }
 
+const homerOrder2 = {
+  order_id: 75,
+  user_id: 1,
+  order_date: `${new Date('2025-09-02 20:37:48.715901-04').toISOString()}`,
+  order_total: '4.75',
+  order_status: 'canceled',
+  payment_method: 'pretend-pal',
+  free_shipping_elligible: false,
+  cart_id: 78,
+  order_items: [
+    {
+      cart_id: 78,
+      item_qty: 1,
+      item_subtotal: '4',
+      product_name: 'Unicorn Cupcake',
+      product_price: '4',
+    },
+  ],
+};
+
 describe('GET endpoints', () => {
   describe('/order/:id', () => {
     test('returns 401 if not auth', async () => {
@@ -22,7 +42,7 @@ describe('GET endpoints', () => {
       expect(res.statusCode).toBe(401);
     });
 
-    test('returns 404 error message: We could not find a order with that id. if given a bad id', async () => {
+    test('returns 404 error message if given a bad id', async () => {
       const agent = getAgent();
       expect(await logIn(agent)).toBe(200);
 
@@ -33,7 +53,7 @@ describe('GET endpoints', () => {
       expect(res.error.text).toBe('"We could not find a order with that id."');
     });
 
-    test("returns 401 error message: Mind your business, that is someone else's order id! if :id is not of the logged in user", async () => {
+    test('returns 401 error message if :id is not of the logged in user', async () => {
       const agent = getAgent();
       expect(await logIn(agent)).toBe(200);
 
@@ -45,7 +65,17 @@ describe('GET endpoints', () => {
         '"Mind your business, that is someone else\'s order id!"',
       );
     });
-    test.todo('returns order data when provided a valid order id');
+    test('returns order data when provided a valid order id', async () => {
+      const agent = getAgent();
+      expect(await logIn(agent)).toBe(200);
+
+      const res = await agent.get(BASE_URL + '/order/75');
+      expect(res.statusCode).toBe(200);
+      expect(res.headers['content-type']).toBe(
+        'application/json; charset=utf-8',
+      );
+      expect(res.body).toEqual(homerOrder2);
+    });
   });
 
   describe('/order/:id/all', () => {
