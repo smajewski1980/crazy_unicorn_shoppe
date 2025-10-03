@@ -137,7 +137,11 @@ describe('GET endpoints', () => {
 
 describe('POST endpoints', () => {
   describe('/order', () => {
-    test.todo('returns 401 if user not auth');
+    test('returns 401 if user not auth', async () => {
+      await request(BASE_URL).post('/order').expect(401);
+    });
+
+    // this one is goin to take a lot of setup and teardown
     test.todo(
       'creates an order and adjusts the respective product inventories',
     );
