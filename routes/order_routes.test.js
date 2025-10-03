@@ -13,6 +13,11 @@ const emptyCartUser = {
   password: 'Empty Cart User',
 };
 
+const multiOrderTestUser = {
+  username: 'multi order user for testing',
+  password: 'multi order',
+};
+
 const getAgent = () => superagent.agent();
 
 async function logIn(agent) {
@@ -111,8 +116,22 @@ describe('GET endpoints', () => {
         .get(BASE_URL + '/order/2/all')
         .ok((res) => res.statusCode === 401);
       expect(res.statusCode).toBe(401);
+      expect(res.error.text).toBe(
+        '"Mind your business, that\'s not your order!"',
+      );
     });
-    test.todo('returns all orders when provide a valid user id');
+
+    test('returns all orders for a user when provide a valid user id', async () => {
+      const agent = getAgent();
+      const loginRes = await agent
+        .post(BASE_URL + '/user/login')
+        .send(multiOrderTestUser);
+      expect(loginRes.statusCode).toBe(200);
+
+      const res = await agent.get(BASE_URL + '/order/422/all');
+      expect(res.ok).toBe(true);
+      expect(res.body.length).toBe(2);
+    });
   });
 });
 
