@@ -148,7 +148,7 @@ describe('POST endpoints', () => {
   });
 });
 
-describe('PUT /:id endpoints', () => {
+describe('PUT /order/:id endpoints', () => {
   test('returns 401 if user not auth', async () => {
     await request(BASE_URL).put('/order/1').expect(401);
   });
@@ -183,12 +183,33 @@ describe('PUT /:id endpoints', () => {
 });
 
 describe('DELETE /order/:id endpoint', () => {
-  test.todo('returns 401 if not auth');
-  test.todo(
-    'returns 404 error message: We could not find a order with that id. if given a bad id',
-  );
-  test.todo(
-    "returns 401 error message: Mind your business, that is someone else's order id! if :id is not of the logged in user",
-  );
+  test('returns 401 if not auth', async () => {
+    await request(BASE_URL).put('/order/1').expect(401);
+  });
+
+  test('returns 404 error if given a bad id', async () => {
+    const agent = getAgent();
+    expect(await logIn(agent)).toBe(200);
+
+    const res = await agent
+      .delete(BASE_URL + '/order/999999')
+      .ok((res) => res.statusCode === 404);
+    expect(res.statusCode).toBe(404);
+    expect(res.error.text).toBe('"We could not find an order with that id."');
+  });
+
+  test('returns 401 error if :id is not of the logged in user', async () => {
+    const agent = getAgent();
+    expect(await logIn(agent)).toBe(200);
+
+    const res = await agent
+      .delete(BASE_URL + '/order/80')
+      .ok((res) => res.statusCode === 401);
+    expect(res.statusCode).toBe(401);
+    expect(res.error.text).toBe(
+      '"Mind your business, that is someone else\'s order id!"',
+    );
+  });
+
   test.todo('cancels an order when given a valid order id');
 });
