@@ -8,6 +8,11 @@ const goodUser = {
   password: 'doh_nuts',
 };
 
+const emptyCartUser = {
+  username: 'Empty Cart User',
+  password: 'Empty Cart User',
+};
+
 const getAgent = () => superagent.agent();
 
 async function logIn(agent) {
@@ -38,8 +43,7 @@ const homerOrder2 = {
 describe('GET endpoints', () => {
   describe('/order/:id', () => {
     test('returns 401 if not auth', async () => {
-      const res = await request(BASE_URL).get('/order/47');
-      expect(res.statusCode).toBe(401);
+      await request(BASE_URL).get('/order/47').expect(401);
     });
 
     test('returns 404 error message if given a bad id', async () => {
@@ -79,14 +83,36 @@ describe('GET endpoints', () => {
   });
 
   describe('/order/:id/all', () => {
-    test.todo('returns 401 if not auth');
+    test('returns 401 if not auth', async () => {
+      await request(BASE_URL).get('/order/1/all').expect(401);
+    });
+
+    test('returns 404 error if user has no orders', async () => {
+      const agent = getAgent();
+      const loginRes = await agent
+        .post(BASE_URL + '/user/login')
+        .send(emptyCartUser);
+      expect(loginRes.statusCode).toBe(200);
+
+      const res = await agent
+        .get(BASE_URL + '/order/81/all')
+        .ok((res) => res.statusCode === 404);
+      expect(res.statusCode).toBe(404);
+      expect(res.error.text).toBe(
+        '"We could not find any orders for that user."',
+      );
+    });
+
+    test('returns 401 error if :id is not of the logged in user', async () => {
+      const agent = getAgent();
+      expect(await logIn(agent)).toBe(200);
+
+      const res = await agent
+        .get(BASE_URL + '/order/2/all')
+        .ok((res) => res.statusCode === 401);
+      expect(res.statusCode).toBe(401);
+    });
     test.todo('returns all orders when provide a valid user id');
-    test.todo(
-      'returns 404 err msg: We could not find any orders for that user. if user has no orders',
-    );
-    test.todo(
-      "returns 401 error message: Mind your business, that is someone else's order id! if :id is not of the logged in user",
-    );
   });
 });
 
