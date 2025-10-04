@@ -18,6 +18,11 @@ const multiOrderTestUser = {
   password: 'multi order',
 };
 
+const createOrderUser = {
+  username: 'create order user for testing',
+  password: 'createorder',
+};
+
 const getAgent = () => superagent.agent();
 
 async function logIn(agent) {
@@ -44,6 +49,11 @@ const homerOrder2 = {
     },
   ],
 };
+
+// const createOrderObj = {
+//   user_id: 480,
+//   order_total
+// }
 
 describe('GET endpoints', () => {
   describe('/order/:id', () => {
@@ -142,9 +152,67 @@ describe('POST endpoints', () => {
     });
 
     // this one is goin to take a lot of setup and teardown
-    test.todo(
-      'creates an order and adjusts the respective product inventories',
-    );
+    test('creates an order and adjusts the respective product inventories', async () => {
+      const addToCartURL = 'http://localhost:4700/cart';
+      const product = { product_id: 2, item_qty: 1 };
+
+      const agent = getAgent();
+      const loginRes = await agent
+        .post(BASE_URL + '/user/login')
+        .send(createOrderUser);
+      expect(loginRes.ok).toBe(true);
+
+      // add something to the cart
+      const addRes = await agent
+        .post(addToCartURL)
+        .send(product)
+        .ok((res) => res.statusCode === 500); // <------------- left off here
+      expect(addRes.statusCode).toBe(200);
+      expect(addRes.body.product_name).toBe(product.productName);
+      expect(addRes.body.item_qty).toBe(product.item_qty);
+
+      // get the inventory of the item(s) added to the cart
+      const startInvRes = await request(BASE_URL)
+        .get(`/products/${product.product_id}/inventory`)
+        .expect(200);
+      const startQty = await startInvRes.body.current_qty;
+
+      // create the order
+      const checkoutRes = await agent.get(BASE_URL + '/cart/checkout');
+      const newOrderObj = {
+        user_id: checkoutRes.body.user_id,
+        orderTotal:
+          checkoutRes.body.item_qty *
+          checkoutRes.body.product_price *
+          0.08 *
+          0.1,
+        payment_method: 'pretend-pal',
+        cart_id: checkoutRes.body.cart_id,
+      };
+      console.log(checkoutRes);
+      const createOrderRes = await agent
+        .post(BASE_URL + '/order')
+        .send(newOrderObj);
+      expect(createOrderRes.ok).toBe(true);
+      expect(createOrderRes.body.msg).toBe('order created');
+      const createdOrderId = createOrderRes.body.order_id;
+
+      // cancel the order
+      const cancelOrderRes = await agent.delete(
+        `${BASE_URL}/order/${createdOrderId}`,
+      );
+      expect(cancelOrderRes.ok).toBe(true);
+      expect(cancelOrderRes.body.msg).toBe(
+        'The order has been successfully canceled.',
+      );
+      expect(cancelOrderRes.body.order_status).toBe('canceled');
+
+      // compare now inventory to start inventory
+      const endInvRes = await request(BASE_URL)
+        .get(`/products/${product.product_id}/inventory`)
+        .expect(200);
+      expect(endInvRes.body.current_qty).toBe(startQty);
+    });
   });
 });
 
