@@ -243,7 +243,27 @@ describe('PUT /order/:id endpoints', () => {
     );
   });
 
-  test.todo('updates order status');
+  test('updates order status', async () => {
+    const agent = getAgent();
+    const loginRes = await agent
+      .post(BASE_URL + '/user/login')
+      .send(createOrderUser);
+    expect(loginRes.ok).toBe(true);
+
+    const updateRes = await agent
+      .put(BASE_URL + '/order/100')
+      .send({ updatedOrderStatus: 'pending' });
+    expect(updateRes.ok).toBe(true);
+    expect(updateRes.body.msg).toBe('order status has been updated');
+    expect(updateRes.body.order_status).toBe('pending');
+
+    const cleanupRes = await agent
+      .put(BASE_URL + '/order/100')
+      .send({ updatedOrderStatus: 'canceled' });
+    expect(cleanupRes.ok).toBe(true);
+    expect(cleanupRes.body.msg).toBe('order status has been updated');
+    expect(cleanupRes.body.order_status).toBe('canceled');
+  });
 });
 
 describe('DELETE /order/:id endpoint', () => {
