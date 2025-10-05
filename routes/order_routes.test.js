@@ -163,10 +163,7 @@ describe('POST endpoints', () => {
       expect(loginRes.ok).toBe(true);
 
       // add something to the cart
-      const addRes = await agent
-        .post(addToCartURL)
-        .send(product)
-        .ok((res) => res.statusCode === 500); // <------------- left off here
+      const addRes = await agent.post(addToCartURL).send(product); // <------------- left off here
       expect(addRes.statusCode).toBe(200);
       expect(addRes.body.product_name).toBe(product.productName);
       expect(addRes.body.item_qty).toBe(product.item_qty);
@@ -179,17 +176,16 @@ describe('POST endpoints', () => {
 
       // create the order
       const checkoutRes = await agent.get(BASE_URL + '/cart/checkout');
+      const subtotal =
+        checkoutRes.body[0].item_qty * checkoutRes.body[0].product_price;
+      const subPlusShipping = subtotal + subtotal * 0.1;
+      const subPlusTax = subPlusShipping + subPlusShipping * 0.08;
       const newOrderObj = {
-        user_id: checkoutRes.body.user_id,
-        orderTotal:
-          checkoutRes.body.item_qty *
-          checkoutRes.body.product_price *
-          0.08 *
-          0.1,
+        user_id: checkoutRes.body[0].user_id,
+        order_total: subPlusTax,
         payment_method: 'pretend-pal',
-        cart_id: checkoutRes.body.cart_id,
+        cart_id: checkoutRes.body[0].cart_id,
       };
-      console.log(checkoutRes);
       const createOrderRes = await agent
         .post(BASE_URL + '/order')
         .send(newOrderObj);
@@ -197,7 +193,7 @@ describe('POST endpoints', () => {
       expect(createOrderRes.body.msg).toBe('order created');
       const createdOrderId = createOrderRes.body.order_id;
 
-      // cancel the order
+      // cancel the order - this is also the test for the delete endpoint
       const cancelOrderRes = await agent.delete(
         `${BASE_URL}/order/${createdOrderId}`,
       );
@@ -279,5 +275,5 @@ describe('DELETE /order/:id endpoint', () => {
     );
   });
 
-  test.todo('cancels an order when given a valid order id');
+  // the happy path was tested in the teardown for the create order test above
 });
