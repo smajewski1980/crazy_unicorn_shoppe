@@ -4,6 +4,7 @@
 #dev-info {
   max-width: 750px;
   width: 100%;
+  padding-block-end: 5rem;
 
   h1 {
     font-size: clamp(1.5rem, 2.75vw, 3rem);
@@ -129,9 +130,7 @@
     font-size: clamp(0.75rem, 0.777vw + 0.568rem, 1.5rem);
   }
 
-  #to-dos {
-    li:last-child {
-      margin-block-end: 2rem;
-    }
+  #tests-link {
+    color: chartreuse;
   }
 }
